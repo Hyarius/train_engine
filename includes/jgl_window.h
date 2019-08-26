@@ -46,7 +46,9 @@ public:
 
 		_context = SDL_GL_CreateContext(_window);
 
-		glewInit();
+		#ifndef __APPLE__
+			glewInit();
+		#endif
 
 		_background_color = p_color;
 
