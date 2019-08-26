@@ -33,7 +33,7 @@ LIB =		SDL2 SDL2_image SDL2_mixer SDL2_ttf png
 ##		COMPILER FLAGS
 ##
 
-##Basics flags for 42
+##Basics flags
 CFLAGS=		-O3 -flto
 
 ##Create the flags to includes every .h needed by this program
