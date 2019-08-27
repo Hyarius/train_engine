@@ -6,21 +6,25 @@ int main(int argc, char**argv)
 {
 	c_window win("Test", Vector2(860, 640), c_color(70, 70, 70));
 
-	c_viewport *port = new c_viewport(c_color(110, 110, 110), Vector2(50, 50), Vector2(350, 350));
-	c_viewport *port2 = new c_viewport(c_color(150, 150, 150), Vector2(400, 400), Vector2(100, 100));
-
 	bool play = true;
 	SDL_Event event;
 
-	c_image image("ressources/image/zoro.png");
+	jgl_widget widget = jgl_widget();
+	widget.set_geometry(Vector2(20, 20), Vector2(300, 300));
+
+	jgl_widget widget2 = jgl_widget(&widget);
+	widget2.set_background_color(c_color(150, 150, 150));
+	widget2.set_geometry(Vector2(10, 10), Vector2(100, 100));
+
+	jgl_widget widget3 = jgl_widget(&widget2);
+	widget3.set_background_color(c_color(200, 200, 200));
+	widget3.set_geometry(Vector2(-10, -10), Vector2(100, 50));
 
 	while (play == true)
 	{
 		win.clear();
-		port->clear();
-		port2->clear();
 
-		draw_text(port, "ceci est une string de text plutot longue, et qui devrait donc deborder", Vector2(10, 10), 30, DARK_RED);
+		widget.render();
 
 		win.render();
 
