@@ -55,7 +55,7 @@ install:
 libs:
 				$(foreach lib, $(LIB_DWN), $(DWL) install $(lib); )
 
-$(NAME):		$(OBJ) $(INC) Makefile
+$(NAME):		$(OBJ) $(INC_DIR) Makefile
 				@echo "Compiling $(NAME) ...\c"
 				@$(CC) $(CFLAGS) $(IFLAGS) -o $(NAME) $(OBJ) $(LFLAGS)
 				@echo " DONE"

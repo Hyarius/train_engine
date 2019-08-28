@@ -1,4 +1,4 @@
-#include "jgl.h"
+#include "engine.h"
 
 using namespace std;
 
@@ -6,25 +6,25 @@ int main(int argc, char**argv)
 {
 	c_window win("Test", Vector2(860, 640), c_color(70, 70, 70));
 
+	c_widget central_widget = c_widget();
+	central_widget.set_geometry(Vector2(0, 0), win.size());
+	central_widget.active();
+
+	c_map map = c_map("ressources/image/map.jpg", &central_widget);
+	map.set_background_color(c_color(255, 255, 255));
+	map.set_geometry(Vector2(10, 10), win.size());
+	map.active();
+
 	bool play = true;
 	SDL_Event event;
-
-	jgl_widget widget = jgl_widget();
-	widget.set_geometry(Vector2(20, 20), Vector2(300, 300));
-
-	jgl_widget widget2 = jgl_widget(&widget);
-	widget2.set_background_color(c_color(150, 150, 150));
-	widget2.set_geometry(Vector2(10, 10), Vector2(100, 100));
-
-	jgl_widget widget3 = jgl_widget(&widget2);
-	widget3.set_background_color(c_color(200, 200, 200));
-	widget3.set_geometry(Vector2(-10, -10), Vector2(100, 50));
 
 	while (play == true)
 	{
 		win.clear();
 
-		widget.render();
+		central_widget.render();
+
+		central_widget.handle_event();
 
 		win.render();
 
