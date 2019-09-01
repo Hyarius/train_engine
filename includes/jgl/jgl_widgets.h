@@ -1,5 +1,5 @@
-#ifndef c_widgetS_H
-#define c_widgetS_H
+#ifndef C_WIDGETS_H
+#define C_WIDGETS_H
 
 #include "jgl_viewport.h"
 
@@ -14,98 +14,33 @@ protected:
 	bool _activated;
 
 public:
-	c_widget(c_widget *p_parent = NULL)
-	{
-		_childrens.clear();
-		set_parent(p_parent);
-		_viewport = new c_viewport();
-		set_background_color();
-		set_geometry();
-		_activated = false;
-	}
+	c_widget(c_widget *p_parent = NULL);
 
-	void set_background_color(c_color p_background = c_color(50, 50, 50))
-	{
-		_viewport->set_background(p_background);
-	}
+	void set_background_color(c_color p_background = c_color(50, 50, 50));
 
-	void set_geometry(Vector2 p_anchor = Vector2(0, 0), Vector2 p_size = Vector2(0, 0))
-	{
-		if (_parent == NULL)
-			_viewport->resize(p_anchor, p_size);
-		else
-			_viewport->resize(p_anchor + _parent->anchor(), p_size);
-	}
+	void set_geometry(Vector2 p_anchor = Vector2(0, 0), Vector2 p_size = Vector2(0, 0));
 
-	Vector2 size()
-	{
-		return (_viewport->size());
-	}
+	Vector2 size();
 
-	Vector2 anchor()
-	{
-		return (_viewport->anchor());
-	}
+	Vector2 anchor();
 
-	c_viewport *viewport()
-	{
-		return (_viewport);
-	}
+	c_viewport *viewport();
 
-	bool is_active()
-	{
-		return (_activated);
-	}
+	bool is_active();
 
-	void active()
-	{
-		_activated = !_activated;
-	}
+	void active();
 
-	void set_parent(c_widget *p_parent)
-	{
-		_parent = p_parent;
-		if (p_parent != NULL)
-			p_parent->add_children(this);
-	}
+	void set_parent(c_widget *p_parent);
 
-	void add_children(c_widget *p_children)
-	{
-		_childrens.push_back(p_children);
-	}
+	void add_children(c_widget *p_children);
 
-	virtual void render()
-	{
-		if (is_active() == false)
-			return ;
+	virtual void render();
 
-		_viewport->clear();
+	void handle_event();
 
-		for (size_t i = 0; i < _childrens.size(); i++)
-			_childrens[i]->render();
-	}
+	virtual void handle_keyboard();
 
-	void handle_event()
-	{
-		if (is_active() == false)
-			return ;
-
-		handle_keyboard();
-		handle_mouse();
-
-		for (size_t i = 0; i < _childrens.size(); i++)
-			_childrens[i]->handle_event();
-	}
-
-	virtual void handle_keyboard()
-	{
-
-	}
-
-	virtual void handle_mouse()
-	{
-
-	}
+	virtual void handle_mouse();
 };
 
 #endif

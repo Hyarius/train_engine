@@ -12,7 +12,7 @@ int main(int argc, char**argv)
 
 	c_map map = c_map("ressources/image/map.jpg", &central_widget);
 	map.set_background_color(c_color(255, 255, 255));
-	map.set_geometry(Vector2(10, 10), win.size());
+	map.set_geometry(Vector2(10, 10), Vector2(410, 410));
 	map.active();
 
 	bool play = true;
@@ -21,6 +21,7 @@ int main(int argc, char**argv)
 	while (play == true)
 	{
 		win.clear();
+
 
 		central_widget.render();
 
@@ -32,7 +33,10 @@ int main(int argc, char**argv)
 		{
 			if (event.type == SDL_QUIT || (event.type == SDL_KEYUP && event.key.keysym.sym == SDLK_ESCAPE))
 				play = false;
+			mouse->actualize_mouse(&event);
 		}
+		else
+			mouse->actualize_mouse();
 	}
 
 	return (0);
