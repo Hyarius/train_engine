@@ -5,8 +5,13 @@
 #include "jgl_vector.h"
 #include "jgl_color.h"
 
+
+#define MOUSE_DOWN 1
+#define MOUSE_UP 0
+#define MOUSE_NULL -1
+
 #define MOUSE_BUTTON 3
-# define MOUSE_NULL -1
+
 # define MOUSE_RIGHT 0
 # define MOUSE_LEFT 1
 # define MOUSE_MIDDLE 2
@@ -17,7 +22,8 @@ typedef struct s_mouse
 	Vector2 pos;
 	Vector2 rel_pos;
 	float wheel;
-	bool button[MOUSE_BUTTON];
+	int button[MOUSE_BUTTON];
+	bool motion;
 
 	s_mouse();
 	void actualize_mouse(SDL_Event *event = NULL);

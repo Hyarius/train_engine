@@ -10,8 +10,12 @@ private:
 	Vector2 anchor;
 	float zoom;
 
+	vector<Vector2> points;
+
 public:
 	c_map(string path, c_widget *parent = NULL);
+
+	void add_city();
 
 	virtual void render();
 

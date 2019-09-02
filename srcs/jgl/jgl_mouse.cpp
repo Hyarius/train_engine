@@ -7,9 +7,10 @@ s_mouse::s_mouse()
 	old_pos = Vector2();
 	pos = Vector2();
 	rel_pos = Vector2(0, 0);
-	button[MOUSE_LEFT] = false;
-	button[MOUSE_RIGHT] = false;
-	button[MOUSE_MIDDLE] = false;
+	wheel = 0.0f;
+	button[MOUSE_LEFT] = MOUSE_NULL;
+	button[MOUSE_RIGHT] = MOUSE_NULL;
+	button[MOUSE_MIDDLE] = MOUSE_NULL;
 }
 
 void		s_mouse::actualize_mouse(SDL_Event *event)
@@ -20,6 +21,7 @@ void		s_mouse::actualize_mouse(SDL_Event *event)
 	old_pos = pos;
 	mousestate = SDL_GetMouseState(&(x), &(y));
 	pos = Vector2(x, y);
+
 	if (old_pos.x != -1)
 		rel_pos = pos - old_pos;
 
@@ -28,19 +30,23 @@ void		s_mouse::actualize_mouse(SDL_Event *event)
 	else
 		wheel = 0.0f;
 
-	cout << "Wheel = " + to_string(wheel) << endl;
-
-	button[MOUSE_LEFT] = (mousestate & SDL_BUTTON(SDL_BUTTON_LEFT) ? true : false);
-	button[MOUSE_RIGHT] = (mousestate & SDL_BUTTON(SDL_BUTTON_RIGHT) ? true : false);
-	button[MOUSE_MIDDLE] = (mousestate & SDL_BUTTON(SDL_BUTTON_MIDDLE) ? true : false);
+	button[MOUSE_LEFT] = (mousestate & SDL_BUTTON(SDL_BUTTON_LEFT) ? MOUSE_DOWN : (button[MOUSE_LEFT] == MOUSE_DOWN ? MOUSE_UP : MOUSE_NULL));
+	button[MOUSE_RIGHT] = (mousestate & SDL_BUTTON(SDL_BUTTON_RIGHT) ? MOUSE_DOWN : (button[MOUSE_RIGHT] == MOUSE_DOWN ? MOUSE_UP : MOUSE_NULL));
+	button[MOUSE_MIDDLE] = (mousestate & SDL_BUTTON(SDL_BUTTON_MIDDLE) ? MOUSE_DOWN : (button[MOUSE_MIDDLE] == MOUSE_DOWN ? MOUSE_UP : MOUSE_NULL));
 
 	if (old_pos != Vector2())
 		rel_pos = pos - old_pos;
+
+	if (rel_pos != Vector2(0, 0))
+		motion = true;
+
+	if (button[MOUSE_LEFT] == MOUSE_NULL && button[MOUSE_RIGHT] == MOUSE_NULL)
+		motion = false;
 }
 
 int			s_mouse::get_button(int type)
 {
 	if (type < MOUSE_RIGHT || type > MOUSE_MIDDLE)
-		return (-1);
+		return (MOUSE_NULL);
 	return (button[type]);
 }

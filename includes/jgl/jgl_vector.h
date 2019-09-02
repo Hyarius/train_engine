@@ -1,9 +1,6 @@
 #ifndef JGL_VECTOR_H
 #define JGL_VECTOR_H
 
-#include <iostream>
-#include <string>
-
 using namespace std;
 
 struct Vector3
