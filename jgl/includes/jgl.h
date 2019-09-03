@@ -13,6 +13,7 @@
 #include "jgl_image.h"
 #include "jgl_tileset.h"
 #include "jgl_widgets.h"
+#include "jgl_frame.h"
 #include "jgl_draw_primitive.h"
 
 extern c_window *main_window;

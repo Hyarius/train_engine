@@ -16,8 +16,6 @@ protected:
 public:
 	c_widget(c_widget *p_parent = NULL);
 
-	void set_background_color(c_color p_background = c_color(50, 50, 50));
-
 	void set_geometry(Vector2 p_anchor = Vector2(0, 0), Vector2 p_size = Vector2(0, 0));
 
 	Vector2 size();
@@ -34,13 +32,13 @@ public:
 
 	void add_children(c_widget *p_children);
 
-	virtual void render();
+	virtual void render() = 0;
 
 	void handle_event();
 
-	virtual void handle_keyboard();
+	virtual void handle_keyboard() = 0;
 
-	virtual void handle_mouse();
+	virtual void handle_mouse() = 0;
 };
 
 #endif

@@ -21,6 +21,7 @@ c_window::c_window(string name, Vector2 p_size, c_color p_color)
 		static_cast<int>(_win_size.x), static_cast<int>(_win_size.y), 0);
 
 	_renderer = SDL_CreateRenderer(_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+	SDL_SetRenderDrawBlendMode(_renderer, SDL_BLENDMODE_BLEND);
 
 	_background = p_color;
 

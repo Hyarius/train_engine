@@ -5,7 +5,7 @@ NAME=		ts_engine
 ##
 
 ##List every folder where he will find header
-INC_DIR = 	$(shell find includes -type d)
+INC_DIR = 	$(shell find includes -type d) $(shell find jgl/includes -type d)
 ##List every folder where he will find source file
 SRC_DIR = 	$(shell find srcs -type d)
 ##Folder where he will store the .o
@@ -19,7 +19,6 @@ DWL =		brew
 
 ##List every .c found inside SRC_DIR
 SRC = 		$(foreach dir, $(SRC_DIR), $(foreach file, $(wildcard $(dir)/*.cpp), $(notdir $(file))))
-INC = 		$(foreach dir, $(INC_DIR), $(foreach file, $(wildcard $(dir)/*.h), $(addprefix $(INC_DIR)/, $(notdir $(file)))))
 
 ##Transform and place every .o from SRC
 OBJ=		$(addprefix $(OBJ_DIR)/, $(SRC:%.cpp=%.o))
@@ -34,7 +33,7 @@ LIB =		SDL2 SDL2_image SDL2_mixer SDL2_ttf jgl
 ##
 
 ##Basics flags
-CFLAGS=		-O3 -flto
+CFLAGS=		-O3 -flto -fsanitize=address
 
 ##Create the flags to includes every .h needed by this program
 IFLAGS =	$(foreach dir, $(INC_DIR), -I$(dir)) $(foreach dir, $(shell find ~/.brew/include -type d), -I$(dir))
@@ -52,9 +51,9 @@ install:
 				make install -C "jgl"
 
 jgl:
-				make -C "jgl" re
+				make -C jgl
 
-$(NAME):		$(OBJ) $(INC_DIR) Makefile
+$(NAME):		$(OBJ) $(INC_DIR) Makefile jgl
 				@echo "Compiling $(NAME) ...\c"
 				@$(CC) $(CFLAGS) $(IFLAGS) -o $(NAME) $(OBJ) $(LFLAGS)
 				@echo " DONE"
@@ -75,4 +74,4 @@ fclean:			clean
 
 re:				fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re jgl

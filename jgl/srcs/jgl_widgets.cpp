@@ -7,14 +7,8 @@ c_widget::c_widget(c_widget *p_parent)
 	_childrens.clear();
 	set_parent(p_parent);
 	_viewport = new c_viewport();
-	set_background_color();
 	set_geometry();
 	_activated = false;
-}
-
-void c_widget::set_background_color(c_color p_background)
-{
-	_viewport->set_background(p_background);
 }
 
 void c_widget::set_geometry(Vector2 p_anchor, Vector2 p_size)
@@ -62,17 +56,6 @@ void c_widget::add_children(c_widget *p_children)
 	_childrens.push_back(p_children);
 }
 
-void c_widget::render()
-{
-	if (is_active() == false)
-		return ;
-
-	_viewport->clear();
-
-	for (size_t i = 0; i < _childrens.size(); i++)
-		_childrens[i]->render();
-}
-
 void c_widget::handle_event()
 {
 	if (is_active() == false)
@@ -83,14 +66,4 @@ void c_widget::handle_event()
 
 	for (size_t i = 0; i < _childrens.size(); i++)
 		_childrens[i]->handle_event();
-}
-
-void c_widget::handle_keyboard()
-{
-
-}
-
-void c_widget::handle_mouse()
-{
-
 }
