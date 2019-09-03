@@ -1,4 +1,4 @@
-NAME=		ts_engine
+NAME=		libjgl.a
 
 ##
 ##		RESSOURCES
@@ -27,7 +27,7 @@ OBJ=		$(addprefix $(OBJ_DIR)/, $(SRC:%.cpp=%.o))
 ##List of libraries to download and install using the function defined in DWL
 LIB_DWN =	sdl2 sdl2_image sdl2_mixer sdl2_ttf
 ##List of libraries to link while compiling
-LIB =		SDL2 SDL2_image SDL2_mixer SDL2_ttf jgl
+LIB =		SDL2 SDL2_image SDL2_mixer SDL2_ttf
 
 ##
 ##		COMPILER FLAGS
@@ -40,7 +40,7 @@ CFLAGS=		-O3 -flto
 IFLAGS =	$(foreach dir, $(INC_DIR), -I$(dir)) $(foreach dir, $(shell find ~/.brew/include -type d), -I$(dir))
 
 ##Create the flags to link every libraries needed by this program (-L and -l)
-LFLAGS = 	-L ~/.brew/lib -L ./jgl $(foreach lib, $(LIB), -l$(lib)) -framework OpenGL
+LFLAGS = 	-L ~/.brew/lib $(foreach lib, $(LIB), -l$(lib) ) -framework OpenGL
 
 ##Define the compiler to use
 CC=			g++
@@ -49,14 +49,16 @@ all:
 				make $(NAME)
 
 install:
-				make install -C "jgl"
+				make libs
+				make $(NAME)
 
-jgl:
-				make -C "jgl" re
+libs:
+				$(foreach lib, $(LIB_DWN), $(DWL) install $(lib); )
 
 $(NAME):		$(OBJ) $(INC_DIR) Makefile
 				@echo "Compiling $(NAME) ...\c"
-				@$(CC) $(CFLAGS) $(IFLAGS) -o $(NAME) $(OBJ) $(LFLAGS)
+				@ar rc $(NAME) $(OBJ)
+				@ranlib $(NAME)
 				@echo " DONE"
 
 $(OBJ_DIR)/%.o : %.cpp

@@ -22,7 +22,7 @@ void c_map::render()
 
 void c_map::handle_keyboard()
 {
-	
+
 }
 
 void c_map::add_city()
