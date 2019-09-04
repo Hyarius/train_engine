@@ -8,15 +8,18 @@
 #include "jgl_vector.h"
 #include "jgl_color.h"
 #include "jgl_system.h"
+#include "jgl_application.h"
 #include "jgl_viewport.h"
 #include "jgl_text.h"
 #include "jgl_image.h"
 #include "jgl_tileset.h"
 #include "jgl_widgets.h"
 #include "jgl_frame.h"
+#include "jgl_user_entry.h"
+#include "jgl_window.h"
 #include "jgl_draw_primitive.h"
 
-extern c_window *main_window;
+extern c_application *main_window;
 extern t_keyboard *keyboard;
 extern t_mouse *mouse;
 

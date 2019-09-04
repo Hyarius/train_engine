@@ -46,9 +46,15 @@ void c_widget::active()
 
 void c_widget::set_parent(c_widget *p_parent)
 {
-	_parent = p_parent;
 	if (p_parent != NULL)
-		p_parent->add_children(this);
+		_parent = p_parent;
+	else if (main_window != NULL && p_parent == NULL)
+		_parent = main_window->central_widget();
+	else
+		_parent = NULL;
+		
+	if (_parent != NULL)
+		_parent->add_children(this);
 }
 
 void c_widget::add_children(c_widget *p_children)

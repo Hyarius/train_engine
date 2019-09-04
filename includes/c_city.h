@@ -7,6 +7,7 @@ class c_city : public c_frame
 {
 private:
 	class c_map *map;
+	string name;
 	Vector2 pos;
 	int selected;
 

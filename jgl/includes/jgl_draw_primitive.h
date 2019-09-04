@@ -12,5 +12,6 @@ void draw_line(c_viewport *viewport, c_color c_color, Vector2 p1, Vector2 p2);
 void draw_polygon(c_viewport *viewport, c_color c_color, vector<Vector2> points);
 void draw_rectangle(c_viewport *viewport, c_color c_color, Vector2 pos, Vector2 size);
 void fill_rectangle(c_viewport *viewport, c_color c_color, Vector2 pos, Vector2 size);
-
+void draw_centred_rectangle(c_viewport *viewport, c_color c_color, Vector2 pos, Vector2 size);
+void fill_centred_rectangle(c_viewport *viewport, c_color c_color, Vector2 pos, Vector2 size);
 #endif

@@ -2,16 +2,20 @@
 
 #define CITY_SIZE 7.0f
 
+int num = 0;
+
 c_city::c_city(c_widget *p_parent, Vector2 p_pos) : c_frame(p_parent, 3, c_color(180, 180, 180), c_color(150, 150, 150))
 {
 	map = (c_map *)p_parent;
 	pos = p_pos;
+	name = "City " + to_string(num);
+	num++;
 	selected = 1;
 	Vector2 tmp = Vector2(350, 300);
 	if (p_parent != NULL)
 		set_geometry(Vector2(p_parent->size().x - tmp.x - 6.0f, 6.0f) , tmp);
 	else
-		set_geometry(Vector2(main_window->size().x - tmp.x - 6.0f, 6.0f), tmp);
+		set_geometry(Vector2(main_window->central_widget()->size().x - tmp.x - 6.0f, 6.0f), tmp);
 }
 
 void c_city::draw()
@@ -24,10 +28,14 @@ void c_city::draw()
 
 	Vector2 pos1, size1;
 	size1 = CITY_SIZE * map->zoom() * selected;
-	pos1 = map->map_anchor() + map->size() / 2 + pos * map->zoom() - size1 / 2;
+	pos1 = map->map_anchor() + map->size() / 2 + pos * map->zoom();
 
 	if (pos != Vector2())
-		fill_rectangle(map->viewport(), (selected == 1 ? unselect_color : select_color), pos1, size1);
+	{
+		int text_size = 8 * map->zoom();
+		draw_centred_text(map->viewport(), name, pos1 + Vector2(0.0f, - size1.y), text_size, BLACK, BOLD);
+		fill_centred_rectangle(map->viewport(), (selected == 1 ? unselect_color : select_color), pos1, size1);
+	}
 }
 
 void c_city::select()

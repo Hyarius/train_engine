@@ -50,6 +50,9 @@ all:
 install:
 				make install -C "jgl"
 
+re-jgl:
+				make re -C jgl
+
 jgl:
 				make -C jgl
 

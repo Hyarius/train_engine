@@ -5,7 +5,6 @@
 #include "jgl_vector.h"
 #include "jgl_color.h"
 
-
 #define MOUSE_DOWN 1
 #define MOUSE_UP 0
 #define MOUSE_NULL -1
@@ -40,32 +39,5 @@ typedef struct s_keyboard
 	int get_key(int scan_code);
 	void reset_key(int scan_code);
 }t_keyboard;
-
-class c_window
-{
-private:
-	SDL_Window *_window;
-	SDL_Renderer *_renderer;
-	c_color _background;
-	Vector2 _win_size;
-
-
-public:
-	c_window(string name, Vector2 p_size = Vector2(), c_color p_color = c_color(50, 50, 50));
-
-	SDL_Window *window();
-
-	SDL_Renderer *renderer();
-
-	void set_background(c_color p_color = c_color(50, 50, 50));
-
-	Vector2 size();
-
-	void select();
-
-	void clear();
-
-	void render();
-};
 
 #endif

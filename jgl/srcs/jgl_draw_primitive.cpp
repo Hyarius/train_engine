@@ -39,3 +39,21 @@ void fill_rectangle(c_viewport *viewport, c_color c_color, Vector2 pos, Vector2 
 	SDL_Rect rect = {pos.x, pos.y, size.x, size.y};
 	SDL_RenderFillRect(viewport->renderer(), &rect);
 }
+
+void draw_centred_rectangle(c_viewport *viewport, c_color c_color, Vector2 pos, Vector2 size)
+{
+	viewport->viewport();
+	viewport->set_c_color(c_color);
+
+	SDL_Rect rect = {pos.x - size.x / 2, pos.y - size.y / 2, size.x, size.y};
+	SDL_RenderDrawRect(viewport->renderer(), &rect);
+}
+
+void fill_centred_rectangle(c_viewport *viewport, c_color c_color, Vector2 pos, Vector2 size)
+{
+	viewport->viewport();
+	viewport->set_c_color(c_color);
+
+	SDL_Rect rect = {pos.x - size.x / 2, pos.y - size.y / 2, size.x, size.y};
+	SDL_RenderFillRect(viewport->renderer(), &rect);
+}

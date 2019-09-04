@@ -6,7 +6,7 @@
 
 #define FONT_PATH "ressources/font/Tinos-Regular.ttf"
 
-#define NB_SIZE			31
+#define NB_SIZE			150
 #define NB_COLOR		26
 
 #define BLACK			0
@@ -46,5 +46,7 @@ SDL_Color get_color(int i);
 TTF_Font *get_font(int size);
 c_image	*get_char(char c, int size = 16, int p_color = 0, int type = NORMAL);
 int draw_text(c_viewport *port, string text, Vector2 coord, int text_size = 16, int color_type = BLACK, int type = NORMAL);
+int draw_centred_text(c_viewport *port, string text, Vector2 coord, int text_size = 16, int color_type = BLACK, int type = NORMAL);
+int calc_text_len(string text, int text_size = 16);
 
 #endif

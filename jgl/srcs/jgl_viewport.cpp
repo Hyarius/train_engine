@@ -3,7 +3,7 @@
 c_viewport::c_viewport(c_color p_color, Vector2 p_anchor, Vector2 p_size)
 {
 	if (main_window == nullptr)
-		main_window = new c_window("Main window");
+		main_window = new c_application("Main window");
 
 	_renderer = main_window->renderer();
 	_background = p_color;
