@@ -1,10 +1,10 @@
 #include "jgl.h"
 
-t_keyboard *keyboard;
+t_keyboard *g_keyboard;
 
 s_keyboard::s_keyboard()
 {
-	state = SDL_GetKeyboardState(NULL);
+	state = SDL_GetKeyboardState(nullptr);
 }
 
 int s_keyboard::get_key(int scan_code)

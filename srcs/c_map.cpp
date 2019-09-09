@@ -17,23 +17,16 @@ void c_map::render()
 
 	for (size_t i = 0; i < _cities.size(); i++)
 		_cities[i]->draw();
-
-	for (size_t i = 0; i < _childrens.size(); i++)
-		_childrens[i]->render();
 }
 
-void c_map::handle_keyboard()
+bool c_map::handle_keyboard()
 {
-
+	return (false);
 }
 
 void c_map::select_city(c_city *city)
 {
-	if (_selected != nullptr && _selected->is_active() == true)
-		_selected->active();
 	_selected = city;
-	if (city != nullptr)
-		city->active();
 }
 
 Vector2 c_map::convert_to_map_coord(Vector2 source)
@@ -43,7 +36,7 @@ Vector2 c_map::convert_to_map_coord(Vector2 source)
 
 void c_map::add_city()
 {
-	Vector2 pos = convert_to_map_coord(mouse->pos);
+	Vector2 pos = convert_to_map_coord(g_mouse->pos);
 
 	c_city *new_city = new c_city(this, pos);
 	//select_city(new_city);
@@ -54,22 +47,25 @@ void c_map::add_city()
 c_city *c_map::check_city()
 {
 	for (size_t i = 0; i < _cities.size(); i++)
-		if (_cities[i]->clicked(mouse->pos) == true)
+		if (_cities[i]->clicked(g_mouse->pos) == true)
 			return (_cities[i]);
 
 	return (nullptr);
 }
 
-void c_map::handle_mouse()
+bool c_map::handle_mouse()
 {
-	if (mouse->get_button(MOUSE_LEFT) == MOUSE_DOWN)
+	if (g_mouse->get_button(MOUSE_LEFT) == MOUSE_DOWN)
 	{
-		if (mouse->rel_pos != Vector2(0, 0))
-			_map_anchor = _map_anchor + mouse->rel_pos;
+		if (g_mouse->rel_pos != Vector2(0, 0))
+		{
+			_map_anchor = _map_anchor + g_mouse->rel_pos;
+			return (true);
+		}
 	}
-	if (mouse->get_button(MOUSE_LEFT) == MOUSE_UP)
+	if (g_mouse->get_button(MOUSE_LEFT) == MOUSE_UP)
 	{
-		if (mouse->motion == false)
+		if (g_mouse->motion == false)
 		{
 			if (_selected == nullptr)
 			{
@@ -84,9 +80,10 @@ void c_map::handle_mouse()
 				_selected->select();
 				select_city(nullptr);
 			}
+			return (true);
 		}
 	}
-	if (mouse->wheel != 0)
+	if (g_mouse->wheel != 0)
 	{
 		float ratio_x;
 		float ratio_y;
@@ -94,7 +91,7 @@ void c_map::handle_mouse()
 		ratio_x = (_map.size().x * _zoom) / _map_anchor.x;
 		ratio_y = (_map.size().y * _zoom) / _map_anchor.y;
 
-		if (mouse->wheel > 0)
+		if (g_mouse->wheel > 0)
 			_zoom *= 1.2f;
 		else
 			_zoom *= 0.8f;
@@ -102,9 +99,10 @@ void c_map::handle_mouse()
 		_map_anchor.x = (_map.size().x * _zoom) / ratio_x;
 		_map_anchor.y = (_map.size().y * _zoom) / ratio_y;
 
+		return (true);
 
 	}
-
+	return (false);
 }
 
 float c_map::zoom()

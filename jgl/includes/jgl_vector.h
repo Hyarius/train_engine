@@ -17,12 +17,12 @@ struct Vector3
 	Vector3& operator = (int p_value);
 	Vector3& operator = (float  p_value);
 
-	Vector3		operator + (Vector3 delta);
-	Vector3		operator - (Vector3 delta);
-	Vector3		operator * (Vector3 delta);
-	Vector3		operator / (Vector3 delta);
-	bool		operator == (const Vector3& delta) const;
-	bool		operator != (const Vector3& delta) const;
+	Vector3 operator + (const Vector3& delta);
+	Vector3 operator - (const Vector3& delta);
+	Vector3 operator * (const Vector3& delta);
+	Vector3 operator / (const Vector3& delta);
+	bool operator == (const Vector3& delta) const;
+	bool operator != (const Vector3& delta) const;
 	float *decompose();
 };
 
@@ -39,10 +39,10 @@ struct Vector2
 	Vector2& operator = (int p_value);
 	Vector2& operator = (float  p_value);
 
-	Vector2 operator + (Vector2 delta);
-	Vector2	operator - (Vector2 delta);
-	Vector2	operator * (Vector2 delta);
-	Vector2	operator / (Vector2 delta);
+	Vector2 operator + (const Vector2& delta);
+	Vector2	operator - (const Vector2& delta);
+	Vector2	operator * (const Vector2& delta);
+	Vector2	operator / (const Vector2& delta);
 	bool operator == (const Vector2& delta) const;
 	bool operator != (const Vector2& delta) const;
 	float *decompose();

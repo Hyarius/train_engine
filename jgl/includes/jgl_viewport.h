@@ -10,23 +10,23 @@ class c_viewport
 {
 private:
 	SDL_Renderer *_renderer;
-	c_color _background;
+	Color _background;
 
 	Vector2 _anchor;
 	Vector2 _size;
 
 public:
-	c_viewport(c_color p_color = c_color(), Vector2 p_anchor = Vector2(), Vector2 p_size = Vector2());
+	c_viewport(Color p_color = Color(), Vector2 p_anchor = Vector2(), Vector2 p_size = Vector2());
 
 	void set_viewport(Vector2 p_anchor = Vector2(), Vector2 p_size = Vector2());
 
 	void resize(Vector2 p_anchor, Vector2 p_size);
 
-	void set_background(c_color p_color = c_color(50, 50, 50));
+	void set_background(Color p_color = Color(50, 50, 50));
 
 	void viewport();
 
-	void set_c_color(c_color c_color);
+	void set_Color(Color Color);
 
 	void clear();
 

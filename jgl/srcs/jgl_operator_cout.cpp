@@ -1,6 +1,6 @@
 #include "jgl.h"
 
-ostream& operator<<(ostream& os, const c_color& value)
+ostream& operator<<(ostream& os, const Color& value)
 {
 	os << "(r : " << to_string(value.r) << " / g : " << to_string(value.g) << " / b : " << to_string(value.b) << " / a : " << to_string(value.a) << ")";
 	return os;

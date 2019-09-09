@@ -50,7 +50,7 @@ TTF_Font *get_font(int size)
 	if (font[size] == nullptr)
 	{
 		font[size] = TTF_OpenFont(FONT_PATH, size);
-		if (font[size] == NULL)
+		if (font[size] == nullptr)
 			error_exit(1, "Can't load a font");
 	}
 
@@ -61,7 +61,7 @@ TTF_Font *get_font(int size)
 c_image				*get_char(char c, int size, int p_color, int type)
 {
 	if (size <= 2)
-		return (NULL);
+		return (nullptr);
 
 	if (char_list.size() <= type)
 		char_list.resize(type + 1);
@@ -71,7 +71,7 @@ c_image				*get_char(char c, int size, int p_color, int type)
 		char_list[type][size].resize(p_color + 1);
 	if (char_list[type][size][p_color].size() <= (size_t)c)
 		char_list[type][size][p_color].resize(c + 1);
-	if (char_list[type][size][p_color][c] == NULL)
+	if (char_list[type][size][p_color][c] == nullptr)
 	{
 		TTF_Font *tmp = get_font(size);
 
@@ -105,6 +105,20 @@ int				draw_text(c_viewport *port, string text, Vector2 coord, int size, int col
 		i++;
 	}
 	return (delta);
+}
+
+int				max_char_in_box(int space, int size)
+{
+	int nb_char = 0;
+	int delta = 0;
+
+	while (delta < space)
+	{
+		delta += get_char('M', size)->size().x;
+		nb_char++;
+	}
+
+	return (nb_char);
 }
 
 int				calc_text_len(string text, int size)

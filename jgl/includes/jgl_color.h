@@ -6,20 +6,20 @@
 
 #define CALC(value) ((value % 256) / 255.0f)
 
-struct c_color
+struct Color
 {
 	float r;
 	float g;
 	float b;
 	float a;
 
-	c_color();
-	c_color(float p_r, float p_g, float p_b, float p_a = 1.0f);
-	c_color(int p_r, int p_g, int p_b, int p_a = 255);
+	Color();
+	Color(float p_r, float p_g, float p_b, float p_a = 1.0f);
+	Color(int p_r, int p_g, int p_b, int p_a = 255);
 
 	float *decompose();
 };
 
-ostream& operator<<(ostream& os, const c_color& value);
+ostream& operator<<(ostream& os, const Color& value);
 
 #endif

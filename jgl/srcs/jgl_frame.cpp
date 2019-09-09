@@ -2,7 +2,7 @@
 
 using namespace std;
 
-c_frame::c_frame(c_widget *p_parent, int p_border_size, c_color p_front, c_color p_back) : c_widget(p_parent)
+c_frame::c_frame(c_widget *p_parent, int p_border_size, Color p_front, Color p_back) : c_widget(p_parent)
 {
 	border_size = p_border_size;
 	front = p_front;
@@ -11,22 +11,18 @@ c_frame::c_frame(c_widget *p_parent, int p_border_size, c_color p_front, c_color
 
 void c_frame::render()
 {
-	if (is_active() == false)
-		return ;
+	_viewport->viewport();
 
 	fill_rectangle(_viewport, back, 0, _viewport->size());
 	fill_rectangle(_viewport, front, border_size, _viewport->size() - border_size * 2);
-
-	for (size_t i = 0; i < _childrens.size(); i++)
-		_childrens[i]->render();
 }
 
-void c_frame::handle_keyboard()
+bool c_frame::handle_keyboard()
 {
-
+	return (false);
 }
 
-void c_frame::handle_mouse()
+bool c_frame::handle_mouse()
 {
-
+	return (false);
 }

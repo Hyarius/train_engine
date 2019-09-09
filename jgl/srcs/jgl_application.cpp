@@ -1,8 +1,8 @@
 #include "jgl.h"
 
-c_application *main_window;
+c_application *g_application;
 
-c_application::c_application(string name, Vector2 p_size, c_color p_color)
+c_application::c_application(string name, Vector2 p_size, Color p_color)
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
 	IMG_Init(IMG_INIT_PNG);
@@ -25,15 +25,18 @@ c_application::c_application(string name, Vector2 p_size, c_color p_color)
 
 	_background = p_color;
 
-	mouse = new t_mouse();
-	keyboard = new t_keyboard();
+	g_mouse = new t_mouse();
+	g_keyboard = new t_keyboard();
 
-	if (main_window == nullptr)
+	if (g_application == nullptr)
 		select();
 
 	_central_widget = new c_window();
 	_central_widget->set_geometry(Vector2(0, 0), _win_size);
 	_central_widget->active();
+
+	SDL_StartTextInput();
+
 }
 
 SDL_Window *c_application::window()
@@ -46,12 +49,17 @@ SDL_Renderer *c_application::renderer()
 	return (_renderer);
 }
 
+SDL_Event *c_application::event()
+{
+	return (&_event);
+}
+
 c_widget *c_application::central_widget()
 {
 	return (_central_widget);
 }
 
-void c_application::set_background(c_color p_color)
+void c_application::set_background(Color p_color)
 {
 	_background = p_color;
 }
@@ -63,7 +71,7 @@ Vector2 c_application::size()
 
 void c_application::select()
 {
-	main_window = this;
+	g_application = this;
 }
 
 void c_application::clear()
@@ -79,26 +87,26 @@ void c_application::render()
 
 int c_application::run()
 {
+	int ret;
 	play = true;
 
 	while (play == true)
 	{
 		clear();
 
-		_central_widget->render();
+		_central_widget->render_children();
 
 		_central_widget->handle_event();
 
 		render();
 
-		if (SDL_PollEvent(&event))
+		ret = SDL_PollEvent(&_event);
+		if (ret != 0)
 		{
-			if (event.type == SDL_QUIT || (event.type == SDL_KEYUP && event.key.keysym.sym == SDLK_ESCAPE))
+			if (_event.type == SDL_QUIT || (_event.type == SDL_KEYUP && _event.key.keysym.sym == SDLK_ESCAPE))
 				play = false;
-			mouse->actualize_mouse(&event);
 		}
-		else
-			mouse->actualize_mouse();
+		g_mouse->actualize_mouse((ret == 0 ? nullptr : &_event));
 	}
 
 	return (0);

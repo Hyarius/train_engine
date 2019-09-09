@@ -8,17 +8,17 @@ using namespace std;
 class c_window : public c_widget
 {
 protected:
-	c_color back;
+	Color back;
 
 public:
 	c_window(c_widget *p_parent = NULL,
-			c_color p_back = c_color(220, 220, 220));
+			Color p_back = Color(220, 220, 220));
 
 	virtual void render();
 
-	virtual void handle_keyboard();
+	virtual bool handle_keyboard();
 
-	virtual void handle_mouse();
+	virtual bool handle_mouse();
 };
 
 #endif

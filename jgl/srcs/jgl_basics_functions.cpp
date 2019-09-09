@@ -71,8 +71,3 @@ void check_sdl_error(const char *file, int line)
 		error_exit(1, error);
 	}
 }
-
-void update_input()
-{
-	
-}

@@ -1,6 +1,6 @@
 #include "jgl.h"
 
-t_mouse *mouse;
+t_mouse *g_mouse;
 
 s_mouse::s_mouse()
 {

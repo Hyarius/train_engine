@@ -16,7 +16,7 @@ private:
 	vector<c_city *> _cities;
 
 public:
-	c_map(string path, c_widget *parent = NULL);
+	c_map(string path, c_widget *parent = nullptr);
 
 	void add_city();
 	void select_city(c_city *city);
@@ -28,9 +28,9 @@ public:
 
 	virtual void render();
 
-	virtual void handle_keyboard();
+	virtual bool handle_keyboard();
 
-	virtual void handle_mouse();
+	virtual bool handle_mouse();
 };
 
 #endif

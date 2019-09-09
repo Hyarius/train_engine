@@ -10,23 +10,25 @@ class c_application
 private:
 	SDL_Window *_window;
 	SDL_Renderer *_renderer;
-	c_color _background;
+	Color _background;
 	Vector2 _win_size;
 
 	class c_widget *_central_widget;
 	bool play;
-	SDL_Event event;
+	SDL_Event _event;
 
 public:
-	c_application(string name, Vector2 p_size = Vector2(), c_color p_color = c_color(50, 50, 50));
+	c_application(string name, Vector2 p_size = Vector2(), Color p_color = Color(50, 50, 50));
 
 	SDL_Window *window();
 
 	SDL_Renderer *renderer();
 
+	SDL_Event *event();
+
 	class c_widget *central_widget();
 
-	void set_background(c_color p_color = c_color(50, 50, 50));
+	void set_background(Color p_color = Color(50, 50, 50));
 
 	Vector2 size();
 

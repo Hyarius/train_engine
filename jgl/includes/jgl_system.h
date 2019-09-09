@@ -25,7 +25,7 @@ typedef struct s_mouse
 	bool motion;
 
 	s_mouse();
-	void actualize_mouse(SDL_Event *event = NULL);
+	void actualize_mouse(SDL_Event *event = nullptr);
 	int get_button(int type);
 
 }t_mouse;

@@ -5,17 +5,17 @@ c_image::c_image() : _surface(nullptr), _texture(nullptr) {}
 c_image::c_image(string path)
 {
 	_surface = IMG_Load(path.c_str());
-	if (_surface == NULL)
+	if (_surface == nullptr)
 		error_exit(1, "Can't load " + path + " file");
 
-	_texture = SDL_CreateTextureFromSurface(main_window->renderer(), _surface);
+	_texture = SDL_CreateTextureFromSurface(g_application->renderer(), _surface);
 	if (_texture == nullptr)
 		error_exit(1, "Error while creating the texture from " + path + " file");
 
 	_size = Vector2(_surface->w, _surface->h);
 }
 
-c_image::c_image(c_color p_color)
+c_image::c_image(Color p_color)
 {
 	SDL_Surface		*_surface;
 	Uint32			rmask, gmask, bmask, amask;
@@ -37,14 +37,14 @@ c_image::c_image(c_color p_color)
 		(Uint8)(p_color.r * 255), (Uint8)(p_color.g * 255),
 		(Uint8)(p_color.b * 255), (Uint8)(p_color.a * 255)));
 
-	if (_surface == NULL)
+	if (_surface == nullptr)
 		error_exit(1, "Can't create a surface of color " +
 										to_string((int)(p_color.r * 255)) + "/" +
 										to_string((int)(p_color.g * 255)) + "/" +
 										to_string((int)(p_color.b * 255)) + "/" +
 										to_string((int)(p_color.a * 255)));
 
-	_texture = SDL_CreateTextureFromSurface(main_window->renderer(), _surface);
+	_texture = SDL_CreateTextureFromSurface(g_application->renderer(), _surface);
 	if (_texture == nullptr)
 		error_exit(1, "Error while creating the texture for the color " +
 										to_string((int)(p_color.r * 255)) + "/" +
@@ -62,7 +62,7 @@ c_image::c_image(SDL_Surface *p__surface)
 	if (_surface == nullptr)
 		error_exit(1, "Surface send in c_image = NULL");
 
-	_texture = SDL_CreateTextureFromSurface(main_window->renderer(), _surface);
+	_texture = SDL_CreateTextureFromSurface(g_application->renderer(), _surface);
 	if (_texture == nullptr)
 		error_exit(1, "Error while creating the texture from a SDL_surface");
 

@@ -17,7 +17,7 @@ private:
 public:
 	c_image();
 	c_image(string path);
-	c_image(c_color p_color);
+	c_image(Color p_color);
 	c_image(SDL_Surface *p__surface);
 
 	void draw(c_viewport *viewport, Vector2 pos, Vector2 size);

@@ -9,19 +9,19 @@ class c_frame : public c_widget
 {
 protected:
 	int border_size;
-	c_color front;
-	c_color back;
+	Color front;
+	Color back;
 
 public:
 	c_frame(c_widget *p_parent = NULL, int p_border_size = 0,
-			c_color p_front = c_color(120, 120, 120),
-			c_color p_back = c_color(165, 165, 165));
+			Color p_front = Color(120, 120, 120),
+			Color p_back = Color(165, 165, 165));
 
 	virtual void render();
 
-	virtual void handle_keyboard();
+	virtual bool handle_keyboard();
 
-	virtual void handle_mouse();
+	virtual bool handle_mouse();
 };
 
 #endif
