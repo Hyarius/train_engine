@@ -12,20 +12,31 @@ c_user_entry::c_user_entry(c_widget *p_parent) : c_frame(p_parent, 3, Color(165,
 
 void c_user_entry::render_text()
 {
+	string tmp_text = "";
+	int tmp_cursor = 0;
 	Vector2 pos;
-	int text_size = _viewport->size().y - (border_size) * 2;
+	Vector2 intern_size = _viewport->size() - border_size * 2;
+
+	int text_size = intern_size.y;
+	int text_len = calc_text_len(text, text_size);
+
+	if (text_len < intern_size.x)
+	{
+		tmp_text = text;
+		tmp_cursor = cursor;
+	}
 
 	pos = border_size;
-	if (text.size() != 0)
-		pos.x = draw_text(_viewport, text.substr(0, cursor), pos, text_size);
+	if (tmp_text.size() != 0)
+		pos.x = draw_text(_viewport, tmp_text.substr(0, tmp_cursor), pos, text_size);
 	pos.x += 3;
 
 	if (selected == true && (SDL_GetTicks() / 400) % 2 == 0)
 		fill_rectangle(_viewport, Color(50, 50, 50), pos + Vector2(0, 3), Vector2(2, text_size - 3));
 
-	if (cursor < text.size())
-		if (text.size() != 0)
-			draw_text(_viewport, text.substr(cursor), pos, text_size);
+	if (tmp_cursor < tmp_text.size())
+		if (tmp_text.size() != 0)
+			draw_text(_viewport, tmp_text.substr(tmp_cursor), pos, text_size);
 }
 
 void c_user_entry::render()
