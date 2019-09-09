@@ -10,7 +10,7 @@ int main(int argc, char**argv)
 	map.set_geometry(Vector2(10, 10), Vector2(910, 750));
 	map.active();
 
-	c_user_entry entry = c_user_entry();
+	c_user_entry entry = c_user_entry(&map);
 	entry.set_geometry(Vector2(10, 10), Vector2(150, 25));
 	entry.active();
 

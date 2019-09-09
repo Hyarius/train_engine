@@ -96,7 +96,7 @@ void c_widget::render_children()
 
 	for (size_t i = 0; i < _childrens.size(); i++)
 	{
-		_childrens[i]->render_children();
 		_childrens[i]->render();
+		_childrens[i]->render_children();
 	}
 }

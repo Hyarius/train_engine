@@ -11,6 +11,7 @@ c_map::c_map(string path, c_widget *parent) : c_widget(parent)
 
 void c_map::render()
 {
+	_viewport->viewport();
 	_viewport->clear();
 
 	_map.draw(_viewport, _map_anchor + size() / 2.0f, _map.size() * _zoom);
@@ -55,34 +56,38 @@ c_city *c_map::check_city()
 
 bool c_map::handle_mouse()
 {
-	if (g_mouse->get_button(MOUSE_LEFT) == MOUSE_DOWN)
+	if (is_clicked(g_mouse->pos))
 	{
-		if (g_mouse->rel_pos != Vector2(0, 0))
+		if (g_mouse->get_button(MOUSE_LEFT) == MOUSE_DOWN)
 		{
-			_map_anchor = _map_anchor + g_mouse->rel_pos;
-			return (true);
-		}
-	}
-	if (g_mouse->get_button(MOUSE_LEFT) == MOUSE_UP)
-	{
-		if (g_mouse->motion == false)
-		{
-			if (_selected == nullptr)
+			if (g_mouse->rel_pos != Vector2(0, 0))
 			{
-				c_city *result = check_city();
-				if (result == nullptr)
-					add_city();
+				_map_anchor = _map_anchor + g_mouse->rel_pos;
+				return (true);
+			}
+		}
+		if (g_mouse->get_button(MOUSE_LEFT) == MOUSE_UP)
+		{
+			if (g_mouse->motion == false)
+			{
+				if (_selected == nullptr)
+				{
+					c_city *result = check_city();
+					if (result == nullptr)
+						add_city();
+					else
+						select_city(result);
+				}
 				else
-					select_city(result);
+				{
+					_selected->select();
+					select_city(nullptr);
+				}
+				return (true);
 			}
-			else
-			{
-				_selected->select();
-				select_city(nullptr);
-			}
-			return (true);
 		}
 	}
+
 	if (g_mouse->wheel != 0)
 	{
 		float ratio_x;

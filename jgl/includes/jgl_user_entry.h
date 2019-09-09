@@ -20,6 +20,7 @@ public:
 	void unselect();
 
 	virtual void render();
+	void render_text();
 
 	virtual bool handle_keyboard();
 

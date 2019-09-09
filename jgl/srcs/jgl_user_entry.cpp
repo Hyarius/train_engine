@@ -10,21 +10,11 @@ c_user_entry::c_user_entry(c_widget *p_parent) : c_frame(p_parent, 3, Color(165,
 	input_delay = 100;
 }
 
-void c_user_entry::render()
+void c_user_entry::render_text()
 {
 	Vector2 pos;
-	int	text_size;
+	int text_size = _viewport->size().y - (border_size) * 2;
 
-	_viewport->viewport();
-
-	fill_rectangle(_viewport, back, 0, _viewport->size());
-	fill_rectangle(_viewport, front, border_size, _viewport->size() - border_size * 2);
-
-	text_size = _viewport->size().y - (border_size) * 2;
-
-	int nb_char = max_char_in_box(_viewport->size().x - border_size * 2, text_size);
-
-	cout << "Nb char : " << nb_char << endl;
 	pos = border_size;
 	if (text.size() != 0)
 		pos.x = draw_text(_viewport, text.substr(0, cursor), pos, text_size);
@@ -36,6 +26,16 @@ void c_user_entry::render()
 	if (cursor < text.size())
 		if (text.size() != 0)
 			draw_text(_viewport, text.substr(cursor), pos, text_size);
+}
+
+void c_user_entry::render()
+{
+	_viewport->viewport();
+
+	fill_rectangle(_viewport, back, 0, _viewport->size());
+	fill_rectangle(_viewport, front, border_size, _viewport->size() - border_size * 2);
+
+	render_text();
 }
 
 bool c_user_entry::handle_keyboard()
@@ -57,7 +57,7 @@ bool c_user_entry::handle_keyboard()
 	}
 	else if (g_keyboard->get_key(SDL_SCANCODE_BACKSPACE))
 	{
-		if (cursor > 0)
+		if (cursor > 0 && text.size() != 0)
 		{
 			cursor--;
 			text.erase(cursor);
