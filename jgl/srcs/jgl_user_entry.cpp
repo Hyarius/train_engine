@@ -12,31 +12,38 @@ c_user_entry::c_user_entry(c_widget *p_parent) : c_frame(p_parent, 3, Color(165,
 
 void c_user_entry::render_text()
 {
-	string tmp_text = "";
-	int tmp_cursor = 0;
+	string text_to_draw = "";
+	int draw_cursor = 0;
 	Vector2 pos;
 	Vector2 intern_size = _viewport->size() - border_size * 2;
-
 	int text_size = intern_size.y;
-	int text_len = calc_text_len(text, text_size);
+	int i = cursor;
 
-	if (text_len < intern_size.x)
+	while (calc_text_len(text_to_draw, text_size) < intern_size.x - border_size * 4 && i > 0)
 	{
-		tmp_text = text;
-		tmp_cursor = cursor;
+		i--;
+		text_to_draw = text.substr(i, cursor);
 	}
 
+	draw_cursor = cursor - i;
+	i = cursor;
+
+	while (calc_text_len(text_to_draw, text_size) < intern_size.x - border_size * 4 && i < text.size())
+	{
+		text_to_draw = text_to_draw + text[i];
+		i++;
+	}
+
+	//text_to_draw = test_text;
+
 	pos = border_size;
-	if (tmp_text.size() != 0)
-		pos.x = draw_text(_viewport, tmp_text.substr(0, tmp_cursor), pos, text_size);
-	pos.x += 3;
+
+	draw_text(_viewport, text_to_draw, pos, text_size);
+
+	pos.x += calc_text_len(text_to_draw.substr(0, draw_cursor), text_size);
 
 	if (selected == true && (SDL_GetTicks() / 400) % 2 == 0)
-		fill_rectangle(_viewport, Color(50, 50, 50), pos + Vector2(0, 3), Vector2(2, text_size - 3));
-
-	if (tmp_cursor < tmp_text.size())
-		if (tmp_text.size() != 0)
-			draw_text(_viewport, tmp_text.substr(tmp_cursor), pos, text_size);
+		fill_rectangle(_viewport, Color(50, 50, 50), pos + Vector2(0, 2), Vector2(2, text_size - 3));
 }
 
 void c_user_entry::render()
