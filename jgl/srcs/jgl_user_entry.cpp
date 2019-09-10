@@ -15,11 +15,11 @@ void c_user_entry::render_text()
 	string text_to_draw = "";
 	int draw_cursor = 0;
 	Vector2 pos;
-	Vector2 intern_size = _viewport->size() - border_size * 2;
-	int text_size = intern_size.y;
+	Vector2 intern_size = _viewport->size() - border_size * 6;
+	int text_size = _viewport->size().y - border_size * 2;
 	int i = cursor;
 
-	while (calc_text_len(text_to_draw, text_size) < intern_size.x - border_size * 4 && i > 0)
+	while (calc_text_len(text_to_draw, text_size) < intern_size.x && i > 0)
 	{
 		i--;
 		text_to_draw = text.substr(i, cursor);
@@ -28,13 +28,12 @@ void c_user_entry::render_text()
 	draw_cursor = cursor - i;
 	i = cursor;
 
-	while (calc_text_len(text_to_draw, text_size) < intern_size.x - border_size * 4 && i < text.size())
+	while (	calc_text_len(text_to_draw, text_size) < intern_size.x &&
+			i < text.size())
 	{
-		text_to_draw = text_to_draw + text[i];
+		text_to_draw += text[i];
 		i++;
 	}
-
-	//text_to_draw = test_text;
 
 	pos = border_size;
 
@@ -48,10 +47,9 @@ void c_user_entry::render_text()
 
 void c_user_entry::render()
 {
-	_viewport->viewport();
+	_viewport->use();
 
-	fill_rectangle(_viewport, back, 0, _viewport->size());
-	fill_rectangle(_viewport, front, border_size, _viewport->size() - border_size * 2);
+	render_frame();
 
 	render_text();
 }

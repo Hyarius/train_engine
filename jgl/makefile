@@ -34,7 +34,7 @@ LIB =		SDL2 SDL2_image SDL2_mixer SDL2_ttf
 ##
 
 ##Basics flags
-CFLAGS=		-O3 -flto
+CFLAGS=		-O3 -flto -std=c++11
 
 ##Create the flags to includes every .h needed by this program
 IFLAGS =	$(foreach dir, $(INC_DIR), -I$(dir)) $(foreach dir, $(shell find ~/.brew/include -type d), -I$(dir))

@@ -7,7 +7,7 @@ c_widget::c_widget(c_widget *p_parent)
 	_childrens.clear();
 	set_parent(p_parent);
 	_viewport = new c_viewport();
-	set_geometry();
+	set_geometry(0, 0);
 	_activated = false;
 }
 
@@ -48,9 +48,8 @@ void c_widget::set_parent(c_widget *p_parent)
 {
 	if (p_parent != nullptr)
 		_parent = p_parent;
-	else if (g_application != NULL)
+	else
 		_parent = g_application->central_widget();
-	//_parent = nullptr;
 
 	if (_parent != nullptr)
 		_parent->add_children(this);
@@ -94,9 +93,10 @@ void c_widget::render_children()
 	if (is_active() == false)
 		return ;
 
+	render();
+
 	for (size_t i = 0; i < _childrens.size(); i++)
 	{
-		_childrens[i]->render();
 		_childrens[i]->render_children();
 	}
 }

@@ -60,7 +60,7 @@ TTF_Font *get_font(int size)
 
 c_image				*get_char(char c, int size, int p_color, int type)
 {
-	if (size <= 2)
+	if (size <= 0)
 		return (nullptr);
 
 	if (char_list.size() <= type)

@@ -11,7 +11,7 @@ c_map::c_map(string path, c_widget *parent) : c_widget(parent)
 
 void c_map::render()
 {
-	_viewport->viewport();
+	_viewport->use();
 	_viewport->clear();
 
 	_map.draw(_viewport, _map_anchor + size() / 2.0f, _map.size() * _zoom);

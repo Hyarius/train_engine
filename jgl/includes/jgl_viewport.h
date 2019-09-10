@@ -24,7 +24,7 @@ public:
 
 	void set_background(Color p_color = Color(50, 50, 50));
 
-	void viewport();
+	void use();
 
 	void set_Color(Color Color);
 

@@ -27,8 +27,13 @@ c_tileset::c_tileset(string path, Vector2 p_size)
 
 void c_tileset::draw(c_viewport *viewport, int id, Vector2 pos, Vector2 size)
 {
-	viewport->viewport();
-	SDL_Rect dest = {pos.x, pos.y, size.x, size.y};
-	SDL_Rect src = {sprites[id].x, sprites[id].y, sprites[id].x + unit.x, sprites[id].y + unit.y};
+	viewport->use();
+	SDL_Rect dest = {
+			static_cast<int>(pos.x), static_cast<int>(pos.y),
+			static_cast<int>(size.x), static_cast<int>(size.y)
+		};
+	SDL_Rect src = {
+			static_cast<int>(sprites[id].x), static_cast<int>(sprites[id].y),
+			static_cast<int>(sprites[id].x + unit.x), static_cast<int>(sprites[id].y + unit.y)};
 	SDL_RenderCopyEx(viewport->renderer(), image.texture(), &src, &dest, 0, NULL, SDL_FLIP_NONE);
 }

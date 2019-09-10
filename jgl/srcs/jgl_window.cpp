@@ -9,7 +9,7 @@ c_window::c_window(c_widget *p_parent, Color p_back) : c_widget(p_parent)
 
 void c_window::render()
 {
-	_viewport->viewport();
+	_viewport->use();
 
 	fill_rectangle(_viewport, back, 0, _viewport->size());
 }

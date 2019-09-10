@@ -48,9 +48,13 @@ void c_viewport::set_background(Color p_color)
 	_background = p_color;
 }
 
-void c_viewport::viewport()
+void c_viewport::use()
 {
-	SDL_Rect rect = {_anchor.x, _anchor.y, _size.x, _size.y};
+	SDL_Rect rect = {
+			static_cast<int>(_anchor.x), static_cast<int>(_anchor.y),
+			static_cast<int>(_size.x), static_cast<int>(_size.y)
+		};
+
 	SDL_RenderSetViewport(_renderer, &rect);
 }
 
@@ -61,9 +65,12 @@ void c_viewport::set_Color(Color Color)
 
 void c_viewport::clear()
 {
-	viewport();
+	use();
 	set_Color(_background);
 
-	SDL_Rect rect = {0, 0, _size.x, _size.y};
+	SDL_Rect rect = {
+			static_cast<int>(0), static_cast<int>(0),
+			static_cast<int>(_size.x), static_cast<int>(_size.y)
+		};
 	SDL_RenderFillRect(_renderer, &rect);
 }

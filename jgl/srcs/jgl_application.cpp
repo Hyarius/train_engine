@@ -1,6 +1,6 @@
 #include "jgl.h"
 
-c_application *g_application;
+c_application *g_application = nullptr;
 
 c_application::c_application(string name, Vector2 p_size, Color p_color)
 {
@@ -31,9 +31,12 @@ c_application::c_application(string name, Vector2 p_size, Color p_color)
 	if (g_application == nullptr)
 		select();
 
+	_central_widget = nullptr;
+
 	_central_widget = new c_window();
 	_central_widget->set_geometry(Vector2(0, 0), _win_size);
 	_central_widget->active();
+
 
 	SDL_StartTextInput();
 
@@ -78,6 +81,7 @@ void c_application::clear()
 {
 	SDL_SetRenderDrawColor(_renderer, _background.r * 255, _background.g * 255, _background.b * 255, _background.a * 255);
 	SDL_RenderClear(_renderer);
+	SDL_RenderSetViewport(_renderer, NULL);
 }
 
 void c_application::render()
@@ -94,12 +98,14 @@ int c_application::run()
 	{
 		clear();
 
+		//_central_widget->render();
 		_central_widget->render_children();
 
 		_central_widget->handle_event();
 
 		render();
 
+		SDL_RenderSetViewport(_renderer, NULL);
 		ret = SDL_PollEvent(&_event);
 		if (ret != 0)
 		{

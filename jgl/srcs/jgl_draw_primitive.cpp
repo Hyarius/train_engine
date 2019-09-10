@@ -4,7 +4,6 @@ using namespace std;
 
 void draw_line(c_viewport *viewport, Color Color, Vector2 p1, Vector2 p2)
 {
-	viewport->viewport();
 	viewport->set_Color(Color);
 
 	SDL_RenderDrawLine(viewport->renderer(),
@@ -24,36 +23,40 @@ void draw_polygon(c_viewport *viewport, Color Color, vector<Vector2> points)
 
 void draw_rectangle(c_viewport *viewport, Color Color, Vector2 pos, Vector2 size)
 {
-	viewport->viewport();
 	viewport->set_Color(Color);
 
-	SDL_Rect rect = {pos.x, pos.y, size.x, size.y};
+	SDL_Rect rect = {
+		static_cast<int>(pos.x), static_cast<int>(pos.y),
+		static_cast<int>(size.x), static_cast<int>(size.y)};
 	SDL_RenderDrawRect(viewport->renderer(), &rect);
 }
 
 void fill_rectangle(c_viewport *viewport, Color Color, Vector2 pos, Vector2 size)
 {
-	viewport->viewport();
 	viewport->set_Color(Color);
 
-	SDL_Rect rect = {pos.x, pos.y, size.x, size.y};
+	SDL_Rect rect = {
+		static_cast<int>(pos.x), static_cast<int>(pos.y),
+		static_cast<int>(size.x), static_cast<int>(size.y)};
 	SDL_RenderFillRect(viewport->renderer(), &rect);
 }
 
 void draw_centred_rectangle(c_viewport *viewport, Color Color, Vector2 pos, Vector2 size)
 {
-	viewport->viewport();
 	viewport->set_Color(Color);
 
-	SDL_Rect rect = {pos.x - size.x / 2, pos.y - size.y / 2, size.x, size.y};
+	SDL_Rect rect = {
+		static_cast<int>(pos.x - size.x / 2), static_cast<int>(pos.y - size.y / 2),
+		static_cast<int>(size.x), static_cast<int>(size.y)};
 	SDL_RenderDrawRect(viewport->renderer(), &rect);
 }
 
 void fill_centred_rectangle(c_viewport *viewport, Color Color, Vector2 pos, Vector2 size)
 {
-	viewport->viewport();
 	viewport->set_Color(Color);
 
-	SDL_Rect rect = {pos.x - size.x / 2, pos.y - size.y / 2, size.x, size.y};
+	SDL_Rect rect = {
+		static_cast<int>(pos.x - size.x / 2), static_cast<int>(pos.y - size.y / 2),
+		static_cast<int>(size.x), static_cast<int>(size.y)};
 	SDL_RenderFillRect(viewport->renderer(), &rect);
 }
