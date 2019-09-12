@@ -56,7 +56,7 @@ c_city *c_map::check_city()
 
 bool c_map::handle_mouse()
 {
-	if (is_clicked(g_mouse->pos))
+	if (is_pointed(g_mouse->pos))
 	{
 		if (g_mouse->get_button(MOUSE_LEFT) == MOUSE_DOWN)
 		{

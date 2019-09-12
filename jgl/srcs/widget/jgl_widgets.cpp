@@ -77,7 +77,7 @@ bool c_widget::handle_event()
 	return (false);
 }
 
-bool c_widget::is_clicked(Vector2 point)
+bool c_widget::is_pointed(Vector2 point)
 {
 	Vector2 pos1, pos2;
 

@@ -15,8 +15,8 @@ void c_user_entry::render_text()
 	string text_to_draw = "";
 	int draw_cursor = 0;
 	Vector2 pos;
-	Vector2 intern_size = _viewport->size() - border_size * 6;
-	int text_size = _viewport->size().y - border_size * 2;
+	Vector2 intern_size = _viewport->size() - _border_size * 6;
+	int text_size = _viewport->size().y - _border_size * 2;
 	int i = cursor;
 
 	while (calc_text_len(text_to_draw, text_size) < intern_size.x && i > 0)
@@ -35,7 +35,7 @@ void c_user_entry::render_text()
 		i++;
 	}
 
-	pos = border_size;
+	pos = _border_size;
 
 	draw_text(_viewport, text_to_draw, pos, text_size);
 
@@ -112,7 +112,7 @@ bool c_user_entry::handle_mouse()
 
 	if (g_mouse->get_button(MOUSE_LEFT) == MOUSE_UP)
 	{
-		if (is_clicked(g_mouse->pos) == true)
+		if (is_pointed(g_mouse->pos) == true)
 		{
 			select();
 			return (true);

@@ -14,6 +14,8 @@ public:
 	c_window(c_widget *p_parent = NULL,
 			Color p_back = Color(220, 220, 220));
 
+	void set_color(Color p_color);
+
 	virtual void render();
 
 	virtual bool handle_keyboard();

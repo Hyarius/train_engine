@@ -1,11 +1,11 @@
 #ifndef JGL_USER_ENTRY_H
 #define JGL_USER_ENTRY_H
 
-#include "jgl_widgets.h"
+#include "jgl_frame.h"
 
 class c_user_entry : public c_frame
 {
-private:
+protected:
 	bool selected;
 	string text;
 	int cursor;

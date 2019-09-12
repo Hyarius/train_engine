@@ -8,18 +8,18 @@ using namespace std;
 class c_frame : public c_widget
 {
 protected:
-	int border_size;
-	Color front;
-	Color back;
+	int _border_size;
+	Color _front;
+	Color _back;
 
 public:
 	c_frame(c_widget *p_parent = NULL, int p_border_size = 0,
-			Color p_front = Color(120, 120, 120),
-			Color p_back = Color(165, 165, 165));
+			Color p_back = Color(120, 120, 120),
+			Color p_front = Color(165, 165, 165));
 
 	void set_color(
-		Color p_front = Color(120, 120, 120),
-		Color p_back = Color(165, 165, 165));
+		Color p_back = Color(120, 120, 120),
+		Color p_front = Color(165, 165, 165));
 
 	void set_border_size(int p_border_size = 0);
 

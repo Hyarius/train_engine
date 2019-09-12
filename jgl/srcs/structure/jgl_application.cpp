@@ -35,6 +35,7 @@ c_application::c_application(string name, Vector2 p_size, Color p_color)
 
 	_central_widget = new c_window();
 	_central_widget->set_geometry(Vector2(0, 0), _win_size);
+	_central_widget->set_color(_background);
 	_central_widget->active();
 
 
@@ -57,7 +58,7 @@ SDL_Event *c_application::event()
 	return (&_event);
 }
 
-c_widget *c_application::central_widget()
+c_window *c_application::central_widget()
 {
 	return (_central_widget);
 }

@@ -2,6 +2,7 @@
 #define C_WIDGETS_H
 
 #include "jgl_viewport.h"
+#include "jgl_widget_component.h"
 
 using namespace std;
 
@@ -26,7 +27,7 @@ public:
 
 	bool is_active();
 
-	bool is_clicked(Vector2 point);
+	bool is_pointed(Vector2 point);
 
 	void active();
 

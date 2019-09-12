@@ -18,6 +18,9 @@ struct Color
 	Color(int p_r, int p_g, int p_b, int p_a = 255);
 
 	float *decompose();
+
+	Color operator + (const Color& delta);
+
 };
 
 ostream& operator<<(ostream& os, const Color& value);
