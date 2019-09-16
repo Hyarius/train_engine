@@ -1,29 +1,48 @@
 #include "jgl.h"
 
-c_button::c_button(c_widget *p_parent, t_funct p_funct, Data p_param) : c_text_label(p_parent)
+c_button::c_button(t_funct p_funct, Data p_param, string p_text, c_widget *p_parent) : c_widget(p_parent)
 {
-	funct = p_funct;
-	param = p_param;
-	timer = 0;
+	_funct = p_funct;
+	_param = p_param;
+	_box_part = w_box_component();
+	_text_part = w_text_component();
+	_text_part.set_text(p_text, _viewport->size() - _box_part.border_size() * 2);
+	_timer = 0;
+}
+
+void c_button::set_text(string p_text)
+{
+	_text_part.set_text(p_text, _viewport->size() - _box_part.border_size() * 2);
+}
+
+void c_button::set_text_size(int p_text_size)
+{
+	if (p_text_size == -1)
+		_text_part.calc_text_size(_viewport->size() - _box_part.border_size() * 2);
+	else
+		_text_part.set_size(p_text_size);
+}
+
+void c_button::set_border_size(int p_border_size)
+{
+	_box_part.set_border_size(p_border_size);
+}
+
+void c_button::set_color(Color p_back, Color p_front)
+{
+	_box_part.set_color(p_back, p_front);
 }
 
 void c_button::render()
 {
 	_viewport->use();
 
-	if (timer > 0)
-	{
-		fill_rectangle(_viewport, _back + Color(50, 50, 50, 100), 0, _viewport->size());
-		fill_rectangle(_viewport, _front + Color(50, 50, 50, 100), _border_size, _viewport->size() - _border_size * 2);
-		timer--;
-	}
+	if (_timer > 0 && _timer--)
+		_box_part.render(_viewport, 0, _viewport->size(), Color(50, 50, 50, 150));
 	else
-	{
-		fill_rectangle(_viewport, _back, 0, _viewport->size());
-		fill_rectangle(_viewport, _front, _border_size, _viewport->size() - _border_size * 2);
-	}
+		_box_part.render(_viewport, 0, _viewport->size());
 
-	draw_centred_text(_viewport, _text, _viewport->size() / 2, _text_size, _text_color, _text_style);
+	_text_part.render_centred(_viewport, _viewport->size() / 2);
 }
 
 bool c_button::handle_keyboard()
@@ -34,12 +53,12 @@ bool c_button::handle_keyboard()
 bool c_button::handle_mouse()
 {
 	if (g_mouse->get_button(MOUSE_LEFT) == MOUSE_DOWN && is_pointed(g_mouse->pos))
-		timer = 12;
+		_timer = 12;
 
 	if (g_mouse->get_button(MOUSE_LEFT) == MOUSE_UP && is_pointed(g_mouse->pos))
 	{
-		if (funct != nullptr)
-			funct(param);
+		if (_funct != nullptr)
+			_funct(_param);
 	}
 
 	return (false);

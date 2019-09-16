@@ -14,11 +14,13 @@ public:
 
 	void calc_text_size(Vector2 p_area);
 
-	void set_text(string p_text, Vector2 p_area);
+	void set_text(string p_text, Vector2 p_area = -1);
+	void set_size(int p_text_size = 16);
 	void set_color(int p_color = BLACK);
 	void set_style(int p_style = NORMAL);
 
 	void render(c_viewport *viewport, Vector2 pos);
+	void render_centred(c_viewport *viewport, Vector2 pos);
 };
 
 class w_check_component
@@ -43,9 +45,11 @@ protected:
 	Color _back;
 
 public:
-	w_box_component(int p_border_size = 0,
+	w_box_component(int p_border_size = 3,
 			Color p_back = Color(120, 120, 120),
 			Color p_front = Color(165, 165, 165));
+
+	int border_size();
 
 	void set_color(
 		Color p_back = Color(120, 120, 120),
@@ -53,21 +57,22 @@ public:
 
 	void set_border_size(int p_border_size = 0);
 
-	void render(c_viewport *viewport, Vector2 pos, Vector2 size);
+	void render(c_viewport *viewport, Vector2 pos, Vector2 size, Color delta = Color(0, 0, 0, 0));
 };
 
 class w_entry_component
 {
 protected:
-	bool selected;
-	string text;
-	int cursor;
-
-	Uint32 next_input;
-	Uint32 input_delay;
+	bool _selected;
+	string _text;
+	int _cursor;
 
 public:
 	w_entry_component();
+
+	int cursor();
+	string text();
+	bool selected();
 
 	void select();
 	void unselect();
@@ -76,7 +81,7 @@ public:
 	void add_text(string new_part);
 	void remove_text();
 
-	virtual void render();
-}
+	void render(c_viewport *viewport, Vector2 area, int text_size = 16, int delta = 3);
+};
 
 #endif

@@ -1,6 +1,6 @@
 #include "jgl.h"
 
-c_check_box::c_check_box(c_widget *p_parent) : c_text_label(p_parent)
+/*c_check_box::c_check_box(c_widget *p_parent) : c_text_label(p_parent)
 {
 	checked = false;
 	check_text_size();
@@ -46,4 +46,4 @@ bool c_check_box::handle_keyboard()
 bool c_check_box::handle_mouse()
 {
 	return (false);
-}
+}*/

@@ -10,7 +10,6 @@ class c_application
 private:
 	SDL_Window *_window;
 	SDL_Renderer *_renderer;
-	Color _background;
 	Vector2 _win_size;
 
 	class c_window *_central_widget;

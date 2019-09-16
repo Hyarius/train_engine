@@ -23,8 +23,6 @@ c_application::c_application(string name, Vector2 p_size, Color p_color)
 	_renderer = SDL_CreateRenderer(_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	SDL_SetRenderDrawBlendMode(_renderer, SDL_BLENDMODE_BLEND);
 
-	_background = p_color;
-
 	g_mouse = new t_mouse();
 	g_keyboard = new t_keyboard();
 
@@ -35,7 +33,7 @@ c_application::c_application(string name, Vector2 p_size, Color p_color)
 
 	_central_widget = new c_window();
 	_central_widget->set_geometry(Vector2(0, 0), _win_size);
-	_central_widget->set_color(_background);
+	_central_widget->set_color(p_color);
 	_central_widget->active();
 
 
@@ -65,7 +63,7 @@ c_window *c_application::central_widget()
 
 void c_application::set_background(Color p_color)
 {
-	_background = p_color;
+	_central_widget->set_color(p_color);
 }
 
 Vector2 c_application::size()
@@ -80,7 +78,7 @@ void c_application::select()
 
 void c_application::clear()
 {
-	SDL_SetRenderDrawColor(_renderer, _background.r * 255, _background.g * 255, _background.b * 255, _background.a * 255);
+	SDL_SetRenderDrawColor(_renderer, 0, 0, 0, 0);
 	SDL_RenderClear(_renderer);
 	SDL_RenderSetViewport(_renderer, NULL);
 }

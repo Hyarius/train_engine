@@ -2,35 +2,26 @@
 
 using namespace std;
 
-c_frame::c_frame(c_widget *p_parent, int p_border_size, Color p_back, Color p_front) : c_widget(p_parent)
+c_frame::c_frame(int p_border_size, Color p_back, Color p_front, c_widget *p_parent) : c_widget(p_parent)
 {
-	_border_size = p_border_size;
-	_front = p_front;
-	_back = p_back;
+	_box_part = w_box_component(p_border_size, p_back, p_front);
 }
 
-void c_frame::set_color(Color p_front, Color p_back)
+void c_frame::set_color(Color p_back, Color p_front)
 {
-	_front = p_front;
-	_back = p_back;
+	_box_part.set_color(p_back, p_front);
 }
 
 void c_frame::set_border_size(int p_border_size)
 {
-	_border_size = p_border_size;
-}
-
-void c_frame::render_frame()
-{
-	fill_rectangle(_viewport, _back, 0, _viewport->size());
-	fill_rectangle(_viewport, _front, _border_size, _viewport->size() - _border_size * 2);
+	_box_part.set_border_size(p_border_size);
 }
 
 void c_frame::render()
 {
 	_viewport->use();
 
-	render_frame();
+	_box_part.render(_viewport, 0, _viewport->size());
 }
 
 bool c_frame::handle_keyboard()

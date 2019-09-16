@@ -1,120 +1,73 @@
 #include "jgl.h"
 
-c_user_entry::c_user_entry(c_widget *p_parent) : c_frame(p_parent, 3, Color(165, 165, 165), Color(185, 185, 185))
+c_user_entry::c_user_entry(int p_border_size, Color p_back,
+			Color p_front, c_widget *p_parent) : c_widget(p_parent)
 {
-	text = "";
-	cursor = text.size();
-	selected = false;
+	_box_part = w_box_component(p_border_size, p_back, p_front);
+	cout << "Color : " << p_back << " / " << p_front << endl;
+	_entry_part = w_entry_component();
 
 	next_input = 0;
 	input_delay = 100;
 }
 
-void c_user_entry::render_text()
-{
-	string text_to_draw = "";
-	int draw_cursor = 0;
-	Vector2 pos;
-	Vector2 intern_size = _viewport->size() - _border_size * 6;
-	int text_size = _viewport->size().y - _border_size * 2;
-	int i = cursor;
-
-	while (calc_text_len(text_to_draw, text_size) < intern_size.x && i > 0)
-	{
-		i--;
-		text_to_draw = text.substr(i, cursor);
-	}
-
-	draw_cursor = cursor - i;
-	i = cursor;
-
-	while (	calc_text_len(text_to_draw, text_size) < intern_size.x &&
-			i < text.size())
-	{
-		text_to_draw += text[i];
-		i++;
-	}
-
-	pos = _border_size;
-
-	draw_text(_viewport, text_to_draw, pos, text_size);
-
-	pos.x += calc_text_len(text_to_draw.substr(0, draw_cursor), text_size);
-
-	if (selected == true && (SDL_GetTicks() / 400) % 2 == 0)
-		fill_rectangle(_viewport, Color(50, 50, 50), pos + Vector2(0, 2), Vector2(2, text_size - 3));
-}
-
 void c_user_entry::render()
 {
+	Vector2 area = _viewport->size() - _box_part.border_size() * 6;
+	int text_size = _viewport->size().y - _box_part.border_size() * 3;
+
 	_viewport->use();
 
-	render_frame();
+	_box_part.render(_viewport, 0, _viewport->size());
 
-	render_text();
+	_entry_part.render(_viewport, area, text_size, _box_part.border_size());
 }
 
 bool c_user_entry::handle_keyboard()
 {
-	if (selected == false)
+	if (_entry_part.selected() == false)
 		return (false);
 
 	if (g_keyboard->get_key(SDL_SCANCODE_LEFT))
 	{
-		if (cursor > 0)
-			cursor--;
+		_entry_part.move_cursor(-1);
 		g_keyboard->reset_key(SDL_SCANCODE_LEFT);
 	}
 	else if (g_keyboard->get_key(SDL_SCANCODE_RIGHT))
 	{
-		if (cursor < text.size())
-			cursor++;
+		_entry_part.move_cursor(1);
 		g_keyboard->reset_key(SDL_SCANCODE_RIGHT);
 	}
 	else if (g_keyboard->get_key(SDL_SCANCODE_BACKSPACE))
 	{
-		if (cursor > 0 && text.size() != 0)
-		{
-			cursor--;
-			text.erase(cursor);
-		}
+		_entry_part.remove_text();
 		g_keyboard->reset_key(SDL_SCANCODE_BACKSPACE);
 	}
 
 	if (g_application->event()->type == SDL_TEXTINPUT)
 	{
 		Uint32 time = SDL_GetTicks();
-		if (text.size() == 0 || g_application->event()->text.text[0] != text[cursor - 1] || time >= next_input)
+		if (g_application->event()->text.text[0] != _entry_part.text()[_entry_part.cursor() - 1] ||
+			time >= next_input)
 		{
-			text.insert(cursor, g_application->event()->text.text);
+			_entry_part.add_text(g_application->event()->text.text);
 			next_input = time + input_delay;
-			cursor++;
 		}
 	}
 
 	return (false);
 }
 
-void c_user_entry::select()
-{
-	selected = true;
-}
-
-void c_user_entry::unselect()
-{
-	selected = false;
-}
-
 bool c_user_entry::handle_mouse()
 {
 	if (g_mouse->get_button(MOUSE_LEFT) == MOUSE_DOWN)
-		unselect();
+		_entry_part.unselect();
 
 	if (g_mouse->get_button(MOUSE_LEFT) == MOUSE_UP)
 	{
 		if (is_pointed(g_mouse->pos) == true)
 		{
-			select();
+			_entry_part.select();
 			return (true);
 		}
 	}

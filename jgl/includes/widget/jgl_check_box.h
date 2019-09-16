@@ -3,7 +3,7 @@
 
 #include "jgl_widgets.h"
 
-class c_check_box : public c_text_label
+class c_check_box : public c_widget
 {
 protected:
 	bool checked;
