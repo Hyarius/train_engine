@@ -14,6 +14,7 @@ public:
 
 	void calc_text_size(Vector2 p_area);
 
+	void set_text(string p_text, int p_text_size = -1);
 	void set_text(string p_text, Vector2 p_area = -1);
 	void set_size(int p_text_size = 16);
 	void set_color(int p_color = BLACK);
@@ -33,6 +34,7 @@ public:
 
 	bool state();
 	void set_state(bool p_state);
+	bool check(Vector2 point, Vector2 pos1, Vector2 pos2);
 
 	void render(c_viewport *viewport, Vector2 pos, Vector2 size);
 };
@@ -78,7 +80,7 @@ public:
 	void unselect();
 
 	void move_cursor(int delta);
-	void add_text(string new_part);
+	void add_text(string new_text);
 	void remove_text();
 
 	void render(c_viewport *viewport, Vector2 area, int text_size = 16, int delta = 3);

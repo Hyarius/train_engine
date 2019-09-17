@@ -8,7 +8,7 @@ using namespace std;
 class c_frame : public c_widget
 {
 protected:
-	w_box_component _box_part;
+	w_box_component _box;
 
 public:
 	c_frame(int p_border_size = 0,

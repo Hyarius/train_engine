@@ -16,6 +16,14 @@ void w_text_component::set_text(string p_text, Vector2 p_area)
 		calc_text_size(p_area);
 }
 
+void w_text_component::set_text(string p_text, int p_text_size)
+{
+	_text = p_text;
+
+	if (p_text_size != -1)
+		_text_size = p_text_size;
+}
+
 void w_text_component::calc_text_size(Vector2 p_area)
 {
 	int delta[5] = {100, 50, 20, 10, 1};

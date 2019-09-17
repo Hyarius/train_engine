@@ -6,8 +6,8 @@
 class c_user_entry : public c_widget
 {
 protected:
-	w_box_component _box_part;
-	w_entry_component _entry_part;
+	w_box_component _box;
+	w_entry_component _entry;
 
 	Uint32 next_input;
 	Uint32 input_delay;

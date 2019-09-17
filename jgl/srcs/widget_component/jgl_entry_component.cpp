@@ -38,9 +38,9 @@ void w_entry_component::move_cursor(int delta)
 		_cursor += delta;
 }
 
-void w_entry_component::add_text(string new_part)
+void w_entry_component::add_text(string new_text)
 {
-	_text.insert(_cursor, new_part);
+	_text.insert(_cursor, new_text);
 	_cursor++;
 }
 

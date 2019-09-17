@@ -8,9 +8,8 @@ typedef 			void(*fnct)(Data);
 class c_text_label : public c_widget
 {
 protected:
-
-	w_box_component _box_part;
-	w_text_component _text_part;
+	w_box_component _box;
+	w_text_component _text;
 
 public:
 	c_text_label(string p_text = "Click on me", int p_border_size = 3,

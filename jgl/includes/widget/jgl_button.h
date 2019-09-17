@@ -11,8 +11,10 @@ class c_button : public c_widget
 protected:
 	t_funct _funct;
 	Data _param;
-	w_box_component _box_part;
-	w_text_component _text_part;
+
+	w_box_component _box;
+	w_text_component _text;
+
 	int _timer;
 
 public:

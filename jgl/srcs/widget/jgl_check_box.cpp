@@ -1,41 +1,27 @@
 #include "jgl.h"
 
-/*c_check_box::c_check_box(c_widget *p_parent) : c_text_label(p_parent)
+c_check_box::c_check_box(c_widget *p_parent) : c_widget(p_parent)
 {
-	checked = false;
-	check_text_size();
-}
-
-void c_check_box::check_text_size()
-{
-	int inside_size = _viewport->size().x - _border_size * 6;
-	int inside_height = _viewport->size().y - _border_size * 2;
-	int delta[5] = {100, 50, 20, 10, 1};
-	_text_size = 2;
-
-	if (_text == "")
-		return ;
-
-	for (int i = 0; i < 5; i++)
-	{
-		while (calc_text_len(_text, _text_size + delta[i]) <= inside_size - (_text_size + delta[i]) * 1.5f &&
-			   get_char('M', _text_size + delta[i])->size().y <= inside_height)
-			_text_size += delta[i];
-	}
-}
-
-void c_check_box::render_check_box()
-{
-	render_frame();
-
-	draw_text(_viewport, _text, Vector2(_border_size * 2 + _text_size, _border_size), _text_size, _text_color, _text_style);
-}
+	_box = w_box_component();
+	_text = w_text_component("Checkbox");
+	_check = w_check_component();}
 
 void c_check_box::render()
 {
+	Vector2 pos = (_viewport->size() + Vector2(_viewport->size().y, 0.0f) - 4) / 2;
 	_viewport->use();
 
-	render_check_box();
+	_box.render(_viewport, 0, _viewport->size());
+	_text.render_centred(_viewport, pos);
+	_check.render(_viewport, 4, _viewport->size().y - 8);
+}
+
+void c_check_box::set_text(string new_text, int p_text_size)
+{
+	if (p_text_size == -1)
+		_text.set_text(new_text, _viewport->size() - Vector2(_viewport->size().y, 0.0f) - 4);
+	else
+		_text.set_text(new_text, p_text_size);
 }
 
 bool c_check_box::handle_keyboard()
@@ -45,5 +31,13 @@ bool c_check_box::handle_keyboard()
 
 bool c_check_box::handle_mouse()
 {
+	if (g_mouse->get_button(MOUSE_LEFT) == MOUSE_UP &&
+		_check.check(g_mouse->pos,
+					_viewport->anchor() + 4,
+					_viewport->anchor() + _viewport->size().y - 8))
+	{
+		_check.set_state(!_check.state());
+	}
+
 	return (false);
-}*/
+}

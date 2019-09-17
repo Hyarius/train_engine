@@ -6,14 +6,14 @@
 class c_check_box : public c_widget
 {
 protected:
-	bool checked;
+	w_box_component _box;
+	w_text_component _text;
+	w_check_component _check;
 
 public:
 	c_check_box(c_widget *p_parent = nullptr);
 
-	void check_text_size();
-
-	void render_check_box();
+	void set_text(string new_text, int p_text_size = -1);
 
 	virtual void render();
 
