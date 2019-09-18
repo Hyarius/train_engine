@@ -1,33 +1,28 @@
-#ifndef JGL_BUTTON_H
-#define JGL_BUTTON_H
+#ifndef JGL_VALUE_LABEL_H
+#define JGL_VALUE_LABEL_H
 
-#include "jgl_text_label.h"
-#include "jgl_data.h"
+#include "jgl_widgets.h"
 
-typedef 			void(*t_funct)(Data);
-
-class c_button : public c_widget
+class c_value_label : public c_widget
 {
 protected:
-	t_funct _funct;
-	Data _param;
-
 	w_box_component _box;
-	w_text_component _text;
-
-	int _timer;
+	w_value_component _value;
 
 public:
-	c_button(string p_text = "Click me", t_funct p_funct = nullptr, Data p_param = nullptr, c_widget *p_parent = nullptr);
+	c_value_label(float p_value = 0.0f, int p_border_size = 3,
+				 Color p_back = Color(150, 150, 150, 0),
+				 Color p_front = Color(195, 195, 195, 0),
+				 c_widget *p_parent = nullptr);
 
-	void set_text(string p_text);
+	void set_value(float p_value);
+	void set_format(int p_color = BLACK, int p_style = NORMAL);
 	void set_border_size(int p_border_size);
 	void set_color(Color p_back, Color p_front);
 	void set_text_size(int p_text_size);
 	void set_text_color(int p_text_color);
 	void set_text_style(int p_text_style);
 	void set_alignment(alignment p_align);
-	void set_funct(t_funct p_funct, Data p_param);
 
 	void set_geometry(Vector2 p_anchor, Vector2 p_size);
 

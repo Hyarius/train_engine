@@ -71,3 +71,14 @@ void check_sdl_error(const char *file, int line)
 		error_exit(1, error);
 	}
 }
+
+string				ftoa(float i, int n)
+{
+	ostringstream out;
+
+	if (i > 0 || i < -1)
+		n++;
+    out << setprecision(n) << i;
+
+    return out.str();
+}
