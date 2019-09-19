@@ -4,120 +4,303 @@
 class w_text_component
 {
 protected:
-	alignment _align;
 	string _text;
-	int _text_size;
-	int _text_color;
-	int _text_style;
+	Vector2 _anchor;
+	Vector2 _area;
+	int _size;
+	alignment _align;
+	text_color _color;
+	text_style _style;
 
 public:
-	w_text_component(string p_text = "", int p_text_size = 16, int p_text_color = BLACK, int p_text_style = NORMAL, alignment p_allign = alignment::left);
+		//Constructor
+	w_text_component()
+	{
+		_text = "";
+		_anchor = Vector2();
+		_area = Vector2();
+		_align = alignment::left;
+		_size = 16;
+		_color = text_color::black;
+		_style = text_style::normal;
+	}
 
-	void calc_text_size(Vector2 p_area);
+	w_text_component(
+		string p_text,
+		Vector2 p_anchor,
+		Vector2 p_area,
+		int p_size = 16,
+		alignment p_align = alignment::left,
+		text_color p_color = text_color::black,
+		text_style p_style = text_style::normal
+	);
 
-	void set_text(string p_text, int p_text_size = -1);
-	void set_text(string p_text, Vector2 p_area = -1);
-	void set_size(int p_text_size);
-	void set_color(int p_color);
-	void set_style(int p_style);
-	void set_alignment(alignment p_align);
+		//Destructor
+	~w_text_component();
 
-	int text_size();
-	alignment align();
+		//Setter
+	void 		set_text(string p_text){_text = p_text;}
+	void 		set_align(alignment p_align){_align = p_align;}
+	void 		set_anchor(Vector2 p_anchor){_anchor = p_anchor;}
+	void 		set_area(Vector2 p_area){_area = p_area;}
+	void 		set_size(int p_size){_size = p_size;}
+	void 		set_color(text_color p_color){_color = p_color;}
+	void 		set_style(text_style p_style){_style = p_style;}
+	void 		calc_text_size();
+	void 		resize(Vector2 p_anchor, Vector2 p_area){
+		set_anchor(p_anchor);set_area(p_area);calc_text_size();
+	}
 
-	void render(c_viewport *viewport, Vector2 pos);
+		//Getter
+	string 		text(){return (_text);}
+	alignment 	align(){return (_align);}
+	Vector2 	anchor(){return (_anchor);}
+	Vector2 	area(){return (_area);}
+	int 		size(){return (_size);}
+	text_color 	color(){return (_color);}
+	text_style 	style(){return (_style);}
+
+	void render(c_viewport *viewport);
+
 };
 
 class w_check_component
 {
 protected:
 	bool _state;
+	Vector2 _anchor;
+	Vector2 _area;
+	Color _back;
+	Color _front;
+	Color _check;
+	int _border;
 
 public:
-	w_check_component();
+		//Constructor
+	w_check_component()
+	{
+		_anchor = Vector2();
+		_area = Vector2();
+		_border = 0;
+		_back = Color();
+		_front = Color();
+		_check = Color();
+		_state = false;
+	}
 
-	bool state();
-	void set_state(bool p_state);
-	bool check(Vector2 point, Vector2 pos1, Vector2 pos2);
+	w_check_component(
+		Vector2 p_anchor,
+		Vector2 p_area,
+		Color p_back = Color(150, 150, 150, 255),
+		Color p_front = Color(195, 195, 195, 255),
+		Color p_check = Color(60, 150, 255, 255),
+		int p_border = 3,
+		bool p_state = false
+	);
 
-	void render(c_viewport *viewport, Vector2 pos, Vector2 size);
+		//Destructor
+	~w_check_component();
+
+		//Setter
+	void set_state(bool p_state){_state = p_state;}
+	void set_anchor(Vector2 p_anchor){_anchor = p_anchor;}
+	void set_area(Vector2 p_area){_area = p_area;}
+	void set_border(int p_border){_border = p_border;}
+	void set_back(Color p_back){_back = p_back;}
+	void set_front(Color p_front){_front = p_front;}
+	void set_check(Color p_check){_check = p_check;}
+
+		//Getter
+	bool state(){return (_state);}
+	Vector2 anchor(){return (_anchor);}
+	Vector2 area(){return (_area);}
+	int border(){return (_border);}
+	Color back(){return (_back);}
+	Color front(){return (_front);}
+	Color check(){return (_check);}
+
+	void render(c_viewport *viewport);
+
 };
 
 class w_box_component
 {
 protected:
-	int _border_size;
-	Color _front;
+	Vector2 _anchor;
+	Vector2 _area;
 	Color _back;
+	Color _front;
+	int _border;
 
 public:
-	w_box_component(int p_border_size = 3,
-			Color p_back = Color(120, 120, 120),
-			Color p_front = Color(165, 165, 165));
+		//Constructor
+	w_box_component()
+	{
+		_anchor = Vector2();
+		_area = Vector2();
+		_border = 0;
+		_back = Color();
+		_front = Color();
+	}
 
-	int border_size();
+	w_box_component(
+		Vector2 p_anchor,
+		Vector2 p_area,
+		int p_border = 3,
+		Color p_back = Color(150, 150, 150, 255),
+		Color p_front = Color(195, 195, 195, 255)
+	);
 
-	void set_color(Color p_back, Color p_front);
+		//Destructor
+	~w_box_component();
 
-	void set_back(Color p_back);
+		//Setter
+	void set_anchor(Vector2 p_anchor){_anchor = p_anchor;}
+	void set_area(Vector2 p_area){_area = p_area;}
+	void set_border(int p_border){_border = p_border;}
+	void set_back(Color p_back){_back = p_back;}
+	void set_front(Color p_front){_front = p_front;}
 
-	void set_front(Color p_front);
+		//Getter
+	Vector2 anchor(){return (_anchor);}
+	Vector2 area(){return (_area);}
+	int border(){return (_border);}
+	Color back(){return (_back);}
+	Color front(){return (_front);}
 
-	void set_border_size(int p_border_size = 0);
-
-	void render(c_viewport *viewport, Vector2 pos, Vector2 size, Color delta = Color(0, 0, 0, 0));
+	void render(c_viewport *viewport);
 };
 
 class w_entry_component
 {
 protected:
-	bool _selected;
 	string _text;
 	int _cursor;
+	Vector2 _anchor;
+	Vector2 _area;
+	int _size;
+	alignment _align;
+	text_color _color;
+	text_style _style;
 
 public:
-	w_entry_component();
+		//Constructor
+	w_entry_component()
+	{
+		_text = "";
+		_cursor = _text.size();
+		_anchor = Vector2();
+		_area = Vector2();
+		_align = alignment::left;
+		_size = 16;
+		_color = text_color::black;
+		_style = text_style::normal;
+	}
 
-	int cursor();
-	string text();
-	bool selected();
+	w_entry_component(
+		Vector2 p_anchor,
+		Vector2 p_area,
+		int p_size = 16,
+		string p_text = "",
+		alignment p_align = alignment::left,
+		text_color p_color = text_color::black,
+		text_style p_style = text_style::normal
+	);
 
-	void select();
-	void unselect();
+		//Destructor
+	~w_entry_component();
+
+		//Setter
+	void 		set_text(string p_text){_text = p_text;}
+	void 		set_align(alignment p_align){_align = p_align;}
+	void 		set_anchor(Vector2 p_anchor){_anchor = p_anchor;}
+	void 		set_area(Vector2 p_area){_area = p_area;}
+	void 		set_size(int p_size){_size = p_size;}
+	void 		set_color(text_color p_color){_color = p_color;}
+	void 		set_style(text_style p_style){_style = p_style;}
+	void 		calc_text_size();
+	void 		resize(Vector2 p_anchor, Vector2 p_area)
+		{set_anchor(p_anchor);set_area(p_area);calc_text_size();}
+
+		//Getter
+	string 		text(){return (_text);}
+	alignment 	align(){return (_align);}
+	Vector2 	anchor(){return (_anchor);}
+	Vector2 	area(){return (_area);}
+	int 		size(){return (_size);}
+	text_color 	color(){return (_color);}
+	text_style 	style(){return (_style);}
 
 	void move_cursor(int delta);
 	void add_text(string new_text);
 	void remove_text();
 
-	void render(c_viewport *viewport, Vector2 area, int text_size = 16, int delta = 3);
+	void render(c_viewport *viewport);
 };
 
 class w_value_component
 {
 protected:
-	alignment _align;
 	float _value;
 	string _text;
-	int _text_size;
-	int _text_color;
-	int _text_style;
+	Vector2 _anchor;
+	Vector2 _area;
+	int _size;
+	alignment _align;
+	text_color _color;
+	text_style _style;
 
 public:
-	w_value_component(float p_value = 0.0f, int p_text_size = 16, int p_text_color = BLACK, int p_text_style = NORMAL, alignment p_allign = alignment::left);
+		//Constructor
+	w_value_component()
+	{
+		_value = 0.0f;
+		_text = ftoa(_value);
+		_anchor = Vector2();
+		_area = Vector2();
+		_align = alignment::left;
+		_size = 16;
+		_color = text_color::black;
+		_style = text_style::normal;
+	}
 
-	void calc_text_size(Vector2 p_area);
+	w_value_component(
+		string p_text,
+		Vector2 p_anchor,
+		Vector2 p_area,
+		int p_size = 16,
+		alignment p_align = alignment::left,
+		text_color p_color = text_color::black,
+		text_style p_style = text_style::normal
+	);
 
-	void set_value(float value, Vector2 area = -1);
-	void set_value(float value, int p_text_size = -1);
-	void set_size(int p_text_size);
-	void set_color(int p_color);
-	void set_style(int p_style);
-	void set_alignment(alignment p_align);
+		//Destructor
+	~w_value_component();
 
-	int text_size();
-	alignment align();
+		//Setter
+	void 		set_value(float p_value){_value = p_value;};
+	void 		set_text(string p_text){_text = p_text;}
+	void 		set_align(alignment p_align){_align = p_align;}
+	void 		set_anchor(Vector2 p_anchor){_anchor = p_anchor;}
+	void 		set_area(Vector2 p_area){_area = p_area;}
+	void 		set_size(int p_size){_size = p_size;}
+	void 		set_color(text_color p_color){_color = p_color;}
+	void 		set_style(text_style p_style){_style = p_style;}
+	void 		calc_text_size();
+	void 		resize(Vector2 p_anchor, Vector2 p_area)
+		{set_anchor(p_anchor);set_area(p_area);calc_text_size();}
 
-	void render(c_viewport *viewport, Vector2 pos);
+		//Getter
+	float		value(){return (_value);}
+	string 		text(){return (_text);}
+	alignment 	align(){return (_align);}
+	Vector2 	anchor(){return (_anchor);}
+	Vector2 	area(){return (_area);}
+	int 		size(){return (_size);}
+	text_color 	color(){return (_color);}
+	text_style 	style(){return (_style);}
+
+	void render(c_viewport *viewport);
 };
 
 #endif

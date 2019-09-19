@@ -17,13 +17,13 @@ protected:
 public:
 	c_widget(c_widget *p_parent = nullptr);
 
-	void set_geometry(Vector2 p_anchor, Vector2 p_size);
-
 	Vector2 size();
 
 	Vector2 anchor();
 
 	c_viewport *viewport();
+
+	void resize(Vector2 p_anchor, Vector2 p_area);
 
 	bool is_active();
 
@@ -41,6 +41,8 @@ public:
 	void render_children();
 
 
+
+	virtual void set_geometry(Vector2 p_anchor, Vector2 p_area) = 0;
 
 	virtual void render() = 0;
 

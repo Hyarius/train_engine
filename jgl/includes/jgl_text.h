@@ -44,10 +44,10 @@
 
 SDL_Color get_color(int i);
 TTF_Font *get_font(int size);
-c_image	*get_char(char c, int size = 16, int p_color = 0, int type = NORMAL);
-int draw_text(c_viewport *port, string text, Vector2 coord, int text_size = 16, int color_type = BLACK, int type = NORMAL);
-int draw_centred_text(c_viewport *port, string text, Vector2 coord, int text_size = 16, int color_type = BLACK, int type = NORMAL);
-int calc_text_len(string text, int text_size = 16);
+c_image	*get_char(char c, int size = 16, text_color color = text_color::black, text_style type = text_style::normal);
+int draw_text(c_viewport *port, string text, Vector2 coord, int size = 16, text_color color = text_color::black, text_style type = text_style::normal);
+int draw_centred_text(c_viewport *port, string text, Vector2 coord, int size = 16, text_color color = text_color::black, text_style type = text_style::normal);
+int calc_text_len(string text, int size = 16);
 int	max_char_in_box(int space, int size = 16);
 
 #endif

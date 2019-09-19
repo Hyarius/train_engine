@@ -14,6 +14,8 @@ public:
 	c_window(c_widget *p_parent = NULL,
 			Color p_back = Color(220, 220, 220));
 
+	void set_geometry(Vector2 p_anchor, Vector2 p_area);
+
 	void set_color(Color p_color);
 
 	virtual void render();

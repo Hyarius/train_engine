@@ -2,7 +2,7 @@
 
 #define CITY_SIZE 7.0f
 
-int num = 0;
+/*int num = 0;
 
 c_city::c_city(c_map *p_map, Vector2 p_pos)
 {
@@ -59,4 +59,4 @@ bool c_city::clicked(Vector2 mouse)
 	}
 	selected = 2;
 	return (true);
-}
+}*/

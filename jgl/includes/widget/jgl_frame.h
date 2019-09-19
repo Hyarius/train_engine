@@ -1,32 +1,27 @@
-#ifndef C_FRAME_H
-#define C_FRAME_H
+#ifndef JGL_FRAME_H
+#define JGL_FRAME_H
 
 #include "jgl_widgets.h"
-
-using namespace std;
+#include "jgl_widget_component.h"
 
 class c_frame : public c_widget
 {
-protected:
+private:
 	w_box_component _box;
 
+
 public:
-	c_frame(int p_border_size = 0,
-			Color p_back = Color(120, 120, 120),
-			Color p_front = Color(165, 165, 165),
-			c_widget *p_parent = nullptr);
+	c_frame();
 
-	void set_color(
-		Color p_back = Color(120, 120, 120),
-		Color p_front = Color(165, 165, 165));
+	~c_frame();
 
-	void set_border_size(int p_border_size = 0);
+	void set_geometry(Vector2 p_anchor, Vector2 p_area);
 
-	virtual void render();
+	void render();
 
-	virtual bool handle_keyboard();
+	bool handle_mouse();
 
-	virtual bool handle_mouse();
+	bool handle_keyboard();
 };
 
 #endif

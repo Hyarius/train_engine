@@ -1,5 +1,6 @@
 #include "engine.h"
 
+/*
 c_map::c_map(string path, c_widget *parent) : c_widget(parent)
 {
 	_map = c_image(path);
@@ -118,4 +119,4 @@ float c_map::zoom()
 Vector2 c_map::map_anchor()
 {
 	return (_map_anchor);
-}
+}*/

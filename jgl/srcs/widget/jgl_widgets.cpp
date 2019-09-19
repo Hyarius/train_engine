@@ -7,16 +7,7 @@ c_widget::c_widget(c_widget *p_parent)
 	_childrens.clear();
 	set_parent(p_parent);
 	_viewport = new c_viewport();
-	set_geometry(0, 0);
 	_activated = false;
-}
-
-void c_widget::set_geometry(Vector2 p_anchor, Vector2 p_size)
-{
-	if (_parent == nullptr)
-		_viewport->resize(p_anchor, p_size);
-	else
-		_viewport->resize(p_anchor + _parent->anchor(), p_size);
 }
 
 Vector2 c_widget::size()
@@ -27,6 +18,14 @@ Vector2 c_widget::size()
 Vector2 c_widget::anchor()
 {
 	return (_viewport->anchor());
+}
+
+void c_widget::resize(Vector2 p_anchor, Vector2 p_area)
+{
+	if (_parent == nullptr)
+		_viewport->resize(p_anchor, p_area);
+	else
+		_viewport->resize(p_anchor + _parent->anchor(), p_area);
 }
 
 c_viewport *c_widget::viewport()

@@ -58,34 +58,37 @@ TTF_Font *get_font(int size)
 	return (font[size]);
 }
 
-c_image				*get_char(char c, int size, int p_color, int type)
+c_image				*get_char(char c, int size, text_color color, text_style type)
 {
 	if (size <= 0)
 		return (nullptr);
 
-	if (char_list.size() <= type)
-		char_list.resize(type + 1);
-	if (char_list[type].size() <= (size_t)size)
-		char_list[type].resize(size + 1);
-	if (char_list[type][size].size() <= (size_t)p_color)
-		char_list[type][size].resize(p_color + 1);
-	if (char_list[type][size][p_color].size() <= (size_t)c)
-		char_list[type][size][p_color].resize(c + 1);
-	if (char_list[type][size][p_color][c] == nullptr)
+	int tmp_color = static_cast<int>(color);
+	int tmp_type = static_cast<int>(type);
+
+	if (char_list.size() <= tmp_type)
+		char_list.resize(tmp_type + 1);
+	if (char_list[tmp_type].size() <= (size_t)size)
+		char_list[tmp_type].resize(size + 1);
+	if (char_list[tmp_type][size].size() <= (size_t)tmp_color)
+		char_list[tmp_type][size].resize(tmp_color + 1);
+	if (char_list[tmp_type][size][tmp_color].size() <= (size_t)c)
+		char_list[tmp_type][size][tmp_color].resize(c + 1);
+	if (char_list[tmp_type][size][tmp_color][c] == nullptr)
 	{
 		TTF_Font *tmp = get_font(size);
 
-		TTF_SetFontStyle(tmp, type);
+		TTF_SetFontStyle(tmp, tmp_type);
 
 		string text = " ";
 		text[0] = c;
-		char_list[type][size][p_color][c] = new c_image(TTF_RenderText_Blended(tmp, text.c_str(), get_color(p_color)));
+		char_list[tmp_type][size][tmp_color][c] = new c_image(TTF_RenderText_Blended(tmp, text.c_str(), get_color(tmp_color)));
 		TTF_SetFontStyle(font[size], NORMAL);
 	}
-	return (char_list[type][size][p_color][c]);
+	return (char_list[tmp_type][size][tmp_color][c]);
 }
 
-int				draw_text(c_viewport *port, string text, Vector2 coord, int size, int color_type, int type)
+int				draw_text(c_viewport *port, string text, Vector2 coord, int size, text_color color, text_style type)
 {
 
 	c_image			*image;
@@ -99,7 +102,7 @@ int				draw_text(c_viewport *port, string text, Vector2 coord, int size, int col
 	while (i < text.length())
 	{
 		rel_coord = Vector2(coord.x + delta, coord.y);
-		image = get_char(text[i], size, color_type, type);
+		image = get_char(text[i], size, color, type);
 		image->draw(port, rel_coord, image->size());
 		delta += image->size().x;
 		i++;
@@ -136,13 +139,13 @@ int				calc_text_len(string text, int size)
 	return (delta);
 }
 
-int				draw_centred_text(c_viewport *viewport, string text, Vector2 coord, int size, int color_type, int type)
+int				draw_centred_text(c_viewport *viewport, string text, Vector2 coord, int size, text_color color, text_style type)
 {
 	if (size <= 2)
 		return 0;
 
 	int x = calc_text_len(text, size);
-	int y = get_char('M', size, color_type, type)->size().y;
+	int y = get_char('M', size, color, type)->size().y;
 
-	return (draw_text(viewport, text, Vector2(coord.x - x / 2, coord.y - y / 2), size, color_type, type));
+	return (draw_text(viewport, text, Vector2(coord.x - x / 2, coord.y - y / 2), size, color, type));
 }
