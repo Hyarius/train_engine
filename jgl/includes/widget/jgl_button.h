@@ -8,10 +8,13 @@ class c_button : public c_widget
 {
 private:
 	w_box_component _box;
+	w_text_component _text;
 
 public:
+	c_button(c_widget *p_parent = nullptr);
+	~c_button();
 
-	void set_geometry(Vector2 p_anchor, Vector2 p_area){}
+	void set_geometry_imp(Vector2 p_anchor, Vector2 p_area){}
 
 	void render(){}
 

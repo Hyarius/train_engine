@@ -23,8 +23,6 @@ public:
 
 	c_viewport *viewport();
 
-	void resize(Vector2 p_anchor, Vector2 p_area);
-
 	bool is_active();
 
 	bool is_pointed(Vector2 point);
@@ -40,9 +38,10 @@ public:
 
 	void render_children();
 
+	void set_geometry(Vector2 p_anchor, Vector2 p_area);
+	
 
-
-	virtual void set_geometry(Vector2 p_anchor, Vector2 p_area) = 0;
+	virtual void set_geometry_imp(Vector2 p_anchor, Vector2 p_area) = 0;
 
 	virtual void render() = 0;
 

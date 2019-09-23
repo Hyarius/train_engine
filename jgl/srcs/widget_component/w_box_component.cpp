@@ -17,5 +17,6 @@ w_box_component::~w_box_component()
 
 void w_box_component::render(c_viewport *viewport)
 {
-
+	fill_rectangle(viewport, _back, 0, viewport->size());
+	fill_rectangle(viewport, _front, _border, viewport->size() - _border * 2);
 }

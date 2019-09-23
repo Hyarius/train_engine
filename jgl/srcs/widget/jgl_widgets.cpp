@@ -20,12 +20,14 @@ Vector2 c_widget::anchor()
 	return (_viewport->anchor());
 }
 
-void c_widget::resize(Vector2 p_anchor, Vector2 p_area)
+void c_widget::set_geometry(Vector2 p_anchor, Vector2 p_area)
 {
 	if (_parent == nullptr)
 		_viewport->resize(p_anchor, p_area);
 	else
 		_viewport->resize(p_anchor + _parent->anchor(), p_area);
+
+	set_geometry_imp(p_anchor, p_area);
 }
 
 c_viewport *c_widget::viewport()
@@ -92,6 +94,8 @@ void c_widget::render_children()
 	if (is_active() == false)
 		return ;
 
+
+	_viewport->use();
 	render();
 
 	for (size_t i = 0; i < _childrens.size(); i++)
