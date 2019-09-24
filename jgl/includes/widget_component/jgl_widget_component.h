@@ -14,19 +14,8 @@ protected:
 
 public:
 		//Constructor
-	w_text_component()
-	{
-		_text = "";
-		_anchor = Vector2();
-		_area = Vector2();
-		_align = alignment::left;
-		_size = 16;
-		_color = text_color::black;
-		_style = text_style::normal;
-	}
-
 	w_text_component(
-		string p_text,
+		string p_text = "",
 		Vector2 p_anchor = Vector2(),
 		Vector2 p_area = Vector2(),
 		int p_size = 16,
@@ -77,25 +66,14 @@ protected:
 
 public:
 		//Constructor
-	w_check_component()
-	{
-		_anchor = Vector2();
-		_area = Vector2();
-		_border = 3;
-		_back = Color();
-		_front = Color();
-		_check = Color();
-		_state = false;
-	}
-
 	w_check_component(
-		Vector2 p_anchor,
-		Vector2 p_area,
+		Vector2 p_anchor = Vector2(),
+		Vector2 p_area = Vector2(),
+		bool p_state = false,
 		Color p_back = Color(150, 150, 150, 255),
 		Color p_front = Color(195, 195, 195, 255),
 		Color p_check = Color(60, 150, 255, 255),
-		int p_border = 3,
-		bool p_state = false
+		int p_border = 3
 	);
 
 		//Destructor
@@ -119,6 +97,8 @@ public:
 	Color front(){return (_front);}
 	Color check(){return (_check);}
 
+	bool check(Vector2 point, Vector2 viewport_anchor);
+
 	void render(c_viewport *viewport);
 
 };
@@ -134,18 +114,9 @@ protected:
 
 public:
 		//Constructor
-	w_box_component()
-	{
-		_anchor = Vector2();
-		_area = Vector2();
-		_border = 3;
-		_back = Color();
-		_front = Color();
-	}
-
 	w_box_component(
-		Vector2 p_anchor,
-		Vector2 p_area,
+		Vector2 p_anchor = Vector2(),
+		Vector2 p_area = Vector2(),
 		int p_border = 3,
 		Color p_back = Color(150, 150, 150, 255),
 		Color p_front = Color(195, 195, 195, 255)
@@ -189,23 +160,9 @@ protected:
 
 public:
 		//Constructor
-	w_entry_component()
-	{
-		_text = "";
-		_cursor = _text.size();
-		_text_to_draw = "";
-		_cursor_to_draw = 0;
-		_anchor = Vector2();
-		_area = Vector2();
-		_align = alignment::left;
-		_size = 16;
-		_color = text_color::black;
-		_style = text_style::normal;
-	}
-
 	w_entry_component(
-		Vector2 p_anchor,
-		Vector2 p_area,
+		Vector2 p_anchor = Vector2(),
+		Vector2 p_area = Vector2(),
 		int p_size = 16,
 		string p_text = "",
 		alignment p_align = alignment::left,
@@ -262,22 +219,10 @@ protected:
 
 public:
 		//Constructor
-	w_value_component()
-	{
-		_value = 0.0f;
-		_text = ftoa(_value);
-		_anchor = Vector2();
-		_area = Vector2();
-		_align = alignment::left;
-		_size = 16;
-		_color = text_color::black;
-		_style = text_style::normal;
-	}
-
 	w_value_component(
-		string p_text,
-		Vector2 p_anchor,
-		Vector2 p_area,
+		float p_value = 0.0f,
+		Vector2 p_anchor = Vector2(),
+		Vector2 p_area = Vector2(),
 		int p_size = 16,
 		alignment p_align = alignment::left,
 		text_color p_color = text_color::black,
@@ -288,8 +233,7 @@ public:
 	~w_value_component();
 
 		//Setter
-	void 		set_value(float p_value){_value = p_value;};
-	void 		set_text(string p_text){_text = p_text;}
+	void 		set_value(float p_value){_value = p_value;_text = ftoa(_value);};
 	void 		set_align(alignment p_align){_align = p_align;}
 	void 		set_anchor(Vector2 p_anchor){_anchor = p_anchor;}
 	void 		set_area(Vector2 p_area){_area = p_area;}
