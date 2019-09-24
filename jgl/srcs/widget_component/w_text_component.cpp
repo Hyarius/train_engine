@@ -34,5 +34,21 @@ void w_text_component::calc_text_size()
 
 void w_text_component::render(c_viewport *viewport)
 {
+	Vector2 pos;
 
+	if (_align == alignment::left)
+	{
+		pos.x = calc_text_len(_text, _size) / 2.0f;
+		pos.y = _area.y / 2.0f;
+	}
+	else if (_align == alignment::centred)
+	{
+		pos = _area / 2;
+	}
+	else if (_align == alignment::right)
+	{
+		pos.x = _area.x - calc_text_len(_text, _size) / 2.0f;
+		pos.y = _area.y / 2.0f;
+	}
+	draw_centred_text(viewport, _text, pos, _size, _color, _style);
 }

@@ -44,9 +44,9 @@ void		s_mouse::actualize_mouse(SDL_Event *event)
 		motion = false;
 }
 
-int			s_mouse::get_button(int type)
+mouse_state			s_mouse::get_button(mouse_button type)
 {
-	if (type < MOUSE_RIGHT || type > MOUSE_MIDDLE)
-		return (MOUSE_NULL);
-	return (button[type]);
+	int value = static_cast<int>(type);
+	
+	return (static_cast<mouse_state>(button[value]));
 }

@@ -4,16 +4,7 @@
 #include "jgl_includes.h"
 #include "jgl_vector.h"
 #include "jgl_color.h"
-
-#define MOUSE_DOWN 1
-#define MOUSE_UP 0
-#define MOUSE_NULL -1
-
-#define MOUSE_BUTTON 3
-
-# define MOUSE_RIGHT 0
-# define MOUSE_LEFT 1
-# define MOUSE_MIDDLE 2
+#include "jgl_enum.h"
 
 typedef struct s_mouse
 {
@@ -26,7 +17,7 @@ typedef struct s_mouse
 
 	s_mouse();
 	void actualize_mouse(SDL_Event *event = nullptr);
-	int get_button(int type);
+	mouse_state get_button(mouse_button type);
 
 }t_mouse;
 

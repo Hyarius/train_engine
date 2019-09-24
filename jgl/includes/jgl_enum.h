@@ -1,14 +1,14 @@
 #ifndef JGL_ENUM_H
 #define JGL_ENUM_H
 
-enum alignment
+enum class alignment
 {
 	left = 0,
 	centred = 1,
 	right = 2
 };
 
-enum text_color
+enum class text_color
 {
 	black = 0,
 	white = 1,
@@ -38,13 +38,37 @@ enum text_color
 	dark_purple = 25
 };
 
-enum text_style
+enum class text_style
 {
 	normal = TTF_STYLE_NORMAL,
 	bold = TTF_STYLE_BOLD,
 	italic = TTF_STYLE_ITALIC,
 	underline = TTF_STYLE_UNDERLINE,
 	strike = TTF_STYLE_STRIKETHROUGH
+};
+
+#define MOUSE_DOWN 1
+#define MOUSE_UP 0
+#define MOUSE_NULL -1
+
+#define MOUSE_BUTTON 3
+
+# define MOUSE_RIGHT 0
+# define MOUSE_LEFT 1
+# define MOUSE_MIDDLE 2
+
+enum class mouse_button
+{
+ 	right = MOUSE_RIGHT,
+ 	left = MOUSE_LEFT,
+ 	middle = MOUSE_MIDDLE
+};
+
+enum class mouse_state
+{
+ 	null = MOUSE_NULL,
+ 	down = MOUSE_DOWN,
+ 	up = MOUSE_UP
 };
 
 #endif

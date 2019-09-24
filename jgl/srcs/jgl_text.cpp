@@ -41,8 +41,8 @@ SDL_Color			get_color(int i)
 
 TTF_Font *get_font(int size)
 {
-	if (size <= 2)
-		error_exit(1, "Can't load a font of size 0");
+	if (size < 2)
+		error_exit(1, "Can't load a font of size < 2");
 
 	if (font.size() < size)
 		font.resize(size + 1);

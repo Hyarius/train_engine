@@ -10,17 +10,34 @@ private:
 	w_box_component _box;
 	w_text_component _text;
 
+	Funct _funct;
+	Color _delta;
+	Data _data;
+	int _timer;
+
 public:
-	c_button(c_widget *p_parent = nullptr);
+	c_button(Funct p_funct = nullptr, Data p_data = nullptr, c_widget *p_parent = nullptr);
 	~c_button();
 
-	void set_geometry_imp(Vector2 p_anchor, Vector2 p_area){}
 
-	void render(){}
+	w_box_component &box(){return (_box);}
+	w_text_component &text(){return (_text);}
 
-	bool handle_mouse(){return (false);}
+	void set_funct(Funct p_funct, Data p_data)
+	{
+		_funct = p_funct;
+		_data = p_data;
+	}
 
-	bool handle_keyboard(){return (false);}
+	void set_delta(Color p_delta){_delta = p_delta;}
+
+	void set_geometry_imp(Vector2 p_anchor, Vector2 p_area);
+
+	void render();
+
+	bool handle_mouse();
+
+	bool handle_keyboard();
 };
 
 #endif

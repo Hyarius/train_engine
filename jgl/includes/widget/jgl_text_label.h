@@ -7,16 +7,24 @@
 class c_text_label : public c_widget
 {
 private:
+	w_box_component _box;
+	w_text_component _text;
 
 public:
+	c_text_label(string p_text = "", c_widget *p_parent = nullptr);
+	~c_text_label();
 
-	void set_geometry_imp(Vector2 p_anchor, Vector2 p_area){};
+	w_box_component &box(){return (_box);}
+	w_text_component &text(){return (_text);}
 
-	void render(){}
 
-	bool handle_mouse(){return (false);}
+	void set_geometry_imp(Vector2 p_anchor, Vector2 p_area);
 
-	bool handle_keyboard(){return (false);}
+	void render();
+
+	bool handle_mouse();
+
+	bool handle_keyboard();
 };
 
 #endif
