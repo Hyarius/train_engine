@@ -23,6 +23,8 @@ public:
 	w_box_component &box(){return (_box);}
 	w_text_component &text(){return (_text);}
 
+	void update(){}
+
 	void set_funct(Funct p_funct, Data p_data)
 	{
 		_funct = p_funct;

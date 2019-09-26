@@ -1,13 +1,12 @@
 #include "jgl.h"
 
-w_box_component::w_box_component(Vector2 p_anchor, Vector2 p_area,
-			int p_border, Color p_back, Color p_front)
+w_box_component::w_box_component()
 {
-	_anchor = p_anchor;
-	_area = p_area;
-	_border = p_border;
-	_back = p_back;
-	_front = p_front;
+	_anchor = Vector2();
+	_area = Vector2();
+	_border = 3;
+	_back = Color(150, 150, 150, 255);
+	_front = Color(195, 195, 195, 255);
 }
 
 w_box_component::~w_box_component()
@@ -17,6 +16,6 @@ w_box_component::~w_box_component()
 
 void w_box_component::render(c_viewport *viewport, Color delta)
 {
-	fill_rectangle(viewport, _back + delta, 0, viewport->size());
-	fill_rectangle(viewport, _front + delta, _border, viewport->size() - _border * 2);
+	fill_rectangle(viewport, _back + delta, _anchor - viewport->anchor(), viewport->size());
+	fill_rectangle(viewport, _front + delta, _anchor - viewport->anchor() + _border, viewport->size() - _border * 2);
 }

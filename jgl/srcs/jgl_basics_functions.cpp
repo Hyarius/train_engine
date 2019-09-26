@@ -74,12 +74,10 @@ void check_sdl_error(const char *file, int line)
 
 string				ftoa(float i)
 {
-	/*ostringstream out;
-
-	if (!(out << i))
-	    return "";
-
-    return out.str();*/
-
 	return (to_string(i));
+}
+
+bool string_is_numeric(string text)
+{
+	return (text.find_first_not_of( "0123456789." ) == string::npos);
 }

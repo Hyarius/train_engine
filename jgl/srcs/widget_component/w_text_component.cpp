@@ -1,14 +1,14 @@
 #include "jgl.h"
 
-w_text_component::w_text_component(string p_text, Vector2 p_anchor, Vector2 p_area, int p_size, alignment p_align, text_color p_color, text_style p_style)
+w_text_component::w_text_component(string p_text)
 {
 	_text = p_text;
-	_anchor = p_anchor;
-	_area = p_area;
-	_align = p_align;
-	_size = p_size;
-	_color = p_color;
-	_style = p_style;
+	_area = Vector2();
+	_anchor = Vector2();
+	_align = alignment::left;
+	_size = 16;
+	_color = text_color::black;
+	_style = text_style::normal;
 }
 
 w_text_component::~w_text_component()
@@ -50,5 +50,5 @@ void w_text_component::render(c_viewport *viewport)
 		pos.x = _area.x - calc_text_len(_text, _size) / 2.0f;
 		pos.y = _area.y / 2.0f;
 	}
-	draw_centred_text(viewport, _text, pos, _size, _color, _style);
+	draw_centred_text(viewport, _text, pos + _anchor - viewport->anchor(), _size, _color, _style);
 }

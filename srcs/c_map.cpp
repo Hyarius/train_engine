@@ -1,6 +1,5 @@
 #include "engine.h"
 
-/*
 c_map::c_map(string path, c_widget *parent) : c_widget(parent)
 {
 	_map = c_image(path);
@@ -8,6 +7,11 @@ c_map::c_map(string path, c_widget *parent) : c_widget(parent)
 	_zoom = 1.0f;
 	_selected = nullptr;
 	_cities.clear();
+}
+
+void c_map::set_geometry_imp(Vector2 p_anchor, Vector2 p_area)
+{
+
 }
 
 void c_map::render()
@@ -55,62 +59,6 @@ c_city *c_map::check_city()
 	return (nullptr);
 }
 
-bool c_map::handle_mouse()
-{
-	if (is_pointed(g_mouse->pos))
-	{
-		if (g_mouse->get_button(MOUSE_LEFT) == MOUSE_DOWN)
-		{
-			if (g_mouse->rel_pos != Vector2(0, 0))
-			{
-				_map_anchor = _map_anchor + g_mouse->rel_pos;
-				return (true);
-			}
-		}
-		if (g_mouse->get_button(MOUSE_LEFT) == MOUSE_UP)
-		{
-			if (g_mouse->motion == false)
-			{
-				if (_selected == nullptr)
-				{
-					c_city *result = check_city();
-					if (result == nullptr)
-						add_city();
-					else
-						select_city(result);
-				}
-				else
-				{
-					_selected->select();
-					select_city(nullptr);
-				}
-				return (true);
-			}
-		}
-	}
-
-	if (g_mouse->wheel != 0)
-	{
-		float ratio_x;
-		float ratio_y;
-
-		ratio_x = (_map.size().x * _zoom) / _map_anchor.x;
-		ratio_y = (_map.size().y * _zoom) / _map_anchor.y;
-
-		if (g_mouse->wheel > 0)
-			_zoom *= 1.2f;
-		else
-			_zoom *= 0.8f;
-
-		_map_anchor.x = (_map.size().x * _zoom) / ratio_x;
-		_map_anchor.y = (_map.size().y * _zoom) / ratio_y;
-
-		return (true);
-
-	}
-	return (false);
-}
-
 float c_map::zoom()
 {
 	return (_zoom);
@@ -119,4 +67,10 @@ float c_map::zoom()
 Vector2 c_map::map_anchor()
 {
 	return (_map_anchor);
-}*/
+}
+
+void c_map::update()
+{
+	if (_selected != nullptr)
+		cout << "Here" << endl;
+}

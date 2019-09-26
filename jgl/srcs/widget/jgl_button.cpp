@@ -7,7 +7,7 @@ c_button::c_button(Funct p_funct, Data p_data, c_widget *p_parent) : c_widget(p_
 	_timer = 0;
 	_delta = Color(50, 50, 50, 150);
 
-	_box = w_box_component(Vector2(), Vector2(), 3);
+	_box = w_box_component();
 	_text = w_text_component("Click me !");
 	_text.set_align(alignment::centred);
 }
@@ -21,8 +21,8 @@ void c_button::set_geometry_imp(Vector2 p_anchor, Vector2 p_area)
 {
 	_box.set_area(p_area);
 	_box.set_anchor(p_anchor);
-	_text.set_area(p_area - _box.border() * 2);
-	_text.set_anchor(p_anchor + _box.border());
+	_text.set_area(p_area - _box.border() * 4);
+	_text.set_anchor(p_anchor + _box.border() * 2);
 	_text.calc_text_size();
 }
 

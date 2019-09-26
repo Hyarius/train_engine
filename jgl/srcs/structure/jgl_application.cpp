@@ -102,6 +102,8 @@ int c_application::run()
 
 		_central_widget->handle_event();
 
+		_central_widget->update_children();
+
 		render();
 
 		SDL_RenderSetViewport(_renderer, NULL);

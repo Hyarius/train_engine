@@ -1,36 +1,36 @@
 #include "jgl.h"
 
-c_user_entry::c_user_entry(c_widget *p_parent) : c_widget(p_parent)
+c_value_entry::c_value_entry(float p_value, c_widget *p_parent) : c_widget(p_parent)
 {
-	_box = w_box_component(Vector2(), Vector2(), 3);
-	_entry = w_entry_component();
+	_box = w_box_component();
+	_entry = w_value_entry_component(p_value);
 
 	_select = false;
 	_next_input = 0;
 	_input_delay = 100;
 }
 
-c_user_entry::~c_user_entry()
+c_value_entry::~c_value_entry()
 {
 
 }
 
-void c_user_entry::set_geometry_imp(Vector2 p_anchor, Vector2 p_area)
+void c_value_entry::set_geometry_imp(Vector2 p_anchor, Vector2 p_area)
 {
 	_box.set_area(p_area);
 	_box.set_anchor(p_anchor);
-	_entry.set_area(p_area - _box.border() * 2);
-	_entry.set_anchor(p_anchor + _box.border());
+	_entry.set_area(p_area - _box.border() * 4);
+	_entry.set_anchor(p_anchor + _box.border() * 2);
 	_entry.calc_text_size();
 }
 
-void c_user_entry::render()
+void c_value_entry::render()
 {
 	_box.render(_viewport);
 	_entry.render(_viewport);
 }
 
-bool c_user_entry::handle_mouse()
+bool c_value_entry::handle_mouse()
 {
 	if (g_mouse->get_button(mouse_button::left) == mouse_state::down)
 		unselect();
@@ -46,7 +46,7 @@ bool c_user_entry::handle_mouse()
 	return (false);
 }
 
-bool c_user_entry::handle_keyboard()
+bool c_value_entry::handle_keyboard()
 {
 	if (selected() == false)
 		return (false);

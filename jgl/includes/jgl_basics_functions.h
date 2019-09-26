@@ -5,6 +5,7 @@
 
 using namespace std;
 
+bool string_is_numeric(string text);
 vector<string> strsplit(string input, string c);
 void error_exit(int num, string error);
 int printOglError(const char *file, int line);

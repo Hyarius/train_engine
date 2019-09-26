@@ -103,3 +103,16 @@ void c_widget::render_children()
 		_childrens[i]->render_children();
 	}
 }
+
+void c_widget::update_children()
+{
+	if (is_active() == false)
+		return ;
+
+	update();
+
+	for (size_t i = 0; i < _childrens.size(); i++)
+	{
+		_childrens[i]->update_children();
+	}
+}

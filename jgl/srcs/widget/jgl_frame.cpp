@@ -2,7 +2,7 @@
 
 c_frame::c_frame(c_widget *p_parent) : c_widget(p_parent)
 {
-	_box = w_box_component(Vector2(), Vector2(), 3, Color(150, 150, 150), Color(195, 195, 195));
+	_box = w_box_component();
 }
 
 c_frame::~c_frame()

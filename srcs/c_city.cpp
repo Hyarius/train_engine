@@ -2,7 +2,7 @@
 
 #define CITY_SIZE 7.0f
 
-/*int num = 0;
+int num = 0;
 
 c_city::c_city(c_map *p_map, Vector2 p_pos)
 {
@@ -29,7 +29,7 @@ void c_city::draw()
 	if (pos != Vector2())
 	{
 		int text_size = 8 * map->zoom();
-		draw_centred_text(map->viewport(), name, pos1 + Vector2(0.0f, - size1.y * 1.5f), text_size, BLACK, BOLD);
+		draw_centred_text(map->viewport(), name, pos1 + Vector2(0.0f, - size1.y * 1.5f), text_size, text_color::black, text_style::bold);
 		fill_centred_rectangle(map->viewport(), (selected == 1 ? unselect_color : select_color), pos1, size1);
 	}
 }
@@ -59,4 +59,4 @@ bool c_city::clicked(Vector2 mouse)
 	}
 	selected = 2;
 	return (true);
-}*/
+}

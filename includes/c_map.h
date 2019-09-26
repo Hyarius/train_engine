@@ -15,6 +15,8 @@ private:
 
 	vector<c_city *> _cities;
 
+	c_frame _panel;
+
 public:
 	c_map(string path, c_widget *parent = nullptr);
 
@@ -25,6 +27,10 @@ public:
 
 	float zoom();
 	Vector2 map_anchor();
+
+	void update();
+
+	void set_geometry_imp(Vector2 p_anchor, Vector2 p_area);
 
 	virtual void render();
 
