@@ -50,6 +50,9 @@ void c_viewport::set_background(Color p_color)
 
 void c_viewport::use()
 {
+	if (_size.x <= 0 || _size.y <= 0)
+		return ;
+
 	SDL_Rect rect = {
 			static_cast<int>(_anchor.x), static_cast<int>(_anchor.y),
 			static_cast<int>(_size.x), static_cast<int>(_size.y)

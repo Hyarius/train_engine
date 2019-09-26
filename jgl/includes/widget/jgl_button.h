@@ -19,11 +19,8 @@ public:
 	c_button(Funct p_funct = nullptr, Data p_data = nullptr, c_widget *p_parent = nullptr);
 	~c_button();
 
-
 	w_box_component &box(){return (_box);}
 	w_text_component &text(){return (_text);}
-
-	void update(){}
 
 	void set_funct(Funct p_funct, Data p_data)
 	{

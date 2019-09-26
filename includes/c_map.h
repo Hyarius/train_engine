@@ -15,7 +15,9 @@ private:
 
 	vector<c_city *> _cities;
 
-	c_frame _panel;
+	c_frame *_panel;
+	c_text_label *_name_label;
+	c_text_entry *_name_entry;
 
 public:
 	c_map(string path, c_widget *parent = nullptr);
