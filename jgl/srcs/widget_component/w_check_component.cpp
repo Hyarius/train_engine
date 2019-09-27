@@ -1,6 +1,7 @@
 #include "jgl.h"
 
-w_check_component::w_check_component(bool p_state)
+w_check_component::w_check_component(c_widget *p_owner, bool p_state) :
+		w_component(p_owner), w_graphical_component()
 {
 	_area = Vector2();
 	_anchor = Vector2();
@@ -9,11 +10,6 @@ w_check_component::w_check_component(bool p_state)
 	_front = Color(195, 195, 195, 255);
 	_check = Color(60, 150, 255);
 	_state = p_state;
-}
-
-w_check_component::~w_check_component()
-{
-
 }
 
 bool w_check_component::check(Vector2 point, Vector2 viewport_anchor)

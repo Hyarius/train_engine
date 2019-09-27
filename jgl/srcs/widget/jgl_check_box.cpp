@@ -2,11 +2,11 @@
 
 c_check_box::c_check_box(string p_text, bool p_state, c_widget *p_parent) : c_widget(p_parent)
 {
-	_box = w_box_component();
-	_text = w_text_component(p_text);
+	_box = w_box_component(this);
+	_text = w_text_component(this, p_text);
 	_text.set_align(alignment::centred);
 
-	_check = w_check_component(p_state);
+	_check = w_check_component(this, p_state);
 	_check.set_check(Color(70, 150, 255));
 }
 
@@ -27,7 +27,7 @@ void c_check_box::set_geometry_imp(Vector2 p_anchor, Vector2 p_area)
 
 	_text.set_area(text_area);
 	_text.set_anchor(p_anchor + _box.border() * 2);
-	_text.calc_text_size();
+	_text.calc_text_size(_text.area());
 
 	_check.set_area(check_area);
 	_check.set_anchor(p_area - _box.border() * 2 - check_area);

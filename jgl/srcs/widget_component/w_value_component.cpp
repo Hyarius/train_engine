@@ -1,6 +1,7 @@
 #include "jgl.h"
 
-w_value_component::w_value_component(float p_value)
+w_value_component::w_value_component(c_widget *p_owner, float p_value) :
+		w_component(p_owner), w_graphical_component(), w_textual_component()
 {
 	_value = p_value;
 	_text = ftoa(_value);
@@ -10,28 +11,6 @@ w_value_component::w_value_component(float p_value)
 	_size = 16;
 	_color = text_color::black;
 	_style = text_style::normal;
-}
-
-w_value_component::~w_value_component()
-{
-
-}
-
-void 		w_value_component::calc_text_size()
-{
-	int delta[5] = {100, 50, 20, 10, 1};
-	_size = 2;
-	_text = ftoa(_value);
-
-	if (_text == "")
-		return ;
-
-	for (int i = 0; i < 5; i++)
-	{
-		while (calc_text_len(_text, _size + delta[i]) <= _area.x &&
-			   get_char('M', _size + delta[i])->size().y <= _area.y)
-			_size += delta[i];
-	}
 }
 
 void w_value_component::render(c_viewport *viewport)

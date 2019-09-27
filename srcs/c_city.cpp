@@ -30,7 +30,7 @@ void c_city::draw()
 	{
 		int text_size = 8 * map->zoom();
 		draw_centred_text(map->viewport(), name, pos1 + Vector2(0.0f, - size1.y * 1.5f), text_size, text_color::black, text_style::bold);
-		fill_centred_rectangle(map->viewport(), (selected == 1 ? unselect_color : select_color), pos1, size1);
+		fill_centred_rectangle(map->viewport(), (selected == 1 ? unselect_color : select_color), pos1, 10);
 	}
 }
 

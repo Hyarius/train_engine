@@ -2,7 +2,7 @@
 
 c_frame::c_frame(c_widget *p_parent) : c_widget(p_parent)
 {
-	_box = w_box_component();
+	_box = w_box_component(this);
 }
 
 c_frame::~c_frame()

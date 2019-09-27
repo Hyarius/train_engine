@@ -2,8 +2,8 @@
 
 c_text_entry::c_text_entry(string p_text, c_widget *p_parent) : c_widget(p_parent)
 {
-	_box = w_box_component();
-	_entry = w_text_entry_component(p_text);
+	_box = w_box_component(this);
+	_entry = w_text_entry_component(this, p_text);
 
 	_select = false;
 	_next_input = 0;
@@ -21,7 +21,7 @@ void c_text_entry::set_geometry_imp(Vector2 p_anchor, Vector2 p_area)
 	_box.set_anchor(p_anchor);
 	_entry.set_area(p_area - _box.border() * 4);
 	_entry.set_anchor(p_anchor + _box.border() * 2);
-	_entry.calc_text_size();
+	_entry.calc_text_size_height(_entry.area());
 }
 
 void c_text_entry::render()

@@ -1,6 +1,7 @@
 #include "jgl.h"
 
-w_text_component::w_text_component(string p_text)
+w_text_component::w_text_component(c_widget *p_owner, string p_text) :
+		w_component(p_owner), w_graphical_component(), w_textual_component()
 {
 	_text = p_text;
 	_area = Vector2();
@@ -11,25 +12,9 @@ w_text_component::w_text_component(string p_text)
 	_style = text_style::normal;
 }
 
-w_text_component::~w_text_component()
+void w_text_component::resize(Vector2 p_anchor, Vector2 p_area)
 {
-
-}
-
-void w_text_component::calc_text_size()
-{
-	int delta[5] = {100, 50, 20, 10, 1};
-	_size = 2;
-
-	if (_text == "")
-		return ;
-
-	for (int i = 0; i < 5; i++)
-	{
-		while (calc_text_len(_text, _size + delta[i]) <= _area.x &&
-			   get_char('M', _size + delta[i])->size().y <= _area.y)
-			_size += delta[i];
-	}
+	set_anchor(p_anchor);set_area(p_area);calc_text_size(_area);
 }
 
 void w_text_component::render(c_viewport *viewport)

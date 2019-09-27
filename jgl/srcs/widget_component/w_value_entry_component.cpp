@@ -1,6 +1,7 @@
 #include "jgl.h"
 
-w_value_entry_component::w_value_entry_component(float p_value)
+w_value_entry_component::w_value_entry_component(c_widget *p_owner, float p_value) :
+		w_component(p_owner), w_graphical_component(), w_textual_component()
 {
 	_value = p_value;
 	_text = ftoa(_value);
@@ -13,24 +14,6 @@ w_value_entry_component::w_value_entry_component(float p_value)
 	_size = 16;
 	_color = text_color::black;
 	_style = text_style::normal;
-}
-
-	//Destructor
-w_value_entry_component::~w_value_entry_component()
-{
-
-}
-
-void w_value_entry_component::calc_text_size()
-{
-	int delta[5] = {100, 50, 20, 10, 1};
-	_size = 2;
-
-	for (int i = 0; i < 5; i++)
-	{
-		while (get_char('M', _size + delta[i])->size().y <= _area.y)
-			_size += delta[i];
-	}
 }
 
 void w_value_entry_component::calc_text_to_draw()

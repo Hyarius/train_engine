@@ -1,6 +1,6 @@
 #include "jgl.h"
 
-w_textual_component::w_textual_component(c_widget *p_owner) : w_component(p_owner)
+w_textual_component::w_textual_component()
 {
 	_text = "";
 	_align = alignment::left;
@@ -9,7 +9,7 @@ w_textual_component::w_textual_component(c_widget *p_owner) : w_component(p_owne
 	_style = text_style::normal;
 }
 
-void 		w_textual_component::calc_text_size()
+void 		w_textual_component::calc_text_size(Vector2 area)
 {
 	int delta[5] = {100, 50, 20, 10, 1};
 	_size = 2;
@@ -19,20 +19,20 @@ void 		w_textual_component::calc_text_size()
 
 	for (int i = 0; i < 5; i++)
 	{
-		while (calc_text_len(_text, _size + delta[i]) <= _area.x &&
-			   get_char('M', _size + delta[i])->size().y <= _area.y)
+		while (calc_text_len(_text, _size + delta[i]) <= area.x &&
+			   get_char('M', _size + delta[i])->size().y <= area.y)
 			_size += delta[i];
 	}
 }
 
-void 		w_textual_component::calc_text_size_height()
+void 		w_textual_component::calc_text_size_height(Vector2 area)
 {
 	int delta[5] = {100, 50, 20, 10, 1};
 	_size = 2;
 
 	for (int i = 0; i < 5; i++)
 	{
-		while (get_char('M', _size + delta[i])->size().y <= _area.y)
+		while (get_char('M', _size + delta[i])->size().y <= area.y)
 			_size += delta[i];
 	}
 }

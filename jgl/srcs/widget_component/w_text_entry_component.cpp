@@ -1,6 +1,7 @@
 #include "jgl.h"
 
-w_text_entry_component::w_text_entry_component(string p_text)
+w_text_entry_component::w_text_entry_component(c_widget *p_owner, string p_text) :
+		w_component(p_owner), w_graphical_component(), w_textual_component()
 {
 	_text = p_text;
 	_cursor = 0;
@@ -12,23 +13,6 @@ w_text_entry_component::w_text_entry_component(string p_text)
 	_size = 16;
 	_color = text_color::black;
 	_style = text_style::normal;
-}
-
-w_text_entry_component::~w_text_entry_component()
-{
-
-}
-
-void w_text_entry_component::calc_text_size()
-{
-	int delta[5] = {100, 50, 20, 10, 1};
-	_size = 2;
-
-	for (int i = 0; i < 5; i++)
-	{
-		while (get_char('M', _size + delta[i])->size().y <= _area.y)
-			_size += delta[i];
-	}
 }
 
 void w_text_entry_component::move_cursor(int delta)

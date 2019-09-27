@@ -22,23 +22,6 @@ Vector2 c_widget::anchor()
 
 void c_widget::set_geometry(Vector2 p_anchor, Vector2 p_area)
 {
-	/*
-
-		c_widget *tmp_parent;
-		Vector2 final_anchor;
-
-		final_anchor = p_anchor;
-		tmp_parent = _parent;
-		while (tmp_parent != nullptr)
-		{
-			final_anchor = final_anchor + tmp_parent->anchor();
-			tmp_parent = tmp_parent->parent();
-		}
-
-		_viewport->resize(final_anchor, p_area);
-
-
-	*/
 	if (_parent == nullptr)
 		_viewport->resize(p_anchor, p_area);
 	else
@@ -116,9 +99,7 @@ void c_widget::render_children()
 	if (is_active() == false)
 		return ;
 
-	//cout << "here" << endl;
 	_viewport->use();
-	//cout << "here2" << endl;
 	render();
 
 	for (size_t i = 0; i < _childrens.size(); i++)
