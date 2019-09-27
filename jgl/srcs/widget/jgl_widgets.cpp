@@ -10,6 +10,27 @@ c_widget::c_widget(c_widget *p_parent)
 	_activated = false;
 }
 
+c_widget::~c_widget()
+{
+	if (_parent != nullptr)
+		_parent->remove_children(this);
+
+	for (size_t i = 0; i < _childrens.size(); i++)
+	{
+		_childrens[i]->set_parent(nullptr);
+	}
+}
+
+void c_widget::remove_children(c_widget *p_target)
+{
+	std::vector<c_widget *>::iterator it;
+
+	it = find (_childrens.begin(), _childrens.end(), p_target);
+
+  	if (it != _childrens.end())
+    	_childrens.erase (it);
+}
+
 Vector2 c_widget::size()
 {
 	return (_viewport->size());

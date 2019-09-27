@@ -19,6 +19,8 @@ protected:
 public:
 	c_widget(c_widget *p_parent = nullptr);
 
+	~c_widget();
+
 	c_widget *parent(){return (_parent);}
 
 	Vector2 size();
@@ -40,6 +42,8 @@ public:
 	void set_parent(c_widget *p_parent);
 
 	void add_children(c_widget *p_children);
+
+	void remove_children(c_widget *p_target);
 
 	bool handle_event();
 
