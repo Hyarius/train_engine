@@ -14,17 +14,14 @@ c_map::c_map(string path, c_widget *parent) : c_widget(parent)
 
 	_panel = new c_frame(this);
 
-
-
-	//
 	_name_label = new c_text_label("City name :", _panel);
 	_name_label->label().set_align(alignment::left);
 	_name_label->label().set_style(text_style::underline);
 	_name_label->active();
-	// //
-	// _name_entry = new c_text_entry("", _panel);
-	// _name_entry->entry().set_align(alignment::left);
-	// _name_entry->active();
+
+	_name_entry = new c_text_entry("", _panel);
+	_name_entry->entry().set_align(alignment::left);
+	_name_entry->active();
 }
 
 void c_map::set_geometry_imp(Vector2 p_anchor, Vector2 p_area)
@@ -34,8 +31,12 @@ void c_map::set_geometry_imp(Vector2 p_anchor, Vector2 p_area)
 	_panel->set_geometry(panel_anchor, panel_size);
 
 	Vector2 name_anchor = Vector2(5, 5);
-	Vector2 name_size = Vector2(140, 30);//p_area.x / 4, p_area.y / 3);
+	Vector2 name_size = Vector2(80, 30);//p_area.x / 4, p_area.y / 3);
 	_name_label->set_geometry(name_anchor, name_size);
+
+	Vector2 entry_anchor = Vector2(10 + name_size.x, 0.0f) + name_anchor;
+	Vector2 entry_size = Vector2(panel_size.x - name_size.x - 20, name_size.y);//p_area.x / 4, p_area.y / 3);
+	_name_entry->set_geometry(entry_anchor, entry_size);
 }
 
 void c_map::render()
@@ -57,6 +58,7 @@ void c_map::select_city(c_city *city)
 {
 	_selected = city;
 	_panel->set_active(!(city == nullptr));
+	_name_entry->entry().set_text(city->name());
 }
 
 Vector2 c_map::convert_to_map_coord(Vector2 source)
@@ -95,5 +97,9 @@ Vector2 c_map::map_anchor()
 
 void c_map::update()
 {
-	
+	if (_selected != nullptr)
+	{
+		cout << "name : [" << _name_entry->entry().text() << "]" << endl;
+		cout << "Size : [" << _name_entry->entry().size() << "]" << endl;
+	}
 }

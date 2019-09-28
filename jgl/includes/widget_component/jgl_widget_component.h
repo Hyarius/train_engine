@@ -150,6 +150,7 @@ public:
 
 		//Getter
 	int 		cursor(){return (_cursor);}
+	void		set_text(string new_text);
 	string 		text_to_draw(){return (_text_to_draw);}
 	int 		cursor_to_draw(){return (_cursor_to_draw);}
 
