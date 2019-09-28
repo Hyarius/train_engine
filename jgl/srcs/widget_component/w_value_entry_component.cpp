@@ -71,6 +71,15 @@ void w_value_entry_component::remove_text()
 	}
 }
 
+void w_text_entry_component::supp_text()
+{
+	if (_cursor > 0 && _cursor < _text.size() && _text.size() != 0)
+	{
+		_text.erase(_text.begin() + _cursor);
+		calc_text_to_draw();
+	}
+}
+
 void w_value_entry_component::render(c_viewport *viewport)
 {
 	Vector2 pos;
@@ -90,4 +99,8 @@ void w_value_entry_component::render(c_viewport *viewport)
 		pos.y = _area.y / 2.0f;
 	}
 	draw_centred_text(viewport, _text_to_draw, pos + _anchor - viewport->anchor(), _size, _color, _style);
+	pos.x -= calc_text_len(_text_to_draw.substr(0, _text_to_draw.size() / 2 - 1));
+	pos.x += calc_text_len(_text_to_draw.substr(0, _cursor_to_draw), _size);
+	if (_selected == true && (SDL_GetTicks() / 400) % 2 == 0)
+		fill_rectangle(viewport, Color(50, 50, 50), pos - Vector2(0, 2), Vector2(2, _size));
 }

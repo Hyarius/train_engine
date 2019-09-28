@@ -15,6 +15,8 @@ public:
 	c_city(class c_map *p_map, Vector2 p_pos = Vector2());
 
 	string name(){return (_name);}
+
+	void set_name(string new_name){_name = new_name;}
 	void draw();
 	bool clicked(Vector2 mouse);
 	void select();

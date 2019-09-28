@@ -46,6 +46,22 @@ Vector3		Vector3::operator / (const Vector3& delta){
 	return (Vector3(this->x / delta.x, this->y / delta.y, this->z / delta.z));
 }
 
+void 		Vector3::operator += (const Vector3& delta){
+    this->x += delta.x; this->y += delta.y; this->z += delta.z;
+}
+
+void 		Vector3::operator -= (const Vector3& delta){
+    this->x -= delta.x; this->y -= delta.y; this->z -= delta.z;
+}
+
+void 		Vector3::operator *= (const Vector3& delta){
+    this->x *= delta.x; this->y *= delta.y; this->z *= delta.z;
+}
+
+void 		Vector3::operator /= (const Vector3& delta){
+    this->x /= delta.x; this->y /= delta.y; this->z /= delta.z;
+}
+
 bool		Vector3::operator == (const Vector3& delta) const{
 	return ((this->x == delta.x && this->y == delta.y && this->z == delta.z) ?
 			true : false);
@@ -100,6 +116,22 @@ Vector2		Vector2::operator * (const Vector2& delta){
 
 Vector2		Vector2::operator / (const Vector2& delta){
 	return (Vector2(this->x / delta.x, this->y / delta.y));
+}
+
+void 		Vector2::operator += (const Vector2& delta){
+    this->x += delta.x; this->y += delta.y;
+}
+
+void 		Vector2::operator -= (const Vector2& delta){
+    this->x -= delta.x; this->y -= delta.y;
+}
+
+void 		Vector2::operator *= (const Vector2& delta){
+    this->x *= delta.x; this->y *= delta.y;
+}
+
+void 		Vector2::operator /= (const Vector2& delta){
+    this->x /= delta.x; this->y /= delta.y;
 }
 
 bool		Vector2::operator == (const Vector2& delta) const

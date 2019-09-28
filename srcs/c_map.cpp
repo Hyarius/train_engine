@@ -58,7 +58,10 @@ void c_map::select_city(c_city *city)
 {
 	_selected = city;
 	_panel->set_active(!(city == nullptr));
-	_name_entry->entry().set_text(city->name());
+	if (_selected != nullptr)
+	{
+		_name_entry->entry().set_text(_selected->name());
+	}
 }
 
 Vector2 c_map::convert_to_map_coord(Vector2 source)
@@ -99,7 +102,8 @@ void c_map::update()
 {
 	if (_selected != nullptr)
 	{
-		cout << "name : [" << _name_entry->entry().text() << "]" << endl;
-		cout << "Size : [" << _name_entry->entry().size() << "]" << endl;
+		_selected->set_name(_name_entry->entry().text());
+		// cout << "name : [" << _name_entry->entry().text() << "]" << endl;
+		// cout << "Size : [" << _name_entry->entry().size() << "]" << endl;
 	}
 }

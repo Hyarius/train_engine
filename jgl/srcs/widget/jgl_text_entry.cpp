@@ -66,6 +66,11 @@ bool c_text_entry::handle_keyboard()
 		_entry.remove_text();
 		g_keyboard->reset_key(SDL_SCANCODE_BACKSPACE);
 	}
+	else if (g_keyboard->get_key(SDL_SCANCODE_DELETE))
+	{
+		_entry.supp_text();
+		g_keyboard->reset_key(SDL_SCANCODE_DELETE);
+	}
 
 	if (g_application->event()->type == SDL_TEXTINPUT)
 	{

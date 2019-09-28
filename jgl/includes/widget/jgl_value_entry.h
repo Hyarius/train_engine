@@ -21,8 +21,8 @@ public:
 	w_box_component &box(){return (_box);}
 	w_value_entry_component &entry(){return (_entry);}
 
-	void select(){_select = true;}
-	void unselect(){_select = false;}
+	void select(){_select = true;_entry.set_selected(true);}
+	void unselect(){_select = false;_entry.set_selected(false);}
 	bool selected(){return (_select);}
 
 	void set_geometry_imp(Vector2 p_anchor, Vector2 p_area);

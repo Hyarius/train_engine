@@ -136,6 +136,7 @@ class w_text_entry_component : public w_component, public w_graphical_component,
 {
 protected:
 	int _cursor;
+	bool _selected;
 
 	string _text_to_draw;
 	int _cursor_to_draw;
@@ -145,10 +146,12 @@ public:
 	w_text_entry_component(class c_widget *p_owner = nullptr, string p_text = "");
 
 		//Setter
+	void set_selected(bool p_selected){_selected = p_selected;}
 	void 		resize(Vector2 p_anchor, Vector2 p_area)
 		{set_anchor(p_anchor);set_area(p_area);calc_text_size_height(_area);}
 
 		//Getter
+	bool		selected(){return (_selected);}
 	int 		cursor(){return (_cursor);}
 	void		set_text(string new_text);
 	string 		text_to_draw(){return (_text_to_draw);}
@@ -158,6 +161,7 @@ public:
 	void 		move_cursor(int delta);
 	void 		add_text(string new_text);
 	void 		remove_text();
+	void 		supp_text();
 
 	void 		render(c_viewport *viewport);
 };
@@ -185,6 +189,7 @@ public:
 class w_value_entry_component : public w_component, public w_graphical_component, public w_textual_component
 {
 protected:
+	bool _selected;
 	float _value;
 	int _cursor;
 
@@ -196,6 +201,7 @@ public:
 	w_value_entry_component(class c_widget *p_owner = nullptr, float p_value = 0.0f);
 
 		//Setter
+	void 		set_selected(bool p_selected){_selected = p_selected;}
 	void 		set_text(string p_text){_text = p_text;calc_value();}
 	void 		set_value(float p_value){_value = p_value;calc_text();}
 	void 		resize(Vector2 p_anchor, Vector2 p_area)
@@ -204,6 +210,7 @@ public:
 	void 		calc_text(){ _text = ftoa(_value);}
 
 		//Getter
+	bool		selected(){return (_selected);}
 	float 		value(){return (_value);}
 	int 		cursor(){return (_cursor);}
 	string 		text_to_draw(){return (_text_to_draw);}
@@ -213,6 +220,7 @@ public:
 	void 		move_cursor(int delta);
 	void 		add_text(string new_text);
 	void 		remove_text();
+	void 		supp_text();
 
 	void render(c_viewport *viewport);
 };

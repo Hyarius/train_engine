@@ -106,9 +106,18 @@ bool c_widget::handle_event()
 
 bool c_widget::is_pointed(Vector2 point)
 {
+	c_widget *tmp;
 	Vector2 pos1, pos2;
 
-	pos1 = _viewport->anchor() + _parent->anchor();
+	pos1 = _viewport->anchor();
+
+	// tmp = _parent;
+	// while (tmp != nullptr)
+	// {
+	// 	pos1 += _parent->anchor();
+	// 	tmp = tmp->parent();
+	// }
+
 	pos2 = pos1 + _viewport->size();
 	if (point.x < pos1.x || point.x > pos2.x || point.y < pos1.y || point.y > pos2.y)
 		return (false);

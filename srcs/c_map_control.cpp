@@ -2,7 +2,7 @@
 
 bool c_map::handle_mouse()
 {
-	if (is_pointed(g_mouse->pos))
+	if (is_pointed(g_mouse->pos) && (_panel->is_active() == false || _panel->is_pointed(g_mouse->pos) == false))
 	{
 		if (g_mouse->get_button(mouse_button::left) == mouse_state::down)
 		{
