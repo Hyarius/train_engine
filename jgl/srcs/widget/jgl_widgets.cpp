@@ -134,6 +134,7 @@ void c_widget::update_children()
 	if (is_active() == false)
 		return ;
 
+	//cout << "Here" << endl;
 	update();
 
 	for (size_t i = 0; i < _childrens.size(); i++)

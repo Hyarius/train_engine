@@ -95,5 +95,5 @@ Vector2 c_map::map_anchor()
 
 void c_map::update()
 {
-	cout << "here" << endl;
+	
 }

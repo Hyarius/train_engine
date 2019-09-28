@@ -37,8 +37,6 @@ public:
 
 	void set_active(bool new_state);
 
-
-
 	void set_parent(c_widget *p_parent);
 
 	void add_children(c_widget *p_children);
@@ -54,7 +52,7 @@ public:
 	void set_geometry(Vector2 p_anchor, Vector2 p_area);
 
 
-	void update(){};
+	virtual void update(){};
 
 	virtual void set_geometry_imp(Vector2 p_anchor, Vector2 p_area) = 0;
 
