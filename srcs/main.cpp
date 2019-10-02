@@ -9,10 +9,10 @@ void tmp(Data data)
 
 int main(int argc, char**argv)
 {
-	c_application win("Test", Vector2(1240, 1080), Color(195, 195, 195));
+	c_application win("Test", Vector2(860, 640), Color(195, 195, 195));
 
 	Vector2 box_delta = Vector2(5, 5);
-	Vector2 box_size = Vector2(1050, 850);
+	Vector2 box_size = win.size() * 0.8f;
 
 	c_frame map_box = c_frame();
 	map_box.set_geometry(box_delta, box_size);

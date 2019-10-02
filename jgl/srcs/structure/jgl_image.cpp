@@ -4,7 +4,8 @@ c_image::c_image() : _surface(nullptr), _texture(nullptr) {}
 
 c_image::c_image(string path)
 {
-	_surface = IMG_Load(path.c_str());
+	string tmp = string(path.begin(), path.end());
+	_surface = IMG_Load(tmp.c_str());
 	if (_surface == nullptr)
 		error_exit(1, "Can't load " + path + " file");
 
@@ -60,7 +61,7 @@ c_image::c_image(SDL_Surface *p__surface)
 {
 	_surface = p__surface;
 	if (_surface == nullptr)
-		error_exit(1, "Surface send in c_image = NULL");
+		error_exit(1, "Surface send in c_image = NUL");
 
 	_texture = SDL_CreateTextureFromSurface(g_application->renderer(), _surface);
 	if (_texture == nullptr)

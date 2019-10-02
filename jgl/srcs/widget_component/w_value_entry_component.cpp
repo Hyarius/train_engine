@@ -23,7 +23,7 @@ void w_value_entry_component::calc_text_to_draw()
 
 	int i = _cursor;
 
-	if (_text != "")
+	if (_text.empty() == false)
 	{
 		while (i > 0 && calc_text_len(_text_to_draw + _text[i - 1], _size) < _area.x)
 		{
@@ -57,13 +57,14 @@ void w_value_entry_component::add_text(string new_text)
 		return ;
 
 	_text.insert(_cursor, new_text);
+
 	_cursor++;
 	calc_text_to_draw();
 }
 
 void w_value_entry_component::remove_text()
 {
-	if (_cursor > 0 && _text.size() != 0)
+	if (_cursor > 0 && _text.empty() == false)
 	{
 		_cursor--;
 		_text.erase(_cursor);
@@ -71,9 +72,9 @@ void w_value_entry_component::remove_text()
 	}
 }
 
-void w_text_entry_component::supp_text()
+void w_value_entry_component::supp_text()
 {
-	if (_cursor > 0 && _cursor < _text.size() && _text.size() != 0)
+	if (_cursor > 0 && _cursor < _text.size() && _text.empty() == false)
 	{
 		_text.erase(_text.begin() + _cursor);
 		calc_text_to_draw();
@@ -86,21 +87,26 @@ void w_value_entry_component::render(c_viewport *viewport)
 
 	if (_align == alignment::left)
 	{
-		pos.x = calc_text_len(_text_to_draw, _size) / 2.0f;
-		pos.y = _area.y / 2.0f;
+		pos.x = 0;
+		pos.y = 0;
 	}
 	else if (_align == alignment::centred)
 	{
-		pos = _area / 2;
+		pos.x = _area.x / 2 - calc_text_len(_text_to_draw, _size) / 2.0f;
+		pos.y = 0;
 	}
 	else if (_align == alignment::right)
 	{
-		pos.x = _area.x - calc_text_len(_text_to_draw, _size) / 2.0f;
-		pos.y = _area.y / 2.0f;
+		pos.x = _area.x - calc_text_len(_text_to_draw, _size);
+		pos.y = 0;
 	}
-	draw_centred_text(viewport, _text_to_draw, pos + _anchor - viewport->anchor(), _size, _color, _style);
-	pos.x -= calc_text_len(_text_to_draw.substr(0, _text_to_draw.size() / 2 - 1));
+
+	pos += _anchor - viewport->anchor();
+
+	draw_text(viewport, _text_to_draw, pos, _size, _color, _style);
+
 	pos.x += calc_text_len(_text_to_draw.substr(0, _cursor_to_draw), _size);
+
 	if (_selected == true && (SDL_GetTicks() / 400) % 2 == 0)
-		fill_rectangle(viewport, Color(50, 50, 50), pos - Vector2(0, 2), Vector2(2, _size));
+		fill_rectangle(viewport, Color(50, 50, 50), pos, Vector2(2, _size));
 }

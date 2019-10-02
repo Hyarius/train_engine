@@ -82,7 +82,11 @@ c_image				*get_char(char c, int size, text_color color, text_style type)
 
 		string text = " ";
 		text[0] = c;
-		char_list[tmp_type][size][tmp_color][c] = new c_image(TTF_RenderText_Blended(tmp, text.c_str(), get_color(tmp_color)));
+
+		typedef std::basic_string<Uint16, std::char_traits<Uint16>, std::allocator<Uint16> > u16string;
+		u16string utext(text.begin(), text.end());
+
+		char_list[tmp_type][size][tmp_color][c] = new c_image(TTF_RenderUNICODE_Blended(tmp, utext.c_str(), get_color(tmp_color)));
 		TTF_SetFontStyle(font[size], NORMAL);
 	}
 	return (char_list[tmp_type][size][tmp_color][c]);

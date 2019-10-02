@@ -48,7 +48,7 @@ all:
 				make $(NAME)
 
 install:
-				make install -C "jgl"
+				make install -C "jg"
 
 re-jgl:
 				make re -C jgl

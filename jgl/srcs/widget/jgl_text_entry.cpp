@@ -75,10 +75,15 @@ bool c_text_entry::handle_keyboard()
 	if (g_application->event()->type == SDL_TEXTINPUT)
 	{
 		Uint32 time = SDL_GetTicks();
-		if (g_application->event()->text.text[0] != _entry.text()[_entry.cursor() - 1] ||
+
+		if (_entry.text().empty() ||
+			g_application->event()->text.text[0] != _entry.text()[_entry.cursor() - 1] ||
 			time >= _next_input)
 		{
-			_entry.add_text(g_application->event()->text.text);
+			string text = g_application->event()->text.text;
+			string text_content;
+			text_content = string(text.begin(), text.end());
+			_entry.add_text(text_content);
 			_next_input = time + _input_delay;
 		}
 	}

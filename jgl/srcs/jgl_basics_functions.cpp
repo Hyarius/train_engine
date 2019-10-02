@@ -26,52 +26,6 @@ void				error_exit(int num, string error)
 	exit(num);
 }
 
-int printOglError(const char *file, int line)
-{
-	vector<string>tab = strsplit(file, "\\");
-	if (tab.size() == 1)
-		vector<string>tab = strsplit(file, "/");
-	string file_name = tab[tab.size() - 1];
-	GLenum glErr;
-	int    retCode = 0;
-
-	glErr = glGetError();
-	string text = "";
-
-	if (glErr == GL_NO_ERROR)
-		text = "";
-	else if (glErr == GL_INVALID_VALUE)
-		text = "Invalid value";
-	else if (glErr == GL_INVALID_OPERATION)
-		text = "Invalid operation";
-	else if (glErr == GL_INVALID_ENUM)
-		text = "Invalid enum";
-	else
-		text = "Other error";
-
-	if (text != "")
-	{
-		string error = "opengl state in file " + file_name + ":line[" + to_string(line) + "] : " + text.c_str();
-		error_exit(1, error);
-	}
-	retCode = 1;
-	return retCode;
-}
-
-void check_sdl_error(const char *file, int line)
-{
-	vector<string>tab = strsplit(file, "\\");
-	if (tab.size() == 1)
-		vector<string>tab = strsplit(file, "/");
-	string file_name = tab[tab.size() - 1];
-	string text = SDL_GetError();
-	if (text.size() != 0)
-	{
-		string error = "SDL2 state in file " + file_name + ":line[" + to_string(line) + "] : " + SDL_GetError();
-		error_exit(1, error);
-	}
-}
-
 string				ftoa(float i)
 {
 	return (to_string(i));

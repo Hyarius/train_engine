@@ -16,7 +16,9 @@ c_application::c_application(string name, Vector2 p_size, Color p_color)
 		_win_size = Vector2(current.w * 0.8f, current.h * 0.8f);
 	}
 
-	_window = SDL_CreateWindow(name.c_str(),
+	string tmp = string(name.begin(), name.end());
+
+	_window = SDL_CreateWindow(tmp.c_str(),
 		SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
 		static_cast<int>(_win_size.x), static_cast<int>(_win_size.y), 0);
 

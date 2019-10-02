@@ -1,8 +1,5 @@
-#ifndef jgl_color_H
-#define jgl_color_H
-
-#include <iostream>
-#include <string>
+#ifndef JGL_COLOR_H
+#define JGL_COLOR_H
 
 #define CALC(value) ((value % 256) / 255.0f)
 

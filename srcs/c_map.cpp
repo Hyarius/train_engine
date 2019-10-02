@@ -20,7 +20,7 @@ c_map::c_map(string path, c_widget *parent) : c_widget(parent)
 	_name_label->active();
 
 	_name_entry = new c_text_entry("", _panel);
-	_name_entry->entry().set_align(alignment::left);
+	_name_entry->entry().set_align(alignment::centred);
 	_name_entry->active();
 }
 
