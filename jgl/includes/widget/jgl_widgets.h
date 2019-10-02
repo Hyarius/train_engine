@@ -21,6 +21,7 @@ public:
 
 	~c_widget();
 
+	vector<c_widget *> childrens(){return (_childrens);}
 	c_widget *parent(){return (_parent);}
 
 	Vector2 size();

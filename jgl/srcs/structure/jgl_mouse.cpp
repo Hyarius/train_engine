@@ -47,6 +47,6 @@ void		s_mouse::actualize_mouse(SDL_Event *event)
 mouse_state			s_mouse::get_button(mouse_button type)
 {
 	int value = static_cast<int>(type);
-	
+
 	return (static_cast<mouse_state>(button[value]));
 }

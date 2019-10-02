@@ -9,11 +9,14 @@ c_application::c_application(string name, Vector2 p_size, Color p_color)
 	TTF_Init();
 
 	_win_size = p_size;
-	if (_win_size == Vector2())
+	if (p_size.x <= 1 && p_size.y <= 1)
 	{
 		SDL_DisplayMode current;
 		SDL_GetDesktopDisplayMode(0, &current);
-		_win_size = Vector2(current.w * 0.8f, current.h * 0.8f);
+		if (p_size == Vector2())
+			_win_size = Vector2(current.w * 0.8f, current.h * 0.8f);
+		else
+			_win_size = Vector2(current.w * p_size.x, current.h * p_size.y);
 	}
 
 	string tmp = string(name.begin(), name.end());

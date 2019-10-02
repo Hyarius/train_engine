@@ -26,6 +26,13 @@ c_map::c_map(string path, c_widget *parent) : c_widget(parent)
 
 void c_map::set_geometry_imp(Vector2 p_anchor, Vector2 p_area)
 {
+
+	_zoom = 1.0f;
+	while (_map.size().x * _zoom < p_area.x)
+		_zoom += 0.2f;
+
+	_map_anchor = (_map.size() * _zoom) / -2;
+
 	Vector2 panel_anchor = Vector2(10, 10);
 	Vector2 panel_size = Vector2(300, 500);//p_area.x / 4, p_area.y / 3);
 	_panel->set_geometry(panel_anchor, panel_size);

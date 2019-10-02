@@ -26,7 +26,7 @@ enum class text_color
 	dark_cyan = 13,
 	light_grey = 14,
 	grey = 15,
-	Dark_grey = 16,
+	dark_grey = 16,
 	light_orange = 17,
 	orange = 18,
 	dark_orange = 19,

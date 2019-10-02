@@ -2,6 +2,7 @@
 #define ENGINE_H
 
 #include "jgl.h"
-#include "c_map.h"
+
+#include "c_main_window.h"
 
 #endif

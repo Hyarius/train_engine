@@ -24,6 +24,7 @@
 #include "jgl_text_entry.h"
 #include "jgl_value_entry.h"
 #include "jgl_check_box.h"
+#include "jgl_tab.h"
 
 #include "jgl_window.h"
 #include "jgl_draw_primitive.h"

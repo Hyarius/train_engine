@@ -22,12 +22,14 @@ public:
 	w_box_component &box(){return (_box);}
 	w_text_component &text(){return (_text);}
 
-	void set_funct(Funct p_funct, Data p_data)
+	void set_action(Funct p_funct, Data p_data)
 	{
 		_funct = p_funct;
 		_data = p_data;
 	}
 
+	void set_funct(Funct p_funct){_funct = p_funct;}
+	void set_data(Data p_data){_data = p_data;}
 	void set_delta(Color p_delta){_delta = p_delta;}
 
 	void set_geometry_imp(Vector2 p_anchor, Vector2 p_area);

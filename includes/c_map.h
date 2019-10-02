@@ -20,6 +20,7 @@ private:
 	c_text_entry *_name_entry;
 
 public:
+	c_map();
 	c_map(string path, c_widget *parent = nullptr);
 
 	void add_city();
