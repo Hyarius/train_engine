@@ -1,6 +1,23 @@
 #include "engine.h"
 
-bool c_map::control_click()
+bool c_map::control_calibration()
+{
+	if (g_mouse->get_button(mouse_button::left) == mouse_state::up)
+	{
+		if (g_mouse->motion == false)
+		{
+			place_landmark(convert_to_map_coord(g_mouse->pos));
+			if (_landmark1 != Vector2() && _landmark2 != Vector2())
+			{
+				_state = map_state::normal;
+			}
+			return (true);
+		}
+	}
+	return (false);
+}
+
+bool c_map::control_normal()
 {
 	if (g_mouse->get_button(mouse_button::left) == mouse_state::down && _mile_selected == nullptr)
 	{
@@ -17,13 +34,9 @@ bool c_map::control_click()
 			c_city* tmp_city = check_city();
 
 			if (tmp_city == nullptr)
-			{
 				tmp = check_milestone();
-			}
 			else
-			{
 				tmp = tmp_city->milestone();
-			}
 
 			if (tmp == nullptr)
 			{
@@ -40,7 +53,7 @@ bool c_map::control_click()
 			if (check_milestone() == nullptr)
 			{
 				c_city* result = check_city();
-				if (_selected == nullptr)
+				if (_city_selected == nullptr)
 				{
 					if (result == nullptr)
 						add_city();
@@ -93,29 +106,18 @@ bool c_map::control_zoom()
 		float ratio_x;
 		float ratio_y;
 
-		ratio_x = (_map.size().x * _zoom) / _map_anchor.x;
-		ratio_y = (_map.size().y * _zoom) / _map_anchor.y;
+		ratio_x = (_map->size().x * _zoom) / _map_anchor.x;
+		ratio_y = (_map->size().y * _zoom) / _map_anchor.y;
 
 		if (g_mouse->wheel > 0)
 			_zoom *= 1.2f;
 		else
 			_zoom *= 0.8f;
 
-		_map_anchor.x = (_map.size().x * _zoom) / ratio_x;
-		_map_anchor.y = (_map.size().y * _zoom) / ratio_y;
+		_map_anchor.x = (_map->size().x * _zoom) / ratio_x;
+		_map_anchor.y = (_map->size().y * _zoom) / ratio_y;
 
 		return (true);
 	}
-	return (false);
-}
-
-bool c_map::handle_mouse()
-{
-	if (control_click() == true)
-		return (true);
-	if (control_mouvement() == true)
-		return (true);
-	if (control_zoom() == true)
-		return (true);
 	return (false);
 }

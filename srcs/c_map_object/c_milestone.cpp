@@ -11,7 +11,6 @@ c_milestone::c_milestone(c_map *p_map, Vector2 p_pos, class c_city* p_place)
 
 c_milestone::~c_milestone()
 {
-	cout << "c_milestone destructor" << endl;
 	remove_link();
 }
 
@@ -101,7 +100,7 @@ void c_milestone::draw_link()
 	for (size_t i = 0; i < _links_to.size(); i++)
 	{
 		Vector2 pos2 = _map->convert_to_screen_coord(_links_to[i]->pos());
-	
+
 		vector<c_milestone*> *tmp = _links_to[i]->links_to();
 		if (find(tmp->begin(), tmp->end(), this) != tmp->end())
 			draw_line(_map->viewport(), Color(255, 0, 150), pos1, pos2);

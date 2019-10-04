@@ -17,7 +17,6 @@ c_city::c_city(c_map *p_map, Vector2 p_pos)
 
 c_city::~c_city()
 {
-	cout << "c_city destructor" << endl;
 	if (_milestone != nullptr)
 		delete _milestone;
 }
