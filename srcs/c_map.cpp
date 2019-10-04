@@ -6,6 +6,7 @@ c_map::c_map(string path, c_widget *parent) : c_widget(parent)
 	_map_anchor = _map.size() / -2;
 	_zoom = 1.0f;
 	_selected = nullptr;
+	_mile_selected = nullptr;
 	_cities.clear();
 
 	_panel = nullptr;
@@ -54,6 +55,15 @@ void c_map::render()
 
 	for (size_t i = 0; i < _cities.size(); i++)
 		_cities[i]->draw();
+
+	for (size_t i = 0; i < _milestones.size(); i++)
+		_milestones[i]->draw_link();
+
+	for (size_t i = 0; i < _milestones.size(); i++)
+		_milestones[i]->draw();
+
+	for (size_t i = 0; i < _cities.size(); i++)
+		_cities[i]->draw_name();
 }
 
 bool c_map::handle_keyboard()
@@ -63,12 +73,16 @@ bool c_map::handle_keyboard()
 
 void c_map::select_city(c_city *city)
 {
+	if (_selected != nullptr)
+		_selected->select(false);
+
 	_selected = city;
+	if (_selected != nullptr)
+		_selected->select(true);
+
 	_panel->set_active(!(city == nullptr));
 	if (_selected != nullptr)
-	{
 		_name_entry->entry().set_text(_selected->name());
-	}
 }
 
 Vector2 c_map::convert_to_map_coord(Vector2 source)
@@ -76,21 +90,79 @@ Vector2 c_map::convert_to_map_coord(Vector2 source)
 	return (((source - _viewport->anchor()) - (_map_anchor + size() / 2.0f)) / _zoom);
 }
 
-void c_map::add_city()
+Vector2 c_map::convert_to_screen_coord(Vector2 source)
+{
+	return (map_anchor() + size() / 2 + source * zoom());
+}
+
+c_milestone *c_map::add_milestone(c_city* p_city)
+{
+	Vector2 pos = convert_to_map_coord(g_mouse->pos);
+	c_milestone* new_milestone = new c_milestone(this, pos, p_city);
+
+	_milestones.push_back(new_milestone);
+
+	if (p_city != nullptr)
+		p_city->set_milestone(new_milestone);
+
+	return (new_milestone);
+}
+
+c_city *c_map::add_city()
 {
 	Vector2 pos = convert_to_map_coord(g_mouse->pos);
 
 	c_city *new_city = new c_city(this, pos);
-	//select_city(new_city);
 	_cities.push_back(new_city);
-	//new_city->select();
+
+	add_milestone(new_city);
+
+	return (new_city);
 }
 
-c_city *c_map::check_city()
+void c_map::remove_city(c_city* to_remove)
+{
+	remove_milestone(to_remove->milestone());
+
+	to_remove->set_milestone(nullptr);
+
+	vector<c_city *>::iterator it;
+
+	it = find(_cities.begin(), _cities.end(), to_remove);
+	if (it != _cities.end())
+	{
+		delete to_remove;
+		_cities.erase(it);
+	}
+}
+
+void c_map::remove_milestone(c_milestone* to_remove)
+{
+
+	vector<c_milestone*>::iterator it;
+
+	it = find(_milestones.begin(), _milestones.end(), to_remove);
+	if (it != _milestones.end())
+	{
+		delete to_remove;
+		_milestones.erase(it);
+	}
+}
+
+c_city* c_map::check_city()
 {
 	for (size_t i = 0; i < _cities.size(); i++)
 		if (_cities[i]->clicked(g_mouse->pos) == true)
 			return (_cities[i]);
+
+	return (nullptr);
+}
+
+c_milestone* c_map::check_milestone()
+{
+	for (size_t i = 0; i < _milestones.size(); i++)
+		if (_milestones[i]->clicked(g_mouse->pos) == true)
+			return (_milestones[i]);
 
 	return (nullptr);
 }

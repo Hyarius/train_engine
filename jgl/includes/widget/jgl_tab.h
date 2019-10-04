@@ -22,6 +22,9 @@ public:
 	void add_tab(string p_name, int index = -1);
 	void reset_button();
 
+	void set_tab_name(size_t index, string new_name)
+			{_buttons[index]->text().set_text(new_name);}
+
 	void set_geometry_imp(Vector2 p_anchor, Vector2 p_area);
 
 	void render();

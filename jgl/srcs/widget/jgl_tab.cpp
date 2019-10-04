@@ -40,13 +40,8 @@ c_tab::c_tab(c_widget *p_parent)
 	tab_area->active();
 	button_area->active();
 
-	//add_tab("Tab 1");
-	//add_tab("Tab 2");
-	//add_tab("Tab 2");
-	//add_tab("Tab 2");
-	//add_tab("Tab 2");
-	//add_tab("Tab 2");
-	//add_tab("Tab 2");
+	add_tab("Tab 1");
+	add_tab("Tab 2");
 }
 
 void c_tab::add_tab(string p_name, int index)
