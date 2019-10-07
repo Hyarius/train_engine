@@ -84,4 +84,4 @@ SDL_Surface *c_image::surface(){ return (_surface); }
 
 SDL_Texture	*c_image::texture(){ return (_texture); }
 
-Vector2 c_image::size(){ return (_size); }
+Vector2 &c_image::size(){ return (_size); }

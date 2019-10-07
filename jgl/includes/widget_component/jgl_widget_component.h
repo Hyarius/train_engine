@@ -16,8 +16,8 @@ public:
 	void 		set_area(Vector2 p_area){_area = p_area;}
 	void 		resize(Vector2 p_anchor, Vector2 p_area)
 					{set_anchor(p_anchor);set_area(p_area);}
-	Vector2 	anchor(){return (_anchor);}
-	Vector2 	area(){return (_area);}
+	Vector2 	&anchor(){return (_anchor);}
+	Vector2 	&area(){return (_area);}
 	Vector2		owner_anchor();
 
 	virtual void render(c_viewport *viewport) = 0;
@@ -38,9 +38,9 @@ public:
 	void set_border(int p_border){_border = p_border;}
 
 		//Getter
-	int border(){return (_border);}
-	Color back(){return (_back);}
-	Color front(){return (_front);}
+	int &border(){return (_border);}
+	Color &back(){return (_back);}
+	Color &front(){return (_front);}
 };
 
 class w_textual_component
@@ -64,11 +64,11 @@ public:
 	void 		calc_text_size(Vector2 area);
 	void 		calc_text_size_height(Vector2 area);
 
-	string 		text(){return (_text);}
-	alignment 	align(){return (_align);}
-	int 		size(){return (_size);}
-	text_color 	color(){return (_color);}
-	text_style 	style(){return (_style);}
+	string 		&text(){return (_text);}
+	alignment 	&align(){return (_align);}
+	int 		&size(){return (_size);}
+	text_color 	&color(){return (_color);}
+	text_style 	&style(){return (_style);}
 };
 
 class w_text_component : public w_component, public w_graphical_component, public w_textual_component
@@ -102,11 +102,11 @@ public:
 	void set_check(Color p_check){_check = p_check;}
 
 		//Getter
-	bool state(){return (_state);}
-	int border(){return (_border);}
-	Color back(){return (_back);}
-	Color front(){return (_front);}
-	Color check(){return (_check);}
+	bool &state(){return (_state);}
+	int &border(){return (_border);}
+	Color &back(){return (_back);}
+	Color &front(){return (_front);}
+	Color &check(){return (_check);}
 
 	bool check(Vector2 point, Vector2 viewport_anchor);
 
@@ -127,7 +127,7 @@ public:
 	void set_delta(Color p_delta){_delta = p_delta;}
 
 		//Getter
-	Color delta(){return (_delta);}
+	Color &delta(){return (_delta);}
 
 	void render(c_viewport *viewport);
 };
@@ -151,11 +151,11 @@ public:
 		{set_anchor(p_anchor);set_area(p_area);calc_text_size_height(_area);}
 
 		//Getter
-	bool		selected(){return (_selected);}
-	int 		cursor(){return (_cursor);}
+	bool		&selected(){return (_selected);}
+	int 		&cursor(){return (_cursor);}
 	void		set_text(string new_text);
-	string 		text_to_draw(){return (_text_to_draw);}
-	int 		cursor_to_draw(){return (_cursor_to_draw);}
+	string 		&text_to_draw(){return (_text_to_draw);}
+	int 		&cursor_to_draw(){return (_cursor_to_draw);}
 
 	void 		calc_text_to_draw();
 	void 		move_cursor(int delta);
@@ -181,7 +181,7 @@ public:
 		{set_anchor(p_anchor);set_area(p_area);calc_text_size(_area);}
 
 		//Getter
-	float		value(){return (_value);}
+	float		&value(){return (_value);}
 
 	void render(c_viewport *viewport);
 };
@@ -210,11 +210,11 @@ public:
 	void 		calc_text(){ _text = ftoa(_value);}
 
 		//Getter
-	bool		selected(){return (_selected);}
-	float 		value(){return (_value);}
-	int 		cursor(){return (_cursor);}
-	string 		text_to_draw(){return (_text_to_draw);}
-	int 		cursor_to_draw(){return (_cursor_to_draw);}
+	bool		&selected(){return (_selected);}
+	float 		&value(){return (_value);}
+	int 		&cursor(){return (_cursor);}
+	string 		&text_to_draw(){return (_text_to_draw);}
+	int 		&cursor_to_draw(){return (_cursor_to_draw);}
 
 	void 		calc_text_to_draw();
 	void 		move_cursor(int delta);

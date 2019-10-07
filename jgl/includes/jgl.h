@@ -26,6 +26,7 @@
 #include "jgl_check_box.h"
 #include "jgl_tab.h"
 
+#include "jgl_algorithm.h"
 #include "jgl_window.h"
 #include "jgl_draw_primitive.h"
 

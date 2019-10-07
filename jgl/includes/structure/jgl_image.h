@@ -24,7 +24,7 @@ public:
 
 	SDL_Surface *surface();
 	SDL_Texture	*texture();
-	Vector2 size();
+	Vector2 &size();
 
 };
 

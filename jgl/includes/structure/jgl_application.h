@@ -29,7 +29,7 @@ public:
 
 	void set_background(Color p_color = Color(50, 50, 50));
 
-	Vector2 size();
+	Vector2 &size();
 
 	void select();
 

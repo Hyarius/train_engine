@@ -33,12 +33,12 @@ SDL_Renderer *c_viewport::renderer()
 	return (_renderer);
 }
 
-Vector2 c_viewport::size()
+Vector2 &c_viewport::size()
 {
 	return (_size);
 }
 
-Vector2 c_viewport::anchor()
+Vector2 &c_viewport::anchor()
 {
 	return (_anchor);
 }

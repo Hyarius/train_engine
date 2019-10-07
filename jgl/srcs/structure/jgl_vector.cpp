@@ -76,6 +76,44 @@ float *Vector3::decompose(){
 	return (&x);
 }
 
+float Vector3::distance(Vector3 &point)
+{
+	return (sqrt( pow(point.x - this->x, 2.0f)
+				+ pow(point.y - this->y, 2.0f)
+				+ pow(point.z - this->z, 2.0f)));
+}
+
+Vector3		Vector3::normalize()
+{
+	float		length;
+
+	length = sqrt((this->x * this->x)
+				+ (this->y * this->y)
+				+ (this->z * this->z));
+
+	return (Vector3(this->x / length, this->y / length, this->z / length));
+}
+
+float			Vector3::dot(Vector3 &b)
+{
+	float		result;
+
+	result = this->x * b.x + this->y * b.y + this->z * b.z;
+
+	return (result);
+}
+
+Vector3		Vector3::cross(Vector3 &other) //Produit vectoriel / cross product
+{
+	Vector3	result = Vector3(
+			this->y * other.z - this->z * other.y,
+			this->z * other.x - this->x * other.z,
+			this->x * other.y - this->y * other.x
+		);
+
+	return (result);
+}
+
 Vector2::Vector2(int p_value) :
 	x(static_cast<float>(p_value)), y(static_cast<float>(p_value)){}
 
@@ -149,8 +187,35 @@ float *Vector2::decompose()
 	return (&x);
 }
 
-float vector2_distance(Vector2 point_a, Vector2 point_b)
+float Vector2::distance(Vector2 &point)
 {
-	return (sqrt( pow(point_b.x - point_a.x, 2.0f)
-				+ pow(point_b.y - point_a.y, 2.0f)));
+	return (sqrt( pow(point.x - this->x, 2.0f)
+				+ pow(point.y - this->y, 2.0f)));
+}
+
+Vector2		Vector2::normalize()
+{
+	float		length;
+
+	length = sqrt((this->x * this->x) + (this->y * this->y));
+
+	return (Vector2(this->x / length, this->y / length));
+}
+
+Vector2 Vector2::cross(Vector2 &other)
+{
+	Vector2 result;
+
+	result = Vector2(-(other.y - this->y), other.x - this->x);
+
+	return (result);
+}
+
+float Vector2::dot(Vector2 &other)
+{
+	float		result;
+
+	result = this->x * other.x + this->y * other.y;
+
+	return (result);
 }

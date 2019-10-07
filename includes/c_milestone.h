@@ -24,7 +24,7 @@ public:
 	void set_place(class c_city* p_place) { _place = p_place; }
 	void set_place(class c_map* p_map) { _map = p_map; }
 
-	Vector2 pos() { return (_pos); }
+	Vector2 &pos() { return (_pos); }
 	class c_city* place() { return (_place); }
 	class c_map* map() { return(_map); }
 	vector<class c_milestone*> *links_to() { return (&_links_to); }

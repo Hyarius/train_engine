@@ -28,6 +28,10 @@ struct Vector3
 	bool operator == (const Vector3& delta) const;
 	bool operator != (const Vector3& delta) const;
 	float *decompose();
+	float distance(Vector3 &point);
+	Vector3 normalize();
+	Vector3 cross(Vector3 &other);
+	float dot(Vector3 &other);
 };
 
 struct Vector2
@@ -54,9 +58,11 @@ struct Vector2
 	bool operator == (const Vector2& delta) const;
 	bool operator != (const Vector2& delta) const;
 	float *decompose();
+	float distance(Vector2 &point);
+	Vector2 cross(Vector2 &other);
+	Vector2 normalize();
+	float dot(Vector2 &other);
 };
-
-float vector2_distance(Vector2 point_a, Vector2 point_b);
 
 ostream& operator<<(ostream& os, const Vector2& value);
 

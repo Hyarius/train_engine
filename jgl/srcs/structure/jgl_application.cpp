@@ -71,7 +71,7 @@ void c_application::set_background(Color p_color)
 	_central_widget->set_color(p_color);
 }
 
-Vector2 c_application::size()
+Vector2 &c_application::size()
 {
 	return (_win_size);
 }

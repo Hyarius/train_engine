@@ -17,7 +17,7 @@ public:
 	~c_city();
 
 	class c_milestone* milestone() { return (_milestone); }
-	string name(){return (_name);}
+	string &name(){return (_name);}
 
 	void set_milestone(class c_milestone* p_milestone) { _milestone = p_milestone; }
 	void set_name(string new_name){_name = new_name;}

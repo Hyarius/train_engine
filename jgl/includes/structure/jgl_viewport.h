@@ -31,8 +31,8 @@ public:
 	void clear();
 
 	SDL_Renderer *renderer();
-	Vector2 size();
-	Vector2 anchor();
+	Vector2 &size();
+	Vector2 &anchor();
 };
 
 #endif
