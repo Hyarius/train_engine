@@ -2,7 +2,7 @@
 
 #define MILE_SIZE 1.5f
 
-c_milestone::c_milestone(c_map *p_map, Vector2 p_pos, class c_city* p_place)
+c_milestone::c_milestone(c_map *p_map, Vector2 p_pos, c_city* p_place)
 {
 	_map = p_map;
 	_pos = p_pos;
@@ -14,7 +14,7 @@ c_milestone::~c_milestone()
 	remove_link();
 }
 
-void c_milestone::add_link(class c_milestone* to_add)
+void c_milestone::add_link(c_milestone* to_add)
 {
 	vector<c_milestone*>::iterator it;
 
@@ -88,14 +88,6 @@ void c_milestone::draw_link()
 		return;
 
 	Vector2 pos1 = _map->convert_to_screen_coord(_pos);
-
-	/*
-	for (size_t i = 0; i < _links_from.size(); i++)
-	{
-		Vector2 pos2 = _map->convert_to_screen_coord(_links_from[i]->pos());
-		draw_line(_map->viewport(), Color(0, 255, 150), pos1 + 5, pos2 + 5);
-	}
-	*/
 
 	for (size_t i = 0; i < _links_to.size(); i++)
 	{

@@ -28,8 +28,13 @@ void c_map::create_calib_button()
 	_calib_button->set_action(&active_calibatration, Data(this));
 	_calib_button->active();
 
-	_landmark_scale = new c_value_entry(0f, this);
-	_landmark->active();
+	_unit_label = new c_text_label("Km", this);
+	_unit_label->box().set_back(Color(150, 150, 150));
+	_unit_label->box().set_front(Color(195, 195, 195));
+	_unit_label->active();
+
+	_landmark_scale = new c_value_entry(1.0f, this);
+	_landmark_scale->active();
 }
 
 void c_map::create_landmark()

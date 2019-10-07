@@ -18,6 +18,7 @@ private:
 	c_image *_map;
 	Vector2 _map_anchor;
 	float _zoom;
+	float _scale_unit;
 
 	c_city *_city_selected;
 	c_milestone *_mile_selected;
@@ -25,6 +26,7 @@ private:
 	vector<c_city*> _cities;
 	vector<c_milestone*> _milestones;
 
+	c_text_label *_unit_label;
 	c_value_entry *_landmark_scale;
 	c_button *_calib_button;
 	map_state _state;
@@ -59,7 +61,7 @@ public:
 	//Convert
 	Vector2 convert_to_map_coord(Vector2 source);
 	Vector2 convert_to_screen_coord(Vector2 source);
-
+	void calc_distance_ratio();
 
 	/*---------------------*/
 	//Action
@@ -70,6 +72,7 @@ public:
 		//Milestone part
 	c_milestone *add_milestone(c_city* p_city);
 	void remove_milestone(c_milestone* to_remove);
+	float milestone_distance(c_milestone *point_a, c_milestone *point_b);
 
 		//City part
 	void select_city(c_city *city);

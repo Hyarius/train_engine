@@ -51,7 +51,12 @@ bool c_text_entry::handle_keyboard()
 	if (selected() == false)
 		return (false);
 
-	if (g_keyboard->get_key(SDL_SCANCODE_LEFT))
+	if (g_keyboard->get_key(SDL_SCANCODE_RETURN))
+	{
+		unselect();
+		g_keyboard->reset_key(SDL_SCANCODE_RETURN);
+	}
+	else if (g_keyboard->get_key(SDL_SCANCODE_LEFT))
 	{
 		_entry.move_cursor(-1);
 		g_keyboard->reset_key(SDL_SCANCODE_LEFT);

@@ -44,6 +44,7 @@ bool c_map::control_normal()
 			}
 
 			_mile_selected->add_link(tmp);
+
 			_mile_selected = nullptr;
 
 			return (true);

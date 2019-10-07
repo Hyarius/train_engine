@@ -56,6 +56,8 @@ struct Vector2
 	float *decompose();
 };
 
+float vector2_distance(Vector2 point_a, Vector2 point_b);
+
 ostream& operator<<(ostream& os, const Vector2& value);
 
 ostream& operator<<(ostream& os, const Vector3& value);

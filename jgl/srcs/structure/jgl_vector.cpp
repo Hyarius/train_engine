@@ -148,3 +148,9 @@ float *Vector2::decompose()
 {
 	return (&x);
 }
+
+float vector2_distance(Vector2 point_a, Vector2 point_b)
+{
+	return (sqrt( pow(point_b.x - point_a.x, 2.0f)
+				+ pow(point_b.y - point_a.y, 2.0f)));
+}

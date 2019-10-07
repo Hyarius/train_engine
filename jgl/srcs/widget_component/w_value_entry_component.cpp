@@ -3,9 +3,10 @@
 w_value_entry_component::w_value_entry_component(c_widget *p_owner, float p_value) :
 		w_component(p_owner), w_graphical_component(), w_textual_component()
 {
+	_selected = false;
 	_value = p_value;
 	_text = ftoa(_value);
-	_cursor = _text.length();
+	_cursor = 0;
 	_text_to_draw = _text;
 	_cursor_to_draw = 0;
 	_anchor = Vector2();
@@ -56,8 +57,12 @@ void w_value_entry_component::add_text(string new_text)
 	if (string_is_numeric(new_text) == false)
 		return ;
 
-	_text.insert(_cursor, new_text);
+	if (_value == 0.0f && _cursor == 0)
+		_text = new_text;
+	else
+		_text.insert(_cursor, new_text);
 
+	calc_value();
 	_cursor++;
 	calc_text_to_draw();
 }
@@ -68,6 +73,7 @@ void w_value_entry_component::remove_text()
 	{
 		_cursor--;
 		_text.erase(_cursor);
+		calc_value();
 		calc_text_to_draw();
 	}
 }
@@ -77,6 +83,7 @@ void w_value_entry_component::supp_text()
 	if (_cursor > 0 && _cursor < _text.size() && _text.empty() == false)
 	{
 		_text.erase(_text.begin() + _cursor);
+		calc_value();
 		calc_text_to_draw();
 	}
 }

@@ -2,9 +2,17 @@
 
 void c_map::set_geometry_imp(Vector2 p_anchor, Vector2 p_area)
 {
-	Vector2 button_size = Vector2(100, 30);
+	Vector2 button_size = Vector2(150, 30);
 	Vector2 button_pos = this->size() - 5 - button_size;
 	_calib_button->set_geometry(button_pos, button_size);
+
+	button_pos.y -= 35;
+	button_size.x = 100;
+	_landmark_scale->set_geometry(button_pos, button_size);
+
+	button_pos.x += 105;
+	button_size.x = 45;
+	_unit_label->set_geometry(button_pos, button_size);
 
 	_zoom = 1.0f;
 	while (_map->size().x * _zoom < p_area.x)
