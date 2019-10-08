@@ -27,6 +27,8 @@ struct Vector3
 	void operator /= (const Vector3& delta);
 	bool operator == (const Vector3& delta) const;
 	bool operator != (const Vector3& delta) const;
+	bool operator < (const Vector3& other) const;
+	bool operator > (const Vector3& other) const;
 	float *decompose();
 	float distance(Vector3 &point);
 	Vector3 normalize();
@@ -57,6 +59,8 @@ struct Vector2
 	void operator /= (const Vector2& delta);
 	bool operator == (const Vector2& delta) const;
 	bool operator != (const Vector2& delta) const;
+	bool operator < (const Vector2& other) const;
+	bool operator > (const Vector2& other) const;
 	float *decompose();
 	float distance(Vector2 &point);
 	Vector2 cross(Vector2 &other);

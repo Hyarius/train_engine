@@ -9,7 +9,8 @@
 enum map_state
 {
 	normal = 0,
-	calibration = 1
+	calibration = 1,
+	travel_definition = 2
 };
 
 class c_map : public c_widget
@@ -25,6 +26,7 @@ private:
 
 	vector<c_city*> _cities;
 	vector<c_milestone*> _milestones;
+	map<c_milestone *, map<c_milestone *, c_rail *> > _rails;
 
 	c_text_label *_unit_label;
 	c_value_entry *_landmark_scale;
@@ -53,6 +55,7 @@ public:
 	void set_state(map_state new_state){_state = new_state;}
 
 	//Getter
+	map<c_milestone *, map<c_milestone *, c_rail *> > &rails(){return (_rails);}
 	float zoom(){return (_zoom);}
 	Vector2 map_anchor(){return (_map_anchor);}
 
@@ -87,6 +90,7 @@ public:
 	/*---------------------*/
 	//Control
 	bool control_calibration();
+	bool control_travel_definition();
 	bool control_normal();
 
 	bool control_mouvement();

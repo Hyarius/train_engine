@@ -72,6 +72,24 @@ bool		Vector3::operator != (const Vector3& delta) const{
 			false : true);
 }
 
+bool Vector3::operator < (const Vector3& other) const
+{
+	if (this->z < other.z)
+		return (true);
+	if (this->z == other.z && this->y < other.y)
+		return (true);
+	if (this->z == other.z && this->y == other.y && this->x < other.x)
+		return (true);
+	return (false);
+}
+
+bool Vector3::operator > (const Vector3& other) const
+{
+	if (this->z < other.z || this->y < other.y || this->x < other.x)
+		return (false);
+	return (true);
+}
+
 float *Vector3::decompose(){
 	return (&x);
 }
@@ -180,6 +198,22 @@ bool		Vector2::operator == (const Vector2& delta) const
 bool		Vector2::operator != (const Vector2& delta) const
 {
 	return ((this->x == delta.x && this->y == delta.y) ? false : true);
+}
+
+bool Vector2::operator < (const Vector2& other) const
+{
+	if (this->y < other.y)
+		return (true);
+	if (this->y == other.y && this->x < other.x)
+		return (true);
+	return (false);
+}
+
+bool Vector2::operator > (const Vector2& other) const
+{
+	if (this->y < other.y || this->x < other.x)
+		return (false);
+	return (true);
 }
 
 float *Vector2::decompose()

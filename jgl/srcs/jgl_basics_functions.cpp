@@ -35,3 +35,12 @@ bool string_is_numeric(string text)
 {
 	return (text.find_first_not_of( "0123456789." ) == string::npos);
 }
+
+bool is_middle(float a, float b, float c)
+{
+	if (a > b)
+		return (false);
+	if (b > c)
+		return (false);
+	return (true);
+}

@@ -10,6 +10,7 @@
 #include "jgl_vector.h"
 #include "jgl_color.h"
 #include "jgl_geometry.h"
+#include "jgl_algorithm.h"
 #include "jgl_system.h"
 #include "jgl_application.h"
 #include "jgl_viewport.h"
@@ -27,7 +28,6 @@
 #include "jgl_check_box.h"
 #include "jgl_tab.h"
 
-#include "jgl_algorithm.h"
 #include "jgl_window.h"
 #include "jgl_draw_primitive.h"
 

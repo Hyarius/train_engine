@@ -27,6 +27,8 @@ private:
 	vector<Vector2> _points;
 	vector<Poly_side> _sides;
 
+	bool clicked(Vector2 point);
+
 public:
 	Polygon2D(Vector2 p_pos = 0);
 

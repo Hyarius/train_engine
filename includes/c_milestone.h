@@ -9,7 +9,6 @@ private:
 	class c_city* _place;
 
 	vector<class c_milestone*> _links_to;
-	vector<class c_rail*> _rails;
 	vector<class c_milestone*> _links_from;
 
 public:
@@ -23,17 +22,28 @@ public:
 
 	void set_pos(Vector2 p_pos) { _pos = p_pos; }
 	void set_place(class c_city* p_place) { _place = p_place; }
-	void set_place(class c_map* p_map) { _map = p_map; }
+	void set_map(class c_map* p_map) { _map = p_map; }
 
 	Vector2 &pos() { return (_pos); }
 	class c_city* place() { return (_place); }
 	class c_map* map() { return(_map); }
 	vector<class c_milestone*> *links_to() { return (&_links_to); }
-	vector<class c_rail*> *rails() { return (&_rails); }
 	vector<class c_milestone*> *links_from() { return (&_links_from); }
 
 	void draw();
 	void draw_link();
+
 };
+
+namespace std
+{
+    template<> struct less<c_milestone>
+    {
+       const bool operator() (c_milestone& lhs, c_milestone& rhs) const
+       {
+           return (lhs.pos() < rhs.pos());
+       }
+    };
+}
 
 #endif

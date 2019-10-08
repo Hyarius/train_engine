@@ -12,10 +12,10 @@ c_rail::c_rail(Vector2 pos1, Vector2 pos2)
 
 	Vector2 pos[4];
 
-	pos[0] = start + (trans * 2.0f);
-	pos[1] = start - (trans * 2.0f);
-	pos[2] = end + trans * 2.0f;
-	pos[3] = end - trans * 2.0f;
+	pos[0] = start + (trans * 0.8f);
+	pos[1] = start - (trans * 0.8f);
+	pos[2] = end + trans * 0.8f;
+	pos[3] = end - trans * 0.8f;
 
 	for (int i = 0; i < 4; i++)
 		_poly.add_point(pos[i]);
