@@ -2,23 +2,13 @@
 
 using namespace std;
 
-void draw_line(c_viewport *viewport, Color Color, Vector2 p1, Vector2 p2)
+void draw_line(c_viewport *viewport, Color p_color, Vector2 p1, Vector2 p2)
 {
-	viewport->set_Color(Color);
+	viewport->set_Color(p_color);
 
 	SDL_RenderDrawLine(viewport->renderer(),
 			static_cast<int>(p1.x), static_cast<int>(p1.y),
 			static_cast<int>(p2.x), static_cast<int>(p2.y));
-}
-
-void draw_polygon(c_viewport *viewport, Color Color, vector<Vector2> points)
-{
-	viewport->set_Color(Color);
-
-	for (size_t i = 0; i < points.size() - 1; i++)
-	{
-		draw_line(viewport, Color, points[i], points[i + 1]);
-	}
 }
 
 void draw_rectangle(c_viewport *viewport, Color Color, Vector2 pos, Vector2 size)

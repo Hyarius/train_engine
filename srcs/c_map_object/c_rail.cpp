@@ -1,27 +1,27 @@
 #include "engine.h"
 
-/*
-c_rail::c_rail()
+c_rail::c_rail(Vector2 pos1, Vector2 pos2)
 {
+	_max_speed = 200.0f;
 
+	_poly = Polygon2D(0);
+
+	Vector2 start = 0;
+	Vector2 end = pos2 - pos1;
+	Vector2 trans = pos2.cross(pos1).normalize();
+
+	Vector2 pos[4];
+
+	pos[0] = start + (trans * 2.0f);
+	pos[1] = start - (trans * 2.0f);
+	pos[2] = end + trans * 2.0f;
+	pos[3] = end - trans * 2.0f;
+
+	for (int i = 0; i < 4; i++)
+		_poly.add_point(pos[i]);
+
+	_poly.add_side(0, 1);
+	_poly.add_side(0, 2);
+	_poly.add_side(1, 3);
+	_poly.add_side(2, 3);
 }
-
-void c_rail::remove_prev(c_rail* p_target)
-{
-	vector<c_rail *>::iterator it;
-
-	it = find(_prev.begin(), _prev.end(), p_target);
-	if (it != _prev.end())
-		_prev.erase(it);
-
-}
-
-void c_rail::remove_next(c_rail* p_target)
-{
-	vector<c_rail*>::iterator it;
-
-	it = find(_next.begin(), _next.end(), p_target);
-	if (it != _next.end())
-		_next.erase(it);
-}
-*/

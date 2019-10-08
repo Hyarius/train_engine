@@ -9,6 +9,7 @@ private:
 	class c_city* _place;
 
 	vector<class c_milestone*> _links_to;
+	vector<class c_rail*> _rails;
 	vector<class c_milestone*> _links_from;
 
 public:
@@ -28,6 +29,7 @@ public:
 	class c_city* place() { return (_place); }
 	class c_map* map() { return(_map); }
 	vector<class c_milestone*> *links_to() { return (&_links_to); }
+	vector<class c_rail*> *rails() { return (&_rails); }
 	vector<class c_milestone*> *links_from() { return (&_links_from); }
 
 	void draw();

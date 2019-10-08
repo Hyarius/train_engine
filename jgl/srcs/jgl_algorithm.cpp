@@ -23,29 +23,29 @@ void SAT_test(Type normale, vector<Type> vector_list, float *min, float *max)
 	}
 }
 
-template<typename Type>
-void collision_detection(vector<Type> poly_source, vector<Type> poly_target)
-{
-	int		i;
-	float	value[4];
-
-	i = 0;
-	while (i < poly_source.size())
-	{
-		sat_test(t_face_list_get(mesh_compared->faces, i)->normale, mesh_compared->next_vertices_in_world, &(value[0]), &(value[1]));
-		sat_test(t_face_list_get(mesh_compared->faces, i)->normale, mesh_target->vertices_in_world, &(value[2]), &(value[3]));
-		if (!is_middle(value[0], value[1], value[2]) && !is_middle(value[2], value[3], value[0]))
-			return (BOOL_FALSE);
-		i++;
-	}
-	i = 0;
-	while (i < mesh_target->faces->size)
-	{
-		sat_test(t_face_list_get(mesh_target->faces, i)->normale, mesh_compared->next_vertices_in_world, &(value[0]), &(value[1]));
-		sat_test(t_face_list_get(mesh_target->faces, i)->normale, mesh_target->vertices_in_world, &(value[2]), &(value[3]));
-		if (!is_middle(value[0], value[1], value[2]) && !is_middle(value[2], value[3], value[0]))
-			return (BOOL_FALSE);
-		i++;
-	}
-	return (BOOL_TRUE);
-}
+// template<typename Type>
+// void collision_detection(vector<Type> poly_source, vector<Type> poly_target)
+// {
+// 	int		i;
+// 	float	value[4];
+//
+// 	i = 0;
+// 	while (i < poly_source.size())
+// 	{
+// 		sat_test(t_face_list_get(mesh_compared->faces, i)->normale, mesh_compared->next_vertices_in_world, &(value[0]), &(value[1]));
+// 		sat_test(t_face_list_get(mesh_compared->faces, i)->normale, mesh_target->vertices_in_world, &(value[2]), &(value[3]));
+// 		if (!is_middle(value[0], value[1], value[2]) && !is_middle(value[2], value[3], value[0]))
+// 			return (BOOL_FALSE);
+// 		i++;
+// 	}
+// 	i = 0;
+// 	while (i < mesh_target->faces->size)
+// 	{
+// 		sat_test(t_face_list_get(mesh_target->faces, i)->normale, mesh_compared->next_vertices_in_world, &(value[0]), &(value[1]));
+// 		sat_test(t_face_list_get(mesh_target->faces, i)->normale, mesh_target->vertices_in_world, &(value[2]), &(value[3]));
+// 		if (!is_middle(value[0], value[1], value[2]) && !is_middle(value[2], value[3], value[0]))
+// 			return (BOOL_FALSE);
+// 		i++;
+// 	}
+// 	return (BOOL_TRUE);
+// }
