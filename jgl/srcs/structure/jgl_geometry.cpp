@@ -27,25 +27,48 @@ void Polygon2D::draw(c_viewport *viewport, Color p_color, Vector2 p_pos, float s
 
 	for (size_t i = 0; i < _sides.size(); i++)
 	{
-		Vector2 pos1, pos2;
+		Vector2 pos1, pos2, center;
 
 		pos1 = (_points[_sides[i].index_vertices[0]] * scale) + _pos;
 		pos2 = (_points[_sides[i].index_vertices[1]] * scale) + _pos;
+		//center = (pos1 + pos2) / 2.0f;
 
 		draw_line(viewport, p_color, pos1, pos2);
+		//draw_line(viewport, Color(0, 0, 255), center, center + _sides[i].normale * 10 * scale);
+
 	}
 }
 
-bool Polygon2D::clicked(Vector2 point)
+void Polygon2D::add_side(size_t index1, size_t index2)
 {
-	float value[4];
+	if (index1 >= _points.size() || index2 >= _points.size())
+		return ;
+
+	Vector2 normale;
+	Vector2 base = (_points[index2] - _points[index1]).normalize();
+
+	normale = (Vector2(0, 0)).cross(base);
+
+	Poly_side poly = Poly_side(index1, index2, normale);
+
+	_sides.push_back(poly);
+}
+
+bool Polygon2D::is_pointed(Vector2 point, float scale)
+{
+	vector<Vector2> tmp;
+	for (size_t i = 0; i < _points.size(); i++)
+		tmp.push_back((_points[i] * scale) + _pos);
+
+	float value[3];
 
 	for (size_t i = 0; i < this->_sides.size(); i++)
 	{
-		SAT_test(_sides[i].normale, _points, &(value[0]), &(value[1]));
-		SAT_test(_sides[i].normale, {point}, &(value[2]), &(value[3]));
+		SAT_test(_sides[i].normale, tmp, &(value[0]), &(value[1]));
+		SAT_test(_sides[i].normale, {point}, &(value[2]), &(value[2]));
 
-		if (!is_middle(value[0], value[1], value[2]) && !is_middle(value[2], value[3], value[0]))
+		bool res1 = is_middle(value[0], value[2], value[1]);
+		if (res1 == false)
 			return (false);
 	}
 

@@ -8,7 +8,7 @@
 
 using namespace std;
 
-void draw_line(c_viewport *viewport, Color Color, Vector2 p1, Vector2 p2);
+void draw_line(c_viewport *viewport, Color Color, Vector2 p1, Vector2 p2, int width = 1);
 void draw_rectangle(c_viewport *viewport, Color Color, Vector2 pos, Vector2 size);
 void fill_rectangle(c_viewport *viewport, Color Color, Vector2 pos, Vector2 size);
 void draw_centred_rectangle(c_viewport *viewport, Color Color, Vector2 pos, Vector2 size);

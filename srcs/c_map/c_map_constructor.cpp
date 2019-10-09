@@ -8,17 +8,30 @@ static void active_calibatration(Data p_data)
 	map->reset_landmark();
 }
 
-void c_map::create_panel()
+void c_map::create_city_panel()
 {
-	_panel = new c_frame(this);
+	_city_panel = new c_frame(this);
 
-	_name_label = new c_text_label("City name :", _panel);
-	_name_label->label().set_style(text_style::underline);
-	_name_label->active();
+	_city_name_label = new c_text_label("City name :", _city_panel);
+	_city_name_label->label().set_style(text_style::underline);
+	_city_name_label->active();
 
-	_name_entry = new c_text_entry("", _panel);
-	_name_entry->entry().set_align(alignment::centred);
-	_name_entry->active();
+	_city_name_entry = new c_text_entry("", _city_panel);
+	_city_name_entry->entry().set_align(alignment::centred);
+	_city_name_entry->active();
+}
+
+void c_map::create_rail_panel()
+{
+	_rail_panel = new c_frame(this);
+
+	_rail_speed_label = new c_text_label("Rail max speed :", _rail_panel);
+	_rail_speed_label->label().set_style(text_style::underline);
+	_rail_speed_label->active();
+
+	_rail_speed_entry = new c_value_entry(180.0f, _rail_panel);
+	_rail_speed_entry->entry().set_align(alignment::centred);
+	_rail_speed_entry->active();
 }
 
 void c_map::create_calib_button()
@@ -54,7 +67,8 @@ c_map::c_map(string path, c_widget *parent) : c_widget(parent)
 	_mile_selected = nullptr;
 	_cities.clear();
 
-	create_panel();
+	create_city_panel();
+	create_rail_panel();
 
 	create_calib_button();
 

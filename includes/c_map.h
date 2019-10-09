@@ -33,9 +33,13 @@ private:
 	c_button *_calib_button;
 	map_state _state;
 
-	c_frame *_panel;
-	c_text_label *_name_label;
-	c_text_entry *_name_entry;
+	c_frame *_rail_panel;
+	c_text_label *_rail_speed_label;
+	c_value_entry *_rail_speed_entry;
+
+	c_frame *_city_panel;
+	c_text_label *_city_name_label;
+	c_text_entry *_city_name_entry;
 
 	float _rel_distance;
 	Vector2 _landmark1;
@@ -46,7 +50,8 @@ public:
 	//Constructor
 	c_map(string path, c_widget *parent = nullptr);
 
-	void create_panel();
+	void create_city_panel();
+	void create_rail_panel();
 	void create_calib_button();
 	void create_landmark();
 
@@ -69,8 +74,9 @@ public:
 	/*---------------------*/
 	//Action
 		//Detection part
-	c_city* check_city();
-	c_milestone* check_milestone();
+	c_rail *check_rail();
+	c_milestone *check_milestone();
+	c_city *check_city();
 
 		//Milestone part
 	c_milestone *add_milestone(c_city* p_city);
@@ -89,6 +95,9 @@ public:
 
 	/*---------------------*/
 	//Control
+	void control_city_creation();
+	void control_milestone_creation();
+
 	bool control_calibration();
 	bool control_travel_definition();
 	bool control_normal();
@@ -101,6 +110,8 @@ public:
 	//Widget functions
 	void update();
 	void set_geometry_imp(Vector2 p_anchor, Vector2 p_area);
+	void set_geometry_city_panel();
+	void set_geometry_rail_panel();
 	void render();
 	bool handle_keyboard();
 	bool handle_mouse();

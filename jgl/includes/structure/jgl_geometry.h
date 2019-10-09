@@ -27,28 +27,27 @@ private:
 	vector<Vector2> _points;
 	vector<Poly_side> _sides;
 
-	bool clicked(Vector2 point);
-
 public:
 	Polygon2D(Vector2 p_pos = 0);
 
 	void draw(c_viewport *viewport, Color p_color);
 	void draw(c_viewport *viewport, Color p_color, Vector2 p_pos, float scale = 1.0f);
 
+	bool contact(Polygon2D &other, float scale = 1);
+	bool is_pointed(Vector2 point, float scale = 1);
+
 	void add_point(Vector2 p_point){_points.push_back(p_point);}
 	void remove_point(size_t index){if (index < _points.size())_points.erase(_points.begin() + index);}
 
 	void add_side(Poly_side p_side){_sides.push_back(p_side);}
-	void add_side(size_t index1, size_t index2){
-		_sides.push_back(Poly_side(index1, index2, _points[index1].cross(_points[index2])));
-	}
+	void add_side(size_t index1, size_t index2);
 	void remove_side(size_t index){if (index < _sides.size())_sides.erase(_sides.begin() + index);}
 
 	void set_pos(Vector2 p_pos){_pos = p_pos;}
 
 	Vector2 pos(){return (_pos);}
 	vector<Vector2> &points(){return (_points);}
-	vector<Poly_side> &faces(){return (_sides);}
+	vector<Poly_side> &sides(){return (_sides);}
 };
 
 #endif

@@ -29,9 +29,8 @@ void c_milestone::add_link(c_milestone* to_add)
 
 			rail = new c_rail(this->pos(), to_add->pos());
 
-			if (_map->rails()[to_add][this] == nullptr)
-				_map->rails()[this][to_add] = rail;
-				
+			_map->rails()[this][to_add] = rail;
+
 		}
 	}
 }
@@ -105,23 +104,17 @@ void c_milestone::draw_link()
 
 	Vector2 pos1 = _map->convert_to_screen_coord(_pos);
 
-	// for (size_t i = 0; i < _rails.size(); i++)
-	// {
-	// 	if (_rails[i] != nullptr)
-	// 		_rails[i]->poly().draw(_map->viewport(), Color(255, 0, 0), pos1, _map->zoom());
-	// }
-
 	for (size_t i = 0; i < _links_to.size(); i++)
 	{
 		if (_map->rails()[this][_links_to[i]] != nullptr)
-	 		_map->rails()[this][_links_to[i]]->poly().draw(_map->viewport(), Color(255, 0, 0), pos1, _map->zoom());
+	 		_map->rails()[this][_links_to[i]]->poly()->draw(_map->viewport(), Color(255, 0, 0), pos1, _map->zoom());
 
 		Vector2 pos2 = _map->convert_to_screen_coord(_links_to[i]->pos());
 
 		vector<c_milestone*> *tmp = _links_to[i]->links_to();
 		if (find(tmp->begin(), tmp->end(), this) != tmp->end())
-			draw_line(_map->viewport(), Color(255, 0, 150), pos1, pos2);
+			draw_line(_map->viewport(), Color(255, 0, 150), pos1, pos2, 3);
 		else
-			draw_line(_map->viewport(), Color(150, 255, 0), pos1, pos2);
+			draw_line(_map->viewport(), Color(150, 255, 0), pos1, pos2, 3);
 	}
 }

@@ -20,9 +20,9 @@ void c_map::select_city(c_city *city)
 	if (_city_selected != nullptr)
 		_city_selected->select(true);
 
-	_panel->set_active(!(city == nullptr));
+	_city_panel->set_active(!(city == nullptr));
 	if (_city_selected != nullptr)
-		_name_entry->entry().set_text(_city_selected->name());
+		_city_name_entry->entry().set_text(_city_selected->name());
 }
 
 c_milestone *c_map::add_milestone(c_city* p_city)
@@ -68,6 +68,25 @@ void c_map::remove_city(c_city* to_remove)
 
 void c_map::remove_milestone(c_milestone* to_remove)
 {
+	for (auto end = _rails[to_remove].begin(); end != _rails[to_remove].end(); ++end)
+	{
+		c_milestone *second = end->first;
+		if (_rails[to_remove][second] != nullptr)
+		{
+			delete _rails[to_remove][second];
+			_rails[to_remove][second] = nullptr;
+		}
+	}
+	for (auto start = _rails[to_remove].begin(); start != _rails[to_remove].end(); ++start)
+	{
+		c_milestone *first = start->first;
+		if (_rails[first][to_remove] != nullptr)
+		{
+			delete _rails[first][to_remove];
+			_rails[first][to_remove] = nullptr;
+		}
+	}
+
 	vector<c_milestone*>::iterator it;
 
 	it = find(_milestones.begin(), _milestones.end(), to_remove);
@@ -92,6 +111,25 @@ c_milestone* c_map::check_milestone()
 	for (size_t i = 0; i < _milestones.size(); i++)
 		if (_milestones[i]->clicked(g_mouse->pos) == true)
 			return (_milestones[i]);
+
+	return (nullptr);
+}
+
+c_rail *c_map::check_rail()
+{
+	for (auto start = _rails.begin(); start != _rails.end(); ++start)
+	{
+		c_milestone *first = start->first;
+		for (auto end = _rails[first].begin(); end != _rails[first].end(); ++end)
+		{
+			c_milestone *second = end->first;
+			if (_rails[first][second] != nullptr &&
+				_rails[first][second]->poly()->is_pointed(g_mouse->pos - anchor(), _zoom) == true)
+			{
+				return (_rails[first][second]);
+			}
+		}
+	}
 
 	return (nullptr);
 }

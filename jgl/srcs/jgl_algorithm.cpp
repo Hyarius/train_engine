@@ -1,7 +1,6 @@
 #include "jgl.h"
 
-template<typename Type>
-void SAT_test(Type normale, vector<Type> vector_list, float *min, float *max)
+void SAT_test(Vector2 normale, vector<Vector2> vector_list, float *min, float *max)
 {
 	int		i;
 	float	dot_result;

@@ -7,12 +7,12 @@ class c_rail
 {
 private:
 	float _max_speed;
-	Polygon2D _poly;
+	Polygon2D *_poly;
 
 public:
 	c_rail(Vector2 pos1, Vector2 pos2);
 
-	Polygon2D &poly(){return (_poly);}
+	Polygon2D *poly(){return (_poly);}
 };
 
 #endif

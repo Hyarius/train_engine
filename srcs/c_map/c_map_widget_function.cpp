@@ -1,5 +1,35 @@
 #include "engine.h"
 
+void c_map::set_geometry_city_panel()
+{
+	Vector2 panel_anchor = Vector2(10, 10);
+	Vector2 panel_size = Vector2(300, 500);//p_area.x / 4, p_area.y / 3);
+	_city_panel->set_geometry(panel_anchor, panel_size);
+
+	Vector2 label_anchor = Vector2(5, 5);
+	Vector2 label_size = Vector2(80, 30);//p_area.x / 4, p_area.y / 3);
+	_city_name_label->set_geometry(label_anchor, label_size);
+
+	Vector2 entry_anchor = Vector2(10 + label_size.x, 0.0f) + label_anchor;
+	Vector2 entry_size = Vector2(panel_size.x - label_size.x - 20, label_size.y);//p_area.x / 4, p_area.y / 3);
+	_city_name_entry->set_geometry(entry_anchor, entry_size);
+}
+
+void c_map::set_geometry_rail_panel()
+{
+	Vector2 panel_anchor = Vector2(10, 10);
+	Vector2 panel_size = Vector2(300, 500);//p_area.x / 4, p_area.y / 3);
+	_rail_panel->set_geometry(panel_anchor, panel_size);
+
+	Vector2 label_anchor = Vector2(5, 5);
+	Vector2 label_size = Vector2(80, 30);//p_area.x / 4, p_area.y / 3);
+	_rail_speed_label->set_geometry(label_anchor, label_size);
+
+	Vector2 entry_anchor = Vector2(10 + label_size.x, 0.0f) + label_anchor;
+	Vector2 entry_size = Vector2(panel_size.x - label_size.x - 20, label_size.y);//p_area.x / 4, p_area.y / 3);
+	_rail_speed_entry->set_geometry(entry_anchor, entry_size);
+}
+
 void c_map::set_geometry_imp(Vector2 p_anchor, Vector2 p_area)
 {
 	Vector2 button_size = Vector2(150, 30);
@@ -20,17 +50,8 @@ void c_map::set_geometry_imp(Vector2 p_anchor, Vector2 p_area)
 
 	_map_anchor = (_map->size() * _zoom) / -2;
 
-	Vector2 panel_anchor = Vector2(10, 10);
-	Vector2 panel_size = Vector2(300, 500);//p_area.x / 4, p_area.y / 3);
-	_panel->set_geometry(panel_anchor, panel_size);
-
-	Vector2 name_anchor = Vector2(5, 5);
-	Vector2 name_size = Vector2(80, 30);//p_area.x / 4, p_area.y / 3);
-	_name_label->set_geometry(name_anchor, name_size);
-
-	Vector2 entry_anchor = Vector2(10 + name_size.x, 0.0f) + name_anchor;
-	Vector2 entry_size = Vector2(panel_size.x - name_size.x - 20, name_size.y);//p_area.x / 4, p_area.y / 3);
-	_name_entry->set_geometry(entry_anchor, entry_size);
+	set_geometry_city_panel();
+	set_geometry_rail_panel();
 }
 
 bool c_map::handle_keyboard()
@@ -41,6 +62,10 @@ bool c_map::handle_keyboard()
 bool c_map::handle_mouse()
 {
 	if (_calib_button->is_pointed(g_mouse->pos) == true)
+		return (false);
+
+	if ((_city_panel->is_active() == true && _city_panel->is_pointed(g_mouse->pos) == true) ||
+		(_rail_panel->is_active() == true && _rail_panel->is_pointed(g_mouse->pos) == true))
 		return (false);
 
 	if (control_mouvement() == true)
@@ -58,6 +83,6 @@ void c_map::update()
 {
 	if (_city_selected != nullptr)
 	{
-		_city_selected->set_name(_name_entry->entry().text());
+		_city_selected->set_name(_city_name_entry->entry().text());
 	}
 }
