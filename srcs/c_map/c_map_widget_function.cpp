@@ -22,7 +22,7 @@ void c_map::set_geometry_rail_panel()
 	_rail_panel->set_geometry(panel_anchor, panel_size);
 
 	Vector2 label_anchor = Vector2(5, 5);
-	Vector2 label_size = Vector2(80, 30);//p_area.x / 4, p_area.y / 3);
+	Vector2 label_size = Vector2(180, 30);//p_area.x / 4, p_area.y / 3);
 	_rail_speed_label->set_geometry(label_anchor, label_size);
 
 	Vector2 entry_anchor = Vector2(10 + label_size.x, 0.0f) + label_anchor;

@@ -170,18 +170,24 @@ class w_value_component : public w_component, public w_graphical_component, publ
 {
 protected:
 	float _value;
+	int _precision;
 
 public:
 		//Constructor
 	w_value_component(class c_widget *p_owner = nullptr, float p_value = 0.0f);
 
 		//Setter
-	void 		set_value(float p_value){_value = p_value;_text = ftoa(_value);};
+	void 		set_text(string p_text){_text = p_text;calc_value();}
+	void 		set_value(float p_value){_value = p_value;calc_text();}
+	void 		set_precision(int p_precision){_precision = p_precision;}
 	void 		resize(Vector2 p_anchor, Vector2 p_area)
 		{set_anchor(p_anchor);set_area(p_area);calc_text_size(_area);}
+	void 		calc_value(){ _value = static_cast<float>(atof(_text.c_str()));}
+	void 		calc_text(){ _text = ftoa(_value, _precision);}
 
 		//Getter
 	float		&value(){return (_value);}
+	int			&precision(){return (_precision);}
 
 	void render(c_viewport *viewport);
 };
@@ -191,6 +197,7 @@ class w_value_entry_component : public w_component, public w_graphical_component
 protected:
 	bool _selected;
 	float _value;
+	int _precision;
 	int _cursor;
 
 	string _text_to_draw;
@@ -202,15 +209,17 @@ public:
 
 		//Setter
 	void 		set_selected(bool p_selected){_selected = p_selected;}
+	void 		set_precision(int p_precision){_precision = p_precision;}
 	void 		set_text(string p_text){_text = p_text;calc_value();calc_text_to_draw();}
 	void 		set_value(float p_value){_value = p_value;calc_text();calc_text_to_draw();}
 	void 		resize(Vector2 p_anchor, Vector2 p_area)
 		{set_anchor(p_anchor);set_area(p_area);calc_text_size_height(_area);}
 	void 		calc_value(){ _value = static_cast<float>(atof(_text.c_str()));}
-	void 		calc_text(){ _text = ftoa(_value);}
+	void 		calc_text(){ _text = ftoa(_value, _precision);}
 
 		//Getter
 	bool		&selected(){return (_selected);}
+	int			&precision(){return (_precision);}
 	float 		&value(){return (_value);}
 	int 		&cursor(){return (_cursor);}
 	string 		&text_to_draw(){return (_text_to_draw);}

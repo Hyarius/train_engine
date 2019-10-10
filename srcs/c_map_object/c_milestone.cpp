@@ -23,13 +23,14 @@ void c_milestone::add_link(c_milestone* to_add)
 	{
 		_links_to.push_back(to_add);
 		to_add->links_from()->push_back(this);
-		if (_map->rails()[this][to_add] == nullptr)
+		auto it2 = _map->rails().find(pair<c_milestone *, c_milestone *>(this, to_add));
+		if (it2 == _map->rails().end())
 		{
 			c_rail *rail;
 
 			rail = new c_rail(this->pos(), to_add->pos());
 
-			_map->rails()[this][to_add] = rail;
+			_map->rails()[pair<c_milestone *, c_milestone *>(this, to_add)] = rail;
 
 		}
 	}
@@ -45,7 +46,7 @@ void c_milestone::remove_link()
 
 		if (it != tmp->end())
 		{
-			_map->rails()[*it][this] = nullptr;
+			_map->rails().erase(pair<c_milestone *, c_milestone *>(*it, this));
 			tmp->erase(it);
 		}
 	}
@@ -57,7 +58,8 @@ void c_milestone::remove_link()
 
 		if (it != tmp->end())
 		{
-			_map->rails()[this][*it] = nullptr;
+			_map->rails().erase(pair<c_milestone *, c_milestone *>(this, *it));
+			//_map->rails()[this][*it] = nullptr;
 			tmp->erase(it);
 		}
 	}
@@ -106,14 +108,15 @@ void c_milestone::draw_link()
 
 	for (size_t i = 0; i < _links_to.size(); i++)
 	{
-		if (_map->rails()[this][_links_to[i]] != nullptr)
-	 		_map->rails()[this][_links_to[i]]->poly()->set_pos(pos1);
+		auto target = pair<c_milestone *, c_milestone *>(this, _links_to[i]);
+		if (_map->rails()[target] != nullptr)
+	 		_map->rails()[target]->poly()->set_pos(pos1);
 
 		Vector2 pos2 = _map->convert_to_screen_coord(_links_to[i]->pos());
 
 		vector<c_milestone*> *tmp = _links_to[i]->links_to();
-		if (_map->rails()[this][_links_to[i]] != nullptr &&
-			_map->rails()[this][_links_to[i]]->state() == true)
+		if (_map->rails()[target] != nullptr &&
+			_map->rails()[target]->state() == true)
 		{
 			draw_line(_map->viewport(), Color(0, 150, 255), pos1, pos2, 6);
 		}

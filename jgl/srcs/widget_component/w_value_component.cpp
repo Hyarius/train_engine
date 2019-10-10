@@ -4,7 +4,8 @@ w_value_component::w_value_component(c_widget *p_owner, float p_value) :
 		w_component(p_owner), w_graphical_component(), w_textual_component()
 {
 	_value = p_value;
-	_text = ftoa(_value);
+	_precision = 3;
+	_text = ftoa(_value, _precision);
 	_anchor = Vector2();
 	_area = Vector2();
 	_align = alignment::left;

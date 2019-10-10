@@ -27,7 +27,8 @@ private:
 
 	vector<c_city*> _cities;
 	vector<c_milestone*> _milestones;
-	map<c_milestone *, map<c_milestone *, c_rail *> > _rails;
+	map<pair<c_milestone *, c_milestone *>, c_rail *> _rails;
+	//map<c_milestone *, map<c_milestone *, c_rail *> > _rails;
 
 	c_text_label *_unit_label;
 	c_value_entry *_landmark_scale;
@@ -61,7 +62,7 @@ public:
 	void set_state(map_state new_state){_state = new_state;}
 
 	//Getter
-	map<c_milestone *, map<c_milestone *, c_rail *> > &rails(){return (_rails);}
+	map<pair<c_milestone *, c_milestone *>, c_rail *> &rails(){return (_rails);}
 	float zoom(){return (_zoom);}
 	Vector2 map_anchor(){return (_map_anchor);}
 
@@ -102,7 +103,7 @@ public:
 	void control_city_creation();
 	void control_milestone_creation();
 	void control_rail_edition(c_rail *rail);
-	
+
 	bool control_unselect();
 
 	bool control_calibration();

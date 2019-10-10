@@ -85,32 +85,20 @@ void c_map::remove_city(c_city* to_remove)
 
 void c_map::remove_milestone(c_milestone* to_remove)
 {
-	for (auto end = _rails[to_remove].begin(); end != _rails[to_remove].end(); ++end)
-	{
-		c_milestone *second = end->first;
-		if (_rails[to_remove][second] != nullptr)
-		{
-			delete _rails[to_remove][second];
-			_rails[to_remove][second] = nullptr;
-		}
-	}
-	for (auto start = _rails[to_remove].begin(); start != _rails[to_remove].end(); ++start)
-	{
-		c_milestone *first = start->first;
-		if (_rails[first][to_remove] != nullptr)
-		{
-			delete _rails[first][to_remove];
-			_rails[first][to_remove] = nullptr;
-		}
-	}
+	vector<c_milestone*>::iterator it2;
+	vector<map<pair<c_milestone *, c_milestone *>, c_rail *>::iterator> array;
+	for (auto it = _rails.begin(); it != _rails.end(); it++)
+		if (it->first.first == to_remove || it->first.second == to_remove)
+			array.push_back(it);
 
-	vector<c_milestone*>::iterator it;
+	for (size_t i = 0; i < array.size(); i++)
+		_rails.erase(array[i]);
 
-	it = find(_milestones.begin(), _milestones.end(), to_remove);
-	if (it != _milestones.end())
+	it2 = find(_milestones.begin(), _milestones.end(), to_remove);
+	if (it2 != _milestones.end())
 	{
 		delete to_remove;
-		_milestones.erase(it);
+		_milestones.erase(it2);
 	}
 }
 
@@ -134,18 +122,11 @@ c_milestone* c_map::check_milestone()
 
 c_rail *c_map::check_rail()
 {
-	for (auto start = _rails.begin(); start != _rails.end(); ++start)
+	for (auto it = _rails.begin(); it != _rails.end(); ++it)
 	{
-		c_milestone *first = start->first;
-		for (auto end = _rails[first].begin(); end != _rails[first].end(); ++end)
-		{
-			c_milestone *second = end->first;
-			if (_rails[first][second] != nullptr &&
-				_rails[first][second]->poly()->is_pointed(g_mouse->pos - anchor(), _zoom) == true)
-			{
-				return (_rails[first][second]);
-			}
-		}
+		if (it->second != nullptr)
+			if (it->second->poly()->is_pointed(g_mouse->pos - anchor(), _zoom) == true)
+				return (it->second);
 	}
 
 	return (nullptr);

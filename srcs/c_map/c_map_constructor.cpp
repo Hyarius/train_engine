@@ -30,6 +30,7 @@ void c_map::create_rail_panel()
 	_rail_speed_label->active();
 
 	_rail_speed_entry = new c_value_entry(180.0f, _rail_panel);
+	_rail_speed_entry->entry().set_precision(0);
 	_rail_speed_entry->entry().set_align(alignment::centred);
 	_rail_speed_entry->active();
 }
@@ -47,6 +48,7 @@ void c_map::create_calib_button()
 	_unit_label->active();
 
 	_landmark_scale = new c_value_entry(1.0f, this);
+	_landmark_scale->entry().set_precision(0);
 	_landmark_scale->active();
 }
 

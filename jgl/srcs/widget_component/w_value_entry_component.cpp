@@ -5,7 +5,8 @@ w_value_entry_component::w_value_entry_component(c_widget *p_owner, float p_valu
 {
 	_selected = false;
 	_value = p_value;
-	_text = ftoa(_value);
+	_precision = 3;
+	_text = ftoa(_value, _precision);
 	_cursor = 0;
 	_text_to_draw = _text;
 	_cursor_to_draw = 0;

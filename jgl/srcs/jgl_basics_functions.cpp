@@ -26,9 +26,67 @@ void				error_exit(int num, string error)
 	exit(num);
 }
 
-string				ftoa(float i)
+void reverse(string &base)
 {
-	return (to_string(i));
+    int i = 0, j = base.length() - 1, temp;
+    while (i<j)
+    {
+        temp = base[i];
+        base[i] = base[j];
+        base[j] = temp;
+        i++; j--;
+    }
+}
+
+string intToStr(int x, int d)
+{
+	string result;
+
+    int i = 0;
+    while (x)
+    {
+        result.push_back((x % 10) + '0');
+        x = x/10;
+		i++;
+    }
+
+    while (i < d)
+	{
+		result.append("0");
+		i++;
+	}
+
+    reverse(result);
+
+    return (result);
+}
+
+// Converts a floating point number to string.
+string ftoa(float n, int afterpoint)
+{
+	string result;
+    // Extract integer part
+    int ipart = (int)n;
+
+    // Extract floating part
+    float fpart = n - (float)ipart;
+
+    // convert integer part to string
+    result = intToStr(ipart, 0);
+
+    // check for display option after point
+    if (afterpoint != 0 && fpart != 0.0f)
+    {
+        result.append(".");  // add dot
+
+        fpart = fpart * pow(10, afterpoint);
+
+        string tmp = intToStr((int)fpart, afterpoint);
+
+		result.append(tmp);
+    }
+
+	return (result);
 }
 
 bool string_is_numeric(string text)
