@@ -2,7 +2,9 @@
 
 c_rail::c_rail(Vector2 pos1, Vector2 pos2)
 {
-	_max_speed = 200.0f;
+	_speed = 200.0f;
+
+	_state = false;
 
 	_poly = new Polygon2D(0);
 

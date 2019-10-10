@@ -20,15 +20,15 @@ bool c_map::control_calibration()
 void c_map::control_city_creation()
 {
 	c_city* result = check_city();
-	if (_city_selected == nullptr)
-	{
-		if (result == nullptr)
-			add_city();
-		else
-			select_city(result);
-	}
+	if (result == nullptr)
+		add_city();
 	else
-		select_city(nullptr);
+		select_city(result);
+}
+
+void c_map::control_rail_edition(c_rail *rail)
+{
+	select_rail(rail);
 }
 
 void c_map::control_milestone_creation()
@@ -59,11 +59,6 @@ bool c_map::control_normal()
 		if (tmp != nullptr)
 			_mile_selected = tmp;
 	}
-	else if (g_mouse->get_button(mouse_button::middle) == mouse_state::up)
-	{
-		c_rail *rail = check_rail();
-		return (true);
-	}
 	else if (g_mouse->get_button(mouse_button::left) == mouse_state::up)
 	{
 		if (_mile_selected != nullptr)
@@ -73,6 +68,8 @@ bool c_map::control_normal()
 			c_rail *rail = check_rail();
 			if (rail == nullptr)
 				control_city_creation();
+			else if (rail != nullptr)
+				control_rail_edition(rail);
 		}
 		_mile_selected = nullptr;
 		return (true);
@@ -86,7 +83,6 @@ bool c_map::control_normal()
 			remove_city(tmp_city);
 		else if (tmp_milestone != nullptr)
 			remove_milestone(tmp_milestone);
-
 	}
 	return (false);
 }
@@ -126,5 +122,26 @@ bool c_map::control_zoom()
 
 		return (true);
 	}
+	return (false);
+}
+
+bool c_map::control_unselect()
+{
+	if (g_mouse->get_button(mouse_button::left) == mouse_state::up && g_mouse->motion == false)
+	{
+		if (_rail_selected != nullptr)
+		{
+			c_rail *rail = check_rail();
+			select_rail(rail);
+			return (true);
+		}
+		if (_city_selected != nullptr)
+		{
+			c_city *city = check_city();
+			select_city(city);
+			return (true);
+		}
+	}
+
 	return (false);
 }

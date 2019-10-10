@@ -107,13 +107,16 @@ void c_milestone::draw_link()
 	for (size_t i = 0; i < _links_to.size(); i++)
 	{
 		if (_map->rails()[this][_links_to[i]] != nullptr)
-	 		_map->rails()[this][_links_to[i]]->poly()->draw(_map->viewport(), Color(255, 0, 0), pos1, _map->zoom());
+	 		_map->rails()[this][_links_to[i]]->poly()->set_pos(pos1);
 
 		Vector2 pos2 = _map->convert_to_screen_coord(_links_to[i]->pos());
 
 		vector<c_milestone*> *tmp = _links_to[i]->links_to();
-		if (find(tmp->begin(), tmp->end(), this) != tmp->end())
-			draw_line(_map->viewport(), Color(255, 0, 150), pos1, pos2, 3);
+		if (_map->rails()[this][_links_to[i]] != nullptr &&
+			_map->rails()[this][_links_to[i]]->state() == true)
+		{
+			draw_line(_map->viewport(), Color(0, 150, 255), pos1, pos2, 6);
+		}
 		else
 			draw_line(_map->viewport(), Color(150, 255, 0), pos1, pos2, 3);
 	}

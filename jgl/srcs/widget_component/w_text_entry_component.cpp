@@ -43,7 +43,7 @@ void w_text_entry_component::remove_text()
 	if (_cursor > 0 && _text.size() != 0)
 	{
 		_cursor--;
-		_text.erase(_text.begin() + _cursor);
+		_text.erase(_text.begin() + _cursor, _text.begin() + _cursor + 1);
 		calc_text_to_draw();
 	}
 }
@@ -52,7 +52,7 @@ void w_text_entry_component::supp_text()
 {
 	if (_cursor > 0 && _cursor < _text.size() && _text.size() != 0)
 	{
-		_text.erase(_text.begin() + _cursor);
+		_text.erase(_text.begin() + _cursor, _text.begin() + _cursor + 1);
 		calc_text_to_draw();
 	}
 }

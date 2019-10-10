@@ -22,6 +22,7 @@ private:
 	float _scale_unit;
 
 	c_city *_city_selected;
+	c_rail *_rail_selected;
 	c_milestone *_mile_selected;
 
 	vector<c_city*> _cities;
@@ -79,12 +80,15 @@ public:
 	c_city *check_city();
 
 		//Milestone part
+	void select_city(c_city *city);
+	void select_rail(c_rail *rail);
+
+		//Milestone part
 	c_milestone *add_milestone(c_city* p_city);
 	void remove_milestone(c_milestone* to_remove);
 	float milestone_distance(c_milestone *point_a, c_milestone *point_b);
 
 		//City part
-	void select_city(c_city *city);
 	c_city* add_city();
 	void remove_city(c_city* to_remove);
 
@@ -97,6 +101,9 @@ public:
 	//Control
 	void control_city_creation();
 	void control_milestone_creation();
+	void control_rail_edition(c_rail *rail);
+	
+	bool control_unselect();
 
 	bool control_calibration();
 	bool control_travel_definition();

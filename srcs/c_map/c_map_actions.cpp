@@ -25,6 +25,23 @@ void c_map::select_city(c_city *city)
 		_city_name_entry->entry().set_text(_city_selected->name());
 }
 
+void c_map::select_rail(c_rail *rail)
+{
+	if (_rail_selected != nullptr)
+		_rail_selected->set_state(false);
+
+	_rail_selected = rail;
+	if (_rail_selected != nullptr)
+		_rail_selected->set_state(true);
+
+	_rail_panel->set_active(!(rail == nullptr));
+	if (_rail_selected != nullptr)
+	{
+		_rail_speed_entry->entry().set_value(_rail_selected->speed());
+	}
+
+}
+
 c_milestone *c_map::add_milestone(c_city* p_city)
 {
 	Vector2 pos = convert_to_map_coord(g_mouse->pos);

@@ -72,7 +72,7 @@ void w_value_entry_component::remove_text()
 	if (_cursor > 0 && _text.empty() == false)
 	{
 		_cursor--;
-		_text.erase(_cursor);
+		_text.erase(_text.begin() + _cursor, _text.begin() + _cursor + 1);
 		calc_value();
 		calc_text_to_draw();
 	}
@@ -80,9 +80,9 @@ void w_value_entry_component::remove_text()
 
 void w_value_entry_component::supp_text()
 {
-	if (_cursor > 0 && _cursor < _text.size() && _text.empty() == false)
+	if (_cursor < _text.size() && _text.empty() == false)
 	{
-		_text.erase(_text.begin() + _cursor);
+		_text.erase(_text.begin() + _cursor, _text.begin() + _cursor + 1);
 		calc_value();
 		calc_text_to_draw();
 	}

@@ -72,10 +72,15 @@ bool c_map::handle_mouse()
 		return (true);
 	if (control_zoom() == true)
 		return (true);
+
+	if (control_unselect() == true)
+		return (true);
+
 	if (_state == map_state::normal && control_normal() == true)
 		return (true);
 	if (_state == map_state::calibration && control_calibration() == true)
 		return (true);
+
 	return (false);
 }
 
@@ -84,5 +89,9 @@ void c_map::update()
 	if (_city_selected != nullptr)
 	{
 		_city_selected->set_name(_city_name_entry->entry().text());
+	}
+	if (_rail_selected != nullptr)
+	{
+		_rail_selected->set_speed(_rail_speed_entry->entry().value());
 	}
 }
