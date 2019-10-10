@@ -56,6 +56,14 @@ void c_map::set_geometry_imp(Vector2 p_anchor, Vector2 p_area)
 
 bool c_map::handle_keyboard()
 {
+	if (g_keyboard->get_key(SDL_SCANCODE_ESCAPE) == 1)
+	{
+		if (_state != map_state::normal)
+			_state = map_state::normal;
+		else
+			g_application->quit();
+		g_keyboard->reset_key(SDL_SCANCODE_ESCAPE);
+	}
 	return (false);
 }
 

@@ -93,6 +93,11 @@ void c_application::render()
 	SDL_RenderPresent(_renderer);
 }
 
+void c_application::quit()
+{
+	play = false;
+}
+
 int c_application::run()
 {
 	int ret;
@@ -112,12 +117,9 @@ int c_application::run()
 		render();
 
 		SDL_RenderSetViewport(_renderer, NULL);
+
 		ret = SDL_PollEvent(&_event);
-		if (ret != 0)
-		{
-			if (_event.type == SDL_QUIT || (_event.type == SDL_KEYUP && _event.key.keysym.sym == SDLK_ESCAPE))
-				play = false;
-		}
+
 		g_mouse->actualize_mouse((ret == 0 ? nullptr : &_event));
 	}
 

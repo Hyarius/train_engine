@@ -25,6 +25,8 @@ public:
 
 	SDL_Event *event();
 
+	void quit();
+
 	class c_window *central_widget();
 
 	void set_background(Color p_color = Color(50, 50, 50));

@@ -115,6 +115,9 @@ public:
 
 
 	/*---------------------*/
+	void start_calculation();
+
+	/*---------------------*/
 	//Widget functions
 	void update();
 	void set_geometry_imp(Vector2 p_anchor, Vector2 p_area);

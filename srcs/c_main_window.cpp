@@ -3,7 +3,6 @@
 c_main_window::c_main_window()
 {
 	map = nullptr;
-	start_button = nullptr;
 
 	create_box();
 
@@ -45,11 +44,16 @@ void c_main_window::create_map_panel()
 	Vector2 map_delta = map_box->box().border();
 	Vector2 map_size = map_box->box().area() - map_delta * 2;
 
-	if (map == nullptr)
-		map = new c_map("ressources/image/map.jpg", map_box);
+	map = new c_map("ressources/image/map.jpg", map_box);
 
 	map->set_geometry(map_delta, map_size);
 	map->active();
+}
+
+static void start_calculation(Data data)
+{
+	c_map *map = (c_map *)(data.content[0]);
+	map->start_calculation();
 }
 
 void c_main_window::create_command_panel()
@@ -59,11 +63,8 @@ void c_main_window::create_command_panel()
 	Vector2 button_size = Vector2(command_box->box().area().x - border * 4,
 		(command_box->box().area().y - border * 4) / 2 - border);
 
-	if (start_button == nullptr)
-	{
-		start_button = new c_button(nullptr, nullptr, command_box);
-		start_button->text().set_text("Start simulation");
-	}
+	start_button = new c_button(&start_calculation, map, command_box);
+	start_button->text().set_text("Start simulation");
 
 	start_button->set_geometry(button_delta, button_size);
 	start_button->active();
@@ -71,7 +72,7 @@ void c_main_window::create_command_panel()
 
 void c_main_window::create_config_panel()
 {
-	
+
 }
 
 void c_main_window::create_travel_panel()
