@@ -74,7 +74,7 @@ bool c_map::control_unselect()
 {
 	if (g_mouse->get_button(mouse_button::left) == mouse_state::up && g_mouse->motion == false)
 	{
-		if (_rail_selected != nullptr)
+		if (_rail_selected.size() != 0)
 		{
 			c_rail *rail = check_rail();
 			select_rail(rail);

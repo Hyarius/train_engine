@@ -109,9 +109,10 @@ void c_map::update()
 		_city_selected->set_name(_city_name_entry->entry().text());
 		_city_selected->set_waiting_time(_city_waiting_entry->entry().value());
 	}
-	if (_rail_selected != nullptr)
+	if (_rail_selected.size() != 0)
 	{
-		_rail_selected->set_speed(_rail_speed_entry->entry().value());
+		for (size_t i = 0; i < _rail_selected.size(); i++)
+			_rail_selected[i]->set_speed(_rail_speed_entry->entry().value());
 	}
 	if (_state == map_state::travel_definition)
 	{

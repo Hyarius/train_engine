@@ -76,7 +76,7 @@ c_map::c_map(string path, c_widget *parent) : c_widget(parent)
 	_zoom = 1.0f;
 	_city_selected = nullptr;
 	_mile_selected = nullptr;
-	_rail_selected = nullptr;
+	_rail_selected.clear();
 	_cities.clear();
 
 	create_city_panel();

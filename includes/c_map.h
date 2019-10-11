@@ -22,7 +22,7 @@ private:
 	float _scale_unit;
 
 	c_city *_city_selected;
-	c_rail *_rail_selected;
+	vector<c_rail *> _rail_selected;
 	c_milestone *_mile_selected;
 
 	vector<c_city*> _cities;

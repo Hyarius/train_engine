@@ -30,17 +30,22 @@ void c_map::select_city(c_city *city)
 
 void c_map::select_rail(c_rail *rail)
 {
-	if (_rail_selected != nullptr)
-		_rail_selected->set_state(false);
+	if (_rail_selected.size() != 0 && g_keyboard->get_key(SDL_SCANCODE_LCTRL) == 0)
+	{
+		for (size_t i = 0; i < _rail_selected.size(); i++)
+			_rail_selected[i]->set_state(false);
+		_rail_selected.clear();
+	}
 
-	_rail_selected = rail;
-	if (_rail_selected != nullptr)
-		_rail_selected->set_state(true);
 
 	_rail_panel->set_active(!(rail == nullptr));
-	if (_rail_selected != nullptr)
+	if (_rail_selected.size() == 0 && rail != nullptr)
+		_rail_speed_entry->entry().set_value(rail->speed());
+
+	if (rail != nullptr)
 	{
-		_rail_speed_entry->entry().set_value(_rail_selected->speed());
+		_rail_selected.push_back(rail);
+		rail->set_state(true);
 	}
 
 }
