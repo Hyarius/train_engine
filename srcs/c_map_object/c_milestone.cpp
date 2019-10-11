@@ -14,6 +14,14 @@ c_milestone::~c_milestone()
 	remove_link();
 }
 
+bool c_milestone::is_accesible(c_milestone *destination)
+{
+	for (size_t i = 0; i < _links_to.size(); i++)
+		if (_links_to[i] == destination)
+			return (true);
+	return (false);
+}
+
 void c_milestone::add_link(c_milestone* to_add)
 {
 	vector<c_milestone*>::iterator it;

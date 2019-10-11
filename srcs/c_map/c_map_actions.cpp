@@ -22,7 +22,10 @@ void c_map::select_city(c_city *city)
 
 	_city_panel->set_active(!(city == nullptr));
 	if (_city_selected != nullptr)
+	{
 		_city_name_entry->entry().set_text(_city_selected->name());
+		_city_waiting_entry->entry().set_value(_city_selected->waiting_time());
+	}
 }
 
 void c_map::select_rail(c_rail *rail)

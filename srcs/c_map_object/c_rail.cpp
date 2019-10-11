@@ -2,7 +2,7 @@
 
 c_rail::c_rail(Vector2 pos1, Vector2 pos2)
 {
-	_speed = 200.0f;
+	_speed = 145.0f;
 
 	_state = false;
 

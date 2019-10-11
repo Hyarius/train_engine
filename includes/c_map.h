@@ -27,6 +27,7 @@ private:
 
 	vector<c_city*> _cities;
 	vector<c_milestone*> _milestones;
+	vector<c_milestone*> _path;
 	map<pair<c_milestone *, c_milestone *>, c_rail *> _rails;
 	//map<c_milestone *, map<c_milestone *, c_rail *> > _rails;
 
@@ -42,6 +43,8 @@ private:
 	c_frame *_city_panel;
 	c_text_label *_city_name_label;
 	c_text_entry *_city_name_entry;
+	c_text_label *_city_waiting_label;
+	c_value_entry *_city_waiting_entry;
 
 	float _rel_distance;
 	Vector2 _landmark1;
@@ -116,6 +119,7 @@ public:
 
 	/*---------------------*/
 	void start_calculation();
+	void calc_duration();
 
 	/*---------------------*/
 	//Widget functions

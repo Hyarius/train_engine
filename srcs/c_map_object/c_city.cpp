@@ -10,6 +10,7 @@ c_city::c_city(c_map *p_map, Vector2 p_pos)
 	_map = p_map;
 	_pos = p_pos;
 	_name = "City " + to_string(num);
+	_waiting_time = 5;
 	num++;
 	_selected = 1;
 	Vector2 tmp = Vector2(350, 300);

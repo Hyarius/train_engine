@@ -19,6 +19,7 @@ public:
 	void remove_link();
 
 	bool clicked(Vector2 mouse);
+	bool is_accesible(c_milestone *destination);
 
 	void set_pos(Vector2 p_pos) { _pos = p_pos; }
 	void set_place(class c_city* p_place) { _place = p_place; }

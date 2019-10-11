@@ -120,6 +120,12 @@ int c_application::run()
 
 		ret = SDL_PollEvent(&_event);
 
+		if (ret != 0)
+		{
+			if (_event.type == SDL_QUIT)
+				quit();
+		}
+
 		g_mouse->actualize_mouse((ret == 0 ? nullptr : &_event));
 	}
 
