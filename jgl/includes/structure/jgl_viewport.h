@@ -22,7 +22,7 @@ public:
 
 	void resize(Vector2 p_anchor, Vector2 p_size);
 
-	void set_background(Color p_color = Color(50, 50, 50));
+	void set_background(Color p_color = Color(50, 50, 50)){_background = p_color;}
 
 	void use();
 
@@ -30,9 +30,9 @@ public:
 
 	void clear();
 
-	SDL_Renderer *renderer();
-	Vector2 &size();
-	Vector2 &anchor();
+	SDL_Renderer *renderer(){return (_renderer);}
+	Vector2 &size(){return (_size);}
+	Vector2 &anchor(){return (_anchor);}
 };
 
 #endif

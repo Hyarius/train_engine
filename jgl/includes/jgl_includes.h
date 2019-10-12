@@ -10,6 +10,7 @@
 #include <fstream>
 #include <fcntl.h>
 #include <string>
+#include <dirent.h>
 #include <map>
 #include <stdint.h>
 #include <time.h>

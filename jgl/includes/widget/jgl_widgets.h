@@ -18,50 +18,35 @@ protected:
 
 public:
 	c_widget(c_widget *p_parent = nullptr);
-
 	~c_widget();
 
 	vector<c_widget *> childrens(){return (_childrens);}
 	c_widget *parent(){return (_parent);}
+	Vector2 size(){return (_viewport->size());}
+	Vector2 anchor(){return (_viewport->anchor());}
+	c_viewport *viewport(){return (_viewport);}
 
-	Vector2 size();
-
-	Vector2 anchor();
-
-	c_viewport *viewport();
-
-	bool is_active();
-
+	bool is_active(){return (_activated);}
 	bool is_pointed(Vector2 point);
-
-	void active();
-
-	void set_active(bool new_state);
-
+	void active(){_activated = !_activated;}
+	void set_active(bool new_state){_activated = new_state;}
 	void set_parent(c_widget *p_parent);
-
-	void add_children(c_widget *p_children);
-
+	void add_children(c_widget *p_children){_childrens.push_back(p_children);}
 	void remove_children(c_widget *p_target);
-
 	bool handle_event();
-
 	void update_children();
-
 	void render_children();
-
+	void quit_children();
 	void set_geometry(Vector2 p_anchor, Vector2 p_area);
 
 
+	virtual void quit(){};
 	virtual void update(){};
+	virtual bool handle_keyboard(){return (false);}
+	virtual bool handle_mouse(){return (false);}
 
 	virtual void set_geometry_imp(Vector2 p_anchor, Vector2 p_area) = 0;
-
 	virtual void render() = 0;
-
-	virtual bool handle_keyboard() = 0;
-
-	virtual bool handle_mouse() = 0;
 };
 
 #endif

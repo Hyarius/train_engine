@@ -28,26 +28,6 @@ void c_viewport::resize(Vector2 p_anchor, Vector2 p_size)
 	_size = p_size;
 }
 
-SDL_Renderer *c_viewport::renderer()
-{
-	return (_renderer);
-}
-
-Vector2 &c_viewport::size()
-{
-	return (_size);
-}
-
-Vector2 &c_viewport::anchor()
-{
-	return (_anchor);
-}
-
-void c_viewport::set_background(Color p_color)
-{
-	_background = p_color;
-}
-
 void c_viewport::use()
 {
 	if (_size.x <= 0 || _size.y <= 0)

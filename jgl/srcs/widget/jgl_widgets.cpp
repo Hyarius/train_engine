@@ -31,16 +31,6 @@ void c_widget::remove_children(c_widget *p_target)
     	_childrens.erase (it);
 }
 
-Vector2 c_widget::size()
-{
-	return (_viewport->size());
-}
-
-Vector2 c_widget::anchor()
-{
-	return (_viewport->anchor());
-}
-
 void c_widget::set_geometry(Vector2 p_anchor, Vector2 p_area)
 {
 	if (_parent == nullptr)
@@ -49,26 +39,6 @@ void c_widget::set_geometry(Vector2 p_anchor, Vector2 p_area)
 		_viewport->resize(p_anchor + _parent->anchor(), p_area);
 
 	set_geometry_imp(p_anchor, p_area);
-}
-
-c_viewport *c_widget::viewport()
-{
-	return (_viewport);
-}
-
-bool c_widget::is_active()
-{
-	return (_activated);
-}
-
-void c_widget::active()
-{
-	_activated = !_activated;
-}
-
-void c_widget::set_active(bool new_state)
-{
-	_activated = new_state;
 }
 
 void c_widget::set_parent(c_widget *p_parent)
@@ -80,11 +50,6 @@ void c_widget::set_parent(c_widget *p_parent)
 
 	if (_parent != nullptr)
 		_parent->add_children(this);
-}
-
-void c_widget::add_children(c_widget *p_children)
-{
-	_childrens.push_back(p_children);
 }
 
 bool c_widget::handle_event()
@@ -142,5 +107,18 @@ void c_widget::update_children()
 	for (size_t i = 0; i < _childrens.size(); i++)
 	{
 		_childrens[i]->update_children();
+	}
+}
+
+void c_widget::quit_children()
+{
+	if (is_active() == false)
+		return ;
+
+	quit();
+
+	for (size_t i = 0; i < _childrens.size(); i++)
+	{
+		_childrens[i]->quit_children();
 	}
 }

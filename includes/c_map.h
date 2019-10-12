@@ -130,6 +130,7 @@ public:
 	void render();
 	bool handle_keyboard();
 	bool handle_mouse();
+	void quit();
 };
 
 #endif

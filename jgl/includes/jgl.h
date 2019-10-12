@@ -7,6 +7,8 @@
 #include "jgl_enum.h"
 #include "jgl_data.h"
 #include "jgl_basics_functions.h"
+#include "jgl_file_handler.h"
+#include "jgl_log_handler.h"
 #include "jgl_vector.h"
 #include "jgl_color.h"
 #include "jgl_geometry.h"

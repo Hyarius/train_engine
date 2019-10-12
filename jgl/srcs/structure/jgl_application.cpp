@@ -129,5 +129,7 @@ int c_application::run()
 		g_mouse->actualize_mouse((ret == 0 ? nullptr : &_event));
 	}
 
+	_central_widget->quit_children();
+
 	return (0);
 }
