@@ -1,14 +1,25 @@
 #include "engine.h"
 
-void c_map::place_landmark(Vector2 new_pos)
+void c_map::place_landmark(Vector2 new_pos, int index)
 {
-	if (_landmark1 == Vector2())
-		_landmark1 = new_pos;
+	if (index == -1)
+	{
+		if (_landmark1 == Vector2())
+			_landmark1 = new_pos;
+		else
+		{
+			_landmark2 = new_pos;
+			calc_distance_ratio();
+		}
+	}
 	else
 	{
-		_landmark2 = new_pos;
-		calc_distance_ratio();
+		if (index == 0)
+			_landmark1 = new_pos;
+		else
+			_landmark2 = new_pos;
 	}
+
 }
 
 void c_map::select_city(c_city *city)

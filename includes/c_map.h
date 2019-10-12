@@ -56,6 +56,7 @@ public:
 	//Constructor
 	c_map(string path, c_widget *parent = nullptr);
 
+	void reload_map(string path);
 	void create_city_panel();
 	void create_rail_panel();
 	void create_calib_button();
@@ -98,7 +99,7 @@ public:
 	void remove_city(c_city* to_remove);
 
 		//Landmark part
-	void place_landmark(Vector2 new_pos);
+	void place_landmark(Vector2 new_pos, int index = -1);
 	void reset_landmark(){_landmark1 = Vector2();_landmark2 = Vector2();}
 
 
@@ -127,6 +128,10 @@ public:
 	void save_city(fstream &file, c_city *city);
 	void save_milestone(fstream &file, c_milestone *milestone);
 	void save_rail(fstream &file, pair<c_milestone *, c_milestone *> key, c_rail *rail);
+
+	//Load functions
+	void load_city(fstream file);
+	void load_data(string path);
 
 	/*---------------------*/
 	//Widget functions

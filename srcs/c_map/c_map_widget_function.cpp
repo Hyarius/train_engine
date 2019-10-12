@@ -104,6 +104,7 @@ bool c_map::handle_mouse()
 
 void c_map::update()
 {
+	_rel_distance = _landmark_scale->entry().value();
 	if (_city_selected != nullptr)
 	{
 		_city_selected->set_name(_city_name_entry->entry().text());

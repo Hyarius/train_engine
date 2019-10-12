@@ -53,7 +53,7 @@ void c_map::quit()
 	string text = "\t\"landmarks\":\"" + _landmark1.str() + "/" + _landmark2.str() + "\",";
 	write_on_file(file, text);
 
-	text = "\t\"landmark_scale\":\"" + ftoa(_landmark_scale->entry().value(), 3) + "\",";
+	text = "\t\"landmark_scale\":\"" + ftoa(_rel_distance, 3) + "\",";
 	write_on_file(file, text);
 
 	write_on_file(file, "\t\"cities\":[");
@@ -97,6 +97,4 @@ void c_map::quit()
 	}
 	write_on_file(file, "\t]");
 	write_on_file(file, "}");
-
-	cout << "c_map quit" << endl;
 }
