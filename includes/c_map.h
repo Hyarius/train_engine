@@ -16,6 +16,7 @@ enum map_state
 class c_map : public c_widget
 {
 private:
+	string _map_path;
 	c_image *_map;
 	Vector2 _map_anchor;
 	float _zoom;
@@ -120,6 +121,12 @@ public:
 	/*---------------------*/
 	void start_calculation();
 	void calc_duration();
+
+	/*---------------------*/
+	//Saving functions
+	void save_city(fstream &file, c_city *city);
+	void save_milestone(fstream &file, c_milestone *milestone);
+	void save_rail(fstream &file, pair<c_milestone *, c_milestone *> key, c_rail *rail);
 
 	/*---------------------*/
 	//Widget functions

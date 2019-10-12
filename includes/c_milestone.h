@@ -28,8 +28,8 @@ public:
 	Vector2 &pos() { return (_pos); }
 	class c_city* place() { return (_place); }
 	class c_map* map() { return(_map); }
-	vector<class c_milestone*> *links_to() { return (&_links_to); }
-	vector<class c_milestone*> *links_from() { return (&_links_from); }
+	vector<class c_milestone*> &links_to() { return (_links_to); }
+	vector<class c_milestone*> &links_from() { return (_links_from); }
 
 	void draw();
 	void draw_link();

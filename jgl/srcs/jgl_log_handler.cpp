@@ -1,6 +1,6 @@
 #include "jgl.h"
 
-ofstream log_file;
+fstream log_file;
 int line;
 
 void open_log_file(string path, string log_name)
@@ -22,9 +22,9 @@ void open_log_file(string path, string log_name)
 	std::ostringstream oss2;
 	oss2 << std::put_time(&tm, "%d-%m-%Y %Hh-%Mm-%Ss");
 	str = oss2.str();
-	string text = "===	" + log_name + " - " + str + " -		===\n";
+	string text = "=== " + log_name + " - " + str + " - ===\n";
 	log_file << text;
-	size_t len = text.length();
+	size_t len = text.length() - 1;
 	text.clear();
 	for (size_t i = 0; i < len; i++)
 		text.append("=");

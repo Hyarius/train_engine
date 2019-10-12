@@ -71,6 +71,7 @@ void c_map::create_landmark()
 
 c_map::c_map(string path, c_widget *parent) : c_widget(parent)
 {
+	_map_path = path;
 	_map = new c_image(path);
 	_map_anchor = _map->size() / -2;
 	_zoom = 1.0f;

@@ -132,6 +132,13 @@ Vector3		Vector3::cross(Vector3 &other) //Produit vectoriel / cross product
 	return (result);
 }
 
+string Vector3::str()
+{
+	string result = "(" + to_string(x) + " / " + to_string(y) + " / " + to_string(z) + ")";
+
+	return (result);
+}
+
 Vector2::Vector2(int p_value) :
 	x(static_cast<float>(p_value)), y(static_cast<float>(p_value)){}
 
@@ -250,6 +257,13 @@ float Vector2::dot(Vector2 &other)
 	float		result;
 
 	result = this->x * other.x + this->y * other.y;
+
+	return (result);
+}
+
+string Vector2::str()
+{
+	string result = "(" + to_string(x) + " / " + to_string(y) + ")";
 
 	return (result);
 }

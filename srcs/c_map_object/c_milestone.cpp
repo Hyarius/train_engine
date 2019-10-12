@@ -26,11 +26,14 @@ void c_milestone::add_link(c_milestone* to_add)
 {
 	vector<c_milestone*>::iterator it;
 
+	if (to_add == this)
+		return ;
+
 	it = find(_links_to.begin(), _links_to.end(), to_add);
 	if (it == _links_to.end())
 	{
 		_links_to.push_back(to_add);
-		to_add->links_from()->push_back(this);
+		to_add->links_from().push_back(this);
 		auto it2 = _map->rails().find(pair<c_milestone *, c_milestone *>(this, to_add));
 		if (it2 == _map->rails().end())
 		{
@@ -48,27 +51,27 @@ void c_milestone::remove_link()
 {
 	for (size_t i = 0; i < _links_from.size(); i++)
 	{
-		vector<c_milestone*>* tmp = _links_from[i]->links_to();
+		vector<c_milestone*> tmp = _links_from[i]->links_to();
 
-		auto it = find(tmp->begin(), tmp->end(), this);
+		auto it = find(tmp.begin(), tmp.end(), this);
 
-		if (it != tmp->end())
+		if (it != tmp.end())
 		{
 			_map->rails().erase(pair<c_milestone *, c_milestone *>(*it, this));
-			tmp->erase(it);
+			tmp.erase(it);
 		}
 	}
 	for (size_t i = 0; i < _links_to.size(); i++)
 	{
-		vector<c_milestone*>* tmp = _links_to[i]->links_from();
+		vector<c_milestone*> tmp = _links_to[i]->links_from();
 
-		auto it = find(tmp->begin(), tmp->end(), this);
+		auto it = find(tmp.begin(), tmp.end(), this);
 
-		if (it != tmp->end())
+		if (it != tmp.end())
 		{
 			_map->rails().erase(pair<c_milestone *, c_milestone *>(this, *it));
 			//_map->rails()[this][*it] = nullptr;
-			tmp->erase(it);
+			tmp.erase(it);
 		}
 	}
 }
@@ -122,7 +125,6 @@ void c_milestone::draw_link()
 
 		Vector2 pos2 = _map->convert_to_screen_coord(_links_to[i]->pos());
 
-		vector<c_milestone*> *tmp = _links_to[i]->links_to();
 		if (_map->rails()[target] != nullptr &&
 			_map->rails()[target]->state() == true)
 		{

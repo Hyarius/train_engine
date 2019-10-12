@@ -1,16 +1,16 @@
 #include "jgl.h"
 
-ifstream				open_file(string path)
+fstream				open_file(string path, ios_base::openmode mode)
 {
-	ifstream myfile;
-	myfile.open(path);
+	fstream myfile;
+	myfile.open(path, mode);
 	if (myfile.fail())
-		error_exit(1, "can't open such file : " + path);
+		error_exit(1, "Error while creating a file at path : " + path);
 
 	return (myfile);
 }
 
-string					get_str(ifstream &myfile)
+string					get_str(fstream &myfile)
 {
     string line;
 
@@ -24,7 +24,7 @@ string					get_str(ifstream &myfile)
     return (line);
 }
 
-vector<string>			get_strsplit(ifstream &myfile, const string c, int size)
+vector<string>			get_strsplit(fstream &myfile, const string c, int size)
 {
     vector<string> tab;
     string line;
@@ -82,20 +82,20 @@ vector<string>		list_files(string path, string extension)
 
 bool				check_file_exist(string path)
 {
-	ifstream file(path.c_str());
+	fstream file(path.c_str());
     return file.good();
 }
 
 bool				copy_file(string src, string dest)
 {
-	ifstream source;
-	ofstream destination;
+	fstream source;
+	fstream destination;
 
 	source.open(src, ios::binary);
 	destination.open(dest, ios::binary);
 
 	source.seekg(0, ios::end);
-	ifstream::pos_type size = source.tellg();
+	fstream::pos_type size = source.tellg();
 	source.seekg(0);
 	char* buffer = new char[size];
 
@@ -105,9 +105,14 @@ bool				copy_file(string src, string dest)
 	return (true);
 }
 
+void				write_on_file(fstream &myfile, string text)
+{
+	myfile << text << endl;
+}
+
 void				write_on_file(string path, string text)
 {
-	ofstream myfile;
+	fstream myfile;
 	myfile.open(path.c_str(), ios::app);
 	myfile << text << endl;
 	myfile.close();
@@ -115,7 +120,7 @@ void				write_on_file(string path, string text)
 
 void				rewrite_on_file(string path, string text)
 {
-	ofstream myfile;
+	fstream myfile;
 	myfile.open(path.c_str());
 	myfile << text << endl;
 	myfile.close();

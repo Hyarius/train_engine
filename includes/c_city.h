@@ -19,6 +19,7 @@ public:
 
 	class c_milestone* milestone() { return (_milestone); }
 	string &name(){return (_name);}
+	Vector2 pos(){return (_pos);}
 	int waiting_time(){return (_waiting_time);}
 
 	void set_waiting_time(int new_waiting_time){_waiting_time = new_waiting_time;}

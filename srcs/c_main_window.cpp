@@ -44,7 +44,7 @@ void c_main_window::create_map_panel()
 	Vector2 map_delta = map_box->box().border();
 	Vector2 map_size = map_box->box().area() - map_delta * 2;
 
-	map = new c_map("ressources/image/map2.png", map_box);
+	map = new c_map("ressources/image/map_speed.png", map_box);
 
 	map->set_geometry(map_delta, map_size);
 	map->active();
