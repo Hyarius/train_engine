@@ -1,100 +1,71 @@
 #include "engine.h"
 
-void c_map::save_city(fstream &file, c_city *city)
+void save_city(Data data)
 {
-	write_on_file(file, "\t\t\t\"name\":\"" + city->name() + "\",");
-	write_on_file(file, "\t\t\t\"waiting time\":\"" + to_string(city->waiting_time()) + "\",");
-	write_on_file(file, "\t\t\t\"pos\":\"" + city->pos().str() + "\"");
+	fstream &file = *(data.acces<fstream *>(0));
+	c_city *city = *(data.acces<c_city **>(1));
+
+	json_add_value(file, 3, "name", city->name());
+	json_add_value(file, 3, "waiting time", to_string(city->waiting_time()));
+	json_add_value(file, 3, "pos", city->pos().str());
 }
 
-void c_map::save_milestone(fstream &file, c_milestone *milestone)
+void save_milestone(Data data)
 {
-	write_on_file(file, "\t\t\t\"pos\":\"" + milestone->pos().str() + "\",");
+	fstream &file = *(data.acces<fstream *>(0));
+	c_milestone *milestone = *(data.acces<c_milestone **>(1));
 
-	string text = "\t\t\t\"link_to\":\"";
-
-	vector<c_milestone *> tmp = milestone->links_to();
-
-	for (size_t i = 0; i < milestone->links_to().size(); i++)
-	{
-		if (i != 0)
-			text.append("/");
-		auto it = find(_milestones.begin(), _milestones.end(), milestone->links_to()[i]);
-
-		text.append(to_string(it - _milestones.begin()));
-
-	}
-	text.append("\"");
-
-	write_on_file(file, text);
+	json_add_value(file, 3, "pos", milestone->pos().str());
 }
 
-void c_map::save_rail(fstream &file, pair<c_milestone *, c_milestone *> key, c_rail *rail)
+void save_rail(Data data)
 {
-	write_on_file(file, "\t\t\t\"speed\":\"" + ftoa(rail->speed(), 0) + "\",");
+	fstream &file = *(data.acces<fstream *>(0));
+	c_map *map = data.acces<c_map *>(1);
+	pair<c_milestone *, c_milestone *> *key = data.acces<pair<c_milestone *, c_milestone *> *>(2);
+	c_rail *rail = *(data.acces<c_rail **>(3));
 
-	auto it = find(_milestones.begin(), _milestones.end(), key.first);
-	size_t i = it - _milestones.begin();
-	write_on_file(file, "\t\t\t\"id_a\":\"" + to_string(i) + "\",");
+	json_add_value(file, 3, "speed", ftoa(rail->speed(), 0));
+
+	auto it = find(map->milestones().begin(), map->milestones().end(), key->first);
+	size_t i = it - map->milestones().begin();
+	cout << "i = " << to_string(i) << endl;
+	json_add_value(file, 3, "id_a", to_string(i));
 
 
-	it = find(_milestones.begin(), _milestones.end(), key.second);
-	i = it - _milestones.begin();
-	write_on_file(file, "\t\t\t\"id_b\":\"" + to_string(i) + "\"");
+	it = find(map->milestones().begin(), map->milestones().end(), key->second);
+	i = it - map->milestones().begin();
+	json_add_value(file, 3, "id_b", to_string(i));
 }
 
 void c_map::quit()
 {
 	fstream file = open_file("ressources/data/save/map_data.json", ios_base::out);
 
-	write_on_file(file, "{");
-	write_on_file(file, "\t\"map_image\":\"" + _map_path + "\",");
+	json_add_line(file, 0, "", "{");
+	json_add_value(file, 1, "map_image", _map_path);
+	json_add_value(file, 1, "map_image", _landmark1.str() + "/" + _landmark2.str());
+	json_add_value(file, 1, "landmark_scale", ftoa(_rel_distance, 3));
 
-	string text = "\t\"landmarks\":\"" + _landmark1.str() + "/" + _landmark2.str() + "\",";
-	write_on_file(file, text);
+	json_add_vector<c_city *>(file, 1, "cities", _cities, &save_city, &file);
+	json_add_vector<c_milestone *>(file, 1, "milestones", _milestones, &save_milestone, &file);
 
-	text = "\t\"landmark_scale\":\"" + ftoa(_rel_distance, 3) + "\",";
-	write_on_file(file, text);
-
-	write_on_file(file, "\t\"cities\":[");
-	for (size_t i = 0; i < _cities.size(); i++)
-	{
-		write_on_file(file, "\t\t{");
-		save_city(file, _cities[i]);
-		if (i != _cities.size() - 1)
-			write_on_file(file, "\t\t},");
-		else
-			write_on_file(file, "\t\t}");
-	}
-	write_on_file(file, "\t],");
-
-	write_on_file(file, "\t\"milestone\":[");
-	for (size_t i = 0; i < _milestones.size(); i++)
-	{
-		write_on_file(file, "\t\t{");
-		save_milestone(file, _milestones[i]);
-		if (i != _milestones.size() - 1)
-			write_on_file(file, "\t\t},");
-		else
-			write_on_file(file, "\t\t}");
-	}
-	write_on_file(file, "\t],");
-
-	write_on_file(file, "\t\"rails\":[");
-
-	auto final_iter = _rails.end();
-	--final_iter;
-
-	for (auto it = _rails.begin(); it != _rails.end(); it++)
-	{
-		write_on_file(file, "\t\t{");
-		save_rail(file, it->first, it->second);
-
-		if (it != final_iter)
-			write_on_file(file, "\t\t},");
-		else
-			write_on_file(file, "\t\t}");
-	}
-	write_on_file(file, "\t]");
+	json_add_map<pair<c_milestone *, c_milestone *>, c_rail *>(file, 1, "rails", _rails, &save_rail, Data(2, &file, this));
+	// write_on_file(file, "\t\"rails\":[");
+	//
+	// auto final_iter = _rails.end();
+	// --final_iter;
+	//
+	// for (auto it = _rails.begin(); it != _rails.end(); it++)
+	// {
+	// 	write_on_file(file, "\t\t{");
+	// 	save_rail(file, it->first, it->second);
+	//
+	// 	if (it != final_iter)
+	// 		write_on_file(file, "\t\t},");
+	// 	else
+	// 		write_on_file(file, "\t\t}");
+	// }
+	// write_on_file(file, "\t]");
 	write_on_file(file, "}");
 }

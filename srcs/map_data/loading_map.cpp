@@ -13,7 +13,7 @@ void c_map::reload_map(string path)
 
 void c_map::load_data(string path)
 {
-	fstream file = open_file(path, ios_base::in);
+	/*fstream file = open_file(path, ios_base::in);
 
 	string text;
 	vector<string> tab;
@@ -40,5 +40,6 @@ void c_map::load_data(string path)
 		}
 		else if (tab[0] == "landmark_scale")
 			_rel_distance = atof(tab[1]);
-	}
+
+	}*/
 }

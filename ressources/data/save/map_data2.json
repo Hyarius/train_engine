@@ -6,20 +6,20 @@
 		{
 			"name":"city name",
 			"waiting time":"5",
-			"pos":"x1/y1"
+			"pos":"x1/y1",
 		}
 	],
-	"milestone":[
+	"milestones":[
 		{
 			"pos":"x1/y1",
-			"link_to":"1/5/14"
+			"link_to":"1/5/14",
 		}
 	],
 	"rail dictionary":[
 		{
 			"speed":"XXX",
 			"id_1":"ID_1",
-			"id_2":"ID_2"
+			"id_2":"ID_2",
 		},
 	]
 

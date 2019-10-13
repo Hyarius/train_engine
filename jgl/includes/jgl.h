@@ -7,8 +7,6 @@
 #include "jgl_enum.h"
 #include "jgl_data.h"
 #include "jgl_basics_functions.h"
-#include "jgl_file_handler.h"
-#include "jgl_log_handler.h"
 #include "jgl_vector.h"
 #include "jgl_color.h"
 #include "jgl_geometry.h"
@@ -29,6 +27,10 @@
 #include "jgl_value_entry.h"
 #include "jgl_check_box.h"
 #include "jgl_tab.h"
+
+#include "jgl_file_handler.h"
+#include "jgl_log_handler.h"
+#include "jgl_json_handler.h"
 
 #include "jgl_window.h"
 #include "jgl_draw_primitive.h"

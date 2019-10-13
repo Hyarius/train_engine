@@ -67,6 +67,8 @@ public:
 	void set_state(map_state new_state){_state = new_state;}
 
 	//Getter
+	vector<c_city *> &cities(){return (_cities);}
+	vector<c_milestone *> &milestones(){return (_milestones);}
 	map<pair<c_milestone *, c_milestone *>, c_rail *> &rails(){return (_rails);}
 	float zoom(){return (_zoom);}
 	Vector2 map_anchor(){return (_map_anchor);}
@@ -124,10 +126,6 @@ public:
 	void calc_duration();
 
 	/*---------------------*/
-	//Saving functions
-	void save_city(fstream &file, c_city *city);
-	void save_milestone(fstream &file, c_milestone *milestone);
-	void save_rail(fstream &file, pair<c_milestone *, c_milestone *> key, c_rail *rail);
 
 	//Load functions
 	void load_city(fstream file);
@@ -144,5 +142,10 @@ public:
 	bool handle_mouse();
 	void quit();
 };
+
+//Saving functions
+void save_city(Data data);
+void save_milestone(Data data);
+void save_rail(Data data);
 
 #endif
