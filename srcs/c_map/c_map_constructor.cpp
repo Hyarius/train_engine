@@ -56,7 +56,7 @@ void c_map::create_calib_button()
 	_unit_label->box().set_front(Color(195, 195, 195));
 	_unit_label->active();
 
-	_landmark_scale = new c_value_entry(1.0f, this);
+	_landmark_scale = new c_value_entry(_rel_distance, this);
 	_landmark_scale->entry().set_precision(0);
 	_landmark_scale->active();
 }
@@ -72,8 +72,7 @@ void c_map::create_landmark()
 c_map::c_map(string path, c_widget *parent) : c_widget(parent)
 {
 	_map = nullptr;
-	
-	reload_map(path);
+
 	_city_selected = nullptr;
 	_mile_selected = nullptr;
 	_rail_selected.clear();
@@ -82,7 +81,8 @@ c_map::c_map(string path, c_widget *parent) : c_widget(parent)
 	create_city_panel();
 	create_rail_panel();
 
+	create_landmark();
 	create_calib_button();
 
-	create_landmark();
+	reload_map(path);
 }

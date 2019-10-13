@@ -25,8 +25,10 @@ public:
 	void set_waiting_time(int new_waiting_time){_waiting_time = new_waiting_time;}
 	void set_milestone(class c_milestone* p_milestone) { _milestone = p_milestone; }
 	void set_name(string new_name){_name = new_name;}
+	void set_pos(Vector2 new_pos){_pos = new_pos;}
 	void draw();
 	void draw_name();
+	bool is_here(Vector2 p_pos);
 	bool clicked(Vector2 mouse);
 	void select(bool state);
 };

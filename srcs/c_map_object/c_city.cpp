@@ -2,16 +2,13 @@
 
 #define CITY_SIZE 7.0f
 
-int num = 0;
-
 c_city::c_city(c_map *p_map, Vector2 p_pos)
 {
 	_milestone = nullptr;
 	_map = p_map;
 	_pos = p_pos;
-	_name = "City " + to_string(num);
+	_name = "City";
 	_waiting_time = 5;
-	num++;
 	_selected = 1;
 	Vector2 tmp = Vector2(350, 300);
 }
@@ -25,6 +22,18 @@ c_city::~c_city()
 void c_city::select(bool state)
 {
 	_selected = (state == true ? 2 : 1);
+}
+
+bool c_city::is_here(Vector2 p_pos)
+{
+	Vector2 pos1, pos2, size1;
+
+	size1 = CITY_SIZE;
+	pos1 = _pos - size1 / 2;
+	pos2 = pos1 + size1;
+	if (p_pos.x < pos1.x || p_pos.x > pos2.x || p_pos.y < pos1.y || p_pos.y > pos2.y)
+		return (false);
+	return (true);
 }
 
 bool c_city::clicked(Vector2 mouse)

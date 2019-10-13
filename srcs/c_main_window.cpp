@@ -46,7 +46,7 @@ void c_main_window::create_map_panel()
 
 	map = new c_map("ressources/image/map_speed.png", map_box);
 
-	map->load_data("ressources/data/save/map_data.json");
+	map->load_map("ressources/data/save/map_data.json");
 
 	map->set_geometry(map_delta, map_size);
 	map->active();

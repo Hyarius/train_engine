@@ -128,8 +128,15 @@ public:
 	/*---------------------*/
 
 	//Load functions
-	void load_city(fstream file);
-	void load_data(string path);
+	void load_cities(fstream &file);
+	void load_milestones(fstream &file);
+	void load_rails(fstream &file);
+
+	void load_city(fstream &file);
+	void load_milestone(fstream &file);
+	void load_rail(fstream &file);
+
+	void load_map(string path);
 
 	/*---------------------*/
 	//Widget functions

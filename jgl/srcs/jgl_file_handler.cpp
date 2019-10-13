@@ -4,7 +4,7 @@ fstream				open_file(string path, ios_base::openmode mode)
 {
 	fstream myfile;
 	myfile.open(path, mode);
-	if (myfile.fail())
+	if (mode & ios_base::out && myfile.fail())
 		error_exit(1, "Error while creating a file at path : " + path);
 
 	return (myfile);

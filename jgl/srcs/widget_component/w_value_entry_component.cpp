@@ -41,6 +41,8 @@ void w_value_entry_component::calc_text_to_draw()
 			_text_to_draw += _text[i];
 			i++;
 		}
+
+
 	}
 }
 

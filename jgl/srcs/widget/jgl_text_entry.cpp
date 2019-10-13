@@ -22,6 +22,7 @@ void c_text_entry::set_geometry_imp(Vector2 p_anchor, Vector2 p_area)
 	_entry.set_area(p_area - _box.border() * 4);
 	_entry.set_anchor(p_anchor + _box.border() * 2);
 	_entry.calc_text_size_height(_entry.area());
+	_entry.calc_text_to_draw();
 }
 
 void c_text_entry::render()
