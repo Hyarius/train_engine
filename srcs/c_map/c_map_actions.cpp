@@ -121,6 +121,17 @@ void c_map::remove_milestone(c_milestone* to_remove)
 	}
 }
 
+void c_map::remove_rail(c_rail *rail)
+{
+	auto key = find_key<pair<c_milestone *, c_milestone *>, c_rail *>(_rails, rail);
+
+	if (key != _rails.end()->first)
+	{
+		key.first->remove_link(key.second);
+		_rails.erase(key);
+	}
+}
+
 c_city* c_map::check_city()
 {
 	for (size_t i = 0; i < _cities.size(); i++)

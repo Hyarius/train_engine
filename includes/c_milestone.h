@@ -16,7 +16,8 @@ public:
 	~c_milestone();
 
 	void add_link(class c_milestone* to_add);
-	void remove_link();
+	void remove_link(c_milestone *target);
+	void remove_links();
 
 	bool clicked(Vector2 mouse);
 	bool is_accesible(c_milestone *destination);

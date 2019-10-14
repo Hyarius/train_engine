@@ -87,9 +87,10 @@ public:
 	c_milestone *check_milestone();
 	c_city *check_city();
 
-		//Milestone part
+		//Rail part
 	void select_city(c_city *city);
 	void select_rail(c_rail *rail);
+	void remove_rail(c_rail *rail);
 
 		//Milestone part
 	c_milestone *add_milestone(c_city* p_city);

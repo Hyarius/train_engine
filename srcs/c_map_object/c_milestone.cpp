@@ -11,7 +11,7 @@ c_milestone::c_milestone(c_map *p_map, Vector2 p_pos, c_city* p_place)
 
 c_milestone::~c_milestone()
 {
-	remove_link();
+	remove_links();
 }
 
 bool c_milestone::is_accesible(c_milestone *destination)
@@ -47,31 +47,46 @@ void c_milestone::add_link(c_milestone* to_add)
 	}
 }
 
-void c_milestone::remove_link()
+void c_milestone::remove_link(c_milestone *target)
+{
+	if (target == nullptr)
+		return ;
+
+	auto it = find(_links_to.begin(), _links_to.end(), target);
+
+	if (it != _links_to.end())
+	{
+		_links_to.erase(it);
+
+		auto it2 = find(target->links_from().begin(), target->links_from().end(), this);
+
+		if (it2 != target->links_from().end())
+			target->links_from().erase(it2);
+	}
+}
+
+void c_milestone::remove_links()
 {
 	for (size_t i = 0; i < _links_from.size(); i++)
 	{
 		vector<c_milestone*> tmp = _links_from[i]->links_to();
 
-		auto it = find(tmp.begin(), tmp.end(), this);
+		auto it = find(_links_from[i]->links_to().begin(), _links_from[i]->links_to().end(), this);
 
-		if (it != tmp.end())
+		if (it != _links_from[i]->links_to().end())
 		{
 			_map->rails().erase(pair<c_milestone *, c_milestone *>(*it, this));
-			tmp.erase(it);
+			_links_from[i]->links_to().erase(it);
 		}
 	}
 	for (size_t i = 0; i < _links_to.size(); i++)
 	{
-		vector<c_milestone*> tmp = _links_to[i]->links_from();
+		auto it = find(_links_to[i]->links_from().begin(), _links_to[i]->links_from().end(), this);
 
-		auto it = find(tmp.begin(), tmp.end(), this);
-
-		if (it != tmp.end())
+		if (it != _links_to[i]->links_from().end())
 		{
 			_map->rails().erase(pair<c_milestone *, c_milestone *>(this, *it));
-			//_map->rails()[this][*it] = nullptr;
-			tmp.erase(it);
+			_links_to[i]->links_from().erase(it);
 		}
 	}
 }
@@ -105,9 +120,7 @@ void c_milestone::draw()
 	pos1 = _map->convert_to_screen_coord(_pos);
 
 	if (_pos != Vector2())
-	{
 		fill_centred_rectangle(_map->viewport(), p_color, pos1, size1);
-	}
 }
 
 void c_milestone::draw_link()
@@ -123,6 +136,10 @@ void c_milestone::draw_link()
 		if (_map->rails()[target] != nullptr)
 	 		_map->rails()[target]->poly()->set_pos(pos1);
 
+		c_milestone *tmp_mile = _links_to[i];
+		Vector2 tmp2 = tmp_mile->pos();
+		c_map *tmp_m = _map;
+
 		Vector2 pos2 = _map->convert_to_screen_coord(_links_to[i]->pos());
 
 		if (_map->rails()[target] != nullptr &&
@@ -132,5 +149,6 @@ void c_milestone::draw_link()
 		}
 		else
 			draw_line(_map->viewport(), Color(150, 255, 0), pos1, pos2, 3);
+
 	}
 }

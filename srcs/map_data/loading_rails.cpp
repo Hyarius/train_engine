@@ -57,6 +57,4 @@ void c_map::load_rails(fstream &file)
 		if (text == "{")
 			load_rail(file);
 	}
-
-	cout << "size : " << _rails.size() << endl;
 }

@@ -61,11 +61,14 @@ bool c_map::control_normal()
 	{
 		c_milestone* tmp_milestone = check_milestone();
 		c_city* tmp_city = check_city();
+		c_rail* tmp_rail = check_rail();
 
 		if (tmp_city != nullptr)
 			remove_city(tmp_city);
 		else if (tmp_milestone != nullptr)
 			remove_milestone(tmp_milestone);
+		else if (tmp_rail != nullptr)
+			remove_rail(tmp_rail);
 	}
 	return (false);
 }
