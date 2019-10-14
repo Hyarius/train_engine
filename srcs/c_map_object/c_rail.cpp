@@ -4,6 +4,8 @@ c_rail::c_rail(Vector2 pos1, Vector2 pos2)
 {
 	_speed = 145.0f;
 
+	_nb_channel = 1;
+
 	_state = false;
 
 	_poly = new Polygon2D(0);

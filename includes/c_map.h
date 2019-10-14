@@ -29,7 +29,7 @@ private:
 	vector<c_city*> _cities;
 	vector<c_milestone*> _milestones;
 	vector<c_milestone*> _path;
-	map<pair<c_milestone *, c_milestone *>, c_rail *> _rails;
+	map<pair_milestone, c_rail *> _rails;
 	//map<c_milestone *, map<c_milestone *, c_rail *> > _rails;
 
 	c_text_label *_unit_label;
@@ -40,6 +40,8 @@ private:
 	c_frame *_rail_panel;
 	c_text_label *_rail_speed_label;
 	c_value_entry *_rail_speed_entry;
+	c_text_label *_rail_nb_channel_label;
+	c_value_entry *_rail_nb_channel_entry;
 
 	c_frame *_city_panel;
 	c_text_label *_city_name_label;
@@ -69,7 +71,7 @@ public:
 	//Getter
 	vector<c_city *> &cities(){return (_cities);}
 	vector<c_milestone *> &milestones(){return (_milestones);}
-	map<pair<c_milestone *, c_milestone *>, c_rail *> &rails(){return (_rails);}
+	map<pair_milestone, c_rail *> &rails(){return (_rails);}
 	float zoom(){return (_zoom);}
 	Vector2 map_anchor(){return (_map_anchor);}
 

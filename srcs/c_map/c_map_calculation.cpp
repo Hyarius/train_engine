@@ -19,7 +19,7 @@ void c_map::calc_duration()
 
 	for (size_t i = 0; i < _path.size() - 1; i++)
 	{
-		pair<c_milestone *, c_milestone *> key = {_path[i], _path[i+1]};
+		pair_milestone key = {_path[i], _path[i+1]};
 		c_rail *rail = _rails[key];
 		total_time += ((_path[i]->pos().distance(_path[i + 1]->pos()) * _scale_unit) / rail->speed()) * 60;
 		if (i != 0 && _path[i]->place() != nullptr)

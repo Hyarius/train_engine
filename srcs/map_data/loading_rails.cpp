@@ -5,7 +5,8 @@ void c_map::load_rail(fstream &file)
 	c_rail *rail = nullptr;
 	c_milestone *first = nullptr;
 	c_milestone *second = nullptr;
-	float speed;
+	float speed = 180.0f;
+	int nb_channel = 1;
 	int i;
 	string text = "";
 	vector<string> tab;
@@ -22,6 +23,8 @@ void c_map::load_rail(fstream &file)
 
 			if (tab[0] == "speed")
 				speed = atof(tab[1].c_str());
+			if (tab[0] == "nb channel")
+				nb_channel = atof(tab[1].c_str());
 			else if (tab[0] == "id_a")
 			{
 				int index = atoi(tab[1].c_str());
@@ -41,8 +44,9 @@ void c_map::load_rail(fstream &file)
 
 	first->add_link(second);
 
-	pair<c_milestone *, c_milestone *> key = pair<c_milestone *, c_milestone *>(first, second);
+	pair_milestone key = pair_milestone(first, second);
 	_rails[key]->set_speed(speed);
+	_rails[key]->set_nb_channel(nb_channel);
 }
 
 void c_map::load_rails(fstream &file)

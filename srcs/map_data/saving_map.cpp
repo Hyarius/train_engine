@@ -22,15 +22,15 @@ void save_rail(Data data)
 {
 	fstream &file = *(data.acces<fstream *>(0));
 	c_map *map = data.acces<c_map *>(1);
-	pair<c_milestone *, c_milestone *> *key = data.acces<pair<c_milestone *, c_milestone *> *>(2);
+	pair_milestone *key = data.acces<pair_milestone *>(2);
 	c_rail *rail = *(data.acces<c_rail **>(3));
 
 	json_add_value(file, 3, "speed", ftoa(rail->speed(), 0));
+	json_add_value(file, 3, "nb channel", ftoa(rail->nb_channel(), 0));
 
 	auto it = find(map->milestones().begin(), map->milestones().end(), key->first);
 	size_t i = it - map->milestones().begin();
 	json_add_value(file, 3, "id_a", to_string(i));
-
 
 	it = find(map->milestones().begin(), map->milestones().end(), key->second);
 	i = it - map->milestones().begin();
@@ -49,7 +49,7 @@ void c_map::quit()
 	json_add_vector<c_city *>(file, 1, "cities", _cities, &save_city, &file);
 	json_add_vector<c_milestone *>(file, 1, "milestones", _milestones, &save_milestone, &file);
 
-	json_add_map<pair<c_milestone *, c_milestone *>, c_rail *>(file, 1, "rails", _rails, &save_rail, Data(2, &file, this));
+	json_add_map<pair_milestone, c_rail *>(file, 1, "rails", _rails, &save_rail, Data(2, &file, this));
 	// write_on_file(file, "\t\"rails\":[");
 	//
 	// auto final_iter = _rails.end();

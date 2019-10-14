@@ -16,34 +16,36 @@ c_milestone::~c_milestone()
 
 bool c_milestone::is_accesible(c_milestone *destination)
 {
-	for (size_t i = 0; i < _links_to.size(); i++)
-		if (_links_to[i] == destination)
-			return (true);
-	return (false);
+	auto key = pair_milestone(this, destination);
+
+	if (_map->rails().find(key) == _map->rails().end())
+		key = pair_milestone(destination, this);
+
+	if (_map->rails().find(key) == _map->rails().end())
+		return (false);
+
+	return (true);
 }
 
 void c_milestone::add_link(c_milestone* to_add)
 {
-	vector<c_milestone*>::iterator it;
-
 	if (to_add == this)
 		return ;
+
+	if (_map->rails().find(pair_milestone(this, to_add)) != _map->rails().end() ||
+		_map->rails().find(pair_milestone(to_add, this)) != _map->rails().end())
+		return ;
+
+	vector<c_milestone*>::iterator it;
 
 	it = find(_links_to.begin(), _links_to.end(), to_add);
 	if (it == _links_to.end())
 	{
 		_links_to.push_back(to_add);
 		to_add->links_from().push_back(this);
-		auto it2 = _map->rails().find(pair<c_milestone *, c_milestone *>(this, to_add));
+		auto it2 = _map->rails().find(pair_milestone(this, to_add));
 		if (it2 == _map->rails().end())
-		{
-			c_rail *rail;
-
-			rail = new c_rail(this->pos(), to_add->pos());
-
-			_map->rails()[pair<c_milestone *, c_milestone *>(this, to_add)] = rail;
-
-		}
+			_map->rails()[pair_milestone(this, to_add)] = new c_rail(this->pos(), to_add->pos());
 	}
 }
 
@@ -75,7 +77,7 @@ void c_milestone::remove_links()
 
 		if (it != _links_from[i]->links_to().end())
 		{
-			_map->rails().erase(pair<c_milestone *, c_milestone *>(*it, this));
+			_map->rails().erase(pair_milestone(*it, this));
 			_links_from[i]->links_to().erase(it);
 		}
 	}
@@ -85,7 +87,7 @@ void c_milestone::remove_links()
 
 		if (it != _links_to[i]->links_from().end())
 		{
-			_map->rails().erase(pair<c_milestone *, c_milestone *>(this, *it));
+			_map->rails().erase(pair_milestone(this, *it));
 			_links_to[i]->links_from().erase(it);
 		}
 	}
@@ -132,7 +134,7 @@ void c_milestone::draw_link()
 
 	for (size_t i = 0; i < _links_to.size(); i++)
 	{
-		auto target = pair<c_milestone *, c_milestone *>(this, _links_to[i]);
+		auto target = pair_milestone(this, _links_to[i]);
 		if (_map->rails()[target] != nullptr)
 	 		_map->rails()[target]->poly()->set_pos(pos1);
 

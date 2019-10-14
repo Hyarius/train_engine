@@ -48,4 +48,6 @@ namespace std
     };
 }
 
+typedef pair<c_milestone *, c_milestone *> pair_milestone;
+
 #endif

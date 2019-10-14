@@ -36,6 +36,12 @@ void c_map::set_geometry_rail_panel()
 	Vector2 entry_anchor = Vector2(10 + label_size.x, 0.0f) + label_anchor;
 	Vector2 entry_size = Vector2(panel_size.x - label_size.x - 20, label_size.y);//p_area.x / 4, p_area.y / 3);
 	_rail_speed_entry->set_geometry(entry_anchor, entry_size);
+
+	label_anchor.y += (5 + label_size.y);
+	_rail_nb_channel_label->set_geometry(label_anchor, label_size);
+
+	entry_anchor.y += (5 + label_size.y);
+	_rail_nb_channel_entry->set_geometry(entry_anchor, entry_size);
 }
 
 void c_map::set_geometry_imp(Vector2 p_anchor, Vector2 p_area)
@@ -113,7 +119,10 @@ void c_map::update()
 	if (_rail_selected.size() != 0)
 	{
 		for (size_t i = 0; i < _rail_selected.size(); i++)
+		{
 			_rail_selected[i]->set_speed(_rail_speed_entry->entry().value());
+			_rail_selected[i]->set_nb_channel(_rail_nb_channel_entry->entry().value());
+		}
 	}
 	if (_state == map_state::travel_definition)
 	{

@@ -61,15 +61,39 @@ static void start_calculation(Data data)
 void c_main_window::create_command_panel()
 {
 	int border = command_box->box().border();
-	Vector2 button_delta = border * 2;
+	Vector2 button_pos = border * 2;
 	Vector2 button_size = Vector2(command_box->box().area().x - border * 4,
-		(command_box->box().area().y - border * 4) / 2 - border);
+		(command_box->box().area().y - border * 3) / 2 - border);
 
 	start_button = new c_button(&start_calculation, map, command_box);
 	start_button->text().set_text("Start simulation");
 
-	start_button->set_geometry(button_delta, button_size);
+	start_button->set_geometry(button_pos, button_size);
 	start_button->active();
+
+	Vector2 hour_pos = button_pos + Vector2(0.0f, button_size.y + border);
+	Vector2 hour_size = button_size / Vector2(2, 1) - Vector2(border * 3, 0);
+
+	hour_entry = new c_value_entry(12.0f, command_box);
+	hour_entry->entry().set_align(alignment::centred);
+	hour_entry->set_geometry(hour_pos, hour_size);
+	hour_entry->active();
+
+	Vector2 label_pos = hour_pos + Vector2(hour_size.x - border * 3, 0.0f);
+	Vector2 label_size = Vector2(border * 12.0f, hour_size.y);
+
+	hour_separator = new c_text_label(":", command_box);
+	hour_separator->label().set_align(alignment::centred);
+	hour_separator->set_geometry(label_pos, label_size);
+	hour_separator->active();
+
+	Vector2 minute_pos = hour_pos + Vector2(hour_size.x + border * 6, 0.0f);
+	Vector2 minute_size = hour_size;
+
+	minute_entry = new c_value_entry(10.0f, command_box);
+	minute_entry->entry().set_align(alignment::centred);
+	minute_entry->set_geometry(minute_pos, minute_size);
+	minute_entry->active();
 }
 
 void c_main_window::create_config_panel()

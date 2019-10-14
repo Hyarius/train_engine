@@ -42,6 +42,15 @@ void c_map::create_rail_panel()
 	_rail_speed_entry->entry().set_precision(0);
 	_rail_speed_entry->entry().set_align(alignment::centred);
 	_rail_speed_entry->active();
+
+	_rail_nb_channel_label = new c_text_label("Nb channel :", _rail_panel);
+	_rail_nb_channel_label->label().set_style(text_style::underline);
+	_rail_nb_channel_label->active();
+
+	_rail_nb_channel_entry = new c_value_entry(1, _rail_panel);
+	_rail_nb_channel_entry->entry().set_precision(0);
+	_rail_nb_channel_entry->entry().set_align(alignment::centred);
+	_rail_nb_channel_entry->active();
 }
 
 void c_map::create_calib_button()

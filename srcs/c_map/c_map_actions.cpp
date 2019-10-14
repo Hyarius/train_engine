@@ -51,7 +51,10 @@ void c_map::select_rail(c_rail *rail)
 
 	_rail_panel->set_active(!(rail == nullptr));
 	if (_rail_selected.size() == 0 && rail != nullptr)
+	{
 		_rail_speed_entry->entry().set_value(rail->speed());
+		_rail_nb_channel_entry->entry().set_value(rail->nb_channel());
+	}
 
 	if (rail != nullptr)
 	{
@@ -105,7 +108,7 @@ void c_map::remove_city(c_city* to_remove)
 void c_map::remove_milestone(c_milestone* to_remove)
 {
 	vector<c_milestone*>::iterator it2;
-	vector<map<pair<c_milestone *, c_milestone *>, c_rail *>::iterator> array;
+	vector<map<pair_milestone, c_rail *>::iterator> array;
 	for (auto it = _rails.begin(); it != _rails.end(); it++)
 		if (it->first.first == to_remove || it->first.second == to_remove)
 			array.push_back(it);
@@ -123,7 +126,7 @@ void c_map::remove_milestone(c_milestone* to_remove)
 
 void c_map::remove_rail(c_rail *rail)
 {
-	auto key = find_key<pair<c_milestone *, c_milestone *>, c_rail *>(_rails, rail);
+	auto key = find_key<pair_milestone, c_rail *>(_rails, rail);
 
 	if (key != _rails.end()->first)
 	{
