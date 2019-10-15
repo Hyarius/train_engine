@@ -19,9 +19,7 @@ private:
 
 	// - Command
 	c_button *start_button;
-	c_value_entry *hour_entry;
-	c_text_label *hour_separator;
-	c_value_entry *minute_entry;
+	c_hour_entry *hour_entry;
 
 	// - Config
 
