@@ -45,7 +45,11 @@ void c_milestone::add_link(c_milestone* to_add)
 		to_add->links_from().push_back(this);
 		auto it2 = _map->rails().find(pair_milestone(this, to_add));
 		if (it2 == _map->rails().end())
-			_map->rails()[pair_milestone(this, to_add)] = new c_rail(this->pos(), to_add->pos());
+		{
+			c_rail *rail = new c_rail(this->pos(), to_add->pos());
+			_map->rails()[pair_milestone(this, to_add)] = rail;
+			_map->rails()[pair_milestone(to_add, this)] = rail;
+		}
 	}
 }
 
@@ -147,10 +151,10 @@ void c_milestone::draw_link()
 		if (_map->rails()[target] != nullptr &&
 			_map->rails()[target]->state() == true)
 		{
-			draw_line(_map->viewport(), Color(0, 150, 255), pos1, pos2, 6);
+			draw_line(_map->viewport(), Color(42, 10, 168), pos1, pos2, 8);
 		}
 		else
-			draw_line(_map->viewport(), Color(150, 255, 0), pos1, pos2, 3);
+			draw_line(_map->viewport(), Color(202, 199, 212), pos1, pos2, 4);
 
 	}
 }

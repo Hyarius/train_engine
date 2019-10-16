@@ -34,6 +34,6 @@ void c_tileset::draw(c_viewport *viewport, int id, Vector2 pos, Vector2 size)
 		};
 	SDL_Rect src = {
 			static_cast<int>(sprites[id].x), static_cast<int>(sprites[id].y),
-			static_cast<int>(sprites[id].x + unit.x), static_cast<int>(sprites[id].y + unit.y)};
+			static_cast<int>(unit.x), static_cast<int>(unit.y)};
 	SDL_RenderCopyEx(viewport->renderer(), image.texture(), &src, &dest, 0, NULL, SDL_FLIP_NONE);
 }

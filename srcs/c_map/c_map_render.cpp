@@ -13,8 +13,6 @@ void c_map::render()
 	if (_landmark2 != Vector2())
 		fill_centred_rectangle(_viewport, Color(0, 255, 0), convert_to_screen_coord(_landmark2), LANDMARK_SIZE * _zoom);
 
-	for (size_t i = 0; i < _cities.size(); i++)
-		_cities[i]->draw();
 
 	for (size_t i = 0; i < _milestones.size(); i++)
 		_milestones[i]->draw();
@@ -24,4 +22,10 @@ void c_map::render()
 
 	for (size_t i = 0; i < _cities.size(); i++)
 		_cities[i]->draw_name();
+
+	if (_journey != nullptr)
+		_journey->draw();
+
+	for (size_t i = 0; i < _cities.size(); i++)
+		_cities[i]->draw();
 }

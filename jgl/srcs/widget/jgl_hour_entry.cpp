@@ -146,13 +146,15 @@ bool c_hour_entry::handle_keyboard()
 
 	if (g_application->event()->type == SDL_TEXTINPUT)
 	{
+		static char last_char = '\0';
 		Uint32 time = SDL_GetTicks();
-		if (g_application->event()->text.text[0] != _entry->text()[_entry->cursor() - 1] ||
+		if (g_application->event()->text.text[0] != last_char ||
 			time >= _next_input)
 		{
 			string text = g_application->event()->text.text;
 			string text_content;
 			text_content = string(text.begin(), text.end());
+			last_char = text_content[0];
 			_entry->change_text(text_content);
 			_next_input = time + _input_delay;
 		}

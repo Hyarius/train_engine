@@ -48,7 +48,7 @@ all:
 				make $(NAME)
 
 install:
-				make install -C "jg"
+				make install -C jgl
 
 re-jgl:
 				make re -C jgl
@@ -56,7 +56,7 @@ re-jgl:
 jgl:
 				make -C jgl
 
-$(NAME):		jgl $(OBJ) $(INC_DIR)
+$(NAME):		jgl $(OBJ)
 				@echo "Compiling $(NAME) ...\c"
 				@$(CC) $(CFLAGS) $(IFLAGS) -o $(NAME) $(OBJ) $(LFLAGS)
 				@echo " DONE"

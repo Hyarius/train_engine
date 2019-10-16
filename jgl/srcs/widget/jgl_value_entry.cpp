@@ -7,7 +7,7 @@ c_value_entry::c_value_entry(float p_value, c_widget *p_parent) : c_widget(p_par
 
 	_select = false;
 	_next_input = 0;
-	_input_delay = 100;
+	_input_delay = 150;
 }
 
 c_value_entry::~c_value_entry()
@@ -85,13 +85,15 @@ bool c_value_entry::handle_keyboard()
 
 	if (g_application->event()->type == SDL_TEXTINPUT)
 	{
+		static char last_char = '\0';
 		Uint32 time = SDL_GetTicks();
-		if (g_application->event()->text.text[0] != _entry.text()[_entry.cursor() - 1] ||
+		if (g_application->event()->text.text[0] != last_char ||
 			time >= _next_input)
 		{
 			string text = g_application->event()->text.text;
 			string text_content;
 			text_content = string(text.begin(), text.end());
+			last_char = text_content[0];
 			_entry.add_text(text_content);
 			_next_input = time + _input_delay;
 		}

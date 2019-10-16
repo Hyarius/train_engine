@@ -5,6 +5,7 @@
 #include "c_city.h"
 #include "c_milestone.h"
 #include "c_rail.h"
+#include "c_journey.h"
 
 enum map_state
 {
@@ -18,6 +19,7 @@ class c_map : public c_widget
 private:
 	string _map_path;
 	c_image *_map;
+	c_tileset *_point_image;
 	Vector2 _map_anchor;
 	float _zoom;
 	float _scale_unit;
@@ -28,7 +30,7 @@ private:
 
 	vector<c_city*> _cities;
 	vector<c_milestone*> _milestones;
-	vector<c_milestone*> _path;
+	c_journey *_journey;
 	map<pair_milestone, c_rail *> _rails;
 	//map<c_milestone *, map<c_milestone *, c_rail *> > _rails;
 
@@ -69,6 +71,7 @@ public:
 	void set_state(map_state new_state){_state = new_state;}
 
 	//Getter
+	c_tileset *point_image(){return (_point_image);}
 	vector<c_city *> &cities(){return (_cities);}
 	vector<c_milestone *> &milestones(){return (_milestones);}
 	map<pair_milestone, c_rail *> &rails(){return (_rails);}
@@ -110,7 +113,7 @@ public:
 
 	/*---------------------*/
 	//Control
-	void control_city_creation();
+	void control_city_creation(c_city* city);
 	void control_milestone_creation();
 	void control_rail_edition(c_rail *rail);
 
@@ -127,6 +130,7 @@ public:
 	/*---------------------*/
 	void start_calculation();
 	void calc_duration();
+	vector<c_milestone *> calc_path(c_milestone *start, c_milestone *target);
 
 	/*---------------------*/
 

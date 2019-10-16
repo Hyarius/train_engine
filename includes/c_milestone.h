@@ -8,6 +8,8 @@ private:
 	Vector2 _pos;
 	class c_city* _place;
 
+	float _distance;
+
 	vector<class c_milestone*> _links_to;
 	vector<class c_milestone*> _links_from;
 
@@ -22,10 +24,12 @@ public:
 	bool clicked(Vector2 mouse);
 	bool is_accesible(c_milestone *destination);
 
+	void set_distance(float p_distance) { _distance = p_distance; }
 	void set_pos(Vector2 p_pos) { _pos = p_pos; }
 	void set_place(class c_city* p_place) { _place = p_place; }
 	void set_map(class c_map* p_map) { _map = p_map; }
 
+	float &distance() { return (_distance); }
 	Vector2 &pos() { return (_pos); }
 	class c_city* place() { return (_place); }
 	class c_map* map() { return(_map); }

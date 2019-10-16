@@ -81,7 +81,9 @@ void c_map::create_landmark()
 c_map::c_map(string path, c_widget *parent) : c_widget(parent)
 {
 	_map = nullptr;
+	_point_image = new c_tileset("ressources/image/point_texture.png", Vector2(3, 1));
 
+	_journey = nullptr;
 	_city_selected = nullptr;
 	_mile_selected = nullptr;
 	_rail_selected.clear();

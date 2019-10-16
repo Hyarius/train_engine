@@ -1,12 +1,11 @@
 #include "engine.h"
 
-void c_map::control_city_creation()
+void c_map::control_city_creation(c_city* city)
 {
-	c_city* result = check_city();
-	if (result == nullptr)
+	if (city == nullptr)
 		add_city();
 	else
-		select_city(result);
+		select_city(city);
 }
 
 void c_map::control_rail_edition(c_rail *rail)
@@ -48,11 +47,12 @@ bool c_map::control_normal()
 			control_milestone_creation();
 		else if (g_mouse->motion == false)
 		{
+			c_city* city = check_city();
 			c_rail *rail = check_rail();
-			if (rail == nullptr)
-				control_city_creation();
-			else if (rail != nullptr)
+			if (city == nullptr && rail != nullptr)
 				control_rail_edition(rail);
+			else
+				control_city_creation(city);
 		}
 		_mile_selected = nullptr;
 		return (true);
