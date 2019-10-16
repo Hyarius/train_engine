@@ -38,6 +38,15 @@ void w_text_entry_component::add_text(string new_text)
 	calc_text_to_draw();
 }
 
+void w_text_entry_component::change_text(string new_text)
+{
+	for (size_t i = 0; i < new_text.size() && i + _cursor < _text.size(); i++)
+		_text[_cursor + i] = new_text[i];
+
+	_cursor++;
+	calc_text_to_draw();
+}
+
 void w_text_entry_component::remove_text()
 {
 	if (_cursor > 0 && _text.size() != 0)

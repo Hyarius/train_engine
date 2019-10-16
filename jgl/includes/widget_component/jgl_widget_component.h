@@ -20,6 +20,8 @@ public:
 	Vector2 	&area(){return (_area);}
 	Vector2		owner_anchor();
 
+	bool is_pointed(Vector2 point);
+
 	virtual void render(c_viewport *viewport) = 0;
 };
 
@@ -160,6 +162,7 @@ public:
 	void 		calc_text_to_draw();
 	void 		move_cursor(int delta);
 	void 		add_text(string new_text);
+	void 		change_text(string new_text);
 	void 		remove_text();
 	void 		supp_text();
 
@@ -228,6 +231,7 @@ public:
 	void 		calc_text_to_draw();
 	void 		move_cursor(int delta);
 	void 		add_text(string new_text);
+	void 		change_text(string new_text);
 	void 		remove_text();
 	void 		supp_text();
 

@@ -6,6 +6,11 @@ c_hour_entry::c_hour_entry(float p_hour, float p_minute, c_widget *p_parent) : c
 	_label = w_text_component(this, ":");
 	_hour = w_value_entry_component(this, p_hour);
 	_minute = w_value_entry_component(this, p_minute);
+
+	_entry = nullptr;
+	_selected = false;
+	_next_input = 0;
+	_input_delay = 100;
 }
 
 c_hour_entry::~c_hour_entry()
@@ -44,20 +49,114 @@ void c_hour_entry::render()
 {
 	_box.render(_viewport);
 	_label.render(_viewport);
+
 	while (_hour.text().size() < 2)
 		_hour.set_text("0" + _hour.text());
 	_hour.render(_viewport);
+
 	while (_minute.text().size() < 2)
 		_minute.set_text("0" + _minute.text());
 	_minute.render(_viewport);
 }
 
+void c_hour_entry::round()
+{
+	_hour.set_value((int)(_hour.value()) % 24);
+	_minute.set_value((int)(_minute.value()) % 60);
+}
+
+void c_hour_entry::unselect()
+{
+	_selected = false;
+	_hour.set_selected(false);
+	_minute.set_selected(false);
+
+	round();
+
+	_entry = nullptr;
+}
+
+void c_hour_entry::select()
+{
+	if (_hour.is_pointed(g_mouse->pos) == true)
+	{
+		_selected = true;
+		_hour.set_selected(true);
+		_entry = &_hour;
+	}
+	else if (_minute.is_pointed(g_mouse->pos) == true)
+	{
+		_selected = true;
+		_minute.set_selected(true);
+		_entry = &_minute;
+	}
+}
+
 bool c_hour_entry::handle_mouse()
 {
+	if (g_mouse->get_button(mouse_button::left) == mouse_state::down)
+		unselect();
+
+	if (g_mouse->get_button(mouse_button::left) == mouse_state::up)
+	{
+		if (is_pointed(g_mouse->pos) == true)
+		{
+			select();
+			return (true);
+		}
+	}
 	return (false);
 }
 
 bool c_hour_entry::handle_keyboard()
 {
+	if (selected() == false || _entry == nullptr)
+		return (false);
+
+	if (g_keyboard->get_key(SDL_SCANCODE_RETURN))
+	{
+		unselect();
+		g_keyboard->reset_key(SDL_SCANCODE_RETURN);
+	}
+	else if (g_keyboard->get_key(SDL_SCANCODE_KP_ENTER))
+	{
+		unselect();
+		g_keyboard->reset_key(SDL_SCANCODE_KP_ENTER);
+	}
+	else if (g_keyboard->get_key(SDL_SCANCODE_LEFT))
+	{
+		_entry->move_cursor(-1);
+		g_keyboard->reset_key(SDL_SCANCODE_LEFT);
+	}
+	else if (g_keyboard->get_key(SDL_SCANCODE_RIGHT))
+	{
+		_entry->move_cursor(1);
+		g_keyboard->reset_key(SDL_SCANCODE_RIGHT);
+	}
+	else if (g_keyboard->get_key(SDL_SCANCODE_BACKSPACE))
+	{
+		_entry->remove_text();
+		g_keyboard->reset_key(SDL_SCANCODE_BACKSPACE);
+	}
+	else if (g_keyboard->get_key(SDL_SCANCODE_DELETE))
+	{
+		_entry->supp_text();
+		g_keyboard->reset_key(SDL_SCANCODE_DELETE);
+	}
+
+	if (g_application->event()->type == SDL_TEXTINPUT)
+	{
+		Uint32 time = SDL_GetTicks();
+		if (g_application->event()->text.text[0] != _entry->text()[_entry->cursor() - 1] ||
+			time >= _next_input)
+		{
+			string text = g_application->event()->text.text;
+			string text_content;
+			text_content = string(text.begin(), text.end());
+			_entry->change_text(text_content);
+			_next_input = time + _input_delay;
+		}
+	}
+
 	return (false);
 }

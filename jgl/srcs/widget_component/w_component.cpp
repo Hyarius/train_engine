@@ -9,17 +9,23 @@ w_component::w_component(class c_widget *p_owner)
 
 Vector2		w_component::owner_anchor()
 {
-	Vector2 result = Vector2(0, 0);
-	class c_widget *tmp;
+	if (_owner == nullptr || _owner->parent() == nullptr)
+		return (Vector2(0, 0));
 
-	tmp = _owner;
-
-	if (tmp == nullptr || tmp->parent() == nullptr)
-		return (result);
-
-	tmp = tmp->parent();
-
-	result = result + tmp->viewport()->anchor();
-
-	return (result);
+	return (_owner->parent()->viewport()->anchor());
 };
+
+
+bool w_component::is_pointed(Vector2 point)
+{
+	c_widget *tmp;
+	Vector2 pos1, pos2;
+
+	pos1 = _anchor;
+
+	pos2 = pos1 + _area;
+
+	if (point.x < pos1.x || point.x > pos2.x || point.y < pos1.y || point.y > pos2.y)
+		return (false);
+	return (true);
+}

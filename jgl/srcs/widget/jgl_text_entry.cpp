@@ -57,6 +57,11 @@ bool c_text_entry::handle_keyboard()
 		unselect();
 		g_keyboard->reset_key(SDL_SCANCODE_RETURN);
 	}
+	else if (g_keyboard->get_key(SDL_SCANCODE_KP_ENTER))
+	{
+		unselect();
+		g_keyboard->reset_key(SDL_SCANCODE_KP_ENTER);
+	}
 	else if (g_keyboard->get_key(SDL_SCANCODE_LEFT))
 	{
 		_entry.move_cursor(-1);
