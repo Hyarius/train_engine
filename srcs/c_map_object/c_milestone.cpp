@@ -39,11 +39,11 @@ void c_milestone::add_link(c_milestone* to_add)
 
 	vector<c_milestone*>::iterator it;
 
-	it = find(_links_to.begin(), _links_to.end(), to_add);
-	if (it == _links_to.end())
+	it = find(_links.begin(), _links.end(), to_add);
+	if (it == _links.end())
 	{
-		_links_to.push_back(to_add);
-		to_add->links_from().push_back(this);
+		_links.push_back(to_add);
+		to_add->links().push_back(this);
 		auto it2 = _map->rails().find(pair_milestone(this, to_add));
 		if (it2 == _map->rails().end())
 		{
@@ -59,41 +59,31 @@ void c_milestone::remove_link(c_milestone *target)
 	if (target == nullptr)
 		return ;
 
-	auto it = find(_links_to.begin(), _links_to.end(), target);
+	auto it = find(_links.begin(), _links.end(), target);
 
-	if (it != _links_to.end())
+	if (it != _links.end())
 	{
-		_links_to.erase(it);
+		_links.erase(it);
 
-		auto it2 = find(target->links_from().begin(), target->links_from().end(), this);
+		auto it2 = find(target->links().begin(), target->links().end(), this);
 
-		if (it2 != target->links_from().end())
-			target->links_from().erase(it2);
+		if (it2 != target->links().end())
+			target->links().erase(it2);
 	}
 }
 
 void c_milestone::remove_links()
 {
-	for (size_t i = 0; i < _links_from.size(); i++)
+	for (size_t i = 0; i < _links.size(); i++)
 	{
-		vector<c_milestone*> tmp = _links_from[i]->links_to();
+		vector<c_milestone*> tmp = _links[i]->links();
 
-		auto it = find(_links_from[i]->links_to().begin(), _links_from[i]->links_to().end(), this);
+		auto it = find(_links[i]->links().begin(), _links[i]->links().end(), this);
 
-		if (it != _links_from[i]->links_to().end())
+		if (it != _links[i]->links().end())
 		{
 			_map->rails().erase(pair_milestone(*it, this));
-			_links_from[i]->links_to().erase(it);
-		}
-	}
-	for (size_t i = 0; i < _links_to.size(); i++)
-	{
-		auto it = find(_links_to[i]->links_from().begin(), _links_to[i]->links_from().end(), this);
-
-		if (it != _links_to[i]->links_from().end())
-		{
-			_map->rails().erase(pair_milestone(this, *it));
-			_links_to[i]->links_from().erase(it);
+			_links[i]->links().erase(it);
 		}
 	}
 }
@@ -142,17 +132,17 @@ void c_milestone::draw_link()
 
 	Vector2 pos1 = _map->convert_to_screen_coord(_pos);
 
-	for (size_t i = 0; i < _links_to.size(); i++)
+	for (size_t i = 0; i < _links.size(); i++)
 	{
-		auto target = pair_milestone(this, _links_to[i]);
+		auto target = pair_milestone(this, _links[i]);
 		if (_map->rails()[target] != nullptr)
 	 		_map->rails()[target]->poly()->set_pos(pos1);
 
-		c_milestone *tmp_mile = _links_to[i];
+		c_milestone *tmp_mile = _links[i];
 		Vector2 tmp2 = tmp_mile->pos();
 		c_map *tmp_m = _map;
 
-		Vector2 pos2 = _map->convert_to_screen_coord(_links_to[i]->pos());
+		Vector2 pos2 = _map->convert_to_screen_coord(_links[i]->pos());
 
 		if (_map->rails()[target] != nullptr &&
 			_map->rails()[target]->state() == true)

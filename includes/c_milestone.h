@@ -10,8 +10,7 @@ private:
 
 	float _distance;
 
-	vector<class c_milestone*> _links_to;
-	vector<class c_milestone*> _links_from;
+	vector<class c_milestone*> _links;
 
 public:
 	c_milestone(class c_map* p_map, Vector2 p_pos, class c_city *p_place = nullptr);
@@ -33,8 +32,7 @@ public:
 	Vector2 &pos() { return (_pos); }
 	class c_city* place() { return (_place); }
 	class c_map* map() { return(_map); }
-	vector<class c_milestone*> &links_to() { return (_links_to); }
-	vector<class c_milestone*> &links_from() { return (_links_from); }
+	vector<class c_milestone*> &links() { return (_links); }
 
 	void draw();
 	void draw_link();
