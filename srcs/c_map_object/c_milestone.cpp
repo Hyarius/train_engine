@@ -7,6 +7,7 @@ c_milestone::c_milestone(c_map *p_map, Vector2 p_pos, c_city* p_place)
 	_map = p_map;
 	_pos = p_pos;
 	_place = p_place;
+	_distance = numeric_limits<float>::max();
 }
 
 c_milestone::~c_milestone()
@@ -127,6 +128,11 @@ void c_milestone::draw()
 
 	if (_pos != Vector2())
 		fill_centred_rectangle(_map->viewport(), p_color, pos1, size1);
+
+	if (_distance != numeric_limits<float>::max())
+	{
+		draw_text(_map->viewport(), to_string(_distance), pos1 + Vector2(0, -15), 16, text_color::dark_red, text_style::normal);
+	}
 }
 
 void c_milestone::draw_link()
