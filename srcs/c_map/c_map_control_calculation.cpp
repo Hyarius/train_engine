@@ -21,7 +21,7 @@ bool c_map::control_travel_definition()
 		if (target_milestone != nullptr)
 		{
 			if (_journey->path().size() == 0)
-				_journey->path().push_back(target_milestone);
+				_journey->add_point(target_milestone, pair_int(0, 0));
 			else if (find(_journey->path().begin(), _journey->path().end(), target_milestone) == _journey->path().end())
 			{
 				c_milestone *actual = _journey->path().back();
@@ -32,12 +32,12 @@ bool c_map::control_travel_definition()
 				{
 					vector<c_milestone *> tmp_path = calc_path(actual, target_milestone);
 
-					cout << "Size : " << tmp_path.size() << endl;
+					for (int i = tmp_path.size() - 1; i >= 0; i--)
+						_journey->add_point(tmp_path[i]);
 
-					for (size_t i = 1; i < tmp_path.size(); i++)
-						_journey->path().push_back(tmp_path[i]);
 				}
 			}
+			_journey->actualize_panel();
 		}
 
 		if (_journey->path().size() >= 2)

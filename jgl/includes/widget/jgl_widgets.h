@@ -22,7 +22,7 @@ public:
 
 	vector<c_widget *> childrens(){return (_childrens);}
 	c_widget *parent(){return (_parent);}
-	Vector2 size(){return (_viewport->size());}
+	Vector2 area(){return (_viewport->area());}
 	Vector2 anchor(){return (_viewport->anchor());}
 	c_viewport *viewport(){return (_viewport);}
 
@@ -37,6 +37,8 @@ public:
 	void update_children();
 	void render_children();
 	void quit_children();
+	void set_anchor(Vector2 p_anchor){_viewport->set_anchor(p_anchor);}
+	void set_area(Vector2 p_area){_viewport->set_area(p_area);}
 	void set_geometry(Vector2 p_anchor, Vector2 p_area);
 
 

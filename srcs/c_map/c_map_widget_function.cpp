@@ -47,7 +47,7 @@ void c_map::set_geometry_rail_panel()
 void c_map::set_geometry_imp(Vector2 p_anchor, Vector2 p_area)
 {
 	Vector2 button_size = Vector2(150, 30);
-	Vector2 button_pos = this->size() - 5 - button_size;
+	Vector2 button_pos = this->area() - 5 - button_size;
 	_calib_button->set_geometry(button_pos, button_size);
 
 	button_pos.y -= 35;

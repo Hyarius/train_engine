@@ -13,6 +13,6 @@ w_box_component::w_box_component(c_widget *p_owner) :
 
 void w_box_component::render(c_viewport *viewport)
 {
-	fill_rectangle(viewport, _back + _delta, _anchor - viewport->anchor(), viewport->size());
-	fill_rectangle(viewport, _front + _delta, _anchor - viewport->anchor() + _border, viewport->size() - _border * 2);
+	fill_rectangle(viewport, _back + _delta, _anchor - viewport->anchor(), viewport->area());
+	fill_rectangle(viewport, _front + _delta, _anchor - viewport->anchor() + _border, viewport->area() - _border * 2);
 }

@@ -43,6 +43,8 @@ void c_hour_entry::set_geometry_imp(Vector2 p_anchor, Vector2 p_area)
 	_minute.calc_text_size_height(_minute.area());
 	_minute.calc_text_to_draw();
 	_minute.set_anchor(minute_pos);
+
+	round();
 }
 
 void c_hour_entry::render()
@@ -50,12 +52,7 @@ void c_hour_entry::render()
 	_box.render(_viewport);
 	_label.render(_viewport);
 
-	while (_hour.text().size() < 2)
-		_hour.set_text("0" + _hour.text());
 	_hour.render(_viewport);
-
-	while (_minute.text().size() < 2)
-		_minute.set_text("0" + _minute.text());
 	_minute.render(_viewport);
 }
 
@@ -63,6 +60,17 @@ void c_hour_entry::round()
 {
 	_hour.set_value((int)(_hour.value()) % 24);
 	_minute.set_value((int)(_minute.value()) % 60);
+
+	while (_hour.text().size() < 2)
+		_hour.set_text("0" + _hour.text());
+
+	while (_minute.text().size() < 2)
+		_minute.set_text("0" + _minute.text());
+
+	_minute.set_cursor(0);
+	_hour.set_cursor(0);
+	_minute.calc_text_to_draw();
+	_hour.calc_text_to_draw();
 }
 
 void c_hour_entry::unselect()

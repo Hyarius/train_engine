@@ -76,7 +76,7 @@ bool c_widget::is_pointed(Vector2 point)
 
 	pos1 = _viewport->anchor();
 
-	pos2 = pos1 + _viewport->size();
+	pos2 = pos1 + _viewport->area();
 	if (point.x < pos1.x || point.x > pos2.x || point.y < pos1.y || point.y > pos2.y)
 		return (false);
 	return (true);

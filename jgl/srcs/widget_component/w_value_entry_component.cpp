@@ -75,13 +75,8 @@ void w_value_entry_component::change_text(string new_text)
 	if (string_is_numeric(new_text) == false)
 		return ;
 
-	if (_value == 0.0f && _cursor == 0)
-		_text = new_text;
-	else
-	{
-		for (size_t i = 0; i < new_text.size() && i + _cursor < _text.size(); i++)
-			_text[_cursor + i] = new_text[i];
-	}
+	for (size_t i = 0; i < new_text.size() && i + _cursor < _text.size(); i++)
+		_text[_cursor + i] = new_text[i];
 
 	calc_value();
 	_cursor++;

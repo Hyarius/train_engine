@@ -9,6 +9,8 @@ bool c_map::control_mouvement()
 		if (g_mouse->rel_pos != Vector2(0, 0))
 		{
 			_map_anchor = _map_anchor + g_mouse->rel_pos;
+			if (_journey != nullptr)
+				_journey->actualize_panel();
 			return (true);
 		}
 	}
@@ -32,6 +34,9 @@ bool c_map::control_zoom()
 
 		_map_anchor.x = (_map->size().x * _zoom) / ratio_x;
 		_map_anchor.y = (_map->size().y * _zoom) / ratio_y;
+
+		if (_journey != nullptr)
+			_journey->actualize_panel();
 
 		return (true);
 	}

@@ -40,12 +40,14 @@ void reverse(string &base)
 
 string intToStr(int x, int d)
 {
+	char c;
 	string result;
 
     int i = 0;
     while (x)
     {
-        result.push_back((x % 10) + '0');
+		c = (x % 10) + '0';
+        result.push_back(c);
         x = x/10;
 		i++;
     }
@@ -65,14 +67,22 @@ string intToStr(int x, int d)
 string ftoa(float n, int afterpoint)
 {
 	string result;
-    // Extract integer part
+
+	if (n == 0)
+		return ("0");
+
+	if (n < 0)
+	{
+		result.append("-");
+		n = -n;
+	}
+
     int ipart = (int)n;
 
-    // Extract floating part
     float fpart = n - (float)ipart;
 
     // convert integer part to string
-    result = intToStr(ipart, 0);
+    result.append(intToStr(ipart, 0));
 
     // check for display option after point
     if (afterpoint != 0 && fpart != 0.0f)

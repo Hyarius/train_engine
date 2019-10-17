@@ -11,16 +11,17 @@ private:
 	c_map *_map;
 
 	vector<c_milestone *> _path;
-	vector<pair_int> _schedule;
+	vector<c_hour_entry *> _hour_panel;
 
 public:
 	c_journey(c_map *p_map);
 
 	vector<c_milestone *> &path(){return (_path);}
-	vector<pair_int> &schedule(){return (_schedule);}
+	vector<c_hour_entry *> &hour_panel(){return (_hour_panel);}
 
-	void add_point(c_milestone *new_point, pair_int new_point_shedule = pair_int(-1, -1));
+	void add_point(c_milestone *new_point, pair_int p_hour = pair_int(10, 10));
 
+	void actualize_panel();
 	void draw();
 };
 

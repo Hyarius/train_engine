@@ -96,7 +96,7 @@ bool c_milestone::clicked(Vector2 mouse)
 	Vector2 pos1, pos2, size1;
 
 	size1 = MILE_SIZE * _map->zoom();
-	pos1 = _map->anchor() + _map->map_anchor() + _map->size() / 2 + _pos * _map->zoom() - size1 / 2;
+	pos1 = _map->anchor() + _map->map_anchor() + _map->area() / 2 + _pos * _map->zoom() - size1 / 2;
 	pos2 = pos1 + size1;
 
 	if (mouse.x < pos1.x || mouse.x > pos2.x || mouse.y < pos1.y || mouse.y > pos2.y)
@@ -118,11 +118,6 @@ void c_milestone::draw()
 
 	if (_pos != Vector2())
 		fill_centred_rectangle(_map->viewport(), p_color, pos1, size1);
-
-	if (_distance != numeric_limits<float>::max())
-	{
-		draw_text(_map->viewport(), to_string(_distance), pos1 + Vector2(0, -15), 16, text_color::dark_red, text_style::normal);
-	}
 }
 
 void c_milestone::draw_link()

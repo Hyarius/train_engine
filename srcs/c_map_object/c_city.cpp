@@ -44,7 +44,7 @@ bool c_city::clicked(Vector2 mouse)
 	Vector2 pos1, pos2, size1;
 
 	size1 = CITY_SIZE * _map->zoom() * _selected + CITY_SIZE;
-	pos1 = _map->anchor() + _map->map_anchor() + _map->size() / 2 + _pos * _map->zoom() - size1 / 2;
+	pos1 = _map->anchor() + _map->map_anchor() + _map->area() / 2 + _pos * _map->zoom() - size1 / 2;
 	pos2 = pos1 + size1;
 	if (mouse.x < pos1.x || mouse.x > pos2.x || mouse.y < pos1.y || mouse.y > pos2.y)
 		return (false);

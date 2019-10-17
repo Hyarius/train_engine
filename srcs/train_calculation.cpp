@@ -9,21 +9,25 @@ static void reset_distance(vector<c_milestone *> &to_clean)
 static vector<c_milestone *> calc_shortest_path(c_milestone *target)
 {
 	vector<c_milestone *> result;
-	vector<c_milestone *> to_calc;
 
 	result.clear();
-	to_calc.clear();
-	to_calc.push_back(target);
+	result.push_back(target);
 
-	for (size_t i = 0; i < to_calc.size(); i++)
+	for (size_t i = 0; i < result.size(); i++)
 	{
+
 		c_milestone *next = nullptr;
-		vector<c_milestone *> links = to_calc[i]->links();
+		vector<c_milestone *> links = result[i]->links();
 
 		for (size_t j = 0; j < links.size(); j++)
-		{
-			
-		}
+			if (next == nullptr || links[j]->distance() < next->distance())
+				next = links[j];
+
+		if (next->distance() == 0)
+			break;
+
+		if (next != nullptr)
+			result.push_back(next);
 	}
 
 	return (result);
