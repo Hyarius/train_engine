@@ -3,7 +3,7 @@
 static void reset_distance(vector<c_milestone *> &to_clean)
 {
 	for (size_t i = 0; i < to_clean.size(); i++)
-		to_clean[i]->set_distance(999);//numeric_limits<float>::max());
+		to_clean[i]->set_distance(numeric_limits<float>::max());
 }
 
 static vector<c_milestone *> calc_shortest_path(c_milestone *target)
@@ -11,6 +11,10 @@ static vector<c_milestone *> calc_shortest_path(c_milestone *target)
 	vector<c_milestone *> result;
 
 	result.clear();
+
+	if (target->distance() == numeric_limits<float>::max())
+		return (result);
+
 	result.push_back(target);
 
 	for (size_t i = 0; i < result.size(); i++)
@@ -42,17 +46,20 @@ static void calc_distance(c_milestone *start)
 
 	for (size_t i = 0; i < to_calc.size(); i++)
 	{
-		float base_distance = to_calc[i]->distance();
-		vector<c_milestone *> links = to_calc[i]->links();
-
-		for (size_t j = 0; j < links.size(); j++)
+		if (to_calc[i]->linked() == false || to_calc[i]->distance() == 0)
 		{
-			float tmp = base_distance + to_calc[i]->pos().distance(links[j]->pos());
+			float base_distance = to_calc[i]->distance();
+			vector<c_milestone *> links = to_calc[i]->links();
 
-			if (tmp < links[j]->distance())
+			for (size_t j = 0; j < links.size(); j++)
 			{
-				to_calc.push_back(links[j]);
-				links[j]->set_distance(tmp);
+				float tmp = base_distance + to_calc[i]->pos().distance(links[j]->pos());
+
+				if (tmp < links[j]->distance())
+				{
+					to_calc.push_back(links[j]);
+					links[j]->set_distance(tmp);
+				}
 			}
 		}
 	}

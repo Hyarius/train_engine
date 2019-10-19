@@ -133,12 +133,29 @@ bool c_hour_entry::handle_keyboard()
 	}
 	else if (g_keyboard->get_key(SDL_SCANCODE_LEFT))
 	{
-		_entry->move_cursor(-1);
+		if (_entry == &_minute && _entry->cursor() == 0)
+		{
+			_minute.set_selected(false);
+			_hour.set_selected(true);
+			_entry = &_hour;
+			_entry->set_cursor(1);
+		}
+		else
+			_entry->move_cursor(-1);
 		g_keyboard->reset_key(SDL_SCANCODE_LEFT);
 	}
 	else if (g_keyboard->get_key(SDL_SCANCODE_RIGHT))
 	{
-		_entry->move_cursor(1);
+		if (_entry == &_hour && _entry->cursor() == 1)
+		{
+			_hour.set_selected(false);
+			_minute.set_selected(true);
+			_entry = &_minute;
+			_entry->set_cursor(0);
+		}
+		else
+			_entry->move_cursor(1);
+
 		g_keyboard->reset_key(SDL_SCANCODE_RIGHT);
 	}
 	else if (g_keyboard->get_key(SDL_SCANCODE_BACKSPACE))
@@ -163,7 +180,16 @@ bool c_hour_entry::handle_keyboard()
 			string text_content;
 			text_content = string(text.begin(), text.end());
 			last_char = text_content[0];
-			_entry->change_text(text_content);
+			if (_entry == &_hour && _entry->cursor() == 1)
+			{
+				_entry->change_text(text_content);
+				_hour.set_selected(false);
+				_minute.set_selected(true);
+				_entry = &_minute;
+				_entry->set_cursor(0);
+			}
+			else
+				_entry->change_text(text_content);
 			_next_input = time + _input_delay;
 		}
 	}

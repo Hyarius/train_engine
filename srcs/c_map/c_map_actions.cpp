@@ -1,5 +1,14 @@
 #include "engine.h"
 
+void c_map::create_new_path()
+{
+	_state = map_state::travel_definition;
+	if (_journey != nullptr)
+		delete _journey;
+
+	_journey = new c_journey();
+}
+
 void c_map::place_landmark(Vector2 new_pos, int index)
 {
 	if (index == -1)
@@ -67,7 +76,7 @@ void c_map::select_rail(c_rail *rail)
 c_milestone *c_map::add_milestone(c_city* p_city)
 {
 	Vector2 pos = convert_to_map_coord(g_mouse->pos);
-	c_milestone* new_milestone = new c_milestone(this, pos, p_city);
+	c_milestone* new_milestone = new c_milestone(pos, p_city);
 
 	_milestones.push_back(new_milestone);
 
@@ -81,7 +90,7 @@ c_city *c_map::add_city()
 {
 	Vector2 pos = convert_to_map_coord(g_mouse->pos);
 
-	c_city *new_city = new c_city(this, pos);
+	c_city *new_city = new c_city(pos);
 	_cities.push_back(new_city);
 
 	add_milestone(new_city);

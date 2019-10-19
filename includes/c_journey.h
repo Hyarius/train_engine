@@ -8,18 +8,18 @@ typedef pair<int, int> pair_int;
 class c_journey
 {
 private:
-	c_map *_map;
-
 	vector<c_milestone *> _path;
 	vector<c_hour_entry *> _hour_panel;
 
 public:
-	c_journey(c_map *p_map);
+	c_journey();
+
+	~c_journey();
 
 	vector<c_milestone *> &path(){return (_path);}
 	vector<c_hour_entry *> &hour_panel(){return (_hour_panel);}
 
-	void add_point(c_milestone *new_point, pair_int p_hour = pair_int(10, 10));
+	void add_point(c_milestone *new_point, pair_int p_hour = pair_int(0, 0));
 
 	void actualize_panel();
 	void draw();

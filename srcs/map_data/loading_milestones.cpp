@@ -25,7 +25,7 @@ void c_map::load_milestone(fstream &file)
 				float value[2];
 				for (int i = 0; i < 2; i++)
 					value[i] = atof(sub_tab[i].c_str());
-				milestone = new c_milestone(this, Vector2(value[0], value[1]));
+				milestone = new c_milestone(Vector2(value[0], value[1]));
 
 				for (size_t v = 0; v < _cities.size(); v++)
 				{

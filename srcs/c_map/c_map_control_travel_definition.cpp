@@ -33,9 +33,15 @@ bool c_map::control_travel_definition()
 					vector<c_milestone *> tmp_path = calc_path(actual, target_milestone);
 
 					for (int i = tmp_path.size() - 1; i >= 0; i--)
-						_journey->add_point(tmp_path[i]);
+					{
+						if (find(_journey->path().begin(), _journey->path().end(), tmp_path[i]) == _journey->path().end())
+							_journey->add_point(tmp_path[i]);
+						else
+							break;
+					}
 
 				}
+
 			}
 			_journey->actualize_panel();
 		}

@@ -2,10 +2,9 @@
 
 #define CITY_SIZE 11.0f
 
-c_city::c_city(c_map *p_map, Vector2 p_pos)
+c_city::c_city(Vector2 p_pos)
 {
 	_milestone = nullptr;
-	_map = p_map;
 	_pos = p_pos;
 	_name = "City";
 	_waiting_time = 5;
@@ -38,13 +37,11 @@ bool c_city::is_here(Vector2 p_pos)
 
 bool c_city::clicked(Vector2 mouse)
 {
-	if (_map == nullptr)
-		return false;
 
 	Vector2 pos1, pos2, size1;
 
-	size1 = CITY_SIZE * _map->zoom() * _selected + CITY_SIZE;
-	pos1 = _map->anchor() + _map->map_anchor() + _map->area() / 2 + _pos * _map->zoom() - size1 / 2;
+	size1 = CITY_SIZE * g_map->zoom() * _selected + CITY_SIZE;
+	pos1 = g_map->anchor() + g_map->map_anchor() + g_map->area() / 2 + _pos * g_map->zoom() - size1 / 2;
 	pos2 = pos1 + size1;
 	if (mouse.x < pos1.x || mouse.x > pos2.x || mouse.y < pos1.y || mouse.y > pos2.y)
 		return (false);
@@ -56,32 +53,26 @@ void c_city::draw()
 	static Color select_color = Color(55, 55, 255);
 	static Color unselect_color = Color(255, 55, 55);
 
-	if (_map == nullptr)
-		return;
-
 	Vector2 pos1, size1;
-	size1 = CITY_SIZE * _map->zoom() * _selected;
-	pos1 = _map->convert_to_screen_coord(_pos);
+	size1 = CITY_SIZE * g_map->zoom() * _selected;
+	pos1 = g_map->convert_to_screen_coord(_pos);
 
 	if (_pos != Vector2())
 	{
-		_map->point_image()->draw(_map->viewport(), (_selected == 1 ? 1 : 2), pos1 - size1/2, size1);
-		//fill_centred_rectangle(_map->viewport(), (_selected == 1 ? unselect_color : select_color), pos1, size1);
+		g_map->point_image()->draw(g_map->viewport(), (_selected == 1 ? 1 : 2), pos1 - size1/2, size1);
+		//fill_centred_rectangle(g_map->viewport(), (_selected == 1 ? unselect_color : select_color), pos1, size1);
 	}
 }
 
 void c_city::draw_name()
 {
-	if (_map == nullptr)
-		return;
-
 	Vector2 pos1, size1;
-	size1 = CITY_SIZE * _map->zoom() * _selected;
-	pos1 = _map->convert_to_screen_coord(_pos);
+	size1 = CITY_SIZE * g_map->zoom() * _selected;
+	pos1 = g_map->convert_to_screen_coord(_pos);
 
 	if (_pos != Vector2())
 	{
-		int text_size = 8 * _map->zoom();
-		draw_centred_text(_map->viewport(), _name, pos1 + Vector2(0.0f, -size1.y * 1.5f), text_size * 2, text_color::grey, text_style::bold);
+		int text_size = 8 * g_map->zoom();
+		draw_centred_text(g_map->viewport(), _name, pos1 + Vector2(0.0f, -size1.y * 1.5f), text_size * 2, text_color::grey, text_style::bold);
 	}
 }

@@ -6,7 +6,6 @@
 class c_city
 {
 private:
-	class c_map *_map;
 	class c_milestone* _milestone;
 	string _name;
 	int _waiting_time;
@@ -14,7 +13,7 @@ private:
 	int _selected;
 
 public:
-	c_city(class c_map *p_map, Vector2 p_pos = Vector2());
+	c_city(Vector2 p_pos = Vector2());
 	~c_city();
 
 	class c_milestone* milestone() { return (_milestone); }

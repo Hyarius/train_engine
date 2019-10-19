@@ -16,7 +16,7 @@ void c_map::load_cities(fstream &file)
 
 void c_map::load_city(fstream &file)
 {
-	c_city *city = new c_city(this);
+	c_city *city = new c_city();
 	int i;
 	string text = "";
 	vector<string> tab;

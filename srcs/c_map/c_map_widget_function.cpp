@@ -73,7 +73,14 @@ bool c_map::handle_keyboard()
 	if (g_keyboard->get_key(SDL_SCANCODE_ESCAPE) == 1)
 	{
 		if (_state != map_state::normal)
+		{
 			_state = map_state::normal;
+			if (_journey != nullptr)
+			{
+				delete _journey;
+				_journey = nullptr;
+			}
+		}
 		else
 			g_application->quit();
 		g_keyboard->reset_key(SDL_SCANCODE_ESCAPE);

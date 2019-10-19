@@ -23,6 +23,11 @@ private:
 
 	// - Config
 
+	// - Travel
+	c_button *new_button;
+	c_button *save_button;
+	c_button *erase_button;
+
 public:
 	c_main_window();
 

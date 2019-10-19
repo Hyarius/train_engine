@@ -3,11 +3,6 @@
 void c_map::start_calculation()
 {
 	calc_distance_ratio();
-	_state = map_state::travel_definition;
-	if (_journey != nullptr)
-		delete _journey;
-
-	_journey = new c_journey(this);
 }
 
 void c_map::calc_duration()

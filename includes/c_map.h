@@ -7,6 +7,7 @@
 #include "c_rail.h"
 #include "c_journey.h"
 
+
 enum map_state
 {
 	normal = 0,
@@ -131,6 +132,7 @@ public:
 	void start_calculation();
 	void calc_duration();
 	vector<c_milestone *> calc_path(c_milestone *start, c_milestone *target);
+	void create_new_path();
 
 	/*---------------------*/
 
@@ -161,5 +163,7 @@ public:
 void save_city(Data data);
 void save_milestone(Data data);
 void save_rail(Data data);
+
+extern c_map *g_map;
 
 #endif
