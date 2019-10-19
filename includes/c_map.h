@@ -72,6 +72,7 @@ public:
 	void set_state(map_state new_state){_state = new_state;}
 
 	//Getter
+	c_journey *journey(){return (_journey);}
 	c_tileset *point_image(){return (_point_image);}
 	vector<c_city *> &cities(){return (_cities);}
 	vector<c_milestone *> &milestones(){return (_milestones);}
@@ -102,6 +103,8 @@ public:
 	c_milestone *add_milestone(c_city* p_city);
 	void remove_milestone(c_milestone* to_remove);
 	float milestone_distance(c_milestone *point_a, c_milestone *point_b);
+	size_t get_milestone_id(c_milestone *target);
+	c_milestone *get_milestone(size_t index);
 
 		//City part
 	c_city* add_city();

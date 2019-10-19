@@ -81,11 +81,14 @@ void c_main_window::create_config_panel()
 
 }
 
-
 static void new_path(Data data)
 {
-	c_map *map = (c_map *)(data.content[0]);
-	map->create_new_path();
+	g_map->create_new_path();
+}
+
+static void save_journey(Data data)
+{
+	saving_journey();
 }
 
 void c_main_window::create_travel_panel()
@@ -94,13 +97,13 @@ void c_main_window::create_travel_panel()
 	Vector2 pos = border * 2;
 	Vector2 size = Vector2((travel_box->box().area().x / 3) - border * 2, 40.0f);
 
-	new_button = new c_button(&new_path, map, travel_box);
+	new_button = new c_button(&new_path, nullptr, travel_box);
 	new_button->text().set_text("New trip");
 	new_button->set_geometry(pos, size);
 	new_button->active();
 
 	pos.x += size.x + border;
-	save_button = new c_button(nullptr, nullptr, travel_box);
+	save_button = new c_button(&save_journey, nullptr, travel_box);
 	save_button->text().set_text("Save trip");
 	save_button->set_geometry(pos, size);
 	save_button->active();

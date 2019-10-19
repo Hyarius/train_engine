@@ -28,20 +28,15 @@ void save_rail(Data data)
 	json_add_value(file, 3, "speed", ftoa(rail->speed(), 0));
 	json_add_value(file, 3, "nb channel", ftoa(rail->nb_channel(), 0));
 
-	auto it = find(map->milestones().begin(), map->milestones().end(), key->first);
-	size_t i = it - map->milestones().begin();
-	json_add_value(file, 3, "id_a", to_string(i));
-
-	it = find(map->milestones().begin(), map->milestones().end(), key->second);
-	i = it - map->milestones().begin();
-	json_add_value(file, 3, "id_b", to_string(i));
+	json_add_value(file, 3, "id_a", to_string(g_map->get_milestone_id(key->first)));
+	json_add_value(file, 3, "id_b", to_string(g_map->get_milestone_id(key->second)));
 }
 
 void c_map::quit()
 {
 	fstream file = open_file("ressources/data/save/map_data.json", ios_base::out);
 
-	json_add_line(file, 0, "", "{");
+	json_add_line(file, 0, "{");
 	json_add_value(file, 1, "map_image", _map_path);
 	json_add_value(file, 1, "landmarks", _landmark1.str() + "/" + _landmark2.str());
 	json_add_value(file, 1, "landmark_scale", ftoa(_rel_distance, 3));
@@ -50,6 +45,7 @@ void c_map::quit()
 	json_add_vector<c_milestone *>(file, 1, "milestones", _milestones, &save_milestone, &file);
 
 	json_add_map<pair_milestone, c_rail *>(file, 1, "rails", _rails, &save_rail, Data(2, &file, this));
+
 	// write_on_file(file, "\t\"rails\":[");
 	//
 	// auto final_iter = _rails.end();
@@ -66,5 +62,5 @@ void c_map::quit()
 	// 		write_on_file(file, "\t\t}");
 	// }
 	// write_on_file(file, "\t]");
-	write_on_file(file, "}");
+	json_add_line(file, 0, "}");
 }

@@ -90,6 +90,9 @@ bool c_map::handle_keyboard()
 
 bool c_map::handle_mouse()
 {
+	if (is_pointed(g_mouse->pos) == false)
+		return (false);
+		
 	if (_calib_button->is_pointed(g_mouse->pos) == true)
 		return (false);
 

@@ -19,6 +19,8 @@ public:
 	vector<c_milestone *> &path(){return (_path);}
 	vector<c_hour_entry *> &hour_panel(){return (_hour_panel);}
 
+	size_t get_index(c_milestone *target);
+
 	void add_point(c_milestone *new_point, pair_int p_hour = pair_int(0, 0));
 
 	void actualize_panel();

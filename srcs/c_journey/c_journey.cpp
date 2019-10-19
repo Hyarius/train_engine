@@ -13,6 +13,14 @@ c_journey::~c_journey()
 		delete _hour_panel[i];
 }
 
+size_t c_journey::get_index(c_milestone *target)
+{
+	auto it = find(_path.begin(), _path.end(), target);
+	size_t i = it - _path.begin();
+
+	return (i);
+}
+
 void c_journey::add_point(c_milestone *new_point, pair_int p_hour)
 {
 	static Vector2 panel_size = Vector2(150, 30);

@@ -1,5 +1,21 @@
 #include "engine.h"
 
+size_t c_map::get_milestone_id(c_milestone *target)
+{
+	auto it = find(_milestones.begin(), _milestones.end(), target);
+	size_t i = it - _milestones.begin();
+
+	return (i);
+}
+
+c_milestone *c_map::get_milestone(size_t index)
+{
+	if (index >= _milestones.size())
+		return (nullptr);
+
+	return (_milestones[index]);
+}
+
 void c_map::create_new_path()
 {
 	_state = map_state::travel_definition;

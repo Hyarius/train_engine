@@ -2,10 +2,12 @@
 #define JGL_JSON_HANDLER_H
 
 void json_add_line(fstream &file, size_t tab, string type_name, string symbol);
+void json_add_line(fstream &file, size_t tab, string text);
+
 void json_add_value(fstream &file, size_t tab, string value_name, string value_content);
 
 template <typename T>
-void json_add_vector(fstream &file, size_t tab, string type_name, vector<T> vector, Funct p_funct, Data p_data)
+void json_add_vector(fstream &file, size_t tab, string type_name, vector<T> &vector, Funct p_funct, Data p_data)
 {
 	Data data;
 
@@ -37,6 +39,7 @@ void json_add_map(fstream &file, size_t tab, string type_name, map<T, V> map, Fu
 	--final_iter;
 
 	json_add_line(file, tab, type_name, "[");
+
 	for (auto it = map.begin(); it != map.end(); it++)
 	{
 		data = p_data + Data(2, &(it->first), &(it->second));

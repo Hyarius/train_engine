@@ -28,12 +28,12 @@ void c_map::load_rail(fstream &file)
 			else if (tab[0] == "id_a")
 			{
 				int index = atoi(tab[1].c_str());
-				first = _milestones[index];
+				first = get_milestone(index);
 			}
 			else if (tab[0] == "id_b")
 			{
 				int index = atoi(tab[1].c_str());
-				second = _milestones[index];
+				second = get_milestone(index);
 			}
 		}
 		text = get_str(file);
