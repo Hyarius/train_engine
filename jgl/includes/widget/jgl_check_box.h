@@ -18,6 +18,7 @@ public:
 	w_box_component &box(){return (_box);}
 	w_check_component &check(){return (_check);}
 	w_text_component &text(){return (_text);}
+	void move(Vector2 delta);
 
 	void set_geometry_imp(Vector2 p_anchor, Vector2 p_area);
 

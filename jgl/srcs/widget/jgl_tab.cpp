@@ -77,6 +77,11 @@ void c_tab::reset_button()
 	}
 }
 
+void c_tab::move(Vector2 delta)
+{
+
+}
+
 void c_tab::set_geometry_imp(Vector2 p_anchor, Vector2 p_area)
 {
 	Vector2 button_pos = tab_area->box().border();
@@ -96,7 +101,8 @@ void c_tab::set_geometry_imp(Vector2 p_anchor, Vector2 p_area)
 
 void c_tab::render()
 {
-
+	if (is_active() == false)
+		return ;
 }
 
 bool c_tab::handle_mouse()

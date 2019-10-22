@@ -13,6 +13,11 @@ c_text_label::~c_text_label()
 
 }
 
+void c_text_label::move(Vector2 delta)
+{
+
+}
+
 void c_text_label::set_geometry_imp(Vector2 p_anchor, Vector2 p_area)
 {
 	_box.set_area(p_area);
@@ -24,6 +29,8 @@ void c_text_label::set_geometry_imp(Vector2 p_anchor, Vector2 p_area)
 
 void c_text_label::render()
 {
+	if (is_active() == false)
+		return ;
 	_box.render(_viewport);
 	_label.render(_viewport);
 }

@@ -2,7 +2,7 @@
 	"destination":[
 		{
 			"id":"15",
-			"departure time":"00h00",
+			"departure time":"13h45",
 		},
 		{
 			"id":"22",
@@ -22,7 +22,7 @@
 		},
 		{
 			"id":"12",
-			"departure time":"00h00",
+			"departure time":"14h23",
 		},
 		{
 			"id":"149",
@@ -38,7 +38,7 @@
 		},
 		{
 			"id":"11",
-			"departure time":"00h00",
+			"departure time":"15h56",
 		},
 		{
 			"id":"39",
@@ -78,6 +78,66 @@
 		},
 		{
 			"id":"0",
+			"departure time":"00h00",
+		},
+		{
+			"id":"47",
+			"departure time":"",
+		},
+		{
+			"id":"48",
+			"departure time":"",
+		},
+		{
+			"id":"49",
+			"departure time":"",
+		},
+		{
+			"id":"50",
+			"departure time":"",
+		},
+		{
+			"id":"51",
+			"departure time":"",
+		},
+		{
+			"id":"1",
+			"departure time":"00h00",
+		},
+		{
+			"id":"52",
+			"departure time":"",
+		},
+		{
+			"id":"58",
+			"departure time":"",
+		},
+		{
+			"id":"59",
+			"departure time":"",
+		},
+		{
+			"id":"60",
+			"departure time":"",
+		},
+		{
+			"id":"61",
+			"departure time":"",
+		},
+		{
+			"id":"62",
+			"departure time":"",
+		},
+		{
+			"id":"63",
+			"departure time":"",
+		},
+		{
+			"id":"64",
+			"departure time":"",
+		},
+		{
+			"id":"2",
 			"departure time":"",
 		}
 	],

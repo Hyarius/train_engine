@@ -27,6 +27,8 @@ private:
 	c_button *new_button;
 	c_button *save_button;
 	c_button *erase_button;
+	c_frame *travel_panel;
+	c_vscroll_bar *scroll_bar;
 
 public:
 	c_main_window();

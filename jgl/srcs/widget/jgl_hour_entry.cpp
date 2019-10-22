@@ -18,6 +18,11 @@ c_hour_entry::~c_hour_entry()
 
 }
 
+void c_hour_entry::move(Vector2 delta)
+{
+
+}
+
 void c_hour_entry::set_geometry_imp(Vector2 p_anchor, Vector2 p_area)
 {
 	_box.set_area(p_area);
@@ -49,6 +54,8 @@ void c_hour_entry::set_geometry_imp(Vector2 p_anchor, Vector2 p_area)
 
 void c_hour_entry::render()
 {
+	if (is_active() == false)
+		return ;
 	_box.render(_viewport);
 	_label.render(_viewport);
 
@@ -157,16 +164,6 @@ bool c_hour_entry::handle_keyboard()
 			_entry->move_cursor(1);
 
 		g_keyboard->reset_key(SDL_SCANCODE_RIGHT);
-	}
-	else if (g_keyboard->get_key(SDL_SCANCODE_BACKSPACE))
-	{
-		_entry->remove_text();
-		g_keyboard->reset_key(SDL_SCANCODE_BACKSPACE);
-	}
-	else if (g_keyboard->get_key(SDL_SCANCODE_DELETE))
-	{
-		_entry->supp_text();
-		g_keyboard->reset_key(SDL_SCANCODE_DELETE);
 	}
 
 	if (g_application->event()->type == SDL_TEXTINPUT)

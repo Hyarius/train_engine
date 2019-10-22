@@ -33,9 +33,35 @@ void c_viewport::use()
 	if (_area.x <= 0 || _area.y <= 0)
 		return ;
 
+	SDL_Rect base_rect;
+
+	SDL_RenderGetViewport(_renderer, &base_rect);
+
+	Vector2 base_anchor = Vector2(base_rect.x, base_rect.y);
+	Vector2 base_area = Vector2(base_rect.w, base_rect.h);
+
+	Vector2 tmp_anchor = _anchor;
+	Vector2 tmp_area = _area;
+
+	cout << "-------------" << endl;
+	cout << "Base : " << base_anchor << " / " << base_area << endl;
+	cout << "tmp : " << tmp_anchor << " / " << tmp_area << endl;
+
+	// if (_anchor.x < base_rect.x)
+	// {
+	// 	tmp_anchor.x = base_rect.x;
+	// 	tmp_area.x += _anchor.x - base_rect.x;
+	// }
+	//
+	// if (_anchor.y < base_rect.y)
+	// {
+	// 	tmp_anchor.y = base_rect.y;
+	// 	tmp_area.y += _anchor.y - base_rect.y;
+	// }
+
 	SDL_Rect rect = {
-			static_cast<int>(_anchor.x), static_cast<int>(_anchor.y),
-			static_cast<int>(_area.x), static_cast<int>(_area.y)
+			static_cast<int>(tmp_anchor.x), static_cast<int>(tmp_anchor.y),
+			static_cast<int>(tmp_area.x), static_cast<int>(tmp_area.y)
 		};
 
 	SDL_RenderSetViewport(_renderer, &rect);

@@ -15,6 +15,11 @@ c_text_entry::~c_text_entry()
 
 }
 
+void c_text_entry::move(Vector2 delta)
+{
+
+}
+
 void c_text_entry::set_geometry_imp(Vector2 p_anchor, Vector2 p_area)
 {
 	_box.set_area(p_area);
@@ -27,6 +32,8 @@ void c_text_entry::set_geometry_imp(Vector2 p_anchor, Vector2 p_area)
 
 void c_text_entry::render()
 {
+	if (is_active() == false)
+		return ;
 	_box.render(_viewport);
 	_entry.render(_viewport);
 }

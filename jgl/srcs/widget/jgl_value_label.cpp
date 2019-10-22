@@ -11,6 +11,11 @@ c_value_label::~c_value_label()
 
 }
 
+void c_value_label::move(Vector2 delta)
+{
+
+}
+
 void c_value_label::set_geometry_imp(Vector2 p_anchor, Vector2 p_area)
 {
 	_box.set_area(p_area);
@@ -22,6 +27,8 @@ void c_value_label::set_geometry_imp(Vector2 p_anchor, Vector2 p_area)
 
 void c_value_label::render()
 {
+	if (is_active() == false)
+		return ;
 	_box.render(_viewport);
 	_label.render(_viewport);
 }

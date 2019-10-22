@@ -15,6 +15,7 @@ public:
 	~c_frame();
 
 	w_box_component &box(){return (_box);}
+	void move(Vector2 delta);
 
 	void set_geometry_imp(Vector2 p_anchor, Vector2 p_area);
 

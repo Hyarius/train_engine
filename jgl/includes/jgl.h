@@ -28,6 +28,7 @@
 #include "jgl_check_box.h"
 #include "jgl_hour_entry.h"
 #include "jgl_tab.h"
+#include "jgl_vscrollable_bar.h"
 
 #include "jgl_file_handler.h"
 #include "jgl_log_handler.h"

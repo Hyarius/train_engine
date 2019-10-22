@@ -15,6 +15,11 @@ c_check_box::~c_check_box()
 
 }
 
+void c_check_box::move(Vector2 delta)
+{
+
+}
+
 void c_check_box::set_geometry_imp(Vector2 p_anchor, Vector2 p_area)
 {
 	_box.set_area(p_area);
@@ -35,6 +40,8 @@ void c_check_box::set_geometry_imp(Vector2 p_anchor, Vector2 p_area)
 
 void c_check_box::render()
 {
+	if (is_active() == false)
+		return ;
 	_box.render(_viewport);
 	_text.render(_viewport);
 	_check.render(_viewport);

@@ -13,6 +13,7 @@ private:
 
 public:
 	c_journey();
+	c_journey(string path);
 
 	~c_journey();
 
