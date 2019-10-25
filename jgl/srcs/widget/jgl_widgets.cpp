@@ -5,6 +5,7 @@ using namespace std;
 c_widget::c_widget(c_widget *p_parent)
 {
 	_childrens.clear();
+	_parent = nullptr;
 	set_parent(p_parent);
 	_viewport = new c_viewport();
 	_activated = false;
@@ -43,6 +44,9 @@ void c_widget::set_geometry(Vector2 p_anchor, Vector2 p_area)
 
 void c_widget::set_parent(c_widget *p_parent)
 {
+	if (_parent != nullptr)
+		_parent->remove_children(this);
+
 	if (p_parent != nullptr)
 		_parent = p_parent;
 	else
@@ -87,13 +91,18 @@ void c_widget::render_children()
 	if (is_active() == false)
 		return ;
 
-	//_viewport->use();
 	render();
+
+	if (_viewport->active() == true)
+		_viewport->use();
 
 	for (size_t i = 0; i < _childrens.size(); i++)
 	{
 		_childrens[i]->render_children();
 	}
+
+	if (_viewport->active() == true)
+		_viewport->unuse();
 }
 
 void c_widget::update_children()

@@ -54,11 +54,11 @@ void c_main_window::create_travel_panel()
 	erase_button->set_geometry(pos, size);
 	erase_button->active();
 
-
 	pos = Vector2(0.0f, border + size.y) + (border * 2);
 	size = travel_box->box().area() - border * 2 - pos;
 
 	travel_panel = new c_frame(travel_box);
+	travel_panel->viewport()->set_active(true);
 	travel_panel->set_geometry(pos, size);
 	travel_panel->active();
 

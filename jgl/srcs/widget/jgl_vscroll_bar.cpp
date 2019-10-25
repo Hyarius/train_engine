@@ -26,6 +26,7 @@ static void down_widget(Data data)
 
 c_vscroll_bar::c_vscroll_bar(c_widget *p_parent) : c_widget(p_parent)
 {
+	viewport()->set_active(true);
 	scroll_bar = new c_frame(this);
 	scroll_bar->active();
 

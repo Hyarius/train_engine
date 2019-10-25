@@ -17,7 +17,10 @@ c_check_box::~c_check_box()
 
 void c_check_box::move(Vector2 delta)
 {
-
+	_box.set_anchor(_box.anchor() + delta);
+	_check.set_anchor(_check.anchor() + delta);
+	_text.set_anchor(_text.anchor() + delta);
+	_viewport->set_anchor(anchor() + delta);
 }
 
 void c_check_box::set_geometry_imp(Vector2 p_anchor, Vector2 p_area)

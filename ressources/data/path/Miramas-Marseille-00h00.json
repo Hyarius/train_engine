@@ -1,0 +1,48 @@
+{
+	"destination":[
+		{
+			"id":"5",
+			"departure time":"00h00",
+		},
+		{
+			"id":"76",
+			"departure time":"",
+		},
+		{
+			"id":"77",
+			"departure time":"",
+		},
+		{
+			"id":"78",
+			"departure time":"",
+		},
+		{
+			"id":"79",
+			"departure time":"",
+		},
+		{
+			"id":"80",
+			"departure time":"",
+		},
+		{
+			"id":"81",
+			"departure time":"",
+		},
+		{
+			"id":"102",
+			"departure time":"",
+		},
+		{
+			"id":"82",
+			"departure time":"",
+		},
+		{
+			"id":"143",
+			"departure time":"",
+		},
+		{
+			"id":"3",
+			"departure time":"",
+		}
+	],
+}

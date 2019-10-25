@@ -12,6 +12,8 @@ private:
 	SDL_Renderer *_renderer;
 	Color _background;
 
+	bool _active;
+
 	Vector2 _anchor;
 	Vector2 _area;
 
@@ -23,6 +25,9 @@ public:
 	void set_anchor(Vector2 p_anchor){_anchor = p_anchor;}
 	void set_area(Vector2 p_area){_area = p_area;}
 	void set_viewport(Vector2 p_anchor = Vector2(), Vector2 p_area = Vector2());
+
+	void set_active(bool p_active){_active = p_active;}
+	bool active(){return (_active);}
 
 	void resize(Vector2 p_anchor, Vector2 p_area);
 

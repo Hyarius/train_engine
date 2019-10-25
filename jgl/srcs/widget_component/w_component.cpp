@@ -9,8 +9,12 @@ w_component::w_component(class c_widget *p_owner)
 
 Vector2		w_component::owner_anchor()
 {
-	if (_owner == nullptr || _owner->parent() == nullptr)
+	if (_owner == nullptr || _owner->parent() == nullptr ||
+		_owner->parent()->viewport()->active() == true)
 		return (Vector2(0, 0));
+
+	if (_owner->parent()->parent() != nullptr && _owner->parent()->parent()->viewport()->active() == true)
+		return (0);
 
 	return (_owner->parent()->anchor());
 };

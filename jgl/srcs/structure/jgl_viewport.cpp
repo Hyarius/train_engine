@@ -5,6 +5,7 @@ c_viewport::c_viewport(Color p_color, Vector2 p_anchor, Vector2 p_area)
 	if (g_application == nullptr)
 		g_application = new c_application("Main window");
 
+	_active = false;
 	_renderer = g_application->renderer();
 	_background = p_color;
 
