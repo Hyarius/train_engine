@@ -121,7 +121,7 @@ void c_milestone::draw_link()
 	for (size_t i = 0; i < _links.size(); i++)
 	{
 		auto target = pair_milestone(this, _links[i]);
-		if (g_map->rails()[target] != nullptr)
+		if (g_map->rails()[target] != nullptr && _pos == g_map->rails()[target]->main_pos())
 	 		g_map->rails()[target]->poly()->set_pos(pos1);
 
 		c_milestone *tmp_mile = _links[i];

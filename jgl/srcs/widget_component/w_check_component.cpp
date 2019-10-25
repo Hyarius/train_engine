@@ -33,8 +33,5 @@ void w_check_component::render(c_viewport *viewport)
 	fill_rectangle(viewport, _back, _anchor , _area);
 	fill_rectangle(viewport, _front, _anchor + _border, _area - _border * 2);
 	if (_state == true)
-	{
-		cout << "Here" << endl;
 		fill_rectangle(viewport, _check, _anchor + _border * 2, _area - _border * 4);
-	}
 }

@@ -116,6 +116,9 @@ c_city *c_map::add_city()
 
 void c_map::remove_city(c_city* to_remove)
 {
+	if (_city_selected != nullptr)
+		select_city(nullptr);
+
 	remove_milestone(to_remove->milestone());
 
 	to_remove->set_milestone(nullptr);

@@ -38,7 +38,7 @@ void c_check_box::set_geometry_imp(Vector2 p_anchor, Vector2 p_area)
 
 	_check.set_area(check_area);
 	_check.set_anchor(check_pos);
-	_check.set_border((check_area.x / 12 > 1 ? check_area.x / 12 : 1));
+	_check.set_border((check_area.x / 8 > 1 ? check_area.x / 8 : 1));
 }
 
 void c_check_box::render()

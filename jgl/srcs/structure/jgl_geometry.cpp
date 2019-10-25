@@ -16,11 +16,8 @@ void Polygon2D::draw(c_viewport *viewport, Color p_color, float scale)
 
 		pos1 = (_points[_sides[i].index_vertices[0]] * scale) + _pos;
 		pos2 = (_points[_sides[i].index_vertices[1]] * scale) + _pos;
-		//center = (pos1 + pos2) / 2.0f;
 
 		draw_line(viewport, p_color, pos1, pos2);
-		//draw_line(viewport, Color(0, 0, 255), center, center + _sides[i].normale * 10 * scale);
-
 	}
 }
 
@@ -42,6 +39,7 @@ void Polygon2D::add_side(size_t index1, size_t index2)
 bool Polygon2D::is_pointed(Vector2 point, float scale)
 {
 	vector<Vector2> tmp;
+
 	for (size_t i = 0; i < _points.size(); i++)
 		tmp.push_back((_points[i] * scale) + _pos);
 
