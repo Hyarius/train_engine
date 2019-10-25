@@ -23,7 +23,7 @@ void save_destination(Data data)
 
 void saving_journey()
 {
-	if (g_map->journey() == nullptr)
+	if (g_map->journey() == nullptr || g_map->journey()->path().size() < 2)
 		return ;
 
 	c_journey *journey = g_map->journey();

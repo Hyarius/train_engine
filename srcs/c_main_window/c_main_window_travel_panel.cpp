@@ -7,7 +7,28 @@ static void new_path(Data data)
 
 static void save_journey(Data data)
 {
+	c_main_window *win = data.acces<c_main_window *>(0);
 	saving_journey();
+	win->load_travel_checkbox();
+}
+
+void c_main_window::load_travel_checkbox()
+{
+	for (size_t i = 0; i < travel_name.size(); i++)
+		delete travel_name[i];
+
+	travel_name.clear();
+
+	vector<string> files = list_files("ressources/data/path", ".json");
+
+	for (size_t i = 0; i < files.size(); i++)
+	{
+		c_check_box *test = new c_check_box(files[i], false, travel_panel);
+		test->set_geometry(Vector2(10, 10 + 40 * i), Vector2(travel_panel->area().x - 20 - scroll_bar->area().x, 35.0f));
+		test->active();
+
+		travel_name.push_back(test);
+	}
 }
 
 void c_main_window::create_travel_panel()
@@ -22,7 +43,7 @@ void c_main_window::create_travel_panel()
 	new_button->active();
 
 	pos.x += size.x + border;
-	save_button = new c_button(&save_journey, nullptr, travel_box);
+	save_button = new c_button(&save_journey, this, travel_box);
 	save_button->text().set_text("Save trip");
 	save_button->set_geometry(pos, size);
 	save_button->active();
@@ -33,12 +54,6 @@ void c_main_window::create_travel_panel()
 	erase_button->set_geometry(pos, size);
 	erase_button->active();
 
-	vector<string> files = list_files("ressources/data/path", ".json");
-
-	for (size_t i = 0; i < files.size(); i++)
-	{
-		cout << "File : [" << files[i] << "]" << endl;
-	}
 
 	pos = Vector2(0.0f, border + size.y) + (border * 2);
 	size = travel_box->box().area() - border * 2 - pos;
@@ -54,7 +69,5 @@ void c_main_window::create_travel_panel()
 	scroll_bar->set_geometry(pos, size);
 	scroll_bar->active();
 
-	c_button *test = new c_button(nullptr, nullptr, travel_panel);
-	test->set_geometry(Vector2(50, 50), Vector2(150, 50));
-	test->active();
+	load_travel_checkbox();
 }

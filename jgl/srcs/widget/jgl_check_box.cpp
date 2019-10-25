@@ -26,16 +26,19 @@ void c_check_box::set_geometry_imp(Vector2 p_anchor, Vector2 p_area)
 	_box.set_anchor(p_anchor);
 
 	Vector2 check_area = p_area.y - _box.border() * 4;
+	Vector2 check_pos = p_anchor + _box.border() * 2;
+
 	Vector2 text_area;
 	text_area.x = p_area.x - check_area.x - _box.border() * 5;
 	text_area.y = p_area.y - _box.border() * 4;
 
 	_text.set_area(text_area);
-	_text.set_anchor(p_anchor + _box.border() * 2);
+	_text.set_anchor(p_anchor + _box.border() * 3 + Vector2(check_area.x, 0.0f));
 	_text.calc_text_size(_text.area());
 
 	_check.set_area(check_area);
-	_check.set_anchor(p_area - _box.border() * 2 - check_area);
+	_check.set_anchor(check_pos);
+	_check.set_border((check_area.x / 12 > 1 ? check_area.x / 12 : 1));
 }
 
 void c_check_box::render()

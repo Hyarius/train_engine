@@ -29,6 +29,7 @@ private:
 	c_button *erase_button;
 	c_frame *travel_panel;
 	c_vscroll_bar *scroll_bar;
+	vector<c_check_box *> travel_name;
 
 public:
 	c_main_window();
@@ -39,6 +40,8 @@ public:
 	void create_config_panel();
 	void create_travel_panel();
 	void create_train_panel();
+
+	void load_travel_checkbox();
 };
 
 #endif

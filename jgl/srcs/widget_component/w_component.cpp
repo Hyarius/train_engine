@@ -12,7 +12,7 @@ Vector2		w_component::owner_anchor()
 	if (_owner == nullptr || _owner->parent() == nullptr)
 		return (Vector2(0, 0));
 
-	return (_owner->parent()->viewport()->anchor());
+	return (_owner->parent()->anchor());
 };
 
 

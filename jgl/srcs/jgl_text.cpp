@@ -94,7 +94,6 @@ c_image				*get_char(char c, int size, text_color color, text_style type)
 
 int				draw_text(c_viewport *port, string text, Vector2 coord, int size, text_color color, text_style type)
 {
-
 	c_image			*image;
 	size_t			i = 0;
 	Vector2			rel_coord;

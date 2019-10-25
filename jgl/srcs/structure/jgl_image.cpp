@@ -72,7 +72,6 @@ c_image::c_image(SDL_Surface *p__surface)
 
 void c_image::draw(c_viewport *viewport, Vector2 pos, Vector2 size)
 {
-	viewport->use();
 	SDL_Rect dest = {
 			static_cast<int>(pos.x), static_cast<int>(pos.y),
 			static_cast<int>(size.x), static_cast<int>(size.y)

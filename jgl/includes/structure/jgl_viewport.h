@@ -15,6 +15,8 @@ private:
 	Vector2 _anchor;
 	Vector2 _area;
 
+	SDL_Rect _old_viewport;
+
 public:
 	c_viewport(Color p_color = Color(), Vector2 p_anchor = Vector2(), Vector2 p_size = Vector2());
 
@@ -27,6 +29,7 @@ public:
 	void set_background(Color p_color = Color(50, 50, 50)){_background = p_color;}
 
 	void use();
+	void unuse();
 
 	void set_Color(Color Color);
 

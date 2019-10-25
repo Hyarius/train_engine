@@ -22,7 +22,7 @@ void c_map::create_new_path()
 	if (_journey != nullptr)
 		delete _journey;
 
-	_journey = new c_journey("ressources/data/path/Carcassonne-Avignon-13h45.json");
+	_journey = new c_journey();
 }
 
 void c_map::place_landmark(Vector2 new_pos, int index)

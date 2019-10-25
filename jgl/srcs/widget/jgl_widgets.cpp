@@ -87,7 +87,7 @@ void c_widget::render_children()
 	if (is_active() == false)
 		return ;
 
-	_viewport->use();
+	//_viewport->use();
 	render();
 
 	for (size_t i = 0; i < _childrens.size(); i++)

@@ -13,6 +13,9 @@ w_box_component::w_box_component(c_widget *p_owner) :
 
 void w_box_component::render(c_viewport *viewport)
 {
-	fill_rectangle(viewport, _back + _delta, _anchor - viewport->anchor(), viewport->area());
-	fill_rectangle(viewport, _front + _delta, _anchor - viewport->anchor() + _border, viewport->area() - _border * 2);
+	if (_owner == NULL)
+		return ;
+
+	fill_rectangle(viewport, _back + _delta, _anchor , _area);
+	fill_rectangle(viewport, _front + _delta, _anchor + _border, _area - _border * 2);
 }

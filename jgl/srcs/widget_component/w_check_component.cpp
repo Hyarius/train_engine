@@ -27,10 +27,14 @@ bool w_check_component::check(Vector2 point, Vector2 viewport_anchor)
 
 void w_check_component::render(c_viewport *viewport)
 {
-	fill_rectangle(viewport, _back, _anchor - viewport->anchor() , _area);
-	fill_rectangle(viewport, _front, _anchor - viewport->anchor() + _area.x/10.0f, _area - _area.x/5.0f + 1);
+	Vector2 pos_1;
+	Vector2 pos_2;
+
+	fill_rectangle(viewport, _back, _anchor , _area);
+	fill_rectangle(viewport, _front, _anchor + _border, _area - _border * 2);
 	if (_state == true)
 	{
-		fill_rectangle(viewport, _check, _anchor - viewport->anchor() + _area.x/4.0f, _area - _area.x/2.0f + 1);
+		cout << "Here" << endl;
+		fill_rectangle(viewport, _check, _anchor + _border * 2, _area - _border * 4);
 	}
 }

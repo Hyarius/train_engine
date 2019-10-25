@@ -124,7 +124,7 @@ void w_value_entry_component::render(c_viewport *viewport)
 		pos.y = 0;
 	}
 
-	pos += _anchor - viewport->anchor();
+	pos += _anchor;
 
 	draw_text(viewport, _text_to_draw, pos, _size, _color, _style);
 
