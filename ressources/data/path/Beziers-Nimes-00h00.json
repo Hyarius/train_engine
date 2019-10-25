@@ -1,0 +1,72 @@
+{
+	"destination":[
+		{
+			"id":"11",
+			"departure time":"00h00",
+		},
+		{
+			"id":"39",
+			"departure time":"",
+		},
+		{
+			"id":"142",
+			"departure time":"",
+		},
+		{
+			"id":"40",
+			"departure time":"",
+		},
+		{
+			"id":"41",
+			"departure time":"",
+		},
+		{
+			"id":"42",
+			"departure time":"",
+		},
+		{
+			"id":"43",
+			"departure time":"",
+		},
+		{
+			"id":"44",
+			"departure time":"",
+		},
+		{
+			"id":"45",
+			"departure time":"",
+		},
+		{
+			"id":"46",
+			"departure time":"",
+		},
+		{
+			"id":"0",
+			"departure time":"00h00",
+		},
+		{
+			"id":"47",
+			"departure time":"",
+		},
+		{
+			"id":"48",
+			"departure time":"",
+		},
+		{
+			"id":"49",
+			"departure time":"",
+		},
+		{
+			"id":"50",
+			"departure time":"",
+		},
+		{
+			"id":"51",
+			"departure time":"",
+		},
+		{
+			"id":"1",
+			"departure time":"",
+		}
+	],
+}

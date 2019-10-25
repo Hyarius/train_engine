@@ -2,8 +2,8 @@
 
 void c_main_window::create_map_panel()
 {
-	Vector2 map_delta = map_box->box().border();
-	Vector2 map_size = map_box->box().area() - map_delta * 2;
+	Vector2 map_delta = 0;//map_box->box().border();
+	Vector2 map_size = map_box->box().area() - map_box->box().border() * 2;
 
 	g_map = new c_map("ressources/image/map_speed.png", map_box);
 	map = g_map;

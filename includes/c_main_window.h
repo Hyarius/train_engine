@@ -6,7 +6,7 @@
 
 class c_main_window
 {
-private:
+public:
 	// - Boxes
 	c_frame *map_box;
 	c_frame *train_box;
@@ -31,7 +31,6 @@ private:
 	c_vscroll_bar *scroll_bar;
 	vector<c_check_box *> travel_name;
 
-public:
 	c_main_window();
 
 	void create_box();

@@ -3,7 +3,7 @@
 void c_main_window::create_command_panel()
 {
 	int border = command_box->box().border();
-	Vector2 button_pos = border * 2;
+	Vector2 button_pos = border * 1;
 	Vector2 button_size = Vector2(command_box->box().area().x - border * 4,
 		(command_box->box().area().y - border * 3) / 2 - border);
 

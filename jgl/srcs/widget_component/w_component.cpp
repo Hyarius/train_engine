@@ -13,9 +13,6 @@ Vector2		w_component::owner_anchor()
 		_owner->parent()->viewport()->active() == true)
 		return (Vector2(0, 0));
 
-	if (_owner->parent()->parent() != nullptr && _owner->parent()->parent()->viewport()->active() == true)
-		return (0);
-
 	return (_owner->parent()->anchor());
 };
 
