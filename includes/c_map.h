@@ -132,10 +132,12 @@ public:
 
 
 	/*---------------------*/
-	void start_calculation();
-	void calc_duration();
+	void start_calculation(vector<c_journey *> journeys);
+	void calc_duration(c_journey *to_calc);
 	vector<c_milestone *> calc_path(c_milestone *start, c_milestone *target);
 	void create_new_path();
+	void open_journey(string path);
+	void remove_path(c_milestone *target);
 
 	/*---------------------*/
 

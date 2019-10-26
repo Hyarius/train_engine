@@ -1,5 +1,13 @@
 #include "engine.h"
 
+void c_map::open_journey(string path)
+{
+	if (_journey != nullptr)
+		delete _journey;
+
+	_journey = new c_journey(path);
+}
+
 size_t c_map::get_milestone_id(c_milestone *target)
 {
 	auto it = find(_milestones.begin(), _milestones.end(), target);

@@ -28,6 +28,22 @@ static void delete_journey(Data data)
 	win->load_travel_checkbox();
 }
 
+static void load_journey(Data data)
+{
+	c_main_window *win = data.acces<c_main_window *>(0);
+	c_map *map = win->map;
+
+	for (size_t i = 0; i < win->travel_name.size(); i++)
+	{
+		if (win->travel_name[i]->check().state() == true)
+		{
+			map->open_journey("ressources/data/path/" + win->travel_name[i]->text().text() + ".json");
+			map->set_state(map_state::travel_definition);
+			break;
+		}
+	}
+}
+
 void c_main_window::load_travel_checkbox()
 {
 	for (size_t i = 0; i < travel_name.size(); i++)
@@ -51,26 +67,34 @@ void c_main_window::create_travel_panel()
 {
 	int border = travel_box->box().border();
 	Vector2 pos = border * 1;
-	Vector2 size = Vector2((travel_box->box().area().x / 3) - border * 2, 40.0f);
+	Vector2 size = Vector2((travel_box->box().area().x / 2) - border * 2, 30.0f);
 
 	new_button = new c_button(&new_path, nullptr, travel_box);
-	new_button->text().set_text("New trip");
+	new_button->box().set_border(2);
+	new_button->text().set_text("New");
 	new_button->set_geometry(pos, size);
 	new_button->active();
 
-	pos.x += size.x + border;
 	save_button = new c_button(&save_journey, this, travel_box);
-	save_button->text().set_text("Save trip");
-	save_button->set_geometry(pos, size);
+	save_button->box().set_border(2);
+	save_button->text().set_text("Save");
+	save_button->set_geometry(pos + Vector2(size.x + border, 0.0f), size);
 	save_button->active();
 
-	pos.x += size.x + border;
+	pos.y += size.y + border;
+	load_button = new c_button(&load_journey, this, travel_box);
+	load_button->box().set_border(2);
+	load_button->text().set_text("Load");
+	load_button->set_geometry(pos, size);
+	load_button->active();
+
 	erase_button = new c_button(&delete_journey, this, travel_box);
-	erase_button->text().set_text("Erase trip(s)");
-	erase_button->set_geometry(pos, size);
+	erase_button->box().set_border(2);
+	erase_button->text().set_text("Erase");
+	erase_button->set_geometry(pos + Vector2(size.x + border, 0.0f), size);
 	erase_button->active();
 
-	pos = Vector2(0.0f, border + size.y) + (border * 1);
+	pos = Vector2(0.0f, (border + size.y) * 2) + (border * 1);
 	size = travel_box->box().area() - border * 3 - pos;
 
 	travel_panel = new c_frame(travel_box);

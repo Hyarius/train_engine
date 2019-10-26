@@ -23,6 +23,7 @@ public:
 	size_t get_index(c_milestone *target);
 
 	void add_point(c_milestone *new_point, pair_int p_hour = pair_int(0, 0));
+	void remove_point();
 
 	void actualize_panel();
 	void draw();

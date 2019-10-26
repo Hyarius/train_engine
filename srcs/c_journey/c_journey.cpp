@@ -39,6 +39,17 @@ void c_journey::add_point(c_milestone *new_point, pair_int p_hour)
 		_hour_panel.push_back(nullptr);
 }
 
+void c_journey::remove_point()
+{
+	_path.back()->set_linked(false);
+	_path.pop_back();
+
+	if (_hour_panel.back() != nullptr)
+		delete _hour_panel.back();
+
+	_hour_panel.pop_back();
+}
+
 void c_journey::actualize_panel()
 {
 	static Vector2 panel_size = Vector2(150, 30);

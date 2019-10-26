@@ -87,7 +87,7 @@ c_image				*get_char(char c, int size, text_color color, text_style type)
 		u16string utext(text.begin(), text.end());
 
 		char_list[tmp_type][size][tmp_color][c] = new c_image(TTF_RenderUNICODE_Blended(tmp, utext.c_str(), get_color(tmp_color)));
-		TTF_SetFontStyle(font[size], NORMAL);
+		TTF_SetFontStyle(font[size], static_cast<int>(text_style::normal));
 	}
 	return (char_list[tmp_type][size][tmp_color][c]);
 }

@@ -8,6 +8,23 @@ bool c_map::control_travel_definition()
 		return (false);
 	}
 
+	if (g_mouse->get_button(mouse_button::right) == mouse_state::up)
+	{
+		c_city *target_city = check_city();
+		c_milestone *target_milestone;
+
+		if (target_city != nullptr)
+			target_milestone = target_city->milestone();
+		else
+			target_milestone = check_milestone();
+
+		if (target_milestone != nullptr)
+		{
+			if (find(_journey->path().begin(), _journey->path().end(), target_milestone) != _journey->path().end())
+				remove_path(target_milestone);
+		}
+	}
+
 	if (g_mouse->get_button(mouse_button::left) == mouse_state::up)
 	{
 		c_city *target_city = check_city();
@@ -45,9 +62,6 @@ bool c_map::control_travel_definition()
 			}
 			_journey->actualize_panel();
 		}
-
-		if (_journey->path().size() >= 2)
-			calc_duration();
 	}
 
 	return (false);
