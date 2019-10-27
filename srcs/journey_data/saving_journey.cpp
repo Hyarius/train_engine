@@ -15,7 +15,7 @@ void save_destination(Data data)
 
 	string hour = "";
 
-	if (hour_entry != nullptr && path_index != journey->path().size() - 1)
+	if (hour_entry != nullptr && path_index != journey->path().size())
 		hour = hour_entry->hour().text() + "h" + hour_entry->minute().text();
 
 	json_add_value(file, 3, "departure time", hour);
