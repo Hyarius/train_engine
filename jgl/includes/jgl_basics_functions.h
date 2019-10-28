@@ -10,6 +10,10 @@ vector<string> strsplit(string input, string c);
 void error_exit(int num, string error);
 string ftoa(float n, int afterpoint);
 bool is_middle(float a, float b, float c);
+string convert_hour_to_string(int hour, int minute);
+string convert_hour_to_string(int minute);
+int convert_string_to_hour(string text);
+int convert_int_to_hour(int hour, int minute);
 
 template<typename K, typename V>
 K find_key(map<K, V> &src_map, V &value)

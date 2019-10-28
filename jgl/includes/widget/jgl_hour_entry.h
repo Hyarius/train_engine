@@ -28,6 +28,8 @@ public:
 
 	void round();
 
+	int value(){return (_hour.value() * 60 + _minute.value());}
+
 	bool selected(){return (_selected);}
 	w_box_component &box(){return (_box);}
 	w_text_component &label(){return (_label);}

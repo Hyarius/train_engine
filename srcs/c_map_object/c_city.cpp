@@ -1,6 +1,6 @@
 #include "engine.h"
 
-#define CITY_SIZE 11.0f
+#define CITY_SIZE 5.0f
 
 c_city::c_city(Vector2 p_pos)
 {
@@ -69,7 +69,7 @@ void c_city::draw_name()
 	size1 = CITY_SIZE * g_map->zoom() * _selected;
 	pos1 = g_map->convert_to_screen_coord(_pos);
 
-	if (_pos != Vector2())
+	if (_pos != Vector2() && _selected == 2)
 	{
 		int text_size = 8 * g_map->zoom();
 		draw_centred_text(g_map->viewport(), _name, pos1 + Vector2(0.0f, -size1.y * 1.5f), text_size * 2, text_color::grey, text_style::bold);

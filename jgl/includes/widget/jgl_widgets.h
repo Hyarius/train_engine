@@ -40,7 +40,7 @@ public:
 	void set_anchor(Vector2 p_anchor){_viewport->set_anchor(p_anchor);}
 	void set_area(Vector2 p_area){_viewport->set_area(p_area);}
 	virtual void set_geometry(Vector2 p_anchor, Vector2 p_area);
-	virtual void move(Vector2 delta){cout << "Need creation of a function void move(Vector2) in your new widget to allow scroll_bar to work on it" << endl;}
+	virtual void move(Vector2 delta){cout << "Warning : Need creation of a function void move(Vector2) in your new widget to allow scroll_bar to work on it" << endl;}
 
 	virtual void quit(){};
 	virtual void update(){};

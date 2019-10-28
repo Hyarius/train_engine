@@ -80,13 +80,16 @@ c_image				*get_char(char c, int size, text_color color, text_style type)
 
 		TTF_SetFontStyle(tmp, tmp_type);
 
-		string text = " ";
+		char text[2];
 		text[0] = c;
+		text[1] = '\0';
 
-		typedef std::basic_string<Uint16, std::char_traits<Uint16>, std::allocator<Uint16> > u16string;
-		u16string utext(text.begin(), text.end());
+		SDL_Surface *surface = TTF_RenderText_Blended(tmp, text, get_color(tmp_color));
+		if (surface != nullptr)
+			char_list[tmp_type][size][tmp_color][c] = new c_image(surface);
+		else
+			char_list[tmp_type][size][tmp_color][c] = nullptr;
 
-		char_list[tmp_type][size][tmp_color][c] = new c_image(TTF_RenderUNICODE_Blended(tmp, utext.c_str(), get_color(tmp_color)));
 		TTF_SetFontStyle(font[size], static_cast<int>(text_style::normal));
 	}
 	return (char_list[tmp_type][size][tmp_color][c]);

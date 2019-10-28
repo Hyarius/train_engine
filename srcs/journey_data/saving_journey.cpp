@@ -40,7 +40,7 @@ void saving_journey()
 	if (start->place() == nullptr || end->place() == nullptr)
 		return ;
 
-	string name = start->place()->name() + "-" + end->place()->name() + "-" + panel->hour().text() + "h" + panel->minute().text();
+	string name = "[" + convert_hour_to_string(panel->hour().value(), panel->minute().value()) + "]-" + start->place()->name() + "-" + end->place()->name();
 	fstream file = open_file("ressources/data/path/" + name + ".json", ios_base::out);
 
 	json_add_line(file, 0, "{");

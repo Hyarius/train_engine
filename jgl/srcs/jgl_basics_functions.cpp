@@ -112,3 +112,46 @@ bool is_middle(float a, float b, float c)
 		return (false);
 	return (true);
 }
+
+string convert_hour_to_string(int hour, int minute)
+{
+	string hour_text = to_string(hour);
+	string minute_text = to_string(minute);
+
+	if (hour_text.length() == 1)
+		hour_text.insert(0, "0");
+
+	if (minute_text.length() == 1)
+		minute_text.insert(0, "0");
+
+	return (hour_text + "h" + minute_text);
+}
+
+string convert_hour_to_string(int minute)
+{
+	string hour_text = to_string(minute / 60);
+	string minute_text = to_string(minute % 60);
+
+	if (hour_text.length() == 1)
+		hour_text.insert(0, "0");
+
+	if (minute_text.length() == 1)
+		minute_text.insert(0, "0");
+
+	return (hour_text + "h" + minute_text);
+}
+
+int convert_string_to_hour(string text)
+{
+	vector<string> tab = strsplit(text, "h");
+
+	if (tab.size() != 2)
+		return (-1);
+
+	return (atoi(tab[0].c_str()) * 60 + atoi(tab[1].c_str()));
+}
+
+int convert_int_to_hour(int hour, int minute)
+{
+	return (hour * 60 + minute);
+}

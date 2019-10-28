@@ -27,7 +27,7 @@ bool c_map::control_zoom()
 		ratio_x = (_map->size().x * _zoom) / _map_anchor.x;
 		ratio_y = (_map->size().y * _zoom) / _map_anchor.y;
 
-		if (g_mouse->wheel > 0 && _zoom * 1.2 <= 12.0f)
+		if (g_mouse->wheel > 0 && _zoom * 1.2 <= 20.0f)
 			_zoom *= 1.2f;
 		else if (g_mouse->wheel < 0 && _zoom * 0.8f >= 0.5f)
 			_zoom *= 0.8f;
