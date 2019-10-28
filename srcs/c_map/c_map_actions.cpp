@@ -68,7 +68,6 @@ void c_map::select_city(c_city *city)
 	if (_city_selected != nullptr)
 	{
 		_city_name_entry->entry().set_text(_city_selected->name());
-		_city_waiting_entry->entry().set_value(_city_selected->waiting_time());
 	}
 }
 

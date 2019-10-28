@@ -63,7 +63,7 @@ void c_journey::add_point(c_milestone *new_point, pair_int p_hour, int p_wait_ti
 		Vector2 entry_pos = label_pos + Vector2(label_size.x, 0.0f);
 		Vector2 entry_size = Vector2(panel_size.x - label_size.x, panel_size.y) - 2 * border;
 
-		new_wait_entry = new c_value_entry(5.0f, new_wait_frame);
+		new_wait_entry = new c_value_entry(p_wait_time, new_wait_frame);
 		new_wait_entry->entry().set_precision(0);
 		new_wait_entry->box().set_border(0);
 		new_wait_entry->box().set_front(Color(0, 0, 0, 0));

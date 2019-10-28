@@ -10,15 +10,21 @@ void save_destination(Data data)
 	size_t path_index = journey->get_index(target);
 
 	c_hour_entry *hour_entry = journey->hour_panel()[path_index];
+	c_value_entry *wait_entry = journey->wait_entry()[path_index];
 
 	json_add_value(file, 3, "id", to_string(index));
 
 	string hour = "";
+	string waiting = "";
 
 	if (hour_entry != nullptr && path_index != journey->path().size())
+	{
 		hour = hour_entry->hour().text() + "h" + hour_entry->minute().text();
+		waiting = wait_entry->entry().text();
+	}
 
 	json_add_value(file, 3, "departure time", hour);
+	json_add_value(file, 3, "Waiting time", waiting);
 }
 
 void saving_journey()

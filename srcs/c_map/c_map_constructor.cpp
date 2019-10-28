@@ -19,15 +19,6 @@ void c_map::create_city_panel()
 	_city_name_entry = new c_text_entry("", _city_panel);
 	_city_name_entry->entry().set_align(alignment::centred);
 	_city_name_entry->active();
-
-	_city_waiting_label = new c_text_label("Time to wait here (min) :", _city_panel);
-	_city_waiting_label->label().set_style(text_style::underline);
-	_city_waiting_label->active();
-
-	_city_waiting_entry = new c_value_entry(180.0f, _city_panel);
-	_city_waiting_entry->entry().set_precision(0);
-	_city_waiting_entry->entry().set_align(alignment::centred);
-	_city_waiting_entry->active();
 }
 
 void c_map::create_rail_panel()

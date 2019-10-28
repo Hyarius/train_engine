@@ -79,8 +79,8 @@ void c_map::calc_duration(c_journey *to_calc)
 
 		if (i != 0 && to_calc->path()[i]->place() != nullptr)
 		{
-			cout << "-----\nArrived at [" << to_calc->path()[i]->place()->name() << "] at " << time/60 << "h" << time%60 << "(" << to_calc->path()[i]->place()->waiting_time() << " min stop)" << endl;
-	 		time += static_cast<float>(to_calc->path()[i]->place()->waiting_time());
+			cout << "-----\nArrived at [" << to_calc->path()[i]->place()->name() << "] at " << time/60 << "h" << time%60 << "(" << to_calc->wait_entry()[i]->entry().text() << " min stop)" << endl;
+	 		time += static_cast<float>(to_calc->wait_entry()[i]->entry().value());
 			cout << "Depart from [" << to_calc->path()[i]->place()->name() << "] : " << time/60 << "h" << time%60 << endl;
 		}
 	}

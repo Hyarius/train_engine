@@ -7,7 +7,6 @@ c_city::c_city(Vector2 p_pos)
 	_milestone = nullptr;
 	_pos = p_pos;
 	_name = "City";
-	_waiting_time = 5;
 	_selected = 1;
 	Vector2 tmp = Vector2(350, 300);
 }

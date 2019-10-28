@@ -13,14 +13,6 @@ void c_map::set_geometry_city_panel()
 	Vector2 entry_anchor = Vector2(10 + label_size.x, 0.0f) + label_anchor;
 	Vector2 entry_size = Vector2(panel_size.x - label_size.x - 20, label_size.y);//p_area.x / 4, p_area.y / 3);
 	_city_name_entry->set_geometry(entry_anchor, entry_size);
-
-	label_anchor = Vector2(5.0f, entry_anchor.y + entry_size.y + 5);
-	label_size = Vector2(180, 30);//p_area.x / 4, p_area.y / 3);
-	_city_waiting_label->set_geometry(label_anchor, label_size);
-
-	entry_anchor = Vector2(10 + label_size.x, 0.0f) + label_anchor;
-	entry_size = Vector2(panel_size.x - label_size.x - 20, label_size.y);//p_area.x / 4, p_area.y / 3);
-	_city_waiting_entry->set_geometry(entry_anchor, entry_size);
 }
 
 void c_map::set_geometry_rail_panel()
@@ -92,7 +84,7 @@ bool c_map::handle_mouse()
 {
 	if (is_pointed(g_mouse->pos) == false)
 		return (false);
-		
+
 	if (_calib_button->is_pointed(g_mouse->pos) == true)
 		return (false);
 
@@ -124,7 +116,6 @@ void c_map::update()
 	if (_city_selected != nullptr)
 	{
 		_city_selected->set_name(_city_name_entry->entry().text());
-		_city_selected->set_waiting_time(_city_waiting_entry->entry().value());
 	}
 	if (_rail_selected.size() != 0)
 	{

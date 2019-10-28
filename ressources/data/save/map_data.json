@@ -5,92 +5,74 @@
 	"cities":[
 		{
 			"name":"Montpellier",
-			"waiting time":"5",
 			"pos":"(2418.120850 / 1936.166016)",
 		},
 		{
 			"name":"Nimes",
-			"waiting time":"5",
 			"pos":"(2506.067871 / 1877.135742)",
 		},
 		{
 			"name":"Avignon",
-			"waiting time":"5",
 			"pos":"(2589.112549 / 1850.689331)",
 		},
 		{
 			"name":"Marseille",
-			"waiting time":"5",
 			"pos":"(2690.937988 / 2006.539673)",
 		},
 		{
 			"name":"Aix-en-provence",
-			"waiting time":"5",
 			"pos":"(2700.896484 / 1953.510742)",
 		},
 		{
 			"name":"Miramas",
-			"waiting time":"5",
 			"pos":"(2624.465088 / 1944.050171)",
 		},
 		{
 			"name":"Toulon",
-			"waiting time":"5",
 			"pos":"(2793.260010 / 2048.404541)",
 		},
 		{
 			"name":"Hyeres",
-			"waiting time":"5",
 			"pos":"(2832.722656 / 2057.092285)",
 		},
 		{
 			"name":"Cannes",
-			"waiting time":"5",
 			"pos":"(2987.906982 / 1932.798950)",
 		},
 		{
 			"name":"Grasse",
-			"waiting time":"5",
 			"pos":"(2971.894531 / 1905.228760)",
 		},
 		{
 			"name":"Nice",
-			"waiting time":"5",
 			"pos":"(3028.840820 / 1893.068970)",
 		},
 		{
 			"name":"Beziers",
-			"waiting time":"5",
 			"pos":"(2299.842285 / 2006.676392)",
 		},
 		{
 			"name":"Narbonne",
-			"waiting time":"5",
 			"pos":"(2254.040283 / 2046.778076)",
 		},
 		{
 			"name":"Perpignan",
-			"waiting time":"5",
 			"pos":"(2237.906250 / 2165.979736)",
 		},
 		{
 			"name":"Cerbere",
-			"waiting time":"5",
 			"pos":"(2282.989990 / 2223.831543)",
 		},
 		{
 			"name":"Carcassonne",
-			"waiting time":"5",
 			"pos":"(2138.678711 / 2035.597534)",
 		},
 		{
 			"name":"Toulousse",
-			"waiting time":"5",
 			"pos":"(1973.986206 / 1939.679321)",
 		},
 		{
 			"name":"Sete",
-			"waiting time":"5",
 			"pos":"(2394.492188 / 1982.959839)",
 		}
 	],

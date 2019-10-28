@@ -6,7 +6,6 @@ void save_city(Data data)
 	c_city *city = *(data.acces<c_city **>(1));
 
 	json_add_value(file, 3, "name", city->name());
-	json_add_value(file, 3, "waiting time", to_string(city->waiting_time()));
 	json_add_value(file, 3, "pos", city->pos().str());
 }
 

@@ -4,6 +4,7 @@ static void load_point(fstream &file, c_journey *journey)
 {
 	size_t index = -1;
 	pair_int hour = pair_int(0, 0);
+	int waiting = 5;
 	string text = "";
 	vector<string> tab;
 	vector<string> sub_tab;
@@ -21,6 +22,8 @@ static void load_point(fstream &file, c_journey *journey)
 			{
 				index = atoi(tab[1].c_str());
 			}
+			else if (tab[0] == "Waiting time")
+				waiting = atoi(tab[1].c_str());
 			else if (tab[0] == "departure time")
 			{
 				tab[1].erase(remove(tab[1].begin(), tab[1].end(), '('), tab[1].end());
@@ -38,7 +41,7 @@ static void load_point(fstream &file, c_journey *journey)
 		text = get_str(file);
 		text.erase(remove(text.begin(), text.end(), '\t'), text.end());
 	}
-	journey->add_point(g_map->get_milestone(index), hour);
+	journey->add_point(g_map->get_milestone(index), hour, waiting);
 }
 
 c_journey::c_journey(string path)

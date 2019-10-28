@@ -36,8 +36,6 @@ void c_map::load_city(fstream &file)
 				tab[1].erase(remove(tab[1].begin(), tab[1].end(), ','), tab[1].end());
 				city->set_name(tab[1]);
 			}
-			if (tab[0] == "waiting time")
-				city->set_waiting_time(atoi(tab[1].c_str()));
 			else if (tab[0] == "pos")
 			{
 				tab[1].erase(remove(tab[1].begin(), tab[1].end(), '('), tab[1].end());
