@@ -64,9 +64,8 @@ void w_value_entry_component::add_text(string new_text)
 		_text = new_text;
 	else
 		_text.insert(_cursor, new_text);
-
-	calc_value();
 	_cursor++;
+	calc_value();
 	calc_text_to_draw();
 }
 

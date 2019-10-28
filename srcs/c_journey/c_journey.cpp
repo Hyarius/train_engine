@@ -11,6 +11,12 @@ c_journey::~c_journey()
 		_path[i]->set_linked(false);
 	for (size_t i = 0; i < _hour_panel.size(); i++)
 		delete _hour_panel[i];
+	for (size_t i = 0; i < _wait_panel.size(); i++)
+		delete _wait_panel[i];
+	for (size_t i = 0; i < _wait_entry.size(); i++)
+		delete _wait_entry[i];
+	for (size_t i = 0; i < _wait_label.size(); i++)
+		delete _wait_label[i];
 }
 
 size_t c_journey::get_index(c_milestone *target)
@@ -21,22 +27,55 @@ size_t c_journey::get_index(c_milestone *target)
 	return (i);
 }
 
-void c_journey::add_point(c_milestone *new_point, pair_int p_hour)
+void c_journey::add_point(c_milestone *new_point, pair_int p_hour, int p_wait_time)
 {
 	static Vector2 panel_size = Vector2(150, 30);
 	static Vector2 delta = Vector2(-panel_size.x / 2, 20.0f);
+	static Vector2 delta2 = Vector2(-panel_size.x / 2, 55.0f);
 	_path.push_back(new_point);
 	new_point->set_linked(true);
 
+	c_hour_entry *new_hour = nullptr;
+	c_frame *new_wait_frame = nullptr;
+	c_value_entry *new_wait_entry = nullptr;
+	c_text_label *new_wait_label = nullptr;
+
 	if (new_point != nullptr && new_point->place() != nullptr)
 	{
-		c_hour_entry *new_hour = new c_hour_entry(p_hour.first, p_hour.second, g_map);
+		new_hour = new c_hour_entry(p_hour.first, p_hour.second, g_map);
 		new_hour->set_geometry(Vector2(g_map->convert_to_screen_coord(new_point->pos()) + delta), panel_size);
 		new_hour->active();
-		_hour_panel.push_back(new_hour);
+
+		new_wait_frame = new c_frame(g_map);
+		new_wait_frame->set_geometry(Vector2(g_map->convert_to_screen_coord(new_point->pos()) + delta2), panel_size);
+		new_wait_frame->active();
+
+		int border = new_wait_frame->box().border();
+
+		Vector2 label_pos = 0;
+		Vector2 label_size = panel_size - Vector2(panel_size.y, 0.0f) - 2 * border;
+
+		new_wait_label = new c_text_label("Time in station : ", new_wait_frame);
+		new_wait_label->box().set_border(0);
+		new_wait_label->set_geometry(label_pos, label_size);
+		new_wait_label->active();
+
+		Vector2 entry_pos = label_pos + Vector2(label_size.x, 0.0f);
+		Vector2 entry_size = Vector2(panel_size.x - label_size.x, panel_size.y) - 2 * border;
+
+		new_wait_entry = new c_value_entry(5.0f, new_wait_frame);
+		new_wait_entry->entry().set_precision(0);
+		new_wait_entry->box().set_border(0);
+		new_wait_entry->box().set_front(Color(0, 0, 0, 0));
+		new_wait_entry->box().set_back(Color(0, 0, 0, 0));
+		new_wait_entry->set_geometry(entry_pos, entry_size);
+		new_wait_entry->active();
 	}
-	else
-		_hour_panel.push_back(nullptr);
+
+	_hour_panel.push_back(new_hour);
+	_wait_panel.push_back(new_wait_frame);
+	_wait_label.push_back(new_wait_label);
+	_wait_entry.push_back(new_wait_entry);
 }
 
 void c_journey::remove_point()
@@ -45,7 +84,12 @@ void c_journey::remove_point()
 	_path.pop_back();
 
 	if (_hour_panel.back() != nullptr)
+	{
 		delete _hour_panel.back();
+		delete _wait_panel.back();
+		delete _wait_label.back();
+		delete _wait_entry.back();
+	}
 
 	_hour_panel.pop_back();
 }
@@ -54,11 +98,26 @@ void c_journey::actualize_panel()
 {
 	static Vector2 panel_size = Vector2(150, 30);
 	static Vector2 delta = Vector2(-panel_size.x / 2, 20.0f);
+	static Vector2 delta2 = Vector2(-panel_size.x / 2, 55.0f);
 
 	for (size_t i = 0; i < _hour_panel.size(); i++)
 	{
 		if (_hour_panel[i] != nullptr)
 			_hour_panel[i]->set_geometry(Vector2(g_map->convert_to_screen_coord(_path[i]->pos()) + delta), panel_size);
+		if (_wait_panel[i] != nullptr)
+		{
+			int border = _wait_panel[i]->box().border();
+
+			Vector2 label_pos = 0;
+			Vector2 label_size = panel_size - Vector2(panel_size.y, 0.0f) - 2 * border;
+
+			Vector2 entry_pos = label_pos + Vector2(label_size.x, 0.0f);
+			Vector2 entry_size = Vector2(panel_size.x - label_size.x, panel_size.y) - 2 * border;
+
+			_wait_panel[i]->set_geometry(Vector2(g_map->convert_to_screen_coord(_path[i]->pos()) + delta2), panel_size);
+			_wait_label[i]->set_geometry(label_pos, label_size);
+			_wait_entry[i]->set_geometry(entry_pos, entry_size);
+		}
 	}
 }
 

@@ -218,8 +218,8 @@ public:
 	void 		set_cursor(int p_cursor){_cursor = p_cursor;}
 	void 		resize(Vector2 p_anchor, Vector2 p_area)
 		{set_anchor(p_anchor);set_area(p_area);calc_text_size_height(_area);calc_text_to_draw();}
-	void 		calc_value(){ _value = static_cast<float>(atof(_text.c_str()));_cursor = 0;}
-	void 		calc_text(){ _text = ftoa(_value, _precision);_cursor = 0;}
+	void 		calc_value(){ _value = static_cast<float>(atof(_text.c_str()));}
+	void 		calc_text(){ _text = ftoa(_value, _precision);}
 
 		//Getter
 	bool		selected(){return (_selected);}
