@@ -9,14 +9,17 @@ c_journey::~c_journey()
 {
 	for (size_t i = 0; i < _path.size(); i++)
 		_path[i]->set_linked(false);
+
 	for (size_t i = 0; i < _hour_panel.size(); i++)
-		delete _hour_panel[i];
+	{
+		if (_hour_panel[i] != nullptr)
+			delete _hour_panel[i];
+	}
 	for (size_t i = 0; i < _wait_panel.size(); i++)
-		delete _wait_panel[i];
-	for (size_t i = 0; i < _wait_entry.size(); i++)
-		delete _wait_entry[i];
-	for (size_t i = 0; i < _wait_label.size(); i++)
-		delete _wait_label[i];
+	{
+		if (_wait_panel[i] != nullptr)
+			delete _wait_panel[i];
+	}
 }
 
 size_t c_journey::get_index(c_milestone *target)

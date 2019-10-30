@@ -1,6 +1,10 @@
 #ifndef JGL_FILE_HANDLER_H
 #define JGL_FILE_HANDLER_H
 
+#ifdef _WIN32
+#	define strtok_r strtok_s
+#endif
+
 fstream open_file(string path, ios_base::openmode mode = ios_base::in | ios_base::out);
 string get_str(fstream &myfile);
 vector<string> get_strsplit(fstream &myfile, const string c, int size);

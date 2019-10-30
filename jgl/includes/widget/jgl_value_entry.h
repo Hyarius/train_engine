@@ -11,8 +11,8 @@ private:
 	w_value_entry_component _entry;
 
 	bool _select;
-	Uint32 _next_input;
-	Uint32 _input_delay;
+	long _next_input;
+	long _input_delay;
 
 public:
 	c_value_entry(float p_value = 0.001f, c_widget *p_parent = nullptr);

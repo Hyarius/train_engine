@@ -1,6 +1,6 @@
 #include "engine.h"
 
-static void start_calculation(Data data)
+static void calc_journeys(Data data)
 {
 	c_main_window *win = data.acces<c_main_window *>(0);
 	c_map *map = data.acces<c_map *>(1);
@@ -28,7 +28,7 @@ void c_main_window::create_command_panel()
 	Vector2 button_size = Vector2(command_box->box().area().x - border * 4,
 		(command_box->box().area().y - border * 3) / 2 - border);
 
-	start_button = new c_button(&start_calculation, Data(2, this, map), command_box);
+	start_button = new c_button(&calc_journeys, Data(2, this, map), command_box);
 	start_button->text().set_text("Start simulation");
 	start_button->set_geometry(button_pos, button_size);
 	start_button->active();

@@ -47,7 +47,7 @@ void c_map::calc_duration(c_journey *to_calc)
 	int base_time = convert_int_to_hour(to_calc->hour_panel()[0]->hour().value(), to_calc->hour_panel()[0]->minute().value());
 	int time = base_time;
 
-	cout << "Travel from [" << to_calc->path().front()->place()->name() << "] to [" << to_calc->path().back()->place()->name() << "], depart at " << to_calc->hour_panel()[0]->hour().text() << "h" << to_calc->hour_panel()[0]->minute().text() << endl;
+	cout << endl << endl << "New Travel : " << endl << "Travel from [" << to_calc->path().front()->place()->name() << "] to [" << to_calc->path().back()->place()->name() << "], depart at " << to_calc->hour_panel()[0]->hour().text() << "h" << to_calc->hour_panel()[0]->minute().text() << endl;
 	for (size_t i = 0; i < to_calc->path().size() - 1; i++)
 	{
 		pair_milestone key = {to_calc->path()[i], to_calc->path()[i+1]};
@@ -76,7 +76,7 @@ void c_map::calc_duration(c_journey *to_calc)
 
 		time += time_to_travel;
 
-		if (i != 0 && to_calc->path()[i]->place() != nullptr)
+		if (i != 0 && to_calc->path()[i]->place() != nullptr && to_calc->wait_entry()[i]->entry().value() != 0.0f)
 		{
 			cout << "-----\nArrived at [" << to_calc->path()[i]->place()->name() << "] at " << convert_hour_to_string(time) << "(" << to_calc->wait_entry()[i]->entry().text() << " min stop)" << endl;
 	 		time += static_cast<float>(to_calc->wait_entry()[i]->entry().value());

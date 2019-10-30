@@ -3,7 +3,7 @@
 static void reset_distance(vector<c_milestone *> &to_clean)
 {
 	for (size_t i = 0; i < to_clean.size(); i++)
-		to_clean[i]->set_distance(numeric_limits<float>::max());
+		to_clean[i]->set_distance(FLT_MAX);
 }
 
 static vector<c_milestone *> calc_shortest_path(c_milestone *target)
@@ -12,7 +12,7 @@ static vector<c_milestone *> calc_shortest_path(c_milestone *target)
 
 	result.clear();
 
-	if (target->distance() == numeric_limits<float>::max())
+	if (target->distance() == FLT_MAX)
 		return (result);
 
 	result.push_back(target);

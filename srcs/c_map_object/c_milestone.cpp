@@ -6,7 +6,7 @@ c_milestone::c_milestone(Vector2 p_pos, c_city* p_place)
 {
 	_pos = p_pos;
 	_place = p_place;
-	_distance = numeric_limits<float>::max();
+	_distance = FLT_MAX;
 	_linked = false;
 }
 

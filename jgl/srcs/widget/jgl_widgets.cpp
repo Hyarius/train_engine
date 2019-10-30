@@ -18,7 +18,7 @@ c_widget::~c_widget()
 
 	for (size_t i = 0; i < _childrens.size(); i++)
 	{
-		_childrens[i]->set_parent(nullptr);
+		delete _childrens[i];
 	}
 }
 

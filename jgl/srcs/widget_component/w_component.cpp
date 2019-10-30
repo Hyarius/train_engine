@@ -1,10 +1,15 @@
 #include "jgl.h"
 
-w_component::w_component(class c_widget *p_owner)
+w_component::w_component(class c_widget* p_owner)
 {
 	_owner = p_owner;
 	_anchor = Vector2() + owner_anchor();
 	_area = Vector2();
+}
+
+w_component::~w_component()
+{
+	_owner = nullptr;
 }
 
 Vector2		w_component::owner_anchor()

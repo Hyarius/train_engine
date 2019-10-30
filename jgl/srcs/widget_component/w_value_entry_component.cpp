@@ -27,7 +27,7 @@ void w_value_entry_component::calc_text_to_draw()
 
 	if (_text.empty() == false)
 	{
-		if (_text[i - 1] == '\0')
+		if (i != 0 && _text[i - 1] == '\0')
 			i--;
 
 		while (i > 0 && calc_text_len(_text_to_draw + _text[i - 1], _size) < _area.x)

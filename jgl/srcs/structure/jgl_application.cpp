@@ -5,7 +5,7 @@ c_application *g_application = nullptr;
 c_application::c_application(string name, Vector2 p_size, Color p_color)
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
-	IMG_Init(IMG_INIT_PNG);
+	IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG);
 	TTF_Init();
 
 	_win_size = p_size;
