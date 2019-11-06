@@ -20,6 +20,20 @@ vector<string>		strsplit(string input, string c)
 	return (tab);
 }
 
+void check_sdl_error(const char *file, int line)
+{
+	vector<string>tab = strsplit(file, "\\");
+	if (tab.size() == 1)
+		vector<string>tab = strsplit(file, "/");
+	string file_name = tab[tab.size() - 1];
+	string text = SDL_GetError();
+	if (text.size() != 0)
+	{
+		string error = file_name + " - line [" + to_string(line) + "] : " + text;
+		error_exit(1, error);
+	}
+}
+
 void				error_exit(int num, string error)
 {
 	cout << error << endl;
@@ -154,4 +168,20 @@ int convert_string_to_hour(string text)
 int convert_int_to_hour(int hour, int minute)
 {
 	return (hour * 60 + minute);
+}
+
+void remove_char(string &src, string to_remove)
+{
+	string result;
+	for (size_t i = 0; i < src.size(); i++)
+	{
+		char target = '\0';
+		for (size_t j = 0; j < to_remove.size(); j++)
+			if (to_remove[j] == src[i])
+				target = to_remove[j];
+
+		if (target == '\0')
+			result.push_back(src[i]);
+	}
+	src = result;
 }

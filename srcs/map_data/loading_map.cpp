@@ -29,13 +29,9 @@ void c_map::load_map(string path)
 		if (text == "")
 			break;
 
-		text.erase(remove(text.begin(), text.end(), '\t'), text.end());
-		text.erase(remove(text.begin(), text.end(), ','), text.end());
+		remove_char(text, "\t,\"");
 
 		tab = strsplit(text, ":");
-
-		for (size_t i = 0; i < tab.size(); i++)
-			tab[i].erase(remove(tab[i].begin(), tab[i].end(), '\"'), tab[i].end());
 
 		if (tab[0] == "map_image")
 			reload_map(tab[1]);

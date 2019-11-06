@@ -37,6 +37,8 @@
 #include "jgl_window.h"
 #include "jgl_draw_primitive.h"
 
+#include "jgl_define.h"
+
 extern c_application *g_application;
 extern t_keyboard *g_keyboard;
 extern t_mouse *g_mouse;

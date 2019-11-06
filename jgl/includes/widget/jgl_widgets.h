@@ -18,7 +18,7 @@ protected:
 
 public:
 	c_widget(c_widget *p_parent = nullptr);
-	~c_widget();
+	virtual ~c_widget();
 
 	vector<c_widget *> childrens(){return (_childrens);}
 	c_widget *parent(){return (_parent);}
