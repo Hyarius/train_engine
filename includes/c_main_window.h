@@ -3,6 +3,7 @@
 
 #include "jgl.h"
 #include "c_map.h"
+#include "c_train_engine.h"
 
 class c_main_window
 {
@@ -18,6 +19,7 @@ public:
 	c_map *map;
 
 	// - Command
+	c_train_engine *engine;
 	c_button *start_button;
 	c_hour_entry *hour_entry;
 

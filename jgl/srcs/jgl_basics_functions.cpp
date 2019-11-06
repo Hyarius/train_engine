@@ -155,6 +155,29 @@ string convert_hour_to_string(int minute)
 	return (hour_text + "h" + minute_text);
 }
 
+string convert_hour_to_string(float time)
+{
+	int tmp = floor(time);
+	int nb_hour = tmp / 60;
+	int nb_minute = tmp % 60;
+	int nb_second = (time - nb_hour * 60 - nb_minute) * 60;
+
+	string hour_text = to_string(nb_hour);
+	string minute_text = to_string(nb_minute);
+	string second_text = to_string(nb_second);
+
+	if (hour_text.length() == 1)
+		hour_text.insert(0, "0");
+
+	if (minute_text.length() == 1)
+		minute_text.insert(0, "0");
+
+	if (second_text.length() == 1)
+		second_text.insert(0, "0");
+
+	return (hour_text + "h" + minute_text + " - " + second_text + "s");
+}
+
 int convert_string_to_hour(string text)
 {
 	vector<string> tab = strsplit(text, "h");

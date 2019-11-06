@@ -27,17 +27,6 @@ static float calc_distance_over_time(float actual_speed, float target_speed, flo
 
 void c_map::calc_duration(c_journey *to_calc)
 {
-
-	/*
-	1)calcul du temps a passer pour atteindre la vitesse max =>
-						Vitesse_voulue = vitesse_de_base + acceleration * temps
-						Vitesse_voulue - vitesse_de_base = acceleration * temps
-						temps = (Vitesse_voulue - vitesse_de_base) / acceleration
-
-	2) calcul de la distance parcourue dans ce temps d'acceleration =>
-						Distance parcourue = (1/2 * acceleration * temps) ^ 2 + Vitesse_voulue * temps
-	*/
-
 	float speed = 0;
 	float first_dist = 0.0f;
 	float second_dist = 0.0f;
