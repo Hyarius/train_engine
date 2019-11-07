@@ -2,10 +2,6 @@
 #define C_MAP_H
 
 #include "jgl.h"
-#include "c_city.h"
-#include "c_milestone.h"
-#include "c_rail.h"
-#include "c_journey.h"
 
 
 enum map_state
@@ -76,6 +72,7 @@ public:
 	vector<c_milestone *> &milestones(){return (_milestones);}
 	map<pair_milestone, c_rail *> &rails(){return (_rails);}
 	float zoom(){return (_zoom);}
+	float scale_unit(){return (_scale_unit);}
 	Vector2 map_anchor(){return (_map_anchor);}
 
 

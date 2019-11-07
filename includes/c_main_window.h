@@ -2,8 +2,6 @@
 #define C_MAIN_WINDOW_H
 
 #include "jgl.h"
-#include "c_map.h"
-#include "c_train_engine.h"
 
 class c_main_window
 {

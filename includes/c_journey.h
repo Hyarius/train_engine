@@ -1,8 +1,6 @@
 #ifndef C_JOURNEY_H
 #define C_JOURNEY_H
 
-#include "c_milestone.h"
-
 typedef pair<int, int> pair_int;
 
 class c_journey
@@ -20,6 +18,7 @@ public:
 
 	~c_journey();
 
+	string name();
 	vector<c_milestone *> &path(){return (_path);}
 	vector<c_hour_entry *> &hour_panel(){return (_hour_panel);}
 	vector<c_frame *> &wait_panel(){return (_wait_panel);}
@@ -27,6 +26,7 @@ public:
 	vector<c_value_entry *> &wait_entry(){return (_wait_entry);}
 
 	size_t get_index(c_milestone *target);
+	c_rail *get_rail(class c_map *map, size_t start_index);
 
 	void add_point(c_milestone *new_point, pair_int p_hour = pair_int(0, 0), int p_wait_time = 0);
 	void remove_point();

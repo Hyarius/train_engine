@@ -3,32 +3,31 @@
 static void calc_journeys(Data data)
 {
 	c_main_window *win = data.acces<c_main_window *>(0);
-	c_map *map = data.acces<c_map *>(1);
-
-	vector<c_journey *>journeys;
-
-	journeys.clear();
 
 	for (size_t i = 0; i < win->travel_name.size(); i++)
 	{
 		if (win->travel_name[i]->check().state() == true)
-			journeys.push_back(new c_journey("ressources/data/path/" + win->travel_name[i]->text().text() + ".json"));
+			win->engine->add_journey(new c_journey("ressources/data/path/" + win->travel_name[i]->text().text() + ".json"));
 	}
 
-	map->start_calculation(journeys);
+	win->map->calc_distance_ratio();
 
-	for (size_t i = 0; i < journeys.size(); i++)
-		delete journeys[i];
+	win->engine->run();
 }
 
 void c_main_window::create_command_panel()
 {
+	engine = new c_train_engine(map);
+
+	engine->set_time(12, 0);
+	engine->set_time_delta(0.16666f);
+
 	int border = command_box->box().border();
 	Vector2 button_pos = border * 1;
 	Vector2 button_size = Vector2(command_box->box().area().x - border * 4,
 		(command_box->box().area().y - border * 3) / 2 - border);
 
-	start_button = new c_button(&calc_journeys, Data(2, this, map), command_box);
+	start_button = new c_button(&calc_journeys, this, command_box);
 	start_button->text().set_text("Start simulation");
 	start_button->set_geometry(button_pos, button_size);
 	start_button->active();

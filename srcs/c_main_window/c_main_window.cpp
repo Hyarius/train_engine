@@ -5,6 +5,7 @@ c_map *g_map;
 c_main_window::c_main_window()
 {
 	map = nullptr;
+	engine = nullptr;
 
 	create_box();
 

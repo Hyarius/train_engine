@@ -137,3 +137,34 @@ void c_journey::draw()
 		draw_line(g_map->viewport(), Color(255, 120, 0), pos1, pos2, 9);
 	}
 }
+
+c_rail *c_journey::get_rail(c_map *map, size_t start_index)
+{
+	c_rail *result;
+	pair_milestone key;
+
+	if (start_index >= _path.size() - 1)
+		return (nullptr);
+	key = pair_milestone(_path[start_index], _path[start_index + 1]);
+	result = map->rails()[key];
+
+	if (result == nullptr)
+		error_exit(1, "No rail found");
+
+	result->calc_distance(map->scale_unit());
+
+	return (result);
+}
+
+string c_journey::name()
+{
+	string first;
+	string second;
+	string hour;
+
+	first = (_path.front()->place() == nullptr ? "" : _path.front()->place()->name());
+	second = (_path.back()->place() == nullptr ? "" : _path.back()->place()->name());
+	hour = (_hour_panel.front() == nullptr ? "" : convert_hour_to_string(_hour_panel.front()->hour().value(), _hour_panel.front()->minute().value()));
+
+	return ("[" + hour + "]-" + first + "-" + second);
+}

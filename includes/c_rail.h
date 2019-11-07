@@ -13,6 +13,10 @@ private:
 
 	int _nb_channel;
 
+	Vector2 _pos1;
+	Vector2 _pos2;
+	float _distance;
+
 	bool _state;
 
 public:
@@ -20,6 +24,15 @@ public:
 
 	void set_state(bool new_state){_state = new_state;}
 	bool state(){return (_state);}
+
+	void set_pos1(Vector2 new_pos1){_pos1 = new_pos1;}
+	Vector2 pos1(){return (_pos1);}
+
+	void set_pos2(Vector2 new_pos2){_pos2 = new_pos2;}
+	Vector2 pos2(){return (_pos2);}
+
+	void calc_distance(float p_ratio){_distance = _pos1.distance(_pos2) * p_ratio;}
+	float distance(){return (_distance);}
 
 	void set_speed(float new_speed){_speed = new_speed;}
 	float speed(){return (_speed);}
