@@ -5,7 +5,7 @@ float c_train_engine::get_next_city_dist(size_t train_index)
 
 }
 
-float c_train_engine::get_next_slow_dist(size_t train_index)
+float c_train_engine::get_next_slow     _dist(size_t train_index)
 {
 
 }
