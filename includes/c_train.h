@@ -14,6 +14,7 @@ private:
 	size_t _index;
 	float _distance;
 	int _departure_time;
+	float _waiting_time;
 	c_rail *_actual_rail;
 
 public:
@@ -33,7 +34,10 @@ public:
 	void set_departure_time(int p_departure_time){_departure_time = p_departure_time;}
 	void set_actual_rail(c_rail *p_actual_rail){_actual_rail = p_actual_rail;}
 	void set_index(size_t p_index){_index = p_index;}
+	void set_waiting_time(float p_waiting_time){_waiting_time = p_waiting_time;}
+	void change_waiting_time(float delta){_waiting_time += delta;}
 
+	float waiting_time(){return (_waiting_time);}
 	size_t index(){return (_index);}
 	float speed(){return (_speed);}
 	float distance(){return (_distance);}

@@ -49,7 +49,7 @@ bool c_map::control_normal()
 		{
 			c_city* city = check_city();
 			c_rail *rail = check_rail();
-			if (city != nullptr)
+			if (rail == nullptr)
 				control_city_creation(city);
 			else
 				control_rail_edition(rail);

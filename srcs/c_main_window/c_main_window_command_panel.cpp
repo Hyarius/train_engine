@@ -13,6 +13,8 @@ static void calc_journeys(Data data)
 	win->map->calc_distance_ratio();
 
 	win->engine->run();
+
+	win->engine->clean();
 }
 
 void c_main_window::create_command_panel()

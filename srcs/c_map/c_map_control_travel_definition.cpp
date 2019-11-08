@@ -44,7 +44,7 @@ bool c_map::control_travel_definition()
 				c_milestone *actual = _journey->path().back();
 
 				if (actual->is_accesible(target_milestone))
-					_journey->path().push_back(target_milestone);
+					_journey->add_point(target_milestone);
 				else if (target_milestone->place() != nullptr)
 				{
 					vector<c_milestone *> tmp_path = calc_path(actual, target_milestone);

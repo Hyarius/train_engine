@@ -75,6 +75,6 @@ fclean:			clean
 				@rm -f $(NAME)
 				@echo "fclean"
 
-re:				fclean jgl all
+re:				fclean all
 
 .PHONY: all clean fclean re jgl

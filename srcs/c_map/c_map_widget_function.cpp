@@ -73,6 +73,14 @@ bool c_map::handle_keyboard()
 				_journey = nullptr;
 			}
 		}
+		else if (_city_selected != nullptr)
+			select_city(nullptr);
+		else if (_rail_selected.size() != 0)
+		{
+			for (size_t i = 0; i < _rail_selected.size(); i++)
+				_rail_selected[i]->set_state(false);
+			_rail_selected.clear();
+		}
 		else
 			g_application->quit();
 		g_keyboard->reset_key(SDL_SCANCODE_ESCAPE);

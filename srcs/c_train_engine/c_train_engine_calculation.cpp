@@ -9,6 +9,7 @@ float c_train_engine::calc_distance_left(size_t index)
 	result = 0;
 	for (size_t i = start_pos; i < _journey_list[index]->path().size() - 1; i++)
 	{
+
 		c_rail *rail = _journey_list[index]->get_rail(_map, i);
 		tmp = 0;
 		if (rail != nullptr)
@@ -33,7 +34,6 @@ float c_train_engine::calc_next_speed(size_t index)
 	actual_speed = _train_list[index]->actual_rail()->speed();
 	for (size_t i = _train_list[index]->index() + 1; i < _journey_list[index]->path().size() - 1; i++)
 	{
-
 		c_rail *rail = _journey_list[index]->get_rail(_map, i);
 
 		if (_journey_list[index]->path()[i + 1]->place() != nullptr &&
@@ -49,6 +49,8 @@ void c_train_engine::handle_train_speed(size_t index)
 {
 	float tmp = calc_distance_left(index);
 
+	// if (_train_list[index]->waiting_time() > 0)
+	// 	_train_list[index]->change_waiting_time(-_time_delta);
 	if (tmp <= _train_list[index]->slow_down_dist())
 		_train_list[index]->decelerate_to_speed(_time_delta, 0);
 	else
@@ -60,11 +62,13 @@ void c_train_engine::handle_train_pos(size_t index)
 	float tmp_dist = _train_list[index]->speed() * _time_delta / 60;
 
 	_train_list[index]->add_distance(tmp_dist);
-	if (_train_list[index]->distance() >= _train_list[index]->actual_rail()->distance())
+	if (_train_list[index]->distance() > _train_list[index]->actual_rail()->distance())
 	{
 		_train_list[index]->set_distance(_train_list[index]->distance() - _train_list[index]->actual_rail()->distance());
 		_train_list[index]->set_index(_train_list[index]->index() + 1);
 		_train_list[index]->set_actual_rail(_journey_list[index]->get_rail(_map, _train_list[index]->index()));
+		if (_journey_list[index]->path()[_train_list[index]->index()]->place() != nullptr)
+			_train_list[index]->set_waiting_time(_journey_list[index]->wait_entry()[_train_list[index]->index()]->value());
 		if (_train_list[index]->actual_rail() == nullptr)
 			_arrived_train++;
 	}
@@ -73,7 +77,6 @@ void c_train_engine::handle_train_pos(size_t index)
 
 void c_train_engine::iterate()
 {
-
 	if (_time >= 60 * 24)
 		_time -= 60 * 24;
 
@@ -85,6 +88,10 @@ void c_train_engine::iterate()
 		if (_train_list[i]->actual_rail() != nullptr)
 		{
 			handle_train_pos(i);
+
+			cout << "[" << convert_hour_to_string(_time) << "] - Train [" << i << "] : " <<
+					_train_list[i]->speed() << " km/h - Dist left : " << calc_distance_left(i) <<
+					" / dist to stop : " << _train_list[i]->slow_down_dist() << endl;
 
 			handle_train_speed(i);
 		}
