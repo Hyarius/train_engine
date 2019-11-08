@@ -7,6 +7,7 @@ class c_train_engine
 {
 private:
 	c_map *_map;
+	size_t _arrived_train;
 
 	float _time;
 	float _time_delta;
@@ -22,12 +23,17 @@ public:
 	void run();
 	void iterate();
 
+	float calc_distance_left(size_t index);
+	float calc_next_speed(size_t index);
+	void handle_train_speed(size_t index);
+	void handle_train_pos(size_t index);
+
 	void add_journey(c_journey *new_journey, c_train *new_train = nullptr);
 
 	void set_map(c_map *p_map){_map = p_map;}
 	void set_time(int p_hour, int p_minute){_time = convert_int_to_hour(p_hour, p_minute);}
 	void set_time(float p_time){_time = p_time;}
-	void set_time_delta(float p_time_delta){_time_delta = p_time_delta;}
+	void set_time_delta(int p_time_delta){_time_delta = p_time_delta / 60.0f;}
 
 	float time(){return (_time);}
 	c_map *map(){return (_map);}

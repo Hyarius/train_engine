@@ -14,7 +14,12 @@ bool is_middle(float a, float b, float c);
 string convert_hour_to_string(int hour, int minute);
 string convert_hour_to_string(int minute);
 string convert_hour_to_string(float time);
-
+float convert_km_to_m(float base_dist);
+float convert_m_to_km(float base_dist);
+float convert_km_per_h_to_m_per_s(float base_speed);
+float convert_m_per_s_to_km_per_h(float base_speed);
+float convert_m_per_s2_to_km_per_h2(float base_acceleration);
+float convert_km_per_h2_to_m_per_s2(float base_acceleration);
 int convert_string_to_hour(string text);
 int convert_int_to_hour(int hour, int minute);
 void remove_char(string &src, string to_remove);

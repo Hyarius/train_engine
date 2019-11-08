@@ -14,6 +14,8 @@ public:
 	c_value_label(float p_value = 0.0f, c_widget *p_parent = nullptr);
 	~c_value_label();
 
+	float value(){return (_label.value());}
+
 	w_box_component &box(){return (_box);}
 	w_value_component &label(){return (_label);}
 

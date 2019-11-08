@@ -15,10 +15,15 @@ c_train::c_train()
 
 void c_train::calc_deceleration_dist(float min_speed)
 {
-	float converted = _deceleration / 1000.0f; // m/s^2 -> km/s^2
-	converted *= 60.0f * 60.0f * 60.0f * 60.0f; // km/s^2 -> km/h/2
+	float tmp = convert_km_per_h_to_m_per_s(min_speed);
+	float tmp2 = convert_km_per_h_to_m_per_s(_speed);
+	float tmp3 = convert_m_per_s2_to_km_per_h2(_deceleration);
 
-	_slow_down_dist = ((pow(min_speed, 2.0f) - pow(_speed, 2.0f)) / (2.0f * converted));
+	// cout << "Result m/s : " << min_speed << " -> " << tmp << endl;
+	// cout << "Result m/s : " << _speed << " -> " << tmp2 << endl;
+	// cout << "Result km/h2 : " << _deceleration << " -> " << tmp3 << endl;
+
+	_slow_down_dist = convert_m_to_km((pow(min_speed, 2.0f) - pow(_speed, 2.0f)) / (2.0f * tmp3) * 3600);
 }
 
 // Time : minute - Speed : km/h - acceleration : m/s^-2
@@ -38,4 +43,27 @@ void c_train::decelerate(float time)
 	_speed = _speed + (_deceleration * time);
 
 	calc_deceleration_dist(0);
+}
+
+// Time : minute - Speed : km/h - acceleration : m/s^-2
+void c_train::accelerate_to_speed(float time, float target_speed)
+{
+	accelerate(time);
+
+	if (speed() > target_speed)
+	{
+		set_speed(target_speed);
+		calc_deceleration_dist(0);
+	}
+}
+
+void c_train::decelerate_to_speed(float time, float target_speed)
+{
+	decelerate(time);
+
+	if (speed() < target_speed)
+	{
+		set_speed(target_speed);
+		calc_deceleration_dist(0);
+	}
 }

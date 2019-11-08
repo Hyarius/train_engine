@@ -20,7 +20,9 @@ public:
 	c_train();
 
 	void accelerate(float time);
+	void accelerate_to_speed(float time, float target_speed);
 	void decelerate(float time);
+	void decelerate_to_speed(float time, float target_speed);
 	void calc_deceleration_dist(float min_speed);
 
 	void set_speed(float p_speed){_speed = p_speed;}

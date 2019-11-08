@@ -18,6 +18,8 @@ public:
 	c_text_entry(string p_text = "", c_widget *p_parent = nullptr);
 	~c_text_entry();
 
+	string text(){return (_entry.text());}
+
 	w_box_component &box(){return (_box);}
 	w_text_entry_component &entry(){return (_entry);}
 

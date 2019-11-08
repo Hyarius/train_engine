@@ -19,8 +19,8 @@ void c_main_window::create_command_panel()
 {
 	engine = new c_train_engine(map);
 
-	engine->set_time(12, 0);
-	engine->set_time_delta(0.16666f);
+	engine->set_time(0, 0);
+	engine->set_time_delta(10);
 
 	int border = command_box->box().border();
 	Vector2 button_pos = border * 1;

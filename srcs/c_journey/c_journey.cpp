@@ -151,7 +151,8 @@ c_rail *c_journey::get_rail(c_map *map, size_t start_index)
 	if (result == nullptr)
 		error_exit(1, "No rail found");
 
-	result->calc_distance(map->scale_unit());
+	if (result->distance() == -1)
+		result->calc_distance(map->scale_unit());
 
 	return (result);
 }
@@ -167,4 +168,18 @@ string c_journey::name()
 	hour = (_hour_panel.front() == nullptr ? "" : convert_hour_to_string(_hour_panel.front()->hour().value(), _hour_panel.front()->minute().value()));
 
 	return ("[" + hour + "]-" + first + "-" + second);
+}
+
+void c_journey::calc_distance(c_map *map)
+{
+	c_rail *result;
+	pair_milestone key;
+
+	for (size_t i = 0; i < _path.size() - 1; i++)
+	{
+		key = pair_milestone(_path[i], _path[i + 1]);
+		result = map->rails()[key];
+
+		result->calc_distance(map->scale_unit());
+	}
 }

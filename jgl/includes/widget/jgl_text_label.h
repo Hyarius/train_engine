@@ -14,6 +14,8 @@ public:
 	c_text_label(string p_text = "", c_widget *p_parent = nullptr);
 	~c_text_label();
 
+	string text(){return (_label.text());}
+
 	w_box_component &box(){return (_box);}
 	w_text_component &label(){return (_label);}
 

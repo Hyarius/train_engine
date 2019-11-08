@@ -3,6 +3,7 @@
 c_rail::c_rail(Vector2 pos1, Vector2 pos2)
 {
 	_main_pos = pos1;
+	_distance = -1;
 	_speed = 145.0f;
 	_pos1 = pos1;
 	_pos2 = pos2;

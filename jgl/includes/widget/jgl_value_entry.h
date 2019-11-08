@@ -18,6 +18,8 @@ public:
 	c_value_entry(float p_value = 0.001f, c_widget *p_parent = nullptr);
 	~c_value_entry();
 
+	float value(){return (_entry.value());}
+
 	w_box_component &box(){return (_box);}
 	w_value_entry_component &entry(){return (_entry);}
 

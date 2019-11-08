@@ -208,3 +208,89 @@ void remove_char(string &src, string to_remove)
 	}
 	src = result;
 }
+
+float convert_km_to_m(float base_dist)
+{
+	return (base_dist * 1000);
+}
+
+float convert_m_to_km(float base_dist)
+{
+	return (base_dist / 1000);
+}
+
+float convert_km_per_h_to_m_per_s(float base_speed)
+{
+	float result;
+
+ 	//km/h
+	result = base_speed;
+
+	// -> m/h
+	result *= 1000.0f;
+
+	// -> m/min
+	result /= 60.0f;
+
+	// -> m/s
+	result /= 60.0f;
+
+	return (result);
+}
+
+float convert_m_per_s_to_km_per_h(float base_speed)
+{
+	float result;
+
+	//m/s
+	result = base_speed;
+
+	// -> km/s
+	result /= 1000.0f;
+
+	// -> km/min
+	result *= 60.0f;
+
+	// -> km/h
+	result *= 60.0f;
+
+	return (result);
+}
+
+float convert_m_per_s2_to_km_per_h2(float base_acceleration)
+{
+	float result;
+
+	//m/s/s
+	result = base_acceleration;
+
+	//km/s/s
+	result /= 1000;
+
+	//km/h/s
+	result *= 3600;
+
+	//km/h/h
+	result *= 3600;
+
+	return (result);
+}
+
+float convert_km_per_h2_to_m_per_s2(float base_acceleration)
+{
+	float result;
+
+	//km/h/h
+	result = base_acceleration;
+
+	//m/h/h
+	result *= 1000;
+
+	//m/s/h
+	result /= 3600;
+
+	//m/s/s
+	result /= 3600;
+
+	return (result);
+}
