@@ -38,7 +38,7 @@ static void load_journey(Data data)
 		if (win->travel_name[i]->check().state() == true)
 		{
 			map->open_journey("ressources/data/path/" + win->travel_name[i]->text().text() + ".json");
-			map->set_state(map_state::travel_definition);
+			map->set_state(e_map_state::travel_definition);
 			break;
 		}
 	}

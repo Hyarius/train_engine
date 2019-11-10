@@ -4,7 +4,7 @@ bool c_map::control_travel_definition()
 {
 	if (_cities.size() < 2)
 	{
-		_state = map_state::normal;
+		_state = e_map_state::normal;
 		return (false);
 	}
 

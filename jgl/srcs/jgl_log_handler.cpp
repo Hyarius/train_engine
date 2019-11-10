@@ -16,7 +16,7 @@ void open_log_file(string path, string log_name)
 		for (int i = 1; check_file_exist(full_path) == true; i++)
 			full_path = path + log_name + str + " (" + to_string(i) + ")" + ".log";
 	}
-	log_file.open(full_path.c_str());
+	log_file.open(full_path.c_str(), ios_base::out);
 	line = 0;
 
 	std::ostringstream oss2;

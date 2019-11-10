@@ -1,31 +1,8 @@
 #include "engine.h"
 
-float c_train_engine::calc_distance_left(size_t index)
-{
-	size_t start_pos = _train_list[index]->index();
-	float tmp;
-	float result;
+fstream myfile;
 
-	result = 0;
-	for (size_t i = start_pos; i < _journey_list[index]->path().size() - 1; i++)
-	{
-
-		c_rail *rail = _journey_list[index]->get_rail(_map, i);
-		tmp = 0;
-		if (rail != nullptr)
-			tmp = rail->distance();
-
-		result += tmp;
-
-		if (_journey_list[index]->path()[i + 1]->place() != nullptr)
-		{
-			if (_journey_list[index]->wait_entry()[i + 1]->value() != 0)
-				break ;
-		}
-	}
-	result -= _train_list[index]->distance();
-	return (result);
-}
+void write_train_in_file(fstream &myfile, float time, size_t num, float dist, c_train *train);
 
 float c_train_engine::calc_next_speed(size_t index)
 {
@@ -45,34 +22,31 @@ float c_train_engine::calc_next_speed(size_t index)
 	return (actual_speed);
 }
 
-void c_train_engine::handle_train_speed(size_t index)
+void c_train_engine::move_train(size_t index, float distance)
 {
-	float tmp = calc_distance_left(index);
+	c_train *train = _train_list[index];
 
-	// if (_train_list[index]->waiting_time() > 0)
-	// 	_train_list[index]->change_waiting_time(-_time_delta);
-	if (tmp <= _train_list[index]->slow_down_dist())
-		_train_list[index]->decelerate_to_speed(_time_delta, 0);
-	else
-		_train_list[index]->accelerate_to_speed(_time_delta, _train_list[index]->actual_rail()->speed());
-}
-
-void c_train_engine::handle_train_pos(size_t index)
-{
-	float tmp_dist = _train_list[index]->speed() * _time_delta / 60;
-
-	_train_list[index]->add_distance(tmp_dist);
-	if (_train_list[index]->distance() > _train_list[index]->actual_rail()->distance())
+	train->add_distance(distance);
+	while (train->actual_rail()->distance() - train->distance() < 0.001f)
 	{
-		_train_list[index]->set_distance(_train_list[index]->distance() - _train_list[index]->actual_rail()->distance());
-		_train_list[index]->set_index(_train_list[index]->index() + 1);
-		_train_list[index]->set_actual_rail(_journey_list[index]->get_rail(_map, _train_list[index]->index()));
-		if (_journey_list[index]->path()[_train_list[index]->index()]->place() != nullptr)
-			_train_list[index]->set_waiting_time(_journey_list[index]->wait_entry()[_train_list[index]->index()]->value());
-		if (_train_list[index]->actual_rail() == nullptr)
+		train->move_to_next_rail(_map);
+		train->set_waiting_time(0);
+		if (train->journey()->path()[train->index()]->place() != nullptr)
+		{
+			train->set_waiting_time(train->journey()->wait_entry()[train->index()]->value());
+			if (train->waiting_time() != 0)
+				train->set_state(e_train_state::waiting);
+		}
+		myfile << "Changing rail : new dist -> " << ftoa(train->distance()) << endl;
+		myfile << "Train wait phase : " << to_string(train->waiting_time()) << endl;
+		if (train->actual_rail() == nullptr)
+		{
+			train->change_speed(_time_delta, 0.0f);
 			_arrived_train++;
+			break ;
+		}
 	}
-	_distance[index] += tmp_dist;
+	_distance[index] += distance;
 }
 
 void c_train_engine::iterate()
@@ -82,18 +56,68 @@ void c_train_engine::iterate()
 
 	for (size_t i = 0; i < _train_list.size(); i++)
 	{
+		c_train *train = _train_list[i];
+
 		if (i != 0)
 			cout << " - ";
 
-		if (_train_list[i]->actual_rail() != nullptr)
+		if (_train_list[i]->actual_rail() != nullptr )
 		{
-			handle_train_pos(i);
+			if (train->state() == e_train_state::normal && train->speed() < train->actual_rail()->speed())
+				train->set_state(e_train_state::speed_up);
+			else if (train->state() == e_train_state::first_slow_down)
+				train->set_state(e_train_state::slow_down);
+			else if (train->state() == e_train_state::normal && train->slow_down_dist() >= calc_distance_left(i) - train->distance_per_tic())
+				train->set_state(e_train_state::first_slow_down);
+			else if (train->speed() == train->actual_rail()->speed())
+				train->set_state(e_train_state::normal);
 
-			cout << "[" << convert_hour_to_string(_time) << "] - Train [" << i << "] : " <<
-					_train_list[i]->speed() << " km/h - Dist left : " << calc_distance_left(i) <<
-					" / dist to stop : " << _train_list[i]->slow_down_dist() << endl;
+			if (train->state() == e_train_state::speed_up)
+				train->accelerate_to_speed(_time_delta, train->actual_rail()->speed());
+			else if (train->state() == e_train_state::slow_down)
+			{
+				train->decelerate_to_speed(_time_delta, 0);
+				if (train->speed() <= 5.0 && calc_distance_left(i) >= 0.001f)
+					train->change_speed(_time_delta, 5.0f);
+			}
 
-			handle_train_speed(i);
+			if (train->state() == e_train_state::waiting)
+			{
+				train->change_waiting_time(-_time_delta);
+				if (train->waiting_time() <= 0.0f)
+					train->set_state(e_train_state::normal);
+			}
+			else if (train->state() != e_train_state::first_slow_down)
+				move_train(i, train->speed() * convert_minute_to_hour(_time_delta));
+			else if (train->state() == e_train_state::first_slow_down)
+			{
+				float first_dist;
+				float first_time;
+				float second_dist;
+				float second_time;
+
+				first_dist = calc_distance_left(i) - train->slow_down_dist();
+				first_time = (first_dist / train->speed()) * 60;
+				second_dist = train->distance_per_tic() - first_dist;
+				second_time = _time_delta - first_time;
+
+				myfile << "----\n\nFirst part : " << ftoa(first_dist) << " in " << convert_hour_to_string(first_time) << "     ----     " << "Second part : " << ftoa(second_dist) << " in " << convert_hour_to_string(second_time) << endl;
+
+				move_train(i, train->speed() * convert_minute_to_hour(first_time));
+
+				myfile << "First speed : " << ftoa(train->speed()) << endl;
+
+				train->decelerate_to_speed(second_time, 0);
+
+				myfile << "Second speed : " << ftoa(train->speed()) << "\n\n----" << endl;
+
+				// if (train->speed() <= 5.0 && calc_distance_left(i) >= 0.001f)
+				// 	train->change_speed(_time_delta, 5.0f);
+				move_train(i, train->speed() * convert_minute_to_hour(second_time));
+
+			}
+
+			write_train_in_file(myfile, _time, i, calc_distance_left(i), _train_list[i]);
 		}
 	}
 
@@ -104,6 +128,8 @@ void c_train_engine::run()
 {
 	if (_time == -1.0f || _time_delta == -1.0f)
 		error_exit(1, "Bad engine configuration : Time [" + ftoa(_time, 2) + "] / Delta [" + ftoa(_time_delta, 2) + "]");
+
+	myfile.open("ressources/data/log.txt", ios_base::out);
 
 	for (size_t i = 0; i < _journey_list.size(); i++)
 	{
@@ -119,5 +145,13 @@ void c_train_engine::run()
 		iterate();
 	}
 	for (size_t i = 0; i < _distance.size(); i++)
-		cout << "Total distance for train [" << _journey_list[i]->name() << "] = " << _distance[i] << endl;
+	{
+		write_train_in_file(myfile, _time, i, calc_distance_left(i), _train_list[i]);
+		string text = "Total distance for train [" + _journey_list[i]->name() + "] = " + ftoa(_distance[i], 3) + " and arrived at : [" + convert_hour_to_string(_time) + "]";
+		myfile << text << endl;
+		cout << text << endl;
+	}
+
+
+	myfile.close();
 }

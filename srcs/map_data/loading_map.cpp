@@ -45,7 +45,7 @@ void c_map::load_map(string path)
 				value[i] = atof(sub_tab[i].c_str());
 			place_landmark(Vector2(value[0], value[1]), 0);
 			place_landmark(Vector2(value[2], value[3]), 1);
-			_state = map_state::normal;
+			_state = e_map_state::normal;
 		}
 		else if (tab[0] == "landmark_scale")
 		{

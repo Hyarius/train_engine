@@ -3,8 +3,7 @@
 
 #include "jgl.h"
 
-
-enum map_state
+enum class e_map_state
 {
 	normal = 0,
 	calibration = 1,
@@ -34,7 +33,7 @@ private:
 	c_text_label *_unit_label;
 	c_value_entry *_landmark_scale;
 	c_button *_calib_button;
-	map_state _state;
+	e_map_state _state;
 
 	c_frame *_rail_panel;
 	c_text_label *_rail_speed_label;
@@ -63,7 +62,7 @@ public:
 
 	/*---------------------*/
 	//Setter
-	void set_state(map_state new_state){_state = new_state;}
+	void set_state(e_map_state new_state){_state = new_state;}
 
 	//Getter
 	c_journey *journey(){return (_journey);}

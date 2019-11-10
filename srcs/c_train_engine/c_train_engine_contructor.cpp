@@ -15,7 +15,7 @@ void c_train_engine::add_journey(c_journey *new_journey, c_train *new_train)
 
 	if (new_train == nullptr)
 	{
-		new_train = new c_train();
+		new_train = new c_train(new_journey);
 		new_train->set_acceleration(0.75f);
 		new_train->set_deceleration(-0.75f);
 	}

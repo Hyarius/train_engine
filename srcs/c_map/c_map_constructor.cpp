@@ -4,7 +4,7 @@ static void active_calibatration(Data p_data)
 {
 	c_map *map = (c_map *)(p_data.content[0]);
 
-	map->set_state(map_state::calibration);
+	map->set_state(e_map_state::calibration);
 	map->reset_landmark();
 }
 
@@ -63,7 +63,7 @@ void c_map::create_calib_button()
 
 void c_map::create_landmark()
 {
-	_state = map_state::calibration;
+	_state = e_map_state::calibration;
 	_rel_distance = -1.0f;
 	_landmark1 = Vector2();
 	_landmark2 = Vector2();

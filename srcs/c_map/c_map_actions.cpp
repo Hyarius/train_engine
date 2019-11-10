@@ -26,7 +26,7 @@ c_milestone *c_map::get_milestone(size_t index)
 
 void c_map::create_new_path()
 {
-	_state = map_state::travel_definition;
+	_state = e_map_state::travel_definition;
 	if (_journey != nullptr)
 		delete _journey;
 

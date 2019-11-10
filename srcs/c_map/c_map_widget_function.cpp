@@ -64,9 +64,9 @@ bool c_map::handle_keyboard()
 {
 	if (g_keyboard->get_key(SDL_SCANCODE_ESCAPE) == 1)
 	{
-		if (_state != map_state::normal)
+		if (_state != e_map_state::normal)
 		{
-			_state = map_state::normal;
+			_state = e_map_state::normal;
 			if (_journey != nullptr)
 			{
 				delete _journey;
@@ -108,11 +108,11 @@ bool c_map::handle_mouse()
 	if (control_unselect() == true)
 		return (true);
 
-	if (_state == map_state::normal && control_normal() == true)
+	if (_state == e_map_state::normal && control_normal() == true)
 		return (true);
-	if (_state == map_state::calibration && control_calibration() == true)
+	if (_state == e_map_state::calibration && control_calibration() == true)
 		return (true);
-	if (_state == map_state::travel_definition && control_travel_definition() == true)
+	if (_state == e_map_state::travel_definition && control_travel_definition() == true)
 		return (true);
 
 	return (false);
@@ -133,7 +133,7 @@ void c_map::update()
 			_rail_selected[i]->set_nb_channel(_rail_nb_channel_entry->entry().value());
 		}
 	}
-	if (_state == map_state::travel_definition)
+	if (_state == e_map_state::travel_definition)
 	{
 
 	}

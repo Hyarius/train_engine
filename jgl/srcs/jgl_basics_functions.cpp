@@ -72,6 +72,9 @@ string intToStr(int x, int d)
 		i++;
 	}
 
+	if (result.size() == 0)
+		return ("0");
+
     reverse(result);
 
     return (result);
@@ -221,76 +224,50 @@ float convert_m_to_km(float base_dist)
 
 float convert_km_per_h_to_m_per_s(float base_speed)
 {
-	float result;
-
- 	//km/h
-	result = base_speed;
-
-	// -> m/h
-	result *= 1000.0f;
-
-	// -> m/min
-	result /= 60.0f;
-
-	// -> m/s
-	result /= 60.0f;
-
-	return (result);
+	return (base_speed * 1000) / (60 * 60);
 }
 
 float convert_m_per_s_to_km_per_h(float base_speed)
 {
-	float result;
-
-	//m/s
-	result = base_speed;
-
-	// -> km/s
-	result /= 1000.0f;
-
-	// -> km/min
-	result *= 60.0f;
-
-	// -> km/h
-	result *= 60.0f;
-
-	return (result);
+	return (base_speed / 1000) * (60 * 60);
 }
 
 float convert_m_per_s2_to_km_per_h2(float base_acceleration)
 {
-	float result;
-
-	//m/s/s
-	result = base_acceleration;
-
-	//km/s/s
-	result /= 1000;
-
-	//km/h/s
-	result *= 3600;
-
-	//km/h/h
-	result *= 3600;
-
-	return (result);
+	return (base_acceleration / 1000) * (3600 * 3600);
 }
 
 float convert_km_per_h2_to_m_per_s2(float base_acceleration)
 {
-	float result;
+	return (base_acceleration * 1000) / (3600 * 3600);
+}
 
-	//km/h/h
-	result = base_acceleration;
+float convert_second_to_minute(float time)
+{
+	return (time / 60.0f);
+}
 
-	//m/h/h
-	result *= 1000;
+float convert_minute_to_hour(float time)
+{
+	return (time / 60.0f);
+}
 
-	//m/s/h
-	result /= 3600;
+float convert_second_to_hour(float time)
+{
+	return (time / 3600.0f);
+}
 
-	//m/s/s
-	result /= 3600;
+float convert_minute_to_second(float time)
+{
+	return (time * 60.0f);
+}
 
-	return (result);
+float convert_hour_to_minute(float time)
+{
+	return (time * 60.0f);
+}
+
+float convert_hour_to_second(float time)
+{
+	return (time * 3600.0f);
 }

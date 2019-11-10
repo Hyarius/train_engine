@@ -25,8 +25,8 @@ public:
 
 	float calc_distance_left(size_t index);
 	float calc_next_speed(size_t index);
-	void handle_train_speed(size_t index);
-	void handle_train_pos(size_t index);
+
+	void move_train(size_t index, float distance);
 
 	void add_journey(c_journey *new_journey, c_train *new_train = nullptr);
 
