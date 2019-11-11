@@ -161,9 +161,10 @@ string convert_hour_to_string(int minute)
 string convert_hour_to_string(float time)
 {
 	int tmp = floor(time);
-	int nb_hour = tmp / 60;
+	int nb_hour = (tmp / 60);
 	int nb_minute = tmp % 60;
 	int nb_second = (time - nb_hour * 60 - nb_minute) * 60;
+	nb_hour = nb_hour % 24;
 
 	string hour_text = to_string(nb_hour);
 	string minute_text = to_string(nb_minute);

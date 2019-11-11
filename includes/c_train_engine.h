@@ -15,6 +15,7 @@ private:
 	vector<c_journey *> _journey_list;
 	vector<c_train *>_train_list;
 	vector<float> _distance;
+	vector<float> _arrived_hour;
 
 public:
 	c_train_engine(c_map *p_map);
@@ -39,6 +40,7 @@ public:
 	c_map *map(){return (_map);}
 	float time_delta(){return (_time_delta);}
 	vector<float> &distance(){return (_distance);}
+	vector<float> &arrived_hour(){return (_arrived_hour);}
 };
 
 #endif
