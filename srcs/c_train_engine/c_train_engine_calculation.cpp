@@ -54,6 +54,8 @@ void c_train_engine::iterate()
 	if (_time >= 60 * 24)
 		_time -= 60 * 24;
 
+	_time += _time_delta;
+
 	for (size_t i = 0; i < _train_list.size(); i++)
 	{
 		c_train *train = _train_list[i];
@@ -63,23 +65,28 @@ void c_train_engine::iterate()
 
 		if (_train_list[i]->actual_rail() != nullptr )
 		{
+
+			write_train_in_file(myfile, _time, i, calc_distance_left(i), _train_list[i]);
+
 			if (train->state() == e_train_state::normal && train->speed() < train->actual_rail()->speed())
 				train->set_state(e_train_state::speed_up);
 			else if (train->state() == e_train_state::first_slow_down)
 				train->set_state(e_train_state::slow_down);
 			else if (train->state() == e_train_state::normal && train->slow_down_dist() >= calc_distance_left(i) - train->distance_per_tic())
 				train->set_state(e_train_state::first_slow_down);
+			else if (train->state() == e_train_state::slow_down && train->speed() + train->speed_lost(_time_delta) <= 5.0 && calc_distance_left(i) >= 0.001f)
+				train->set_state(e_train_state::stopping);
 			else if (train->speed() == train->actual_rail()->speed())
 				train->set_state(e_train_state::normal);
+
+			float old_speed = train->speed();
 
 			if (train->state() == e_train_state::speed_up)
 				train->accelerate_to_speed(_time_delta, train->actual_rail()->speed());
 			else if (train->state() == e_train_state::slow_down)
-			{
-				train->decelerate_to_speed(_time_delta, 0);
-				if (train->speed() <= 5.0 && calc_distance_left(i) >= 0.001f)
-					train->change_speed(_time_delta, 5.0f);
-			}
+				train->decelerate_to_speed(_time_delta, 5.0f);
+			else if (train->state() == e_train_state::stopping)
+				train->decelerate_to_speed(_time_delta, 5.0f);
 
 			if (train->state() == e_train_state::waiting)
 			{
@@ -87,8 +94,6 @@ void c_train_engine::iterate()
 				if (train->waiting_time() <= 0.0f)
 					train->set_state(e_train_state::normal);
 			}
-			else if (train->state() != e_train_state::first_slow_down)
-				move_train(i, train->speed() * convert_minute_to_hour(_time_delta));
 			else if (train->state() == e_train_state::first_slow_down)
 			{
 				float first_dist;
@@ -101,27 +106,17 @@ void c_train_engine::iterate()
 				second_dist = train->distance_per_tic() - first_dist;
 				second_time = _time_delta - first_time;
 
-				myfile << "----\n\nFirst part : " << ftoa(first_dist) << " in " << convert_hour_to_string(first_time) << "     ----     " << "Second part : " << ftoa(second_dist) << " in " << convert_hour_to_string(second_time) << endl;
+				move_train(i, ((old_speed + train->speed()) / 2) * convert_minute_to_hour(first_time));
 
-				move_train(i, train->speed() * convert_minute_to_hour(first_time));
+				train->decelerate_to_speed(second_time, 5.0f);
 
-				myfile << "First speed : " << ftoa(train->speed()) << endl;
-
-				train->decelerate_to_speed(second_time, 0);
-
-				myfile << "Second speed : " << ftoa(train->speed()) << "\n\n----" << endl;
-
-				// if (train->speed() <= 5.0 && calc_distance_left(i) >= 0.001f)
-				// 	train->change_speed(_time_delta, 5.0f);
-				move_train(i, train->speed() * convert_minute_to_hour(second_time));
-
+				move_train(i, ((old_speed + train->speed()) / 2) * convert_minute_to_hour(second_time));
 			}
-
-			write_train_in_file(myfile, _time, i, calc_distance_left(i), _train_list[i]);
+			else
+				move_train(i, ((old_speed + train->speed()) / 2) * convert_minute_to_hour(_time_delta));
+			myfile << "	-----" << endl;
 		}
 	}
-
-	_time += _time_delta;
 }
 
 void c_train_engine::run()

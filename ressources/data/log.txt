@@ -1,147 +1,154 @@
-[00h00 - 00s] - Train [0] : 120 km/h - Left : 102.722015 / To stop : 0.740740 / Tic : 2.700000 / State : Speeding
-[00h01 - 00s] - Train [0] : 120 km/h - Left : 100.722015 / To stop : 0.740740 / Tic : 2.700000 / State : Normal
-Changing rail : new dist -> 1.507
+[00h01 - 00s] - Train [0] : 0 km/h - Left : 104.722015 / To stop : 0 / Tic : 0 / State : Normal
+	-----
+[00h02 - 00s] - Train [0] : 120 km/h - Left : 103.722015 / To stop : 0.740740 / Tic : 2 / State : Speeding
+	-----
+[00h03 - 00s] - Train [0] : 120 km/h - Left : 101.722015 / To stop : 0.740740 / Tic : 2 / State : Normal
+Changing rail : new dist -> 0.507
 Train wait phase : 0.000000
-[00h02 - 00s] - Train [0] : 120 km/h - Left : 98.722015 / To stop : 0.740740 / Tic : 2.700000 / State : Normal
-Changing rail : new dist -> 0.348
+	-----
+[00h04 - 00s] - Train [0] : 120 km/h - Left : 99.722015 / To stop : 0.740740 / Tic : 2 / State : Normal
+	-----
+[00h05 - 00s] - Train [0] : 120 km/h - Left : 97.722015 / To stop : 0.740740 / Tic : 2 / State : Normal
+Changing rail : new dist -> 1.348
 Train wait phase : 0.000000
-[00h03 - 00s] - Train [0] : 120 km/h - Left : 96.722015 / To stop : 0.740740 / Tic : 2.700000 / State : Normal
-[00h04 - 00s] - Train [0] : 120 km/h - Left : 94.722015 / To stop : 0.740740 / Tic : 2.700000 / State : Normal
-Changing rail : new dist -> 0.720
+	-----
+[00h06 - 00s] - Train [0] : 120 km/h - Left : 95.722015 / To stop : 0.740740 / Tic : 2 / State : Normal
+	-----
+[00h07 - 00s] - Train [0] : 120 km/h - Left : 93.722015 / To stop : 0.740740 / Tic : 2 / State : Normal
+Changing rail : new dist -> 1.720
 Train wait phase : 0.000000
-[00h05 - 00s] - Train [0] : 120 km/h - Left : 92.722023 / To stop : 0.740740 / Tic : 2.700000 / State : Normal
-Changing rail : new dist -> 0.087
+	-----
+[00h08 - 00s] - Train [0] : 120 km/h - Left : 91.722023 / To stop : 0.740740 / Tic : 2 / State : Normal
+Changing rail : new dist -> 1.087
 Train wait phase : 0.000000
-[00h06 - 00s] - Train [0] : 120 km/h - Left : 90.722023 / To stop : 0.740740 / Tic : 2.700000 / State : Normal
-[00h07 - 00s] - Train [0] : 120 km/h - Left : 88.722023 / To stop : 0.740740 / Tic : 2.700000 / State : Normal
-Changing rail : new dist -> 1.506
+	-----
+[00h09 - 00s] - Train [0] : 120 km/h - Left : 89.722023 / To stop : 0.740740 / Tic : 2 / State : Normal
+Changing rail : new dist -> 0.506
 Train wait phase : 0.000000
-[00h08 - 00s] - Train [0] : 120 km/h - Left : 86.722015 / To stop : 0.740740 / Tic : 2.700000 / State : Normal
-Changing rail : new dist -> 0.029
+	-----
+[00h10 - 00s] - Train [0] : 120 km/h - Left : 87.722015 / To stop : 0.740740 / Tic : 2 / State : Normal
+	-----
+[00h11 - 00s] - Train [0] : 120 km/h - Left : 85.722015 / To stop : 0.740740 / Tic : 2 / State : Normal
+Changing rail : new dist -> 1.029
 Train wait phase : 0.000000
-[00h09 - 00s] - Train [0] : 120 km/h - Left : 84.722015 / To stop : 0.740740 / Tic : 2.700000 / State : Normal
-[00h10 - 00s] - Train [0] : 120 km/h - Left : 82.722015 / To stop : 0.740740 / Tic : 2.700000 / State : Normal
-Changing rail : new dist -> 0.704
+	-----
+[00h12 - 00s] - Train [0] : 120 km/h - Left : 83.722015 / To stop : 0.740740 / Tic : 2 / State : Normal
+	-----
+[00h13 - 00s] - Train [0] : 120 km/h - Left : 81.722015 / To stop : 0.740740 / Tic : 2 / State : Normal
+Changing rail : new dist -> 1.704
 Train wait phase : 0.000000
-[00h11 - 00s] - Train [0] : 120 km/h - Left : 80.722015 / To stop : 0.740740 / Tic : 2.700000 / State : Normal
-[00h12 - 00s] - Train [0] : 120 km/h - Left : 78.722015 / To stop : 0.740740 / Tic : 2.700000 / State : Normal
-Changing rail : new dist -> 0.875
+	-----
+[00h14 - 00s] - Train [0] : 120 km/h - Left : 79.722015 / To stop : 0.740740 / Tic : 2 / State : Normal
+	-----
+[00h15 - 00s] - Train [0] : 120 km/h - Left : 77.722015 / To stop : 0.740740 / Tic : 2 / State : Normal
+Changing rail : new dist -> 1.875
 Train wait phase : 0.000000
-[00h13 - 00s] - Train [0] : 120 km/h - Left : 76.722015 / To stop : 0.740740 / Tic : 2.700000 / State : Normal
-[00h14 - 00s] - Train [0] : 120 km/h - Left : 74.722015 / To stop : 0.740740 / Tic : 2.700000 / State : Normal
-Changing rail : new dist -> 1.150
+	-----
+[00h16 - 00s] - Train [0] : 120 km/h - Left : 75.722015 / To stop : 0.740740 / Tic : 2 / State : Normal
+Changing rail : new dist -> 0.150
 Train wait phase : 0.000000
-[00h15 - 00s] - Train [0] : 120 km/h - Left : 72.722015 / To stop : 0.740740 / Tic : 2.700000 / State : Normal
-Changing rail : new dist -> 0.091
+	-----
+[00h17 - 00s] - Train [0] : 120 km/h - Left : 73.722015 / To stop : 0.740740 / Tic : 2 / State : Normal
+	-----
+[00h18 - 00s] - Train [0] : 120 km/h - Left : 71.722015 / To stop : 0.740740 / Tic : 2 / State : Normal
+Changing rail : new dist -> 1.091
 Train wait phase : 0.000000
-[00h16 - 00s] - Train [0] : 120 km/h - Left : 70.722007 / To stop : 0.740740 / Tic : 2.700000 / State : Normal
-[00h17 - 00s] - Train [0] : 120 km/h - Left : 68.722007 / To stop : 0.740740 / Tic : 2.700000 / State : Normal
-[00h18 - 00s] - Train [0] : 120 km/h - Left : 66.722007 / To stop : 0.740740 / Tic : 2.700000 / State : Normal
-Changing rail : new dist -> 1.767
+	-----
+[00h19 - 00s] - Train [0] : 120 km/h - Left : 69.722007 / To stop : 0.740740 / Tic : 2 / State : Normal
+	-----
+[00h20 - 00s] - Train [0] : 120 km/h - Left : 67.722007 / To stop : 0.740740 / Tic : 2 / State : Normal
+Changing rail : new dist -> 0.767
 Train wait phase : 0.000000
-[00h19 - 00s] - Train [0] : 120 km/h - Left : 64.722015 / To stop : 0.740740 / Tic : 2.700000 / State : Normal
-Changing rail : new dist -> 0.412
+	-----
+[00h21 - 00s] - Train [0] : 120 km/h - Left : 65.722015 / To stop : 0.740740 / Tic : 2 / State : Normal
+	-----
+[00h22 - 00s] - Train [0] : 120 km/h - Left : 63.722015 / To stop : 0.740740 / Tic : 2 / State : Normal
+Changing rail : new dist -> 1.412
 Train wait phase : 0.000000
-[00h20 - 00s] - Train [0] : 120 km/h - Left : 62.722011 / To stop : 0.740740 / Tic : 2.700000 / State : Normal
-[00h21 - 00s] - Train [0] : 120 km/h - Left : 60.722011 / To stop : 0.740740 / Tic : 2.700000 / State : Normal
-[00h22 - 00s] - Train [0] : 120 km/h - Left : 58.722011 / To stop : 0.740740 / Tic : 2.700000 / State : Normal
-[00h23 - 00s] - Train [0] : 120 km/h - Left : 56.722011 / To stop : 0.740740 / Tic : 2.700000 / State : Normal
-[00h24 - 00s] - Train [0] : 120 km/h - Left : 54.722011 / To stop : 0.740740 / Tic : 2.700000 / State : Normal
-Changing rail : new dist -> 0.029
+	-----
+[00h23 - 00s] - Train [0] : 120 km/h - Left : 61.722011 / To stop : 0.740740 / Tic : 2 / State : Normal
+	-----
+[00h24 - 00s] - Train [0] : 120 km/h - Left : 59.722011 / To stop : 0.740740 / Tic : 2 / State : Normal
+	-----
+[00h25 - 00s] - Train [0] : 120 km/h - Left : 57.722011 / To stop : 0.740740 / Tic : 2 / State : Normal
+	-----
+[00h26 - 00s] - Train [0] : 120 km/h - Left : 55.722011 / To stop : 0.740740 / Tic : 2 / State : Normal
+	-----
+[00h27 - 00s] - Train [0] : 120 km/h - Left : 53.722011 / To stop : 0.740740 / Tic : 2 / State : Normal
+Changing rail : new dist -> 1.029
 Train wait phase : 0.000000
-[00h25 - 00s] - Train [0] : 120 km/h - Left : 52.722015 / To stop : 0.740740 / Tic : 2.700000 / State : Normal
-[00h26 - 00s] - Train [0] : 120 km/h - Left : 50.722015 / To stop : 0.740740 / Tic : 2.700000 / State : Normal
-[00h27 - 00s] - Train [0] : 120 km/h - Left : 48.722015 / To stop : 0.740740 / Tic : 2.700000 / State : Normal
-[00h28 - 00s] - Train [0] : 120 km/h - Left : 46.722015 / To stop : 0.740740 / Tic : 2.700000 / State : Normal
-Changing rail : new dist -> 1.964
+	-----
+[00h28 - 00s] - Train [0] : 120 km/h - Left : 51.722015 / To stop : 0.740740 / Tic : 2 / State : Normal
+	-----
+[00h29 - 00s] - Train [0] : 120 km/h - Left : 49.722015 / To stop : 0.740740 / Tic : 2 / State : Normal
+	-----
+[00h30 - 00s] - Train [0] : 120 km/h - Left : 47.722015 / To stop : 0.740740 / Tic : 2 / State : Normal
+Changing rail : new dist -> 0.964
 Train wait phase : 0.000000
-[00h29 - 00s] - Train [0] : 120 km/h - Left : 44.722015 / To stop : 0.740740 / Tic : 2.700000 / State : Normal
-[00h30 - 00s] - Train [0] : 120 km/h - Left : 42.722015 / To stop : 0.740740 / Tic : 2.700000 / State : Normal
-[00h31 - 00s] - Train [0] : 120 km/h - Left : 40.722015 / To stop : 0.740740 / Tic : 2.700000 / State : Normal
-Changing rail : new dist -> 0.572
+	-----
+[00h31 - 00s] - Train [0] : 120 km/h - Left : 45.722015 / To stop : 0.740740 / Tic : 2 / State : Normal
+	-----
+[00h32 - 00s] - Train [0] : 120 km/h - Left : 43.722015 / To stop : 0.740740 / Tic : 2 / State : Normal
+	-----
+[00h33 - 00s] - Train [0] : 120 km/h - Left : 41.722015 / To stop : 0.740740 / Tic : 2 / State : Normal
+	-----
+[00h34 - 00s] - Train [0] : 120 km/h - Left : 39.722015 / To stop : 0.740740 / Tic : 2 / State : Normal
+Changing rail : new dist -> 1.572
 Train wait phase : 0.000000
-[00h32 - 00s] - Train [0] : 120 km/h - Left : 38.722011 / To stop : 0.740740 / Tic : 2.700000 / State : Normal
-[00h33 - 00s] - Train [0] : 120 km/h - Left : 36.722011 / To stop : 0.740740 / Tic : 2.700000 / State : Normal
-[00h34 - 00s] - Train [0] : 120 km/h - Left : 34.722011 / To stop : 0.740740 / Tic : 2.700000 / State : Normal
-Changing rail : new dist -> 0.253
+	-----
+[00h35 - 00s] - Train [0] : 120 km/h - Left : 37.722011 / To stop : 0.740740 / Tic : 2 / State : Normal
+	-----
+[00h36 - 00s] - Train [0] : 120 km/h - Left : 35.722011 / To stop : 0.740740 / Tic : 2 / State : Normal
+	-----
+[00h37 - 00s] - Train [0] : 120 km/h - Left : 33.722011 / To stop : 0.740740 / Tic : 2 / State : Normal
+Changing rail : new dist -> 1.253
 Train wait phase : 0.000000
-[00h35 - 00s] - Train [0] : 120 km/h - Left : 32.722011 / To stop : 0.740740 / Tic : 2.700000 / State : Normal
-[00h36 - 00s] - Train [0] : 120 km/h - Left : 30.722011 / To stop : 0.740740 / Tic : 2.700000 / State : Normal
-[00h37 - 00s] - Train [0] : 120 km/h - Left : 28.722011 / To stop : 0.740740 / Tic : 2.700000 / State : Normal
-[00h38 - 00s] - Train [0] : 120 km/h - Left : 26.722011 / To stop : 0.740740 / Tic : 2.700000 / State : Normal
-Changing rail : new dist -> 1.235
+	-----
+[00h38 - 00s] - Train [0] : 120 km/h - Left : 31.722011 / To stop : 0.740740 / Tic : 2 / State : Normal
+	-----
+[00h39 - 00s] - Train [0] : 120 km/h - Left : 29.722011 / To stop : 0.740740 / Tic : 2 / State : Normal
+	-----
+[00h40 - 00s] - Train [0] : 120 km/h - Left : 27.722011 / To stop : 0.740740 / Tic : 2 / State : Normal
+Changing rail : new dist -> 0.235
 Train wait phase : 0.000000
-[00h39 - 00s] - Train [0] : 120 km/h - Left : 24.722011 / To stop : 0.740740 / Tic : 2.700000 / State : Normal
-Changing rail : new dist -> 0.499
+	-----
+[00h41 - 00s] - Train [0] : 120 km/h - Left : 25.722011 / To stop : 0.740740 / Tic : 2 / State : Normal
+	-----
+[00h42 - 00s] - Train [0] : 120 km/h - Left : 23.722011 / To stop : 0.740740 / Tic : 2 / State : Normal
+Changing rail : new dist -> 1.499
 Train wait phase : 0.000000
-[00h40 - 00s] - Train [0] : 120 km/h - Left : 22.722013 / To stop : 0.740740 / Tic : 2.700000 / State : Normal
-[00h41 - 00s] - Train [0] : 120 km/h - Left : 20.722013 / To stop : 0.740740 / Tic : 2.700000 / State : Normal
-Changing rail : new dist -> 0.099
+	-----
+[00h43 - 00s] - Train [0] : 120 km/h - Left : 21.722013 / To stop : 0.740740 / Tic : 2 / State : Normal
+	-----
+[00h44 - 00s] - Train [0] : 120 km/h - Left : 19.722013 / To stop : 0.740740 / Tic : 2 / State : Normal
+Changing rail : new dist -> 1.099
 Train wait phase : 0.000000
-[00h42 - 00s] - Train [0] : 120 km/h - Left : 18.722011 / To stop : 0.740740 / Tic : 2.700000 / State : Normal
-[00h43 - 00s] - Train [0] : 120 km/h - Left : 16.722011 / To stop : 0.740740 / Tic : 2.700000 / State : Normal
-Changing rail : new dist -> 0.726
+	-----
+[00h45 - 00s] - Train [0] : 120 km/h - Left : 17.722011 / To stop : 0.740740 / Tic : 2 / State : Normal
+	-----
+[00h46 - 00s] - Train [0] : 120 km/h - Left : 15.722011 / To stop : 0.740740 / Tic : 2 / State : Normal
+Changing rail : new dist -> 1.726
 Train wait phase : 0.000000
-[00h44 - 00s] - Train [0] : 120 km/h - Left : 14.722012 / To stop : 0.740740 / Tic : 2.700000 / State : Normal
-[00h45 - 00s] - Train [0] : 120 km/h - Left : 12.722012 / To stop : 0.740740 / Tic : 2.700000 / State : Normal
-[00h46 - 00s] - Train [0] : 120 km/h - Left : 10.722012 / To stop : 0.740740 / Tic : 2.700000 / State : Normal
-[00h47 - 00s] - Train [0] : 120 km/h - Left : 8.722012 / To stop : 0.740740 / Tic : 2.700000 / State : Normal
-Changing rail : new dist -> 1.172
+	-----
+[00h47 - 00s] - Train [0] : 120 km/h - Left : 13.722012 / To stop : 0.740740 / Tic : 2 / State : Normal
+	-----
+[00h48 - 00s] - Train [0] : 120 km/h - Left : 11.722012 / To stop : 0.740740 / Tic : 2 / State : Normal
+	-----
+[00h49 - 00s] - Train [0] : 120 km/h - Left : 9.722012 / To stop : 0.740740 / Tic : 2 / State : Normal
+Changing rail : new dist -> 0.172
 Train wait phase : 0.000000
-[00h48 - 00s] - Train [0] : 120 km/h - Left : 6.722012 / To stop : 0.740740 / Tic : 2.700000 / State : Normal
-[00h49 - 00s] - Train [0] : 120 km/h - Left : 4.722012 / To stop : 0.740740 / Tic : 2.700000 / State : Normal
-[00h50 - 00s] - Train [0] : 120 km/h - Left : 2.722012 / To stop : 0.740740 / Tic : 2.700000 / State : Normal
-----
-
-First part : -0.762 in 00h-1 - 37s     ----     Second part : 3.462 in 00h01 - 22s
-First speed : 120
-Second speed : 0
-
-----
-[00h51 - 00s] - Train [0] : 0 km/h - Left : 3.484765 / To stop : 0 / Tic : -2.389390 / State : First slowing
-[00h52 - 00s] - Train [0] : 5 km/h - Left : 3.401432 / To stop : 0.001286 / Tic : 0.083333 / State : Slowing
-[00h53 - 00s] - Train [0] : 5 km/h - Left : 3.318098 / To stop : 0.001286 / Tic : 0.083333 / State : Slowing
-[00h54 - 00s] - Train [0] : 5 km/h - Left : 3.234765 / To stop : 0.001286 / Tic : 0.083333 / State : Slowing
-[00h55 - 00s] - Train [0] : 5 km/h - Left : 3.151431 / To stop : 0.001286 / Tic : 0.083333 / State : Slowing
-[00h56 - 00s] - Train [0] : 5 km/h - Left : 3.068098 / To stop : 0.001286 / Tic : 0.083333 / State : Slowing
-[00h57 - 00s] - Train [0] : 5 km/h - Left : 2.984764 / To stop : 0.001286 / Tic : 0.083333 / State : Slowing
-[00h58 - 00s] - Train [0] : 5 km/h - Left : 2.901431 / To stop : 0.001286 / Tic : 0.083333 / State : Slowing
-[00h59 - 00s] - Train [0] : 5 km/h - Left : 2.818097 / To stop : 0.001286 / Tic : 0.083333 / State : Slowing
-[01h00 - 00s] - Train [0] : 5 km/h - Left : 2.734764 / To stop : 0.001286 / Tic : 0.083333 / State : Slowing
-[01h01 - 00s] - Train [0] : 5 km/h - Left : 2.651430 / To stop : 0.001286 / Tic : 0.083333 / State : Slowing
-[01h02 - 00s] - Train [0] : 5 km/h - Left : 2.568097 / To stop : 0.001286 / Tic : 0.083333 / State : Slowing
-[01h03 - 00s] - Train [0] : 5 km/h - Left : 2.484763 / To stop : 0.001286 / Tic : 0.083333 / State : Slowing
-[01h04 - 00s] - Train [0] : 5 km/h - Left : 2.401430 / To stop : 0.001286 / Tic : 0.083333 / State : Slowing
-[01h05 - 00s] - Train [0] : 5 km/h - Left : 2.318096 / To stop : 0.001286 / Tic : 0.083333 / State : Slowing
-[01h06 - 00s] - Train [0] : 5 km/h - Left : 2.234763 / To stop : 0.001286 / Tic : 0.083333 / State : Slowing
-[01h07 - 00s] - Train [0] : 5 km/h - Left : 2.151429 / To stop : 0.001286 / Tic : 0.083333 / State : Slowing
-[01h08 - 00s] - Train [0] : 5 km/h - Left : 2.068096 / To stop : 0.001286 / Tic : 0.083333 / State : Slowing
-[01h09 - 00s] - Train [0] : 5 km/h - Left : 1.984762 / To stop : 0.001286 / Tic : 0.083333 / State : Slowing
-[01h10 - 00s] - Train [0] : 5 km/h - Left : 1.901429 / To stop : 0.001286 / Tic : 0.083333 / State : Slowing
-[01h11 - 00s] - Train [0] : 5 km/h - Left : 1.818095 / To stop : 0.001286 / Tic : 0.083333 / State : Slowing
-[01h12 - 00s] - Train [0] : 5 km/h - Left : 1.734762 / To stop : 0.001286 / Tic : 0.083333 / State : Slowing
-[01h13 - 00s] - Train [0] : 5 km/h - Left : 1.651428 / To stop : 0.001286 / Tic : 0.083333 / State : Slowing
-[01h14 - 00s] - Train [0] : 5 km/h - Left : 1.568095 / To stop : 0.001286 / Tic : 0.083333 / State : Slowing
-[01h15 - 00s] - Train [0] : 5 km/h - Left : 1.484761 / To stop : 0.001286 / Tic : 0.083333 / State : Slowing
-[01h16 - 00s] - Train [0] : 5 km/h - Left : 1.401428 / To stop : 0.001286 / Tic : 0.083333 / State : Slowing
-[01h17 - 00s] - Train [0] : 5 km/h - Left : 1.318094 / To stop : 0.001286 / Tic : 0.083333 / State : Slowing
-[01h18 - 00s] - Train [0] : 5 km/h - Left : 1.234761 / To stop : 0.001286 / Tic : 0.083333 / State : Slowing
-[01h19 - 00s] - Train [0] : 5 km/h - Left : 1.151427 / To stop : 0.001286 / Tic : 0.083333 / State : Slowing
-[01h20 - 00s] - Train [0] : 5 km/h - Left : 1.068094 / To stop : 0.001286 / Tic : 0.083333 / State : Slowing
-[01h21 - 00s] - Train [0] : 5 km/h - Left : 0.984760 / To stop : 0.001286 / Tic : 0.083333 / State : Slowing
-[01h22 - 00s] - Train [0] : 5 km/h - Left : 0.901427 / To stop : 0.001286 / Tic : 0.083333 / State : Slowing
-[01h23 - 00s] - Train [0] : 5 km/h - Left : 0.818093 / To stop : 0.001286 / Tic : 0.083333 / State : Slowing
-[01h24 - 00s] - Train [0] : 5 km/h - Left : 0.734760 / To stop : 0.001286 / Tic : 0.083333 / State : Slowing
-[01h25 - 00s] - Train [0] : 5 km/h - Left : 0.651426 / To stop : 0.001286 / Tic : 0.083333 / State : Slowing
-[01h26 - 00s] - Train [0] : 5 km/h - Left : 0.568093 / To stop : 0.001286 / Tic : 0.083333 / State : Slowing
-[01h27 - 00s] - Train [0] : 5 km/h - Left : 0.484759 / To stop : 0.001286 / Tic : 0.083333 / State : Slowing
-[01h28 - 00s] - Train [0] : 5 km/h - Left : 0.401426 / To stop : 0.001286 / Tic : 0.083333 / State : Slowing
-[01h29 - 00s] - Train [0] : 5 km/h - Left : 0.318092 / To stop : 0.001286 / Tic : 0.083333 / State : Slowing
-[01h30 - 00s] - Train [0] : 5 km/h - Left : 0.234759 / To stop : 0.001286 / Tic : 0.083333 / State : Slowing
-[01h31 - 00s] - Train [0] : 5 km/h - Left : 0.151425 / To stop : 0.001286 / Tic : 0.083333 / State : Slowing
-[01h32 - 00s] - Train [0] : 5 km/h - Left : 0.068092 / To stop : 0.001286 / Tic : 0.083333 / State : Slowing
-Changing rail : new dist -> 0.015
+	-----
+[00h50 - 00s] - Train [0] : 120 km/h - Left : 7.722012 / To stop : 0.740740 / Tic : 2 / State : Normal
+	-----
+[00h51 - 00s] - Train [0] : 120 km/h - Left : 5.722012 / To stop : 0.740740 / Tic : 2 / State : Normal
+	-----
+[00h52 - 00s] - Train [0] : 120 km/h - Left : 3.722012 / To stop : 0.740740 / Tic : 2 / State : Normal
+	-----
+[00h53 - 00s] - Train [0] : 120 km/h - Left : 1.722012 / To stop : 0.740740 / Tic : 2 / State : Normal
+	-----
+[00h54 - 00s] - Train [0] : 37.483009 km/h - Left : 0.072272 / To stop : 0.072272 / Tic : 0.318208 / State : First slowing
+Changing rail : new dist -> 0.281
 Train wait phase : 0.000000
-[01h33 - 00s] - Train [0] : 0 km/h - Left : -0.015241 / To stop : 0 / Tic : 0 / State : Slowing
-[01h34 - 00s] - Train [0] : 0 km/h - Left : -0.015241 / To stop : 0 / Tic : 0 / State : Slowing
-Total distance for train [[00h00]-Mulhouse-Strasbourg] = 104.737 and arrived at : [01h34 - 00s]
+	-----
+[00h54 - 00s] - Train [0] : 0 km/h - Left : -0.281752 / To stop : 0 / Tic : 0 / State : Slowing
+Total distance for train [[00h00]-Mulhouse-Strasbourg] = 105.003 and arrived at : [00h54 - 00s]

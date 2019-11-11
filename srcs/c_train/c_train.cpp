@@ -4,6 +4,7 @@ c_train::c_train(c_journey *journey)
 {
 	_journey = journey;
 	_speed = 0.0f;
+	_old_speed = 0.0f;
 	_acceleration = 0.0f;
 	_deceleration = 0.0f;
 	_slow_down_dist = 0.0f;
@@ -22,9 +23,19 @@ void c_train::calc_deceleration_dist(float target_speed)
 	_slow_down_dist = (pow(target_speed, 2.0f) - pow(_speed, 2.0f)) / (2.0f * deceleration_convert);
 }
 
+void c_train::change_speed(float time, float target_speed)
+{
+	set_old_speed(_speed);
+	set_speed(target_speed);
+	set_distance_per_tic(speed() * convert_minute_to_hour(time));
+	calc_deceleration_dist(0);
+}
+
 void c_train::accelerate(float time)
 {
 	float convert_time = convert_minute_to_hour(time);
+
+	set_old_speed(_speed);
 
 	_speed = _speed + (convert_m_per_s2_to_km_per_h2(_acceleration) * convert_time);
 
@@ -34,8 +45,9 @@ void c_train::accelerate(float time)
 
 void c_train::decelerate(float time)
 {
-
 	float convert_time = convert_minute_to_hour(time);
+
+	set_old_speed(_speed);
 
 	_speed = _speed + (convert_m_per_s2_to_km_per_h2(_deceleration) * convert_time);
 
@@ -49,10 +61,7 @@ void c_train::accelerate_to_speed(float time, float target_speed)
 	accelerate(time);
 
 	if (speed() > target_speed)
-	{
-		set_speed(target_speed);
-		calc_deceleration_dist(0);
-	}
+		change_speed(time, target_speed);
 }
 
 void c_train::decelerate_to_speed(float time, float target_speed)
@@ -60,10 +69,7 @@ void c_train::decelerate_to_speed(float time, float target_speed)
 	decelerate(time);
 
 	if (speed() < target_speed)
-	{
-		set_speed(target_speed);
-		calc_deceleration_dist(0);
-	}
+		change_speed(time, target_speed);
 }
 
 void c_train::move_to_next_rail(c_map *map)

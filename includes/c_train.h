@@ -9,7 +9,9 @@ enum class e_train_state
 	speed_up = 1,
 	first_slow_down = 2,
 	slow_down = 3,
-	waiting = 4
+	stopping = 4,
+	walk = 5,
+	waiting = 6
 };
 
 class c_train
@@ -19,6 +21,7 @@ private:
 
 	e_train_state _state;
 	float _speed;
+	float _old_speed;
 	float _acceleration;
 	float _deceleration;
 	float _slow_down_dist;
@@ -40,12 +43,9 @@ public:
 	void calc_deceleration_dist(float target_speed);
 	void move_to_next_rail(c_map *map);
 
-	void change_speed(float time, float target_speed){
-		set_speed(target_speed);
-		calc_deceleration_dist(0);
-		set_distance_per_tic(speed() * convert_minute_to_hour(time));
-	}
+	void change_speed(float time, float target_speed);
 	void set_speed(float p_speed){_speed = p_speed;}
+	void set_old_speed(float p_old_speed){_old_speed = p_old_speed;}
 	void set_distance_per_tic(float p_distance_per_tic){_distance_per_tic = p_distance_per_tic;}
 	void set_state(e_train_state p_state){_state = p_state;}
 	void set_distance(float p_distance){_distance = p_distance;}
@@ -59,10 +59,13 @@ public:
 	void change_waiting_time(float delta){_waiting_time += delta;}
 
 	float waiting_time(){return (_waiting_time);}
+	float speed_lost(float time){return ((convert_m_per_s2_to_km_per_h2(_deceleration) * convert_minute_to_hour(time)));}
+	float speed_gain(float time){return ((convert_m_per_s2_to_km_per_h2(_acceleration) * convert_minute_to_hour(time)));}
 	c_journey *journey(){return (_journey);}
 	e_train_state state(){return (_state);}
 	size_t index(){return (_index);}
 	float speed(){return (_speed);}
+	float old_speed(){return (_old_speed);}
 	float distance_per_tic(){return (_distance_per_tic);}
 	float distance(){return (_distance);}
 	float acceleration(){return (_acceleration);}
