@@ -5,6 +5,8 @@ c_rail::c_rail(Vector2 pos1, Vector2 pos2)
 	_main_pos = pos1;
 	_distance = -1;
 	_speed = 145.0f;
+	_cantonal_dist = 2.0f;
+	_train_list.clear();
 	_pos1 = pos1;
 	_pos2 = pos2;
 
@@ -32,4 +34,21 @@ c_rail::c_rail(Vector2 pos1, Vector2 pos2)
 	_poly->add_side(2, 0);
 	_poly->add_side(1, 3);
 	_poly->add_side(3, 2);
+}
+
+void c_rail::add_train(class c_train *p_train)
+{
+	_train_list.push_back(p_train);
+}
+
+void c_rail::remove_train(class c_train *p_train)
+{
+	size_t index;
+
+	index = 0;
+	while (index < _train_list.size() && _train_list[index] != p_train)
+		index++;
+
+	if (index != _train_list.size())
+		_train_list.erase(_train_list.begin() + index);
 }

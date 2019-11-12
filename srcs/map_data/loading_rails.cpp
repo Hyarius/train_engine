@@ -6,6 +6,7 @@ void c_map::load_rail(fstream &file)
 	c_milestone *first = nullptr;
 	c_milestone *second = nullptr;
 	float speed = 180.0f;
+	float cantonnal_dist = 2.0f;
 	int nb_channel = 1;
 	int i;
 	string text = "";
@@ -23,8 +24,10 @@ void c_map::load_rail(fstream &file)
 
 			if (tab[0] == "speed")
 				speed = atof(tab[1].c_str());
-			if (tab[0] == "nb channel")
+			else if (tab[0] == "nb channel")
 				nb_channel = atof(tab[1].c_str());
+			else if (tab[0] == "cantonal dist")
+				cantonnal_dist = atof(tab[1].c_str());
 			else if (tab[0] == "id_a")
 			{
 				int index = atoi(tab[1].c_str());
@@ -47,6 +50,7 @@ void c_map::load_rail(fstream &file)
 	pair_milestone key = pair_milestone(first, second);
 	_rails[key]->set_speed(speed);
 	_rails[key]->set_nb_channel(nb_channel);
+	_rails[key]->set_cantonal_dist(cantonnal_dist);
 }
 
 void c_map::load_rails(fstream &file)

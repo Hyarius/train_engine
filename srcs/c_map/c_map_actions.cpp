@@ -86,6 +86,7 @@ void c_map::select_rail(c_rail *rail)
 	{
 		_rail_speed_entry->entry().set_value(rail->speed());
 		_rail_nb_channel_entry->entry().set_value(rail->nb_channel());
+		_rail_canton_entry->entry().set_value(rail->cantonal_dist());
 	}
 
 	if (rail != nullptr)

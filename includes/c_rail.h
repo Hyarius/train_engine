@@ -11,7 +11,10 @@ private:
 	float _speed;
 	Polygon2D *_poly;
 
+	vector<class c_train *> _train_list;
+
 	int _nb_channel;
+	float _cantonal_dist;
 
 	Vector2 _pos1;
 	Vector2 _pos2;
@@ -22,8 +25,14 @@ private:
 public:
 	c_rail(Vector2 pos1, Vector2 pos2);
 
+	void add_train(class c_train *p_train);
+	void remove_train(class c_train *p_train);
+
 	void set_state(bool new_state){_state = new_state;}
 	bool state(){return (_state);}
+
+	void set_cantonal_dist(float new_cantonal_dist){_cantonal_dist = new_cantonal_dist;}
+	float cantonal_dist(){return (_cantonal_dist);}
 
 	void set_pos1(Vector2 new_pos1){_pos1 = new_pos1;}
 	Vector2 pos1(){return (_pos1);}
@@ -42,6 +51,8 @@ public:
 
 	void set_nb_channel(float new_nb_channel){_nb_channel = new_nb_channel;}
 	float nb_channel(){return (_nb_channel);}
+
+	vector<class c_train *> &train_list(){return (_train_list);}
 
 	void set_poly(Polygon2D *new_poly){_poly = new_poly;}
 	Polygon2D *poly(){return (_poly);}

@@ -42,6 +42,15 @@ void c_map::create_rail_panel()
 	_rail_nb_channel_entry->entry().set_precision(0);
 	_rail_nb_channel_entry->entry().set_align(alignment::centred);
 	_rail_nb_channel_entry->active();
+
+	_rail_canton_label = new c_text_label("Cantonal dist (km):", _rail_panel);
+	_rail_canton_label->label().set_style(text_style::underline);
+	_rail_canton_label->active();
+
+	_rail_canton_entry = new c_value_entry(2.0f, _rail_panel);
+	_rail_canton_entry->entry().set_precision(3);
+	_rail_canton_entry->entry().set_align(alignment::centred);
+	_rail_canton_entry->active();
 }
 
 void c_map::create_calib_button()

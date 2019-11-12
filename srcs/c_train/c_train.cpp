@@ -71,6 +71,7 @@ void c_train::decelerate_to_speed(float time, float target_speed)
 
 void c_train::move_to_next_rail(c_map *map)
 {
+	actual_rail()->remove_train(this);
 	set_waiting_time(0);
 	set_distance(distance() - actual_rail()->distance());
 	set_index(index() + 1);
@@ -78,10 +79,15 @@ void c_train::move_to_next_rail(c_map *map)
 	if (_journey->path()[index()]->place() != nullptr)
 	{
 		set_waiting_time(_journey->wait_entry()[index()]->value());
-		if (waiting_time() != 0)
+		if (waiting_time() != 0 || index() == _journey->path().size() - 1)
 		{
+			_journey->output_file() << "             -----    Arrived at " << _journey->path()[index()]->place()->name() << "    -----" << endl;
+			if (waiting_time() != 0)
+				_journey->output_file() << "             Need to wait until " << convert_hour_to_string(_journey->hour_panel()[index()]->value()) << " or " << ftoa(waiting_time(), 0) << "min" << endl;
 			set_speed(0);
 			set_state(e_train_state::waiting);
 		}
 	}
+	if (actual_rail() != nullptr)
+		actual_rail()->add_train(this);
 }

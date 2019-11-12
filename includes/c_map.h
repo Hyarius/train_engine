@@ -40,6 +40,8 @@ private:
 	c_value_entry *_rail_speed_entry;
 	c_text_label *_rail_nb_channel_label;
 	c_value_entry *_rail_nb_channel_entry;
+	c_text_label *_rail_canton_label;
+	c_value_entry *_rail_canton_entry;
 
 	c_frame *_city_panel;
 	c_text_label *_city_name_label;

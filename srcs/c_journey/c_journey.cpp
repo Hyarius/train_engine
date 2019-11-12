@@ -183,3 +183,13 @@ void c_journey::calc_distance(c_map *map)
 		result->calc_distance(map->scale_unit());
 	}
 }
+
+void c_journey::create_output_file()
+{
+	_output_file.open("ressources/result/" + name(), ios_base::out);
+}
+
+void c_journey::close_output_file()
+{
+	_output_file.close();
+}

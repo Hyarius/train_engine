@@ -34,6 +34,12 @@ void c_map::set_geometry_rail_panel()
 
 	entry_anchor.y += (5 + label_size.y);
 	_rail_nb_channel_entry->set_geometry(entry_anchor, entry_size);
+
+	label_anchor.y += (5 + label_size.y);
+	_rail_canton_label->set_geometry(label_anchor, label_size);
+
+	entry_anchor.y += (5 + label_size.y);
+	_rail_canton_entry->set_geometry(entry_anchor, entry_size);
 }
 
 void c_map::set_geometry_imp(Vector2 p_anchor, Vector2 p_area)
@@ -131,6 +137,7 @@ void c_map::update()
 		{
 			_rail_selected[i]->set_speed(_rail_speed_entry->entry().value());
 			_rail_selected[i]->set_nb_channel(_rail_nb_channel_entry->entry().value());
+			_rail_selected[i]->set_cantonal_dist(_rail_canton_entry->entry().value());
 		}
 	}
 	if (_state == e_map_state::travel_definition)
