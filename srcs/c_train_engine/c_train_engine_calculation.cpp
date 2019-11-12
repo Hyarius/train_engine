@@ -59,9 +59,11 @@ void c_train_engine::iterate()
 	{
 		c_train *train = _train_list[i];
 
+		cout << "Train [" << i << "] speed : " << train->speed() << " km/h" << endl;
+
 		if (_train_list[i]->actual_rail() != nullptr )
 		{
-			if (train->state() == e_train_state::normal && train->speed() < train->actual_rail()->speed())
+			if (train->state() == e_train_state::normal && train->speed() != train->actual_rail()->speed())
 				train->set_state(e_train_state::speed_up);
 			else if (train->state() == e_train_state::first_slow_down)
 				train->set_state(e_train_state::slow_down);
@@ -75,7 +77,12 @@ void c_train_engine::iterate()
 			train->set_old_speed(train->speed());
 
 			if (train->state() == e_train_state::speed_up)
-				train->accelerate_to_speed(_time_delta, train->actual_rail()->speed());
+			{
+				if (train->speed() < train->actual_rail()->speed())
+					train->accelerate_to_speed(_time_delta, train->actual_rail()->speed());
+				else if (train->speed() > train->actual_rail()->speed())
+					train->decelerate_to_speed(_time_delta, train->actual_rail()->speed());
+			}
 			else if (train->state() == e_train_state::slow_down)
 				train->decelerate_to_speed(_time_delta, 5.0f);
 			else if (train->state() == e_train_state::stopping)
