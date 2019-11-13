@@ -9,7 +9,7 @@ void check_sdl_error(const char *file, int line);
 bool string_is_numeric(string text);
 vector<string> strsplit(string input, string c);
 void error_exit(int num, string error);
-string ftoa(float n, int afterpoint = 3);
+string ftoa(float n, int afterpoint = -1);
 bool is_middle(float a, float b, float c);
 string convert_hour_to_string(int hour, int minute);
 string convert_hour_to_string(int minute);

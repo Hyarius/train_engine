@@ -84,6 +84,7 @@ string intToStr(int x, int d)
 string ftoa(float n, int afterpoint)
 {
 	string result;
+	int to_go;
 
 	if (n == 0)
 		return ("0");
@@ -101,17 +102,24 @@ string ftoa(float n, int afterpoint)
     // convert integer part to string
     result.append(intToStr(ipart, 0));
 
+	to_go = (afterpoint == -1 ? 3 : afterpoint);
     // check for display option after point
-    if (afterpoint != 0 && fpart != 0.0f)
+    if (to_go != 0 && fpart != 0.0f)
     {
         result.append(".");  // add dot
 
-        fpart = fpart * pow(10, afterpoint);
+        fpart = fpart * pow(10, to_go);
 
-        string tmp = intToStr((int)fpart, afterpoint);
+        string tmp = intToStr((int)fpart, to_go);
+
+		if (afterpoint != -1)
+			while (tmp.size() < afterpoint)
+				tmp.append("0");
 
 		result.append(tmp);
     }
+
+
 
 	return (result);
 }

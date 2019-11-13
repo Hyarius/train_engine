@@ -1,15 +1,19 @@
 #include "engine.h"
 
+int all_num = 0;
+
 c_train::c_train(c_journey *journey)
 {
 	_journey = journey;
+	_num = all_num;
+	all_num++;
 	_speed = 0.0f;
 	_old_speed = 0.0f;
 	_acceleration = 0.0f;
 	_deceleration = 0.0f;
 	_slow_down_dist = 0.0f;
 	_distance_per_tic = 0.0f;
-	_state = e_train_state::waiting;
+	_state = e_train_state::starting;
 	_index = 0;
 	_distance = 0.0f;
 	_departure_time = 0.0f;

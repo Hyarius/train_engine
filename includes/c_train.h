@@ -11,13 +11,15 @@ enum class e_train_state
 	slow_down = 3,
 	stopping = 4,
 	walk = 5,
-	waiting = 6
+	waiting = 6,
+	starting = 7
 };
 
 class c_train
 {
 private:
 	c_journey *_journey;
+	int _num;
 
 	e_train_state _state;
 	float _speed;
@@ -57,7 +59,9 @@ public:
 	void set_index(size_t p_index){_index = p_index;}
 	void set_waiting_time(float p_waiting_time){_waiting_time = p_waiting_time;}
 	void change_waiting_time(float delta){_waiting_time += delta;}
+	void set_num(size_t p_num) { _num = p_num; }
 
+	size_t num() { return (_num); }
 	float waiting_time(){return (_waiting_time);}
 	float speed_lost(float time){return ((convert_m_per_s2_to_km_per_h2(_deceleration) * convert_minute_to_hour(time)));}
 	float speed_gain(float time){return ((convert_m_per_s2_to_km_per_h2(_acceleration) * convert_minute_to_hour(time)));}
