@@ -40,6 +40,29 @@ void				error_exit(int num, string error)
 	exit(num);
 }
 
+string normalize_string(string str, char c, size_t size)
+{
+	string result;
+
+	result = str;
+
+	while (result.size() < size)
+		result.insert(result.begin(), c);
+
+	return (result);
+}
+
+string normalize_float(float num, size_t after_point, char c, size_t size)
+{
+	string result;
+
+	result = ftoa(num, after_point);
+	while (result.size() < size)
+		result.insert(result.begin(), c);
+
+	return (result);
+}
+
 void reverse(string &base)
 {
     int i = 0, j = base.length() - 1, temp;

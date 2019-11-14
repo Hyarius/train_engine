@@ -39,9 +39,7 @@ public:
 	c_train(c_journey *journey);
 
 	void accelerate(float time);
-	void accelerate_to_speed(float time, float target_speed);
 	void decelerate(float time);
-	void decelerate_to_speed(float time, float target_speed);
 	void calc_deceleration_dist(float target_speed);
 	void move_to_next_rail(c_map *map);
 

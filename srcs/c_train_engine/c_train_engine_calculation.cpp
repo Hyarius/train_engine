@@ -39,8 +39,8 @@ void c_train_engine::move_train(size_t index, float distance)
 		if (train->journey()->path()[train->index()]->place() != nullptr)
 		{
 			float time_past = convert_hour_to_minute(train->distance() / ((train->speed() + train->old_speed()) / 2));
-			train->add_distance(-train->distance());
 			_distance[index] -= train->distance();
+			train->set_distance(0);
 			_time -= time_past;
 			train->set_waiting_time(train->journey()->wait_entry()[train->index()]->value());
 			if (train->waiting_time() != 0)
@@ -57,6 +57,91 @@ void c_train_engine::move_train(size_t index, float distance)
 	_distance[index] += distance;
 }
 
+void c_train_engine::draw_train_information(size_t i)
+{
+	c_train* train = _train_list[i];
+	string text;
+
+	train->journey()->output_file() << convert_hour_to_string(_time) << " : ";
+
+	text = normalize_float(train->speed(), 0, '0', 3);
+	// text = ftoa(train->speed(), 0);
+	// while (text.size() < 3)
+	// 	text.insert(text.begin(), '0');
+
+	train->journey()->output_file() << "[" << text << " km/h] ";
+
+	float ratio_dist = (train->distance() * 100.0f) / train->actual_rail()->distance();
+
+	if (train->waiting_time() > 0.0f || train->departure_time() > _time)
+		text = " waiting ";
+	else
+	{
+		text = ftoa(_distance[i], 1);
+		while (text.size() < 6)
+			text.insert(text.begin(), '0');
+		text.append(" km");
+	}
+
+	train->journey()->output_file() << "[" << text << "] ";
+}
+
+void c_train_engine::draw_train_state(size_t i)
+{
+	c_train* train = _train_list[i];
+	string text;
+
+	train->journey()->output_file() << convert_hour_to_string(_time) << " : "
+			<< "[" << (train->state() == e_train_state::waiting ? " waiting " : " " + normalize_float(train->speed(), 0, '0', 3) + " km/h") << "] "
+			<< "[" << normalize_float(_distance[i], 1, '0', 6) << " km] ";
+
+	for (size_t j = 0; j < train->journey()->path().size() - 1; j++)
+	{
+		c_rail *rail = train->journey()->get_rail(_map, j);
+		size_t t = train->journey()->get_rail(_map, j)->train_list().size();
+
+		if (t == 1)
+			text = normalize_string(to_string(rail->train_list()[0]->num()), '0', 2);
+		else
+			text = (t == 0 ? "  " : "MM");
+
+		train->journey()->output_file() << (j != 0 ? "-" : "") <<  "[" << text << "]";
+	}
+	train->journey()->output_file() << endl;
+}
+
+void c_train_engine::change_mode_to_slow(size_t index)
+{
+
+}
+
+void c_train_engine::slow_down_train(size_t index)
+{
+
+}
+
+void c_train_engine::speed_up_train(size_t index)
+{
+	float result = _time_delta;
+	c_train *train = _train_list[index];
+	float target_speed;
+
+	target_speed = train->actual_rail()->speed();
+	if (train->speed() + train->speed_gain(_time_delta) > target_speed)
+	{
+		result = _time_delta * (target_speed - train->speed()) / train->speed_gain(_time_delta);
+		train->accelerate(_time_delta * (target_speed - train->speed()) / train->speed_gain(_time_delta));
+
+	}
+	else if (train->speed() + train->speed_gain(_time_delta) < target_speed)
+	{
+		train->accelerate(_time_delta);
+	}
+	else
+		cout << "We are perfect" << endl;
+	return (result);
+}
+
 void c_train_engine::iterate()
 {
 	if (_time >= 60 * 24)
@@ -70,113 +155,10 @@ void c_train_engine::iterate()
 
 		if (train->actual_rail() != nullptr)
 		{
-			train->journey()->output_file() << convert_hour_to_string(_time) << " : ";
-			string text;
+			if (train->state() != e_train_state::starting)
+				draw_train_state(i);
 
-			text = ftoa(train->speed(), 0);
-			while (text.size() < 3)
-				text.insert(text.begin(), '0');
 
-			train->journey()->output_file() << "[" << text << " km/h] ";
-
-			float ratio_dist = (train->distance() * 100.0f) / train->actual_rail()->distance();
-
-			if (train->waiting_time() > 0.0f || train->departure_time() > _time)
-				text = " waiting ";
-			else
-			{
-				text = ftoa(ratio_dist, 3);
-				while (text.size() < 7)
-					text.insert(text.begin(), '0');
-				text.append(" %");
-			}
-
-			train->journey()->output_file() << "[" << text << "] ";
-
-			for (size_t j = 0; j < train->journey()->path().size() - 1; j++)
-			{
-				if (j != 0)
-					train->journey()->output_file() << "-";
-
-				if (train->journey()->get_rail(_map, j)->train_list().size() == 1)
-				{
-					c_train* tmp_train = train->journey()->get_rail(_map, j)->train_list()[0];
-					if (_time < tmp_train->departure_time())
-						text = "  ";
-					else 
-						text = to_string(tmp_train->num());
-					while (text.size() < 2)
-						text.insert(text.begin(), '0');
-				}
-				else if (train->journey()->get_rail(_map, j)->train_list().size() == 0)
-					text = "  ";
-				else if (train->journey()->get_rail(_map, j)->train_list().size() > 1)
-					text = "MM";
-
-				train->journey()->output_file() << "[" << text << "]";
-			}
-			train->journey()->output_file() << endl;
-
-			if (train->state() == e_train_state::starting && train->departure_time() <= _time && train->waiting_time() <= 0.0f)
-				train->set_state(e_train_state::normal);
-
-			if (train->state() == e_train_state::normal && train->speed() != train->actual_rail()->speed())
-				train->set_state(e_train_state::speed_up);
-			else if (train->state() == e_train_state::first_slow_down)
-				train->set_state(e_train_state::slow_down);
-			else if (train->state() == e_train_state::normal && train->slow_down_dist() >= calc_distance_left(i) - train->distance_per_tic())
-				train->set_state(e_train_state::first_slow_down);
-			else if (train->state() == e_train_state::slow_down && train->speed() + train->speed_lost(_time_delta) <= 5.0 && calc_distance_left(i) >= 0.001f)
-				train->set_state(e_train_state::stopping);
-			else if (train->speed() == train->actual_rail()->speed())
-				train->set_state(e_train_state::normal);
-
-			if (train->speed() != train->old_speed())
-				train->set_old_speed(train->speed());
-
-			if (train->state() == e_train_state::speed_up)
-			{
-				if (train->speed() < train->actual_rail()->speed())
-					train->accelerate_to_speed(_time_delta, train->actual_rail()->speed());
-				else if (train->speed() > train->actual_rail()->speed())
-					train->decelerate_to_speed(_time_delta, train->actual_rail()->speed());
-			}
-			else if (train->state() == e_train_state::slow_down)
-				train->decelerate_to_speed(_time_delta, 5.0f);
-			else if (train->state() == e_train_state::stopping)
-				train->decelerate_to_speed(_time_delta, 5.0f);
-
-			if (train->state() == e_train_state::waiting)
-			{
-				train->change_waiting_time(-_time_delta);
-				if (train->departure_time() <= _time)
-					if (train->waiting_time() <= 0.0f)
-					{
-						train->set_state(e_train_state::normal);
-						if (train->index() != 0)
-							train->journey()->output_file() << "             -----    The train start again    -----" << endl;
-					}
-			}
-			else if (train->state() == e_train_state::first_slow_down)
-			{
-				float first_dist;
-				float first_time;
-				float second_dist;
-				float second_time;
-
-				first_dist = calc_distance_left(i) - train->slow_down_dist();
-				first_time = (first_dist / train->speed()) * 60;
-				second_dist = train->distance_per_tic() - first_dist;
-				second_time = _time_delta - first_time;
-
-				move_train(i, ((train->old_speed() + train->speed()) / 2) * convert_minute_to_hour(first_time));
-
-				train->decelerate_to_speed(second_time, 5.0f);
-
-				move_train(i, ((train->old_speed() + train->speed()) / 2) * convert_minute_to_hour(second_time));
-			}
-			else
-				move_train(i, ((train->old_speed() + train->speed()) / 2) * convert_minute_to_hour(_time_delta));
 		}
 	}
 }
@@ -185,6 +167,8 @@ void c_train_engine::run()
 {
 	if (_time == -1.0f || _time_delta == -1.0f)
 		error_exit(1, "Bad engine configuration : Time [" + ftoa(_time, 2) + "] / Delta [" + ftoa(_time_delta, 2) + "]");
+	if (_journey_list.size() == 0)
+		return ;
 
 	_time = 24 * 60;
 
@@ -195,23 +179,25 @@ void c_train_engine::run()
 		_journey_list[i]->calc_distance(_map);
 		_journey_list[i]->create_output_file();
 		_journey_list[i]->output_file() << "Calculation for the travel [" << _journey_list[i]->name() << "] with the train num [" << _train_list[i]->num() << "]" << endl;
-		_journey_list[i]->get_rail(_map, 0)->add_train(_train_list[i]);
 		_train_list[i]->set_departure_time(_journey_list[i]->hour_panel()[0]->value());
 		_train_list[i]->set_actual_rail(_journey_list[i]->get_rail(_map, _train_list[i]->index()));
 		_distance.push_back(0.0f);
 		_arrived_hour.push_back(0.0f);
 	}
-	_arrived_train = 0;
 
-	while (_arrived_train < _journey_list.size())
-	{
-		iterate();
-	}
-
-	for (size_t i = 0; i < _journey_list.size(); i++)
-	{
-		string text = "Total distance for train [" + _journey_list[i]->name() + "] = " + ftoa(_distance[i], 3) + " and arrived at : [" + convert_hour_to_string(_arrived_hour[i]) + "]";
-		_journey_list[i]->output_file() << text << endl;
-		_journey_list[i]->close_output_file();
-	}
+	for (size_t i = 0; i < 15; i++)
+		speed_up_train(0);
+	// _arrived_train = 0;
+	//
+	// while (_arrived_train < _journey_list.size())
+	// {
+	// 	iterate();
+	// }
+	//
+	// for (size_t i = 0; i < _journey_list.size(); i++)
+	// {
+	// 	string text = "Total distance for train [" + _journey_list[i]->name() + "] = " + ftoa(_distance[i], 3) + " and arrived at : [" + convert_hour_to_string(_arrived_hour[i]) + "]";
+	// 	_journey_list[i]->output_file() << text << endl;
+	// 	_journey_list[i]->close_output_file();
+	// }
 }

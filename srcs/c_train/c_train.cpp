@@ -57,22 +57,6 @@ void c_train::decelerate(float time)
 	calc_deceleration_dist(0);
 }
 
-void c_train::accelerate_to_speed(float time, float target_speed)
-{
-	accelerate(time);
-
-	if (speed() > target_speed)
-		change_speed(time, target_speed);
-}
-
-void c_train::decelerate_to_speed(float time, float target_speed)
-{
-	decelerate(time);
-
-	if (speed() < target_speed)
-		change_speed(time, target_speed);
-}
-
 void c_train::move_to_next_rail(c_map *map)
 {
 	actual_rail()->remove_train(this);

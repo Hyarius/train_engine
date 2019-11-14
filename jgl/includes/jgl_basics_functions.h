@@ -10,6 +10,8 @@ bool string_is_numeric(string text);
 vector<string> strsplit(string input, string c);
 void error_exit(int num, string error);
 string ftoa(float n, int afterpoint = -1);
+string normalize_string(string str, char c, size_t size);
+string normalize_float(float num, size_t after_point, char c, size_t size);
 bool is_middle(float a, float b, float c);
 string convert_hour_to_string(int hour, int minute);
 string convert_hour_to_string(int minute);
