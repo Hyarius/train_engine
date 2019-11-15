@@ -27,11 +27,14 @@ public:
 	void draw_train_state(size_t i);
 	void draw_train_information(size_t i);
 	float calc_distance_left(size_t index);
+	float calc_next_speed(size_t index);
 
 	void move_train(size_t index, float distance);
-	void change_mode_to_slow(size_t index);
-	void slow_down_train(size_t index);
-	void speed_up_train(size_t index);
+	float calc_slow_down_time(size_t index);
+	float calc_speed_up_time(size_t index);
+	float stop_train(size_t index);
+	float calc_run_time(size_t index);
+	float calc_wait_time(size_t index);
 
 	void add_journey(c_journey *new_journey, c_train *new_train = nullptr);
 

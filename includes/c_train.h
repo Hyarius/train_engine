@@ -5,14 +5,12 @@
 
 enum class e_train_state
 {
-	normal = 0,
-	speed_up = 1,
-	first_slow_down = 2,
-	slow_down = 3,
+	starting = 0,
+	normal = 1,
+	speed_up = 2,
+	speed_down = 3,
 	stopping = 4,
-	walk = 5,
-	waiting = 6,
-	starting = 7
+	waiting = 5
 };
 
 class c_train
@@ -38,9 +36,11 @@ private:
 public:
 	c_train(c_journey *journey);
 
-	void accelerate(float time);
-	void decelerate(float time);
+	float accelerate(float time);
+	float decelerate(float time);
+	float run(float time);
 	void calc_deceleration_dist(float target_speed);
+	void calc_distance_per_tic(float time);
 	void move_to_next_rail(c_map *map);
 
 	void change_speed(float time, float target_speed);
@@ -75,6 +75,25 @@ public:
 	float slow_down_dist(){return (_slow_down_dist);}
 	int departure_time(){return (_departure_time);}
 	c_rail *actual_rail(){return (_actual_rail);}
+	string state_str(){
+		switch ( _state )
+		{
+			case e_train_state::starting :
+				return (" Starting ");
+			case e_train_state::normal :
+				return ("  Normal  ");
+			case e_train_state::speed_up :
+				return (" Speed_up ");
+			case e_train_state::speed_down :
+				return ("Speed_down");
+			case e_train_state::stopping :
+				return (" Stopping ");
+			case e_train_state::waiting :
+				return ("  Waiting ");
+			default :
+				return ("   Error  ");
+		}
+	}
 };
 
 #endif

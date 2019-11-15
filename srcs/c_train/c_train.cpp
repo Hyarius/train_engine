@@ -27,34 +27,51 @@ void c_train::calc_deceleration_dist(float target_speed)
 	_slow_down_dist = (pow(target_speed, 2.0f) - pow(_speed, 2.0f)) / (2.0f * deceleration_convert);
 }
 
+void c_train::calc_distance_per_tic(float time)
+{
+	set_distance_per_tic(_speed * convert_minute_to_hour(time));
+}
+
 void c_train::change_speed(float time, float target_speed)
 {
 	set_speed(target_speed);
-	set_distance_per_tic(speed() * convert_minute_to_hour(time));
+	calc_distance_per_tic(time);
 	calc_deceleration_dist(0);
 }
 
-void c_train::accelerate(float time)
+float c_train::accelerate(float time)
 {
 	float convert_time = convert_minute_to_hour(time);
+	float old;
 
-
+	old = _speed;
 	_speed = _speed + (convert_m_per_s2_to_km_per_h2(_acceleration) * convert_time);
 
-	set_distance_per_tic(_speed * convert_time);
+	calc_distance_per_tic(time);
 	calc_deceleration_dist(0);
+
+	return (((old + _speed) / 2) * convert_time);
 }
 
-void c_train::decelerate(float time)
+float c_train::decelerate(float time)
+{
+	float convert_time = convert_minute_to_hour(time);
+	float old;
+
+	old = _speed;
+	_speed = _speed + (convert_m_per_s2_to_km_per_h2(_deceleration) * convert_time);
+
+	calc_distance_per_tic(time);
+	calc_deceleration_dist(0);
+
+	return (((old + _speed) / 2) * convert_time);
+}
+
+float c_train::run(float time)
 {
 	float convert_time = convert_minute_to_hour(time);
 
-
-	_speed = _speed + (convert_m_per_s2_to_km_per_h2(_deceleration) * convert_time);
-
-	if (_speed != 0.0f)
-		set_distance_per_tic(_speed * convert_time);
-	calc_deceleration_dist(0);
+	return (_speed * convert_time);
 }
 
 void c_train::move_to_next_rail(c_map *map)
