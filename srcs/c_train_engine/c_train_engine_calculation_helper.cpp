@@ -57,6 +57,8 @@ void c_train_engine::move_train(size_t index, float distance)
 {
 	c_train *train = _train_list[index];
 
+	if (train->actual_rail() == nullptr)
+		return ;
 	train->add_distance(distance);
 	while (train->actual_rail()->distance() - train->distance() < 0.001f)
 	{

@@ -31,6 +31,7 @@ public:
 
 	void move_train(size_t index, float distance);
 
+	float calc_waiting_time(size_t index, float time_left);
 	float calc_run_time(size_t index, float time_left);
 	float calc_accelerate_time(size_t index, float time_left);
 	float calc_decelerate_time(size_t index, float time_left);
