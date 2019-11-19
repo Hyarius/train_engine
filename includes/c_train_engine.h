@@ -30,10 +30,10 @@ public:
 	float calc_next_speed(size_t index);
 
 	void move_train(size_t index, float distance);
-	float calc_slow_down_time(size_t index);
-	float calc_speed_up_time(size_t index);
-	float calc_run_time(size_t index);
-	float calc_wait_time(size_t index);
+
+	float calc_run_time(size_t index, float time_left);
+	float calc_accelerate_time(size_t index, float time_left);
+	float calc_decelerate_time(size_t index, float time_left);
 
 	void add_journey(c_journey *new_journey, c_train *new_train = nullptr);
 

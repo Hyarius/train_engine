@@ -1,5 +1,51 @@
 #include "engine.h"
 
+#define MIN_SPEED 5.0f
+
+float c_train_engine::calc_decelerate_time(size_t index, float time_left)
+{
+	float result;
+
+	c_train *train = _train_list[index];
+	float rail_speed;
+
+	rail_speed = train->actual_rail()->speed();
+
+	if (train->speed() + train->speed_lost(time_left) < MIN_SPEED)
+	{
+		float ratio = (MIN_SPEED - train->speed()) / train->speed_lost(time_left);
+		result = time_left * ratio;
+		if (result == 0)
+			train->set_state(e_train_state::stopping);
+	}
+	else
+		result = time_left;
+
+	return (result);
+}
+
+float c_train_engine::calc_accelerate_time(size_t index, float time_left)
+{
+	float result;
+
+	c_train *train = _train_list[index];
+	float rail_speed;
+
+	rail_speed = train->actual_rail()->speed();
+
+	if (train->speed() + train->speed_gain(_time_delta) > rail_speed)
+	{
+		float ratio = (rail_speed - train->speed()) / train->speed_gain(_time_delta);
+		result = time_left * ratio;
+		if (result == 0)
+			train->set_state(e_train_state::normal);
+	}
+	else
+		result = time_left;
+
+	return (result);
+}
+
 void c_train_engine::iterate()
 {
 	if (_time >= 60 * 24)
@@ -18,18 +64,68 @@ void c_train_engine::iterate()
 		{
 			draw_train_state(i);
 
-			while (time_left < _time_delta)
+			time_left = _time_delta;
+
+			while (time_left > 0.0f)
 			{
 				if (train->state() == e_train_state::waiting && train->waiting_time() <= 0.0f)
 					train->set_state(e_train_state::starting);
 				if (train->state() == e_train_state::starting && train->departure_time() <= _time)
 					train->set_state(e_train_state::speed_up);
+				if (train->state() != e_train_state::speed_down && train->slow_down_dist() >= calc_distance_left(i) - train->distance_per_tic())
+					train->set_state(e_train_state::speed_down);
+				if (train->state() == e_train_state::speed_down && calc_distance_left(i) <= 0.01f)
+					train->set_state(e_train_state::stopping);
 
 				cout << "Here in " << train->state_str() << endl;
+				float old_speed = train->speed();
 
-				delta = _time_delta / 10.0f;
+				if (train->state() == e_train_state::speed_up)
+				{
+					delta = calc_accelerate_time(i, time_left);
+					if (delta != 0.0f)
+					{
+						train->accelerate(delta);
+						train->calc_distance_per_tic(delta);
+					}
+				}
+				else if (train->state() == e_train_state::speed_down)
+				{
+					delta = calc_decelerate_time(i, time_left);
+					if (delta != 0.0f)
+					{
+						train->decelerate(delta);
+						train->calc_distance_per_tic(delta);
+					}
+				}
+				else if (train->state() == e_train_state::waiting)
+				{
+					delta = time_left;
+					train->change_waiting_time(-delta);
+					if (train->departure_time() <= _time)
+						if (train->waiting_time() <= 0.0f)
+						{
+							train->set_state(e_train_state::speed_up);
+							if (train->index() != 0)
+								train->journey()->output_file() << "             -----    The train start again    -----" << endl;
+						}
+				}
+				else
+				{
+					delta = time_left;
+					if (delta != 0.0f)
+					{
+						train->run(delta);
+						train->calc_distance_per_tic(delta);
+					}
+				}
 
-				time_left += delta;
+				if (delta == 0)
+					train->calc_distance_per_tic(delta);
+
+				move_train(i, ((old_speed + train->speed()) / 2.0f) * convert_minute_to_hour(delta));
+
+				time_left -= delta;
 				_time += delta;
 			}
 		}
