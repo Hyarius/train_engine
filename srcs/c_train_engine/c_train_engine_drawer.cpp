@@ -34,7 +34,7 @@ void c_train_engine::draw_train_state(size_t i)
 	c_train* train = _train_list[i];
 	string text;
 
-	train->journey()->output_file() << convert_hour_to_string(_time) << " : ";
+	train->journey()->output_file() << convert_hour_to_string(_time_travel[i]) << " : ";
 
 	train->journey()->output_file() << "[" << train->state_str() << "]";
 
@@ -44,9 +44,11 @@ void c_train_engine::draw_train_state(size_t i)
 
 	train->journey()->output_file() << " - [" << normalize_float(calc_distance_left(i), 3, '0', 7) << " km]";
 
-	train->journey()->output_file() << " - [" << normalize_float(train->slow_down_dist(), 3, '0', 7) << " km]";
+	// train->journey()->output_file() << " - [" << normalize_float(train->slow_down_dist(), 3, '0', 7) << " km]";
+	//
+	// train->journey()->output_file() << " - [" << normalize_float(train->distance_per_tic(), 3, '0', 7) << " km]";
 
-	train->journey()->output_file() << " - [" << normalize_float(train->distance_per_tic(), 3, '0', 7) << " km] --> ";
+	train->journey()->output_file() << " --> ";
 
 	for (size_t j = 0; j < train->journey()->path().size() - 1; j++)
 	{

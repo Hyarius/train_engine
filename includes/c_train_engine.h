@@ -10,6 +10,7 @@ private:
 	size_t _arrived_train;
 
 	float _time;
+	vector<float> _time_travel;
 	float _time_delta;
 
 	vector<c_journey *> _journey_list;

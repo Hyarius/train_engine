@@ -92,13 +92,13 @@ void c_train_engine::iterate()
 	float time_left = 0;
 	float delta;
 	float dist;
-	//_time += _time_delta;
+	_time += _time_delta;
 
 	for (size_t i = 0; i < _train_list.size(); i++)
 	{
 		c_train* train = _train_list[i];
 
-		if (train->actual_rail() != nullptr)
+		if (_time_travel[i] < _time && train->actual_rail() != nullptr)
 		{
 
 			time_left = _time_delta;
@@ -155,7 +155,7 @@ void c_train_engine::iterate()
 				move_train(i, ((old_speed + train->speed()) / 2.0f) * convert_minute_to_hour(delta));
 
 				time_left -= delta;
-				_time += delta;
+				_time_travel[i] += delta;
 			}
 		}
 
@@ -175,6 +175,7 @@ void c_train_engine::run()
 	{
 		if (_time > _journey_list[i]->hour_panel()[0]->value())
 			_time = _journey_list[i]->hour_panel()[0]->value();
+		_time_travel.push_back(_journey_list[i]->hour_panel()[0]->value());
 		_journey_list[i]->calc_distance(_map);
 		_journey_list[i]->create_output_file();
 		_journey_list[i]->output_file() << "Calculation for the travel [" << _journey_list[i]->name() << "] with the train num [" << _train_list[i]->num() << "]" << endl;
@@ -184,8 +185,8 @@ void c_train_engine::run()
 		_journey_list[i]->output_file() << " - [" << "  SPEED " << "]";
 		_journey_list[i]->output_file() << " - [" << " dist tot " << "]";
 		_journey_list[i]->output_file() << " - [" << " dist left" << "]";
-		_journey_list[i]->output_file() << " - [" << " dist stop" << "]";
-		_journey_list[i]->output_file() << " - [" << " dist tick" << "]";
+		// _journey_list[i]->output_file() << " - [" << " dist stop" << "]";
+		// _journey_list[i]->output_file() << " - [" << " dist tick" << "]";
 		_journey_list[i]->output_file() << endl;
 
 		_train_list[i]->set_departure_time(_journey_list[i]->hour_panel()[0]->value());
@@ -204,7 +205,7 @@ void c_train_engine::run()
 
 	for (size_t i = 0; i < _journey_list.size(); i++)
 	{
-		string text = "Total distance for train [" + _journey_list[i]->name() + "] = " + ftoa(_distance[i], 3) + " and arrived at : [" + convert_hour_to_string(_arrived_hour[i]) + "]";
+		string text = "Total distance for train [" + _journey_list[i]->name() + "] = " + ftoa(_distance[i], 3) + " and arrived at : [" + convert_hour_to_string(_arrived_hour[i]) + "] with " + convert_hour_to_string(_arrived_hour[i] - _journey_list[i]->hour_panel()[0]->value()) + " total travel time";
 		_journey_list[i]->output_file() << text << endl;
 		_journey_list[i]->close_output_file();
 	}
