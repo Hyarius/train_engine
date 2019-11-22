@@ -2,31 +2,54 @@
 
 using namespace std;
 
+vector<Vector2> calc_point(int width)
+{
+	vector<Vector2> result;
+	Vector2 center = 0;
+	Vector2 actual;
+
+	for (actual.x = -width / 2; actual.x <= width / 2 || actual.x == 0; actual.x++)
+	{
+		for (actual.y = -width / 2; actual.y <= width / 2 || actual.y == 0; actual.y++)
+		{
+			if (center.distance(actual) < width)
+				result.push_back(actual);
+		}
+	}
+
+	return (result);
+}
+
 void draw_line(c_viewport *viewport, Color p_color, Vector2 p1, Vector2 p2, int width)
 {
-	Vector2 tmp_1;
-	Vector2 tmp_2;
-	Vector2 cross;
-
-	cross = (p1.cross(p2)).normalize();
-
 	viewport->set_Color(p_color);
 
-	for (int i = 0; i <= width / 2 || i == 0; i++)
-	{
-		tmp_1 = p1 + cross * i;
-		tmp_2 = p2 + cross * i;
-		SDL_RenderDrawLine(viewport->renderer(),
-				static_cast<int>(tmp_1.x), static_cast<int>(tmp_1.y),
-				static_cast<int>(tmp_2.x), static_cast<int>(tmp_2.y));
+	vector<Vector2> to_draw = calc_point(width);
+	Vector2 actual;
 
-		if (i != 0)
+	for (size_t i = 0; i < to_draw.size(); i++)
+	{
+		SDL_RenderDrawLine(viewport->renderer(),
+			to_draw[i].x + p1.x, to_draw[i].y + p1.y,
+			to_draw[i].x + p2.x, to_draw[i].y + p2.y);
+	}
+
+}
+
+void draw_point(c_viewport *viewport, Color p_color, Vector2 center, int width)
+{
+	viewport->set_Color(p_color);
+
+	Vector2 actual;
+
+	for (int i = -width / 2; i <= width / 2 || i == 0; i++)
+	{
+		for (int j = -width / 2; j <= width / 2 || j == 0; j++)
 		{
-			tmp_1 = p1 - cross * i;
-			tmp_2 = p2 - cross * i;
-			SDL_RenderDrawLine(viewport->renderer(),
-					static_cast<int>(tmp_1.x), static_cast<int>(tmp_1.y),
-					static_cast<int>(tmp_2.x), static_cast<int>(tmp_2.y));
+			actual = center + Vector2(i, j);
+
+			if (center.distance(actual) < width)
+				SDL_RenderDrawPoint(viewport->renderer(), actual.x, actual.y);
 		}
 	}
 }

@@ -3,6 +3,8 @@
 
 #include "jgl_includes.h"
 
+#include "jgl_vector.h"
+
 using namespace std;
 
 void check_sdl_error(const char *file, int line);
@@ -32,6 +34,7 @@ float convert_m_per_s2_to_km_per_h2(float base_acceleration);
 float convert_km_per_h2_to_m_per_s2(float base_acceleration);
 int convert_string_to_hour(string text);
 int convert_int_to_hour(int hour, int minute);
+vector<Vector2> calc_line_2d(float x1, float y1, float x2, float y2);
 void remove_char(string &src, string to_remove);
 template<typename K, typename V>
 K find_key(map<K, V> &src_map, V &value)

@@ -17,7 +17,7 @@ c_image::c_image(string path)
 	_size = Vector2(_surface->w, _surface->h);
 }
 
-c_image::c_image(Color p_color)
+c_image::c_image(size_t width, size_t height, Color p_color)
 {
 	SDL_Surface		*_surface;
 	Uint32			rmask, gmask, bmask, amask;
@@ -34,7 +34,7 @@ c_image::c_image(Color p_color)
 	    amask = 0xff000000;
 	#endif
 
-    _surface = SDL_CreateRGBSurface(0, 1, 1, 32, rmask, gmask, bmask, amask);
+    _surface = SDL_CreateRGBSurface(0, width, height, 32, rmask, gmask, bmask, amask);
 	SDL_FillRect(_surface, NULL, SDL_MapRGBA(_surface->format,
 		(Uint8)(p_color.r * 255), (Uint8)(p_color.g * 255),
 		(Uint8)(p_color.b * 255), (Uint8)(p_color.a * 255)));
@@ -47,7 +47,6 @@ c_image::c_image(Color p_color)
 		get_sdl_error();
 
 	_size = Vector2(_surface->w, _surface->h);
-
 }
 
 c_image::c_image(SDL_Surface *p__surface)
@@ -61,6 +60,29 @@ c_image::c_image(SDL_Surface *p__surface)
 		get_sdl_error();
 
 	_size = Vector2(_surface->w, _surface->h);
+}
+
+void c_image::active()
+{
+	SDL_SetRenderTarget(g_application->renderer(), _texture);
+}
+
+void c_image::unactive()
+{
+	SDL_SetRenderTarget(g_application->renderer(), NULL);
+}
+
+void c_image::save(string file_path)
+{
+	SDL_Texture* target = SDL_GetRenderTarget(g_application->renderer());
+    SDL_SetRenderTarget(g_application->renderer(), _texture);
+    int width, height;
+    SDL_QueryTexture(_texture, NULL, NULL, &width, &height);
+    SDL_Surface* tmp_surface = SDL_CreateRGBSurface(0, width, height, 32, 0, 0, 0, 255);
+    SDL_RenderReadPixels(g_application->renderer(), NULL, tmp_surface->format->format, tmp_surface->pixels, tmp_surface->pitch);
+    IMG_SavePNG(tmp_surface, file_path.c_str());
+    SDL_FreeSurface(tmp_surface);
+    SDL_SetRenderTarget(g_application->renderer(), target);
 }
 
 void c_image::draw(c_viewport *viewport, Vector2 pos, Vector2 size)

@@ -303,3 +303,44 @@ float convert_hour_to_second(float time)
 {
 	return (time * 3600.0f);
 }
+
+vector<Vector2> 		calc_line_2d(float x1, float y1, float x2, float y2)
+{
+	vector<Vector2> result;
+	const bool steep = (fabs(y2 - y1) > fabs(x2 - x1));
+	if(steep)
+	{
+		swap(x1, y1);
+		swap(x2, y2);
+	}
+	if(x1 > x2)
+	{
+		swap(x1, x2);
+		swap(y1, y2);
+	}
+
+	float dx = x2 - x1;
+	float dy = fabs(y2 - y1);
+
+	float error = dx / 2.0f;
+	int ystep = (y1 < y2) ? 1 : -1;
+	int y = (int)y1;
+
+	int maxX = (int)x2;
+
+	for(int x=(int)x1; x<maxX; x++)
+	{
+		if(steep)
+			result.push_back(Vector2(y,x));
+		else
+			result.push_back(Vector2(x,y));
+
+		error -= dy;
+		if(error < 0)
+		{
+			y += ystep;
+			error += dx;
+		}
+	}
+	return (result);
+}
