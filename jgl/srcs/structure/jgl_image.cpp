@@ -79,15 +79,15 @@ void c_image::unactive()
 
 void c_image::save(string file_path)
 {
-	SDL_Texture* target = SDL_GetRenderTarget(g_application->renderer());
+	SDL_Texture* old_target = SDL_GetRenderTarget(g_application->renderer());
     SDL_SetRenderTarget(g_application->renderer(), _texture);
     int width, height;
     SDL_QueryTexture(_texture, NULL, NULL, &width, &height);
-    SDL_Surface* tmp_surface = SDL_CreateRGBSurface(0, width, height, 32, 0, 0, 0, 255);
+    SDL_Surface* tmp_surface = SDL_CreateRGBSurface(0, width, height, 32, 0, 0, 0, 0);
     SDL_RenderReadPixels(g_application->renderer(), NULL, tmp_surface->format->format, tmp_surface->pixels, tmp_surface->pitch);
     IMG_SavePNG(tmp_surface, file_path.c_str());
     SDL_FreeSurface(tmp_surface);
-    SDL_SetRenderTarget(g_application->renderer(), target);
+    SDL_SetRenderTarget(g_application->renderer(), old_target);
 }
 
 void c_image::draw(Vector2 pos, Vector2 size, c_viewport *viewport)
