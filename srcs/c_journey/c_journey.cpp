@@ -134,7 +134,7 @@ void c_journey::draw()
 		Vector2 pos1 = g_map->convert_to_screen_coord(_path[i]->pos());
 		Vector2 pos2 = g_map->convert_to_screen_coord(_path[i + 1]->pos());
 
-		draw_line(Color(255, 120, 0), pos1, pos2, g_map->viewport(), 9);
+		draw_line(Color(255, 120, 0), pos1, pos2, 9, g_map->viewport());
 	}
 }
 

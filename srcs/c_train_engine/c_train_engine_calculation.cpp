@@ -162,6 +162,27 @@ void c_train_engine::iterate()
 	}
 }
 
+void c_train_engine::create_graphic_output()
+{
+	_graphic_output = new c_image(1280, 1020, Color(220, 220, 220));
+
+	_graphic_output->active();
+
+	draw_line(Color(0, 0, 0), Vector2(40, 980), Vector2(1240, 980), 2);
+	draw_line(Color(0, 0, 0), Vector2(40, 40), Vector2(40, 980), 2);
+
+	draw_text("Distance (Km)", Vector2(10, 10));
+	draw_text("Time (minutes)", Vector2(1240 - calc_text_len("Time (minutes)"), 960));
+	draw_centred_text("0", Vector2(25, 980));
+	draw_centred_text("0", Vector2(40, 995));
+
+	_graphic_output->unactive();
+
+	_graphic_output->save("ressources/result/result.png");
+
+	exit(0);
+}
+
 void c_train_engine::run()
 {
 	if (_time == -1.0f || _time_delta == -1.0f)
@@ -176,7 +197,6 @@ void c_train_engine::run()
 		if (_time > _journey_list[i]->hour_panel()[0]->value())
 			_time = _journey_list[i]->hour_panel()[0]->value();
 		_time_travel.push_back(_journey_list[i]->hour_panel()[0]->value());
-		//_graphic_output_list.push_back(new c_image(1280, 1020, Color(220, 220, 220)));
 		_journey_list[i]->calc_distance(_map);
 		_journey_list[i]->create_output_file();
 		_journey_list[i]->output_file() << "Calculation for the travel [" << _journey_list[i]->name() << "] with the train num [" << _train_list[i]->num() << "]" << endl;
@@ -186,8 +206,6 @@ void c_train_engine::run()
 		_journey_list[i]->output_file() << " - [" << "  SPEED " << "]";
 		_journey_list[i]->output_file() << " - [" << " dist tot " << "]";
 		_journey_list[i]->output_file() << " - [" << " dist left" << "]";
-		// _journey_list[i]->output_file() << " - [" << " dist stop" << "]";
-		// _journey_list[i]->output_file() << " - [" << " dist tick" << "]";
 		_journey_list[i]->output_file() << endl;
 
 		_train_list[i]->set_departure_time(_journey_list[i]->hour_panel()[0]->value());
@@ -196,6 +214,8 @@ void c_train_engine::run()
 		_distance.push_back(0.0f);
 		_arrived_hour.push_back(0.0f);
 	}
+
+	create_graphic_output();
 
 	_arrived_train = 0;
 

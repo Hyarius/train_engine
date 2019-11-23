@@ -20,7 +20,7 @@ vector<Vector2> calc_point(int width)
 	return (result);
 }
 
-void draw_line(Color p_color, Vector2 p1, Vector2 p2, c_viewport *viewport, int width)
+void draw_line(Color p_color, Vector2 p1, Vector2 p2, int width, c_viewport *viewport)
 {
 	if (viewport == nullptr)
 		viewport = g_application->central_widget()->viewport();
@@ -39,7 +39,7 @@ void draw_line(Color p_color, Vector2 p1, Vector2 p2, c_viewport *viewport, int 
 
 }
 
-void draw_point(Color p_color, Vector2 center, c_viewport *viewport, int width)
+void draw_point(Color p_color, Vector2 center, int width, c_viewport *viewport)
 {
 	if (viewport == nullptr)
 		viewport = g_application->central_widget()->viewport();

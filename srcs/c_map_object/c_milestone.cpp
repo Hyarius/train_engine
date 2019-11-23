@@ -132,10 +132,10 @@ void c_milestone::draw_link()
 		if (g_map->rails()[target] != nullptr &&
 			g_map->rails()[target]->state() == true)
 		{
-			draw_line(Color(42, 10, 168), pos1, pos2, g_map->viewport(), 8);
+			draw_line(Color(42, 10, 168), pos1, pos2, 8, g_map->viewport());
 		}
 		else
-			draw_line(Color(202, 199, 212), pos1, pos2, g_map->viewport(), 4);
+			draw_line(Color(202, 199, 212), pos1, pos2, 4, g_map->viewport());
 
 	}
 }

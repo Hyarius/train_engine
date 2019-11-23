@@ -114,7 +114,7 @@ void w_text_entry_component::render(c_viewport *viewport)
 
 	pos += _anchor;
 
-	draw_text(_text_to_draw, pos, viewport, _size, _color, _style);
+	draw_text(_text_to_draw, pos, _size, _color, _style, viewport);
 
 	pos.x += calc_text_len(_text_to_draw.substr(0, _cursor_to_draw), _size);
 

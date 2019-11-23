@@ -14,7 +14,7 @@ private:
 	float _time_delta;
 
 	vector<c_journey *> _journey_list;
-	vector<c_image *> _graphic_output_list;
+	c_image * _graphic_output;
 	vector<c_train *>_train_list;
 	vector<float> _distance;
 	vector<float> _arrived_hour;
@@ -25,6 +25,8 @@ public:
 	void clean();
 	void run();
 	void iterate();
+
+	void create_graphic_output();
 
 	void draw_train_state(size_t i);
 	void draw_train_information(size_t i);
