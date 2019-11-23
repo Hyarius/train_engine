@@ -27,7 +27,7 @@ c_application::c_application(string name, Vector2 p_size, Color p_color)
 
 	_renderer = SDL_CreateRenderer(_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	SDL_SetRenderDrawBlendMode(_renderer, SDL_BLENDMODE_BLEND);
-
+	
 	g_mouse = new t_mouse();
 	g_keyboard = new t_keyboard();
 

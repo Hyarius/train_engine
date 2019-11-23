@@ -176,6 +176,7 @@ void c_train_engine::run()
 		if (_time > _journey_list[i]->hour_panel()[0]->value())
 			_time = _journey_list[i]->hour_panel()[0]->value();
 		_time_travel.push_back(_journey_list[i]->hour_panel()[0]->value());
+		//_graphic_output_list.push_back(new c_image(1280, 1020, Color(220, 220, 220)));
 		_journey_list[i]->calc_distance(_map);
 		_journey_list[i]->create_output_file();
 		_journey_list[i]->output_file() << "Calculation for the travel [" << _journey_list[i]->name() << "] with the train num [" << _train_list[i]->num() << "]" << endl;
@@ -199,9 +200,7 @@ void c_train_engine::run()
 	_arrived_train = 0;
 
 	while (_arrived_train < _journey_list.size())
-	{
 		iterate();
-	}
 
 	for (size_t i = 0; i < _journey_list.size(); i++)
 	{
