@@ -34,6 +34,8 @@ c_application::c_application(string name, Vector2 p_size, Color p_color)
 	if (g_application == nullptr)
 		select();
 
+	_viewport = new c_viewport();
+
 	_central_widget = nullptr;
 
 	_central_widget = new c_window();

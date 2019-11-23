@@ -111,7 +111,7 @@ void c_milestone::draw()
 	pos1 = g_map->convert_to_screen_coord(_pos);
 
 	if (_pos != Vector2())
-		fill_centred_rectangle(g_map->viewport(), p_color, pos1, size1);
+		fill_centred_rectangle(p_color, pos1, size1, g_map->viewport());
 }
 
 void c_milestone::draw_link()
@@ -132,10 +132,10 @@ void c_milestone::draw_link()
 		if (g_map->rails()[target] != nullptr &&
 			g_map->rails()[target]->state() == true)
 		{
-			draw_line(g_map->viewport(), Color(42, 10, 168), pos1, pos2, 8);
+			draw_line(Color(42, 10, 168), pos1, pos2, g_map->viewport(), 8);
 		}
 		else
-			draw_line(g_map->viewport(), Color(202, 199, 212), pos1, pos2, 4);
+			draw_line(Color(202, 199, 212), pos1, pos2, g_map->viewport(), 4);
 
 	}
 }

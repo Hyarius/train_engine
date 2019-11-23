@@ -30,7 +30,7 @@ private:
 public:
 	Polygon2D(Vector2 p_pos = 0);
 
-	void draw(c_viewport *viewport, Color p_color, float scale = 1.0f);
+	void draw(Color p_color, c_viewport *viewport = nullptr, float scale = 1.0f, int width = 1);
 
 	bool contact(Polygon2D &other, float scale = 1);
 	bool is_pointed(Vector2 point, float scale = 1);

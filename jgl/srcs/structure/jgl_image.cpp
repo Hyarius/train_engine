@@ -9,57 +9,62 @@ c_image::c_image(string path)
 	if (_surface == nullptr)
 		get_sdl_error();
 
-	_texture = SDL_CreateTextureFromSurface(g_application->renderer(), _surface);
+	_size = Vector2(_surface->w, _surface->h);
+
+	_texture = SDL_CreateTexture(g_application->renderer(), SDL_PIXELFORMAT_RGBA8888,
+		SDL_TEXTUREACCESS_TARGET, _size.x, _size.y);
 
 	if (_texture == nullptr)
 		get_sdl_error();
 
-	_size = Vector2(_surface->w, _surface->h);
+	SDL_SetRenderTarget(g_application->renderer(), _texture);
+
+	SDL_Texture *tmp_texture = SDL_CreateTextureFromSurface(g_application->renderer(), _surface);
+
+	SDL_RenderCopy(g_application->renderer(), tmp_texture, NULL, NULL);
+
+	SDL_SetRenderTarget(g_application->renderer(), NULL);
 }
 
 c_image::c_image(size_t width, size_t height, Color p_color)
 {
-	SDL_Surface		*_surface;
-	Uint32			rmask, gmask, bmask, amask;
+	_surface = nullptr;
 
-	#if SDL_BYTEORDER == SDL_BIG_ENDIAN
-	    rmask = 0xff000000;
-	    gmask = 0x00ff0000;
-	    bmask = 0x0000ff00;
-	    amask = 0x000000ff;
-	#else
-	    rmask = 0x000000ff;
-	    gmask = 0x0000ff00;
-	    bmask = 0x00ff0000;
-	    amask = 0xff000000;
-	#endif
-
-    _surface = SDL_CreateRGBSurface(0, width, height, 32, rmask, gmask, bmask, amask);
-	SDL_FillRect(_surface, NULL, SDL_MapRGBA(_surface->format,
-		(Uint8)(p_color.r * 255), (Uint8)(p_color.g * 255),
-		(Uint8)(p_color.b * 255), (Uint8)(p_color.a * 255)));
-
-	if (_surface == nullptr)
-		get_sdl_error();
-
-	_texture = SDL_CreateTextureFromSurface(g_application->renderer(), _surface);
+	_texture = SDL_CreateTexture(g_application->renderer(), SDL_PIXELFORMAT_RGBA8888,
+		SDL_TEXTUREACCESS_TARGET, width, height);
 	if (_texture == nullptr)
 		get_sdl_error();
 
-	_size = Vector2(_surface->w, _surface->h);
+	_size = Vector2((int)width, (int)height);
+
+	SDL_SetRenderTarget(g_application->renderer(), _texture);
+
+	fill_rectangle(p_color, 0, _size);
+
+	SDL_SetRenderTarget(g_application->renderer(), NULL);
 }
 
-c_image::c_image(SDL_Surface *p__surface)
+c_image::c_image(SDL_Surface *p_surface)
 {
-	_surface = p__surface;
+	_surface = p_surface;
 	if (_surface == nullptr)
 		error_exit(1, "Surface send in c_image = NUL");
 
-	_texture = SDL_CreateTextureFromSurface(g_application->renderer(), _surface);
+	_size = Vector2(_surface->w, _surface->h);
+
+	_texture = SDL_CreateTexture(g_application->renderer(), SDL_PIXELFORMAT_RGBA8888,
+		SDL_TEXTUREACCESS_TARGET, _size.x, _size.y);
+
 	if (_texture == nullptr)
 		get_sdl_error();
 
-	_size = Vector2(_surface->w, _surface->h);
+	SDL_SetRenderTarget(g_application->renderer(), _texture);
+
+	SDL_Texture *tmp_texture = SDL_CreateTextureFromSurface(g_application->renderer(), _surface);
+
+	SDL_RenderCopy(g_application->renderer(), tmp_texture, NULL, NULL);
+
+	SDL_SetRenderTarget(g_application->renderer(), NULL);
 }
 
 void c_image::active()
@@ -85,8 +90,11 @@ void c_image::save(string file_path)
     SDL_SetRenderTarget(g_application->renderer(), target);
 }
 
-void c_image::draw(c_viewport *viewport, Vector2 pos, Vector2 size)
+void c_image::draw(Vector2 pos, Vector2 size, c_viewport *viewport)
 {
+	if (viewport == nullptr)
+		viewport = g_application->central_widget()->viewport();
+
 	SDL_Rect dest = {
 			static_cast<int>(pos.x), static_cast<int>(pos.y),
 			static_cast<int>(size.x), static_cast<int>(size.y)

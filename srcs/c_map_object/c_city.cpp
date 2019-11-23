@@ -58,7 +58,7 @@ void c_city::draw()
 
 	if (_pos != Vector2())
 	{
-		g_map->point_image()->draw(g_map->viewport(), (_selected == 1 ? 1 : 2), pos1 - size1/2, size1);
+		g_map->point_image()->draw((_selected == 1 ? 1 : 2), pos1 - size1/2, size1, g_map->viewport());
 		//fill_centred_rectangle(g_map->viewport(), (_selected == 1 ? unselect_color : select_color), pos1, size1);
 	}
 }
@@ -72,6 +72,6 @@ void c_city::draw_name()
 	if (_pos != Vector2() && _selected == 2)
 	{
 		int text_size = 8 * g_map->zoom();
-		draw_centred_text(g_map->viewport(), _name, pos1 + Vector2(0.0f, -size1.y * 1.5f), text_size * 2, text_color::grey, text_style::bold);
+		draw_centred_text(_name, pos1 + Vector2(0.0f, -size1.y * 1.5f), g_map->viewport(), text_size * 2, text_color::grey, text_style::bold);
 	}
 }

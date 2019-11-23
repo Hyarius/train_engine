@@ -8,7 +8,7 @@ Polygon2D::Polygon2D(Vector2 p_pos)
 	_sides.clear();
 }
 
-void Polygon2D::draw(c_viewport *viewport, Color p_color, float scale)
+void Polygon2D::draw(Color p_color, c_viewport *viewport, float scale, int width)
 {
 	for (size_t i = 0; i < _sides.size(); i++)
 	{
@@ -17,7 +17,7 @@ void Polygon2D::draw(c_viewport *viewport, Color p_color, float scale)
 		pos1 = (_points[_sides[i].index_vertices[0]] * scale) + _pos;
 		pos2 = (_points[_sides[i].index_vertices[1]] * scale) + _pos;
 
-		draw_line(viewport, p_color, pos1, pos2);
+		draw_line(p_color, pos1, pos2, viewport, width);
 	}
 }
 

@@ -8,11 +8,11 @@
 
 using namespace std;
 
-void draw_point(c_viewport *viewport, Color p_color, Vector2 center, int width = 1);
-void draw_line(c_viewport *viewport, Color Color, Vector2 p1, Vector2 p2, int width = 1);
-void draw_rectangle(c_viewport *viewport, Color Color, Vector2 pos, Vector2 size);
-void fill_rectangle(c_viewport *viewport, Color Color, Vector2 pos, Vector2 size);
-void draw_centred_rectangle(c_viewport *viewport, Color Color, Vector2 pos, Vector2 size);
-void fill_centred_rectangle(c_viewport *viewport, Color Color, Vector2 pos, Vector2 size);
+void draw_point(Color p_color, Vector2 center, c_viewport *viewport = nullptr, int width = 1);
+void draw_line(Color Color, Vector2 p1, Vector2 p2, c_viewport *viewport = nullptr, int width = 1);
+void draw_rectangle(Color Color, Vector2 pos, Vector2 size, c_viewport *viewport = nullptr);
+void fill_rectangle(Color Color, Vector2 pos, Vector2 size, c_viewport *viewport = nullptr);
+void draw_centred_rectangle(Color Color, Vector2 pos, Vector2 size, c_viewport *viewport = nullptr);
+void fill_centred_rectangle(Color Color, Vector2 pos, Vector2 size, c_viewport *viewport = nullptr);
 
 #endif

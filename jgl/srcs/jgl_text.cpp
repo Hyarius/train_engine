@@ -54,7 +54,6 @@ TTF_Font *get_font(int size)
 			error_exit(1, "Can't load a font");
 	}
 
-
 	return (font[size]);
 }
 
@@ -95,12 +94,15 @@ c_image				*get_char(char c, int size, text_color color, text_style type)
 	return (char_list[tmp_type][size][tmp_color][c]);
 }
 
-int				draw_text(c_viewport *port, string text, Vector2 coord, int size, text_color color, text_style type)
+int				draw_text(string text, Vector2 coord, c_viewport *viewport, int size, text_color color, text_style type)
 {
 	c_image			*image;
 	size_t			i = 0;
 	Vector2			rel_coord;
 	int				delta = 0;
+
+	if (viewport == nullptr)
+		viewport = g_application->central_widget()->viewport();
 
 	if (size <= 2)
 		return 0;
@@ -109,7 +111,7 @@ int				draw_text(c_viewport *port, string text, Vector2 coord, int size, text_co
 	{
 		rel_coord = Vector2(coord.x + delta, coord.y);
 		image = get_char(text[i], size, color, type);
-		image->draw(port, rel_coord, image->size());
+		image->draw(rel_coord, image->size(), viewport);
 		delta += image->size().x;
 		i++;
 	}
@@ -145,13 +147,16 @@ int				calc_text_len(string text, int size)
 	return (delta);
 }
 
-int				draw_centred_text(c_viewport *viewport, string text, Vector2 coord, int size, text_color color, text_style type)
+int				draw_centred_text(string text, Vector2 coord, c_viewport *viewport, int size, text_color color, text_style type)
 {
+	if (viewport == nullptr)
+		viewport = g_application->central_widget()->viewport();
+
 	if (size <= 2)
 		return 0;
 
 	int x = calc_text_len(text, size);
 	int y = get_char('M', size, color, type)->size().y;
 
-	return (draw_text(viewport, text, Vector2(coord.x - x / 2, coord.y - y / 2), size, color, type));
+	return (draw_text(text, Vector2(coord.x - x / 2, coord.y - y / 2), viewport, size, color, type));
 }

@@ -114,10 +114,10 @@ void w_text_entry_component::render(c_viewport *viewport)
 
 	pos += _anchor;
 
-	draw_text(viewport, _text_to_draw, pos, _size, _color, _style);
+	draw_text(_text_to_draw, pos, viewport, _size, _color, _style);
 
 	pos.x += calc_text_len(_text_to_draw.substr(0, _cursor_to_draw), _size);
 
 	if (_selected == true && (SDL_GetTicks() / 400) % 2 == 0)
-		fill_rectangle(viewport, Color(50, 50, 50), pos, Vector2(2, _size));
+		fill_rectangle(Color(50, 50, 50), pos, Vector2(2, _size), viewport);
 }

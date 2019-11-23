@@ -12,7 +12,7 @@ vector<Vector2> calc_point(int width)
 	{
 		for (actual.y = -width / 2; actual.y <= width / 2 || actual.y == 0; actual.y++)
 		{
-			if (center.distance(actual) < width)
+			if (center.distance(actual) < width / 2.0f)
 				result.push_back(actual);
 		}
 	}
@@ -20,8 +20,11 @@ vector<Vector2> calc_point(int width)
 	return (result);
 }
 
-void draw_line(c_viewport *viewport, Color p_color, Vector2 p1, Vector2 p2, int width)
+void draw_line(Color p_color, Vector2 p1, Vector2 p2, c_viewport *viewport, int width)
 {
+	if (viewport == nullptr)
+		viewport = g_application->central_widget()->viewport();
+
 	viewport->set_Color(p_color);
 
 	vector<Vector2> to_draw = calc_point(width);
@@ -36,8 +39,11 @@ void draw_line(c_viewport *viewport, Color p_color, Vector2 p1, Vector2 p2, int 
 
 }
 
-void draw_point(c_viewport *viewport, Color p_color, Vector2 center, int width)
+void draw_point(Color p_color, Vector2 center, c_viewport *viewport, int width)
 {
+	if (viewport == nullptr)
+		viewport = g_application->central_widget()->viewport();
+
 	viewport->set_Color(p_color);
 
 	Vector2 actual;
@@ -54,8 +60,11 @@ void draw_point(c_viewport *viewport, Color p_color, Vector2 center, int width)
 	}
 }
 
-void draw_rectangle(c_viewport *viewport, Color Color, Vector2 pos, Vector2 size)
+void draw_rectangle(Color Color, Vector2 pos, Vector2 size, c_viewport *viewport)
 {
+	if (viewport == nullptr)
+		viewport = g_application->central_widget()->viewport();
+
 	viewport->set_Color(Color);
 
 	SDL_Rect rect = {
@@ -64,8 +73,11 @@ void draw_rectangle(c_viewport *viewport, Color Color, Vector2 pos, Vector2 size
 	SDL_RenderDrawRect(viewport->renderer(), &rect);
 }
 
-void fill_rectangle(c_viewport *viewport, Color Color, Vector2 pos, Vector2 size)
+void fill_rectangle(Color Color, Vector2 pos, Vector2 size, c_viewport *viewport)
 {
+	if (viewport == nullptr)
+		viewport = g_application->central_widget()->viewport();
+
 	viewport->set_Color(Color);
 
 	SDL_Rect rect = {
@@ -74,8 +86,11 @@ void fill_rectangle(c_viewport *viewport, Color Color, Vector2 pos, Vector2 size
 	SDL_RenderFillRect(viewport->renderer(), &rect);
 }
 
-void draw_centred_rectangle(c_viewport *viewport, Color Color, Vector2 pos, Vector2 size)
+void draw_centred_rectangle(Color Color, Vector2 pos, Vector2 size, c_viewport *viewport)
 {
+	if (viewport == nullptr)
+		viewport = g_application->central_widget()->viewport();
+
 	viewport->set_Color(Color);
 
 	SDL_Rect rect = {
@@ -84,8 +99,11 @@ void draw_centred_rectangle(c_viewport *viewport, Color Color, Vector2 pos, Vect
 	SDL_RenderDrawRect(viewport->renderer(), &rect);
 }
 
-void fill_centred_rectangle(c_viewport *viewport, Color Color, Vector2 pos, Vector2 size)
+void fill_centred_rectangle(Color Color, Vector2 pos, Vector2 size, c_viewport *viewport)
 {
+	if (viewport == nullptr)
+		viewport = g_application->central_widget()->viewport();
+
 	viewport->set_Color(Color);
 
 	SDL_Rect rect = {

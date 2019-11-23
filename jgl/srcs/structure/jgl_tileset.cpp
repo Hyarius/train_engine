@@ -25,7 +25,7 @@ c_tileset::c_tileset(string path, Vector2 p_size)
 	}
 }
 
-void c_tileset::draw(c_viewport *viewport, int id, Vector2 pos, Vector2 size)
+void c_tileset::draw(int id, Vector2 pos, Vector2 size, c_viewport *viewport)
 {
 	SDL_Rect dest = {
 			static_cast<int>(pos.x), static_cast<int>(pos.y),

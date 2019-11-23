@@ -16,7 +16,7 @@ private:
 
 public:
 	c_tileset(string path, Vector2 p_size = Vector2(0, 0));
-	void draw(c_viewport *viewport, int id, Vector2 pos, Vector2 size);
+	void draw(int id, Vector2 pos, Vector2 size, c_viewport *viewport = nullptr);
 };
 
 #endif

@@ -10,6 +10,7 @@ class c_application
 private:
 	SDL_Window *_window;
 	SDL_Renderer *_renderer;
+	c_viewport *_viewport;
 	Vector2 _win_size;
 
 	class c_window *_central_widget;
@@ -24,6 +25,8 @@ public:
 	SDL_Renderer *renderer();
 
 	SDL_Event *event();
+
+	c_viewport *viewport(){return (_viewport);}
 
 	void quit();
 

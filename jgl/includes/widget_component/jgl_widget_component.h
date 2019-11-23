@@ -24,7 +24,7 @@ public:
 
 	bool is_pointed(Vector2 point);
 
-	virtual void render(c_viewport *viewport) = 0;
+	virtual void render(c_viewport *viewport = nullptr) = 0;
 };
 
 class w_graphical_component
@@ -82,7 +82,7 @@ public:
 
 	void 		resize(Vector2 p_anchor, Vector2 p_area);
 
-	void render(c_viewport *viewport);
+	void render(c_viewport *viewport = nullptr);
 };
 
 class w_check_component : public w_component, public w_graphical_component
@@ -114,7 +114,7 @@ public:
 
 	bool check(Vector2 point, Vector2 viewport_anchor);
 
-	void render(c_viewport *viewport);
+	void render(c_viewport *viewport = nullptr);
 
 };
 
@@ -133,7 +133,7 @@ public:
 		//Getter
 	Color delta(){return (_delta);}
 
-	void render(c_viewport *viewport);
+	void render(c_viewport *viewport = nullptr);
 };
 
 class w_text_entry_component : public w_component, public w_graphical_component, public w_textual_component
@@ -168,7 +168,7 @@ public:
 	void 		remove_text();
 	void 		supp_text();
 
-	void 		render(c_viewport *viewport);
+	void 		render(c_viewport *viewport = nullptr);
 };
 
 class w_value_component : public w_component, public w_graphical_component, public w_textual_component
@@ -194,7 +194,7 @@ public:
 	float		value(){return (_value);}
 	int			precision(){return (_precision);}
 
-	void render(c_viewport *viewport);
+	void render(c_viewport *viewport = nullptr);
 };
 
 class w_value_entry_component : public w_component, public w_graphical_component, public w_textual_component
@@ -238,15 +238,7 @@ public:
 	void 		remove_text();
 	void 		supp_text();
 
-	void render(c_viewport *viewport);
+	void render(c_viewport *viewport = nullptr);
 };
-
-// class w_vertical_scroll : public w_component
-// {
-// protected:
-// 	w_graphical_component up_button
-//
-// public:
-// }
 
 #endif

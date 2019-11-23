@@ -16,6 +16,6 @@ void w_box_component::render(c_viewport *viewport)
 	if (_owner == NULL)
 		return ;
 
-	fill_rectangle(viewport, _back + _delta, _anchor , _area);
-	fill_rectangle(viewport, _front + _delta, _anchor + _border, _area - _border * 2);
+	fill_rectangle(_back + _delta, _anchor , _area, viewport);
+	fill_rectangle(_front + _delta, _anchor + _border, _area - _border * 2, viewport);
 }
