@@ -344,3 +344,8 @@ vector<Vector2> 		calc_line_2d(float x1, float y1, float x2, float y2)
 	}
 	return (result);
 }
+
+int generate_nbr(int min, int max)
+{
+	return(rand() % max + min);
+}

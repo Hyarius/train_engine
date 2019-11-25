@@ -35,6 +35,9 @@ private:
 	Vector2 pos_up;
 	Vector2 pos_right;
 
+	size_t point_size;
+	size_t line_size;
+
 	vector<Vector2> points;
 
 	int text_size;
@@ -62,6 +65,9 @@ public:
 	void calc_axis_unit();
 
 	void add_point(Vector2 p_point){points.push_back(p_point);}
+
+	void set_point_size(size_t p_size){point_size = p_size;}
+	void set_line_size(size_t p_size){line_size = p_size;}
 
 	void set_size(Vector2 p_size){size = p_size;actualize_point();}
 	void set_margin(Vector2 p_margin){margin = p_margin;actualize_point();}

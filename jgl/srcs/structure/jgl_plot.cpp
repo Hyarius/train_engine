@@ -8,6 +8,8 @@ c_plot::c_plot(Vector2 p_size, Plot_data p_absciss, Plot_data p_ordinate)
 	set_size(p_size);
 	absciss = p_absciss;
 	ordinate = p_ordinate;
+	point_size = 5;
+	line_size = 1;
 }
 
 c_plot::~c_plot()
@@ -66,7 +68,7 @@ void c_plot::draw_plot_point(Vector2 point)
 	float delta_x = point.x - absciss.min;
 	float delta_y = point.y - ordinate.min;
 
-	draw_point(Color(0, 0, 0), origin + absciss_unit * delta_x + ordinate_unit * delta_y, 5);
+	draw_point(Color(0, 0, 0), origin + absciss_unit * delta_x + ordinate_unit * delta_y, point_size);
 }
 
 void c_plot::draw_plot_line(Vector2 point_a, Vector2 point_b)
@@ -74,7 +76,7 @@ void c_plot::draw_plot_line(Vector2 point_a, Vector2 point_b)
 	Vector2 tmp_a = origin + absciss_unit * (point_a.x - absciss.min) + ordinate_unit * (point_a.y - ordinate.min);
 	Vector2 tmp_b = origin + absciss_unit * (point_b.x - absciss.min) + ordinate_unit * (point_b.y - ordinate.min);
 
-	draw_line(Color(0, 0, 0), tmp_a, tmp_b);
+	draw_line(Color(0, 0, 0), tmp_a, tmp_b, line_size);
 }
 
 void c_plot::draw_absciss_point(float value)
