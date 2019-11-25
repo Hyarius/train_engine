@@ -5,7 +5,7 @@
 
 using namespace std;
 
-typedef struct Data
+struct Data
 {
 	vector<void *> content;
 
@@ -19,6 +19,6 @@ typedef struct Data
 
 	template <typename T>
 	T acces(size_t i){return (static_cast<T>(content[i]));}
-}					t_data;
+};
 
 #endif

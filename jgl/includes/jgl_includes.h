@@ -17,6 +17,7 @@
 #include <map>
 #include <stdint.h>
 #include <time.h>
+#include <tuple>
 #include <algorithm>
 #include <string.h>
 #include <vector>

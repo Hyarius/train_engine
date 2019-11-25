@@ -36,6 +36,7 @@
 
 #include "jgl_window.h"
 #include "jgl_draw_primitive.h"
+#include "jgl_plot.h"
 
 #include "jgl_define.h"
 
