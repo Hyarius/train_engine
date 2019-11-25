@@ -46,16 +46,15 @@ void draw_point(Color p_color, Vector2 center, int width, c_viewport *viewport)
 
 	viewport->set_Color(p_color);
 
+	Vector2 tmp_center = 0;
 	Vector2 actual;
 
-	for (int i = -width / 2; i <= width / 2 || i == 0; i++)
+	for (actual.x = -width / 2; actual.x <= width / 2 || actual.x == 0; actual.x++)
 	{
-		for (int j = -width / 2; j <= width / 2 || j == 0; j++)
+		for (actual.y = -width / 2; actual.y <= width / 2 || actual.y == 0; actual.y++)
 		{
-			actual = center + Vector2(i, j);
-
-			if (center.distance(actual) < width)
-				SDL_RenderDrawPoint(viewport->renderer(), actual.x, actual.y);
+			if (tmp_center.distance(actual) < width / 2.0f)
+				SDL_RenderDrawPoint(viewport->renderer(), actual.x + center.x, actual.y + center.y);
 		}
 	}
 }
