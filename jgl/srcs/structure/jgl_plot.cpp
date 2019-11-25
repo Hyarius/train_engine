@@ -25,6 +25,24 @@ void c_plot::actualize_point()
 	calc_axis_unit();
 }
 
+void c_plot::add_line(Color p_color)
+{
+	lines.push_back(Line(p_color));
+}
+
+void c_plot::add_point(Vector2 p_point, size_t line)
+{
+	if (lines.size() <= line)
+		lines.resize(line + 1);
+
+	lines[line].add_point(p_point);
+}
+
+void c_plot::set_line_color(size_t index, Color p_color)
+{
+	lines[index] = Line(p_color);
+}
+
 void c_plot::calc_axis_unit()
 {
 	ordinate_unit = (pos_up - origin) / (ordinate.max - ordinate.min);
@@ -46,11 +64,14 @@ void c_plot::draw()
 	draw_absciss();
 	draw_ordinate();
 
-	for (size_t i = 0; i < points.size(); i++)
+	for (size_t i = 0; i < lines.size(); i++)
 	{
-		draw_plot_point(points[i]);
-		if (i != 0)
-			draw_plot_line(points[i - 1], points[i]);
+		for (size_t j = 0; j < lines[i].points.size(); j++)
+		{
+			draw_plot_point(lines[i].points[j], lines[i].color);
+			if (j != 0)
+				draw_plot_line(lines[i].points[j - 1], lines[i].points[j], lines[i].color);
+		}
 	}
 
 	plot->unactive();
@@ -63,20 +84,20 @@ void c_plot::draw_absciss()
 		draw_absciss_point(i);
 }
 
-void c_plot::draw_plot_point(Vector2 point)
+void c_plot::draw_plot_point(Vector2 point, Color color)
 {
 	float delta_x = point.x - absciss.min;
 	float delta_y = point.y - ordinate.min;
 
-	draw_point(Color(0, 0, 0), origin + absciss_unit * delta_x + ordinate_unit * delta_y, point_size);
+	draw_point(color, origin + absciss_unit * delta_x + ordinate_unit * delta_y, point_size);
 }
 
-void c_plot::draw_plot_line(Vector2 point_a, Vector2 point_b)
+void c_plot::draw_plot_line(Vector2 point_a, Vector2 point_b, Color color)
 {
 	Vector2 tmp_a = origin + absciss_unit * (point_a.x - absciss.min) + ordinate_unit * (point_a.y - ordinate.min);
 	Vector2 tmp_b = origin + absciss_unit * (point_b.x - absciss.min) + ordinate_unit * (point_b.y - ordinate.min);
 
-	draw_line(Color(0, 0, 0), tmp_a, tmp_b, line_size);
+	draw_line(color, tmp_a, tmp_b, line_size);
 }
 
 void c_plot::draw_absciss_point(float value)

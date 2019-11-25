@@ -22,6 +22,21 @@ struct Plot_data
 	void set_gap(float p_delta){delta = p_delta;}
 };
 
+struct Line
+{
+	vector<Vector2> points;
+	Color color;
+
+	Line(Color p_color = Color(0, 0, 0))
+	{
+		points.clear();
+		color = p_color;
+	}
+
+	void add_point(Vector2 p_point){points.push_back(p_point);}
+	void set_color(Color p_color){color = p_color;}
+};
+
 class c_plot
 {
 private:
@@ -38,7 +53,7 @@ private:
 	size_t point_size;
 	size_t line_size;
 
-	vector<Vector2> points;
+	vector<Line> lines;
 
 	int text_size;
 
@@ -52,9 +67,10 @@ public:
 	~c_plot();
 
 	void initialize();
+	void clear(){lines.clear();absciss = Plot_data("Absciss"); ordinate = Plot_data("Ordinate");}
 	void draw();
-	void draw_plot_point(Vector2 point);
-	void draw_plot_line(Vector2 point_a, Vector2 point_b);
+	void draw_plot_point(Vector2 point, Color color);
+	void draw_plot_line(Vector2 point_a, Vector2 point_b, Color color);
 	void draw_absciss();
 	void draw_absciss_point(float value);
 	void draw_ordinate();
@@ -64,7 +80,9 @@ public:
 	void actualize_point();
 	void calc_axis_unit();
 
-	void add_point(Vector2 p_point){points.push_back(p_point);}
+	void add_line(Color p_color = Color(0, 0, 0));
+	void add_point(Vector2 p_point, size_t line = 0);
+	void set_line_color(size_t index, Color p_color);
 
 	void set_point_size(size_t p_size){point_size = p_size;}
 	void set_line_size(size_t p_size){line_size = p_size;}
