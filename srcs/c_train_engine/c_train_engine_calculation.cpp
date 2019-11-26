@@ -199,8 +199,8 @@ void c_train_engine::run()
 		_distance.push_back(0.0f);
 		_arrived_hour.push_back(0.0f);
 	}
-	_plot.set_ordinate_min(-10.0f);
-	_plot.set_absciss_min(_time - 60.0f);
+	_plot.set_ordinate_min(-1.0f);
+	_plot.set_absciss_min(_time - 15.0f);
 	_plot.set_point_size(0);
 	_plot.set_absciss_precision(3);
 	_plot.set_ordinate_precision(3);
@@ -210,7 +210,7 @@ void c_train_engine::run()
 	while (_arrived_train < _journey_list.size())
 		iterate();
 
-	_plot.set_absciss_max(_time + 60.0f);
+	_plot.set_absciss_max(_time + 15.0f);
 	_plot.set_ordinate_max(max_dist + 10.0f);
 	_plot.set_absciss_gap(15.0f);
 	_plot.set_ordinate_gap(10.0f);
