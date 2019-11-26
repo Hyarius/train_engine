@@ -199,7 +199,7 @@ void c_train_engine::run()
 		_distance.push_back(0.0f);
 		_arrived_hour.push_back(0.0f);
 	}
-	_plot.set_ordinate_min(-1.0f);
+	_plot.set_ordinate_min(-10.0f);
 	_plot.set_absciss_min(_time - 15.0f);
 	_plot.set_point_size(0);
 	_plot.set_absciss_precision(3);
@@ -215,6 +215,9 @@ void c_train_engine::run()
 	_plot.set_absciss_gap(15.0f);
 	_plot.set_ordinate_gap(10.0f);
 	_plot.set_absciss_funct(&convert_hour_to_string);
+	_plot.set_size(Vector2(_plot.absciss().range() * 10, 1200.0f));
+
+	_plot.initialize();
 	_plot.save("test.png");
 
 	for (size_t i = 0; i < _journey_list.size(); i++)
