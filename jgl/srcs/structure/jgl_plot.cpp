@@ -104,6 +104,8 @@ void c_plot::draw_plot_line(Vector2 point_a, Vector2 point_b, Color color)
 void c_plot::draw_absciss_point(float value)
 {
 	string text = ftoa(value, absciss.precision);
+	if (absciss.funct != nullptr)
+		text = absciss.funct(value);
 	float delta = value - absciss.min;
 	draw_point(Color(0, 0, 0), origin + absciss_unit * delta, 5);
 	draw_centred_text(text, origin + absciss_unit * delta + Vector2(0.0f, margin.y / 2));

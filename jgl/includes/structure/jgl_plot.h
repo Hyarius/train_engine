@@ -3,15 +3,16 @@
 struct Plot_data
 {
 	string name;
-	void (funct)(float);
+	string (*funct)(float);
 	float min;
 	float max;
 	size_t precision;
 	float delta;
 
-	Plot_data(string p_name = "Value", float p_min = 0.0f, float p_max = 100.0f, void (p_funct)(float))
+	Plot_data(string p_name = "Value", float p_min = 0.0f, float p_max = 100.0f, string (*p_funct)(float) = nullptr)
 	{
 		name = p_name;
+		funct = p_funct;
 		min = p_min;
 		max = p_max;
 		precision = 0;
@@ -23,6 +24,7 @@ struct Plot_data
 	}
 	void set_min(float p_min){min = p_min;delta = (max - min) / 10;}
 	void set_max(float p_max){max = p_max;delta = (max - min) / 10;}
+	void set_funct(string (*p_funct)(float)){funct = p_funct;}
 	void divide(size_t nb_division){delta = (max - min) / nb_division;}
 	void set_gap(float p_delta){delta = p_delta;}
 };
@@ -105,6 +107,7 @@ public:
 	void set_ordinate(Plot_data p_ordinate){ordinate = p_ordinate;calc_axis_unit();}
 
 	void set_absciss_name(string p_name){absciss.name = p_name;}
+	void set_absciss_funct(string (*p_funct)(float)){absciss.set_funct(p_funct);}
 	void set_absciss_min(float p_min){absciss.set_min(p_min);calc_axis_unit();}
 	void set_absciss_max(float p_max){absciss.set_max(p_max);calc_axis_unit();}
 	void set_absciss_gap(float p_gap){absciss.set_gap(p_gap);calc_axis_unit();}
@@ -112,6 +115,7 @@ public:
 	void set_absciss_precision(int p_precision){absciss.precision = p_precision;}
 
 	void set_ordinate_name(string p_name){ordinate.name = p_name;}
+	void set_ordinate_funct(string (*p_funct)(float)){ordinate.set_funct(p_funct);}
 	void set_ordinate_min(float p_min){ordinate.set_min(p_min);calc_axis_unit();}
 	void set_ordinate_max(float p_max){ordinate.set_max(p_max);calc_axis_unit();}
 	void set_ordinate_gap(float p_gap){ordinate.set_gap(p_gap);calc_axis_unit();}

@@ -191,6 +191,16 @@ string convert_hour_to_string(int minute)
 
 string convert_hour_to_string(float time)
 {
+	if (time < 0)
+		time += 60 * 24;
+	if (time > 24 * 60)
+		time -= 24 * 60;
+
+	return (convert_time_to_string(time));
+}
+
+string convert_time_to_string(float time)
+{
 	int tmp = floor(time);
 	int nb_hour = (tmp / 60);
 	int nb_minute = tmp % 60;
@@ -210,6 +220,8 @@ string convert_hour_to_string(float time)
 	if (second_text.length() == 1)
 		second_text.insert(0, "0");
 
+	if (nb_second == 0)
+		return (hour_text + "h" + minute_text);
 	return (hour_text + "h" + minute_text + " - " + second_text + "s");
 }
 

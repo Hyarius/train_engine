@@ -17,6 +17,7 @@ string normalize_float(float num, size_t after_point, char c, size_t size);
 bool is_middle(float a, float b, float c);
 string convert_hour_to_string(int hour, int minute);
 string convert_hour_to_string(int minute);
+string convert_time_to_string(float time);
 string convert_hour_to_string(float time);
 float convert_km_to_m(float base_dist);
 float convert_m_to_km(float base_dist);

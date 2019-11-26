@@ -214,6 +214,7 @@ void c_train_engine::run()
 	_plot.set_ordinate_max(max_dist + 10.0f);
 	_plot.set_absciss_gap(15.0f);
 	_plot.set_ordinate_gap(10.0f);
+	_plot.set_absciss_funct(&convert_hour_to_string);
 	_plot.save("test.png");
 
 	for (size_t i = 0; i < _journey_list.size(); i++)
