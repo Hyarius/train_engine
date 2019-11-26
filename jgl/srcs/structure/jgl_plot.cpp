@@ -10,11 +10,17 @@ c_plot::c_plot(Vector2 p_size, Plot_data p_absciss, Plot_data p_ordinate)
 	ordinate = p_ordinate;
 	point_size = 5;
 	line_size = 1;
+	plot = new c_image(size.x, size.y, color);
 }
 
 c_plot::~c_plot()
 {
 
+}
+
+void c_plot::clear()
+{
+	lines.clear();
 }
 
 void c_plot::actualize_point()
@@ -56,9 +62,6 @@ void c_plot::initialize()
 
 void c_plot::draw()
 {
-
-	plot->active();
-
 	draw_line(Color(0, 0, 0), origin, pos_right, 2);
 	draw_line(Color(0, 0, 0), origin, pos_up, 2);
 	draw_absciss();
@@ -73,8 +76,6 @@ void c_plot::draw()
 				draw_plot_line(lines[i].points[j - 1], lines[i].points[j], lines[i].color);
 		}
 	}
-
-	plot->unactive();
 }
 
 void c_plot::draw_absciss()
@@ -125,5 +126,8 @@ void c_plot::draw_ordinate_point(float value)
 
 void c_plot::save(string path)
 {
+	plot->active();
+	draw();
 	plot->save(path);
+	plot->unactive();
 }

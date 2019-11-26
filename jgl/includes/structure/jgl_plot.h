@@ -3,18 +3,23 @@
 struct Plot_data
 {
 	string name;
+	void (funct)(float);
 	float min;
 	float max;
 	size_t precision;
 	float delta;
 
-	Plot_data(string p_name = "Value", float p_min = 0.0f, float p_max = 100.0f)
+	Plot_data(string p_name = "Value", float p_min = 0.0f, float p_max = 100.0f, void (p_funct)(float))
 	{
 		name = p_name;
 		min = p_min;
 		max = p_max;
 		precision = 0;
 		delta = (max - min) / 10;
+	}
+	~Plot_data()
+	{
+
 	}
 	void set_min(float p_min){min = p_min;delta = (max - min) / 10;}
 	void set_max(float p_max){max = p_max;delta = (max - min) / 10;}
@@ -31,6 +36,10 @@ struct Line
 	{
 		points.clear();
 		color = p_color;
+	}
+	~Line()
+	{
+
 	}
 
 	void add_point(Vector2 p_point){points.push_back(p_point);}
@@ -67,7 +76,7 @@ public:
 	~c_plot();
 
 	void initialize();
-	void clear(){lines.clear();absciss = Plot_data("Absciss"); ordinate = Plot_data("Ordinate");}
+	void clear();
 	void draw();
 	void draw_plot_point(Vector2 point, Color color);
 	void draw_plot_line(Vector2 point_a, Vector2 point_b, Color color);
@@ -82,6 +91,7 @@ public:
 
 	void add_line(Color p_color = Color(0, 0, 0));
 	void add_point(Vector2 p_point, size_t line = 0);
+	void add_point(float p_a, float p_b, size_t line = 0){add_point(Vector2(p_a, p_b), line);}
 	void set_line_color(size_t index, Color p_color);
 
 	void set_point_size(size_t p_size){point_size = p_size;}
