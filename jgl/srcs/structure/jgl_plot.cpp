@@ -24,9 +24,7 @@ void c_plot::clear()
 
 void c_plot::actualize_point()
 {
-	cout << "Origin : " << _origin << endl;
 	_origin = Vector2(_margin.x, _size.y - _margin.y);
-	cout << "Origin : " << _origin << endl;
 	_pos_up = _margin;
 	_pos_right = _origin + Vector2(_size.x - _margin.x * 2, 0.0f);
 	calc_axis_unit();

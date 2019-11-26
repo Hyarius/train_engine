@@ -19,6 +19,7 @@ string convert_hour_to_string(int hour, int minute);
 string convert_hour_to_string(int minute);
 string convert_time_to_string(float time);
 string convert_hour_to_string(float time);
+string convert_time_to_string_round(float time);
 float convert_km_to_m(float base_dist);
 float convert_m_to_km(float base_dist);
 float convert_second_to_minute(float time);

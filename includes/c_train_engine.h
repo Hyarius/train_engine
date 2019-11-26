@@ -38,8 +38,8 @@ public:
 
 	float calc_waiting_time(size_t index, float time_left);
 	float calc_run_time(size_t index, float time_left);
-	float calc_accelerate_time(size_t index, float time_left);
-	float calc_decelerate_time(size_t index, float time_left);
+	float calc_accelerate_time(size_t index, float time_left, float target_speed);
+	float calc_decelerate_time(size_t index, float time_left, float target_speed);
 
 	void add_journey(c_journey *new_journey, c_train *new_train = nullptr);
 

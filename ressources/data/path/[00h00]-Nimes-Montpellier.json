@@ -1,0 +1,39 @@
+{
+	"destination":[
+		{
+			"id":"1",
+			"departure time":"00h00",
+			"Waiting time":"0",
+		},
+		{
+			"id":"50",
+			"departure time":"",
+			"Waiting time":"",
+		},
+		{
+			"id":"49",
+			"departure time":"",
+			"Waiting time":"",
+		},
+		{
+			"id":"48",
+			"departure time":"",
+			"Waiting time":"",
+		},
+		{
+			"id":"47",
+			"departure time":"",
+			"Waiting time":"",
+		},
+		{
+			"id":"46",
+			"departure time":"",
+			"Waiting time":"",
+		},
+		{
+			"id":"0",
+			"departure time":"00h00",
+			"Waiting time":"0",
+		}
+	],
+}
