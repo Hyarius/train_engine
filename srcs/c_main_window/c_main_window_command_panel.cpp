@@ -19,7 +19,7 @@ static void calc_journeys(Data data)
 
 void c_main_window::create_command_panel()
 {
-	engine = new c_train_engine(map);
+	engine = new c_train_engine();
 
 	engine->set_time(0, 0);
 	engine->set_time_delta(10);

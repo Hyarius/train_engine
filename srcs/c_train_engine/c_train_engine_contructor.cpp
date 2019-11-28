@@ -1,8 +1,7 @@
 #include "engine.h"
 
-c_train_engine::c_train_engine(c_map *p_map)
+c_train_engine::c_train_engine()
 {
-	_map = p_map;
 	_time = -1.0f;
 	_time_delta = -1.0f;
 	clean();

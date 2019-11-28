@@ -141,7 +141,6 @@ void c_train_engine::iterate()
 				if (calc_distance_left(i) <= 0.005f)
 					train->set_state(e_train_state::stopping);
 
-				//cout << "Here in " << train->state_str() << endl;
 				float old_speed = train->speed();
 
 				if (train->state() == e_train_state::speed_up)
@@ -209,7 +208,7 @@ void c_train_engine::run()
 			_time = _journey_list[i]->hour_panel()[0]->value();
 		_plot.add_line(Color(0, 0, 0));
 		_time_travel.push_back(_journey_list[i]->hour_panel()[0]->value());
-		_journey_list[i]->calc_distance(_map);
+		_journey_list[i]->calc_distance();
 		_journey_list[i]->create_output_file();
 		_journey_list[i]->output_file() << "Calculation for the travel [" << _journey_list[i]->name() << "] with the train num [" << _train_list[i]->num() << "]" << endl;
 
@@ -221,7 +220,7 @@ void c_train_engine::run()
 		_journey_list[i]->output_file() << endl;
 
 		_train_list[i]->set_departure_time(_journey_list[i]->hour_panel()[0]->value());
-		_train_list[i]->set_actual_rail(_journey_list[i]->get_rail(_map, _train_list[i]->index()));
+		_train_list[i]->set_actual_rail(_journey_list[i]->get_rail(_train_list[i]->index()));
 		_train_list[i]->actual_rail()->add_train(_train_list[i]);
 		_distance.push_back(0.0f);
 		_arrived_hour.push_back(0.0f);

@@ -74,13 +74,13 @@ float c_train::run(float time)
 	return (_speed * convert_time);
 }
 
-void c_train::move_to_next_rail(c_map *map)
+void c_train::move_to_next_rail()
 {
 	actual_rail()->remove_train(this);
 	set_waiting_time(0);
 	set_distance(distance() - actual_rail()->distance());
 	set_index(index() + 1);
-	set_actual_rail(_journey->get_rail(map , index()));
+	set_actual_rail(_journey->get_rail(index()));
 	if (_journey->path()[index()]->place() != nullptr)
 	{
 		set_waiting_time(_journey->wait_entry()[index()]->value());

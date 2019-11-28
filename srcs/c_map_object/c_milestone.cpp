@@ -47,7 +47,7 @@ void c_milestone::add_link(c_milestone* to_add)
 		auto it2 = g_map->rails().find(pair_milestone(this, to_add));
 		if (it2 == g_map->rails().end())
 		{
-			c_rail *rail = new c_rail(this->pos(), to_add->pos());
+			c_rail *rail = new c_rail(this, to_add);
 			g_map->rails()[pair_milestone(this, to_add)] = rail;
 			g_map->rails()[pair_milestone(to_add, this)] = rail;
 		}
@@ -121,7 +121,7 @@ void c_milestone::draw_link()
 	for (size_t i = 0; i < _links.size(); i++)
 	{
 		auto target = pair_milestone(this, _links[i]);
-		if (g_map->rails()[target] != nullptr && _pos == g_map->rails()[target]->main_pos())
+		if (g_map->rails()[target] != nullptr && this == g_map->rails()[target]->pos1())
 	 		g_map->rails()[target]->poly()->set_pos(pos1);
 
 		c_milestone *tmp_mile = _links[i];

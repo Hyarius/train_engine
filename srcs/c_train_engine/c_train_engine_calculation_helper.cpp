@@ -10,7 +10,7 @@ float c_train_engine::calc_distance_left(size_t index)
 	for (size_t i = start_pos; i < _journey_list[index]->path().size() - 1; i++)
 	{
 
-		c_rail *rail = _journey_list[index]->get_rail(_map, i);
+		c_rail *rail = _journey_list[index]->get_rail(i);
 		tmp = 0;
 		if (rail != nullptr)
 			tmp = rail->distance();
@@ -45,7 +45,7 @@ float c_train_engine::calc_next_speed(size_t index)
 			journey->wait_entry()[i + 1]->value() != 0)
 			return (0.0f);
 
-		c_rail *rail = journey->get_rail(_map, i);
+		c_rail *rail = journey->get_rail(i);
 
 		if (rail->speed() != actual_speed)
 			return (rail->speed());
@@ -62,7 +62,7 @@ void c_train_engine::move_train(size_t index, float distance)
 	train->add_distance(distance);
 	while (train->actual_rail()->distance() - train->distance() < 0.001f)
 	{
-		train->move_to_next_rail(_map);
+		train->move_to_next_rail();
 		train->set_waiting_time(0);
 		if (train->journey()->path()[train->index()]->place() != nullptr)
 		{

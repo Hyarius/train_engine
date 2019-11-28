@@ -52,8 +52,8 @@ void c_train_engine::draw_train_state(size_t i)
 
 	for (size_t j = 0; j < train->journey()->path().size() - 1; j++)
 	{
-		c_rail *rail = train->journey()->get_rail(_map, j);
-		size_t t = train->journey()->get_rail(_map, j)->train_list().size();
+		c_rail *rail = train->journey()->get_rail(j);
+		size_t t = rail->train_list().size();
 
 		if (t == 1)
 			text = normalize_string(to_string(rail->train_list()[0]->num()), '0', 2);

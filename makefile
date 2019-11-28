@@ -8,6 +8,8 @@ NAME=		ts_engine
 INC_DIR = 	$(shell find includes -type d) $(shell find jgl/includes -type d)
 ##List every folder where he will find source file
 SRC_DIR = 	$(shell find srcs -type d)
+##List every folder where he will find lib file
+LIB_DIR = 	$(shell find ~/.brew/lib -type d) jgl
 ##Folder where he will store the .o
 OBJ_DIR	=	obj
 
@@ -39,7 +41,7 @@ CFLAGS=		-O3 -flto -fsanitize=address -std=c++11
 IFLAGS =	$(foreach dir, $(INC_DIR), -I$(dir)) $(foreach dir, $(shell find ~/.brew/include -type d), -I$(dir))
 
 ##Create the flags to link every libraries needed by this program (-L and -l)
-LFLAGS = 	-L ~/.brew/lib -L ./jgl $(foreach lib, $(LIB), -l$(lib)) -framework OpenGL
+LFLAGS = 	$(foreach dir, $(LIB_DIR), -L $(dir) ) $(foreach lib, $(LIB), -l$(lib)) -framework OpenGL
 
 ##Define the compiler to use
 CC=			g++
@@ -56,7 +58,7 @@ re-jgl:
 jgl:
 				make -C jgl
 
-$(NAME):		jgl $(OBJ)
+$(NAME):		$(OBJ)
 				@echo "Compiling $(NAME) ...\c"
 				@$(CC) $(CFLAGS) $(IFLAGS) -o $(NAME) $(OBJ) $(LFLAGS)
 				@echo " DONE"

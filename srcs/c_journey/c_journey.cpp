@@ -138,7 +138,7 @@ void c_journey::draw()
 	}
 }
 
-c_rail *c_journey::get_rail(c_map *map, size_t start_index)
+c_rail *c_journey::get_rail(size_t start_index)
 {
 	c_rail *result;
 	pair_milestone key;
@@ -146,13 +146,13 @@ c_rail *c_journey::get_rail(c_map *map, size_t start_index)
 	if (start_index >= _path.size() - 1)
 		return (nullptr);
 	key = pair_milestone(_path[start_index], _path[start_index + 1]);
-	result = map->rails()[key];
+	result = g_map->rails()[key];
 
 	if (result == nullptr)
 		error_exit(1, "No rail found");
 
 	if (result->distance() == -1)
-		result->calc_distance(map->scale_unit());
+		result->calc_distance(g_map->scale_unit());
 
 	return (result);
 }
@@ -170,7 +170,7 @@ string c_journey::name()
 	return ("[" + hour + "]-" + first + "-" + second);
 }
 
-void c_journey::calc_distance(c_map *map)
+void c_journey::calc_distance()
 {
 	c_rail *result;
 	pair_milestone key;
@@ -178,9 +178,9 @@ void c_journey::calc_distance(c_map *map)
 	for (size_t i = 0; i < _path.size() - 1; i++)
 	{
 		key = pair_milestone(_path[i], _path[i + 1]);
-		result = map->rails()[key];
+		result = g_map->rails()[key];
 
-		result->calc_distance(map->scale_unit());
+		result->calc_distance(g_map->scale_unit());
 	}
 }
 
@@ -192,4 +192,16 @@ void c_journey::create_output_file()
 void c_journey::close_output_file()
 {
 	_output_file.close();
+}
+
+e_channel_state c_journey::travel_direction(size_t index)
+{
+	pair_milestone key = pair_milestone(_path[index], _path[index + 1]);
+	c_rail *result = g_map->rails()[key];
+
+	if (result == nullptr)
+		return (e_channel_state::error);
+	if (result->pos1() == _path[index])
+		return (e_channel_state::even);
+	return (e_channel_state::odd);
 }

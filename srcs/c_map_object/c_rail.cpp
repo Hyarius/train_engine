@@ -1,8 +1,7 @@
 #include "engine.h"
 
-c_rail::c_rail(Vector2 pos1, Vector2 pos2)
+c_rail::c_rail(c_milestone *pos1, c_milestone *pos2)
 {
-	_main_pos = pos1;
 	_distance = -1;
 	_speed = 145.0f;
 	_cantonal_dist = 2.0f;
@@ -10,15 +9,15 @@ c_rail::c_rail(Vector2 pos1, Vector2 pos2)
 	_pos1 = pos1;
 	_pos2 = pos2;
 
-	_nb_channel = 1;
+	_channel.clear();
 
 	_state = false;
 
 	_poly = new Polygon2D(0);
 
 	Vector2 start = 0;
-	Vector2 end = pos2 - pos1;
-	Vector2 trans = pos2.cross(pos1).normalize();
+	Vector2 end = pos2->pos() - pos1->pos();
+	Vector2 trans = pos2->pos().cross(pos1->pos()).normalize();
 
 	Vector2 pos[4];
 

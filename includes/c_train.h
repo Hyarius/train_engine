@@ -33,6 +33,7 @@ private:
 	int _departure_time;
 	float _waiting_time;
 	c_rail *_actual_rail;
+	size_t _actual_channel;
 
 public:
 	c_train(c_journey *journey);
@@ -42,7 +43,7 @@ public:
 	float run(float time);
 	void calc_deceleration_dist(float target_speed);
 	void calc_distance_per_tic(float time);
-	void move_to_next_rail(c_map *map);
+	void move_to_next_rail();
 
 	void change_speed(float time, float target_speed);
 	void set_speed(float p_speed){_speed = p_speed;}
@@ -59,6 +60,7 @@ public:
 	void set_waiting_time(float p_waiting_time){_waiting_time = p_waiting_time;}
 	void change_waiting_time(float delta){_waiting_time += delta;}
 	void set_num(size_t p_num) { _num = p_num; }
+	void set_actual_channel(size_t p_actual_channel) { _actual_channel = p_actual_channel; }
 
 	size_t num() { return (_num); }
 	float waiting_time(){return (_waiting_time);}
@@ -76,6 +78,7 @@ public:
 	float slow_down_dist(){return (_slow_down_dist);}
 	int departure_time(){return (_departure_time);}
 	c_rail *actual_rail(){return (_actual_rail);}
+	size_t actual_channel(){return (_actual_channel);}
 	string state_str(){
 		switch ( _state )
 		{

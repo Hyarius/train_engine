@@ -29,10 +29,11 @@ public:
 	vector<c_frame *> &wait_panel(){return (_wait_panel);}
 	vector<c_text_label *> &wait_label(){return (_wait_label);}
 	vector<c_value_entry *> &wait_entry(){return (_wait_entry);}
+	e_channel_state travel_direction(size_t index);
 
 	size_t get_index(c_milestone *target);
-	c_rail *get_rail(class c_map *map, size_t start_index);
-	void calc_distance(class c_map *map);
+	c_rail *get_rail(size_t start_index);
+	void calc_distance();
 
 	void add_point(c_milestone *new_point, pair_int p_hour = pair_int(0, 0), int p_wait_time = 0);
 	void remove_point();
