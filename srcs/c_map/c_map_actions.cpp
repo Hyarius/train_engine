@@ -169,6 +169,13 @@ void c_map::remove_rail(c_rail *rail)
 		key.first->remove_link(key.second);
 		_rails.erase(key);
 	}
+	key = find_key<pair_milestone, c_rail *>(_rails, rail);
+
+	if (key != _rails.end()->first)
+	{
+		key.first->remove_link(key.second);
+		_rails.erase(key);
+	}
 }
 
 c_city* c_map::check_city()

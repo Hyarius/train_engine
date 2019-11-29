@@ -10,6 +10,9 @@ c_rail::c_rail(c_milestone *pos1, c_milestone *pos2)
 	_pos2 = pos2;
 
 	_channel.resize(NB_CHANNEL_TYPE);
+	_channel[0] = 2;
+	for (size_t i = 1; i < NB_CHANNEL_TYPE; i++)
+		_channel[i] = 0;
 
 	_state = false;
 
@@ -37,17 +40,9 @@ c_rail::c_rail(c_milestone *pos1, c_milestone *pos2)
 
 void c_rail::add_train(c_train *train)
 {
-	e_channel_state type;
-
-	c_journey *journey = train->journey();
-	size_t journey_index = train->index();
-
-	if (journey->path(journey_index) == _pos1)
-		type = e_channel_state::even;
-	else
-		type = e_channel_state::odd;
-
-	reset_channel(e_channel_state::empty, type);
+	e_channel_state type = get_way(train->journey()->path(train->index()));
+	add_channel(type);
+	remove_channel(type);
 	_train_list.push_back(train);
 }
 
@@ -57,27 +52,18 @@ void c_rail::remove_train(c_train *train)
 		return ;
 
 	size_t index;
-	e_channel_state type;
-	c_journey *journey = train->journey();
-	size_t journey_index = train->index();
 
 	index = 0;
 	while (index < _train_list.size() && _train_list[index] != train)
 		index++;
 
 	if (index != _train_list.size())
-	{
-
-		if (journey->path(journey_index) == _pos2)
-			type = e_channel_state::even;
-		else
-			type = e_channel_state::odd;
-
-		if (channel(type) != 0)
-			reset_channel(type, e_channel_state::empty);
-
 		_train_list.erase(_train_list.begin() + index);
-	}
+
+	e_channel_state type = get_way(train->journey()->path(train->index()));
+	remove_channel(type);
+	bool find = false;
+	add_channel(e_channel_state::empty);
 }
 
 e_channel_state c_rail::get_way(c_milestone *start)

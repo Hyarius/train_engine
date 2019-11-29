@@ -29,11 +29,11 @@ public:
 	vector<c_frame *> &wait_panel(){return (_wait_panel);}
 	vector<c_text_label *> &wait_label(){return (_wait_label);}
 	vector<c_value_entry *> &wait_entry(){return (_wait_entry);}
-	c_milestone *path(size_t index){return (_path[index]);}
-	c_hour_entry *hour_panel(size_t index){return (_hour_panel[index]);}
-	c_frame *wait_panel(size_t index){return (_wait_panel[index]);}
-	c_text_label *wait_label(size_t index){return (_wait_label[index]);}
-	c_value_entry *wait_entry(size_t index){return (_wait_entry[index]);}
+	c_milestone *path(size_t index){if (index >=_path.size())return (nullptr);return (_path[index]);}
+	c_hour_entry *hour_panel(size_t index){if (index >=_path.size())return (nullptr);return (_hour_panel[index]);}
+	c_frame *wait_panel(size_t index){if (index >=_path.size())return (nullptr);return (_wait_panel[index]);}
+	c_text_label *wait_label(size_t index){if (index >=_path.size())return (nullptr);return (_wait_label[index]);}
+	c_value_entry *wait_entry(size_t index){if (index >=_path.size())return (nullptr);return (_wait_entry[index]);}
 	e_channel_state travel_direction(size_t index);
 
 	size_t get_index(c_milestone *target);
