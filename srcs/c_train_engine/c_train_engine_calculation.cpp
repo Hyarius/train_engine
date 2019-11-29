@@ -105,8 +105,8 @@ float c_train_engine::calc_waiting_time(size_t index, float time_left)
 
 void c_train_engine::iterate()
 {
-	if (_time >= 60 * 24)
-		_time -= 60 * 24;
+	while (_time > 24 * 60)
+		_time -= 24 * 60;
 
 	float time_left = 0;
 	float delta;
@@ -118,14 +118,12 @@ void c_train_engine::iterate()
 
 		if (_time_travel[i] < _time && train->actual_rail() != nullptr)
 		{
-
 			time_left = _time_delta;
 
 			while (time_left > 0.0001f && train->actual_rail() != nullptr)
 			{
 				c_rail *rail = train->actual_rail();
-
-				_plot.add_point(_time + (_time_delta - time_left), _distance[i], i);
+				_plot->add_point(_time + (_time_delta - time_left), _distance[i], i);
 				nb++;
 				train->calc_distance_per_tic(time_left);
 				draw_train_state(i);
@@ -199,14 +197,14 @@ void c_train_engine::run()
 		return ;
 
 	_time = 24 * 60;
-
-	_plot = c_plot(Vector2(1280, 1080), Plot_data("Time"), Plot_data("Distance"));
+	_time_travel.clear();
+	_plot = new c_plot(Vector2(1280, 1080), Plot_data("Time"), Plot_data("Distance"));
 
 	for (size_t i = 0; i < _journey_list.size(); i++)
 	{
 		if (_time > _journey_list[i]->hour_panel()[0]->value())
 			_time = _journey_list[i]->hour_panel()[0]->value();
-		_plot.add_line(Color(0, 0, 0));
+		_plot->add_line(Color(0, 0, 0));
 		_time_travel.push_back(_journey_list[i]->hour_panel()[0]->value());
 		_journey_list[i]->calc_distance();
 		_journey_list[i]->create_output_file();
@@ -225,26 +223,26 @@ void c_train_engine::run()
 		_distance.push_back(0.0f);
 		_arrived_hour.push_back(0.0f);
 	}
-	_plot.set_ordinate_min(-10.0f);
-	_plot.set_absciss_min(_time - 15.0f);
-	_plot.set_point_size(0);
-	_plot.set_absciss_precision(3);
-	_plot.set_ordinate_precision(3);
+	_plot->set_ordinate_min(-10.0f);
+	_plot->set_absciss_min(_time - 15.0f);
+	_plot->set_point_size(0);
+	_plot->set_absciss_precision(3);
+	_plot->set_ordinate_precision(3);
 
 	_arrived_train = 0;
 
 	while (_arrived_train < _journey_list.size())
 		iterate();
 
-	_plot.set_absciss_max(_time + 15.0f);
-	_plot.set_ordinate_max(max_dist + 10.0f);
-	_plot.set_absciss_gap(15.0f);
-	_plot.set_ordinate_gap(10.0f);
-	_plot.set_absciss_funct(&convert_time_to_string_round);
-	_plot.set_size(Vector2(_plot.absciss().range() * 10, 1200.0f));
+	_plot->set_absciss_max(_time + 15.0f);
+	_plot->set_ordinate_max(max_dist + 10.0f);
+	_plot->set_absciss_gap(15.0f);
+	_plot->set_ordinate_gap(10.0f);
+	_plot->set_absciss_funct(&convert_time_to_string_round);
+	_plot->set_size(Vector2(_plot->absciss().range() * 10, 1200.0f));
 
-	_plot.initialize();
-	_plot.save("test.png");
+	_plot->initialize();
+	_plot->save("test.png");
 
 	for (size_t i = 0; i < _journey_list.size(); i++)
 	{
@@ -252,4 +250,6 @@ void c_train_engine::run()
 		_journey_list[i]->output_file() << text << endl;
 		_journey_list[i]->close_output_file();
 	}
+
+	delete _plot;
 }

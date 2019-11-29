@@ -70,7 +70,9 @@ public:
 	c_journey *journey(){return (_journey);}
 	c_tileset *point_image(){return (_point_image);}
 	vector<c_city *> &cities(){return (_cities);}
+	c_city *cities(size_t index){return (_cities[index]);}
 	vector<c_milestone *> &milestones(){return (_milestones);}
+	c_milestone *milestones(size_t index){return (_milestones[index]);}
 	map<pair_milestone, c_rail *> &rails(){return (_rails);}
 	float zoom(){return (_zoom);}
 	float scale_unit(){return (_scale_unit);}

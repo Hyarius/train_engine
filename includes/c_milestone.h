@@ -32,7 +32,9 @@ public:
 	float &distance() { return (_distance); }
 	Vector2 &pos() { return (_pos); }
 	class c_city* place() { return (_place); }
+
 	vector<class c_milestone*> &links() { return (_links); }
+	class c_milestone*links(size_t index) { return (_links[index]); }
 
 	void draw();
 	void draw_link();

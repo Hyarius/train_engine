@@ -9,7 +9,7 @@ c_rail::c_rail(c_milestone *pos1, c_milestone *pos2)
 	_pos1 = pos1;
 	_pos2 = pos2;
 
-	_channel.clear();
+	_channel.resize(NB_CHANNEL_TYPE);
 
 	_state = false;
 
@@ -35,12 +35,20 @@ c_rail::c_rail(c_milestone *pos1, c_milestone *pos2)
 	_poly->add_side(3, 2);
 }
 
-void c_rail::add_train(class c_train *p_train)
+void c_rail::add_train(c_train *train)
 {
-	_train_list.push_back(p_train);
+	e_channel_state type;
+
+	c_journey *journey = train->journey();
+	size_t journey_index = train->index();
+
+	// if (journey->path(journey_index) == _pos1)
+	// 	cout << "Rail moving even direction" << endl;
+
+	_train_list.push_back(train);
 }
 
-void c_rail::remove_train(class c_train *p_train)
+void c_rail::remove_train(c_train *p_train)
 {
 	size_t index;
 
@@ -50,4 +58,27 @@ void c_rail::remove_train(class c_train *p_train)
 
 	if (index != _train_list.size())
 		_train_list.erase(_train_list.begin() + index);
+}
+
+void c_rail::set_nb_channel(size_t index)
+{
+	_channel[0] = index;
+	_channel[1] = 0;
+	_channel[2] = 0;
+}
+
+void c_rail::add_channel(e_channel_state p_state)
+{
+	(_channel[static_cast<int>(p_state)])++;
+}
+
+void c_rail::remove_channel(e_channel_state p_state)
+{
+	(_channel[static_cast<int>(p_state)])--;
+}
+
+void c_rail::reset_channel(e_channel_state p_old, e_channel_state p_new)
+{
+	add_channel(p_old);
+	remove_channel(p_new);
 }

@@ -25,7 +25,7 @@ void save_rail(Data data)
 	c_rail *rail = *(data.acces<c_rail **>(3));
 
 	json_add_value(file, 3, "speed", ftoa(rail->speed(), 0));
-	json_add_value(file, 3, "nb channel", ftoa(rail->nb_channel(), 0));
+	json_add_value(file, 3, "nb channel", ftoa(rail->nb_channel(e_channel_state::empty), 0));
 	json_add_value(file, 3, "cantonal dist", ftoa(rail->cantonal_dist(), 3));
 
 	json_add_value(file, 3, "id_a", to_string(g_map->get_milestone_id(key->first)));

@@ -6,7 +6,7 @@
 class c_train_engine
 {
 private:
-	c_plot _plot;
+	c_plot *_plot;
 	size_t _arrived_train;
 
 	float _time;
