@@ -38,6 +38,9 @@ public:
 	void add_train(class c_train *p_train);
 	void remove_train(class c_train *p_train);
 
+	e_channel_state get_way(c_milestone *start);
+	bool can_go(e_channel_state p_state);
+
 	void set_state(bool new_state){_state = new_state;}
 
 	void set_nb_channel(size_t index);
@@ -60,6 +63,7 @@ public:
 
 	vector<int> &channel(){return (_channel);}
 	int nb_channel(e_channel_state p_state){return (_channel[static_cast<int>(p_state)]);}
+	int channel(e_channel_state p_state){return (_channel[static_cast<int>(p_state)]);}
 
 	vector<class c_train *> &train_list(){return (_train_list);}
 	class c_train *train_list(size_t index){return (_train_list[index]);}

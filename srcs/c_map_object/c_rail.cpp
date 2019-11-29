@@ -42,22 +42,51 @@ void c_rail::add_train(c_train *train)
 	c_journey *journey = train->journey();
 	size_t journey_index = train->index();
 
-	// if (journey->path(journey_index) == _pos1)
-	// 	cout << "Rail moving even direction" << endl;
+	if (journey->path(journey_index) == _pos1)
+		type = e_channel_state::even;
+	else
+		type = e_channel_state::odd;
 
+	reset_channel(e_channel_state::empty, type);
 	_train_list.push_back(train);
 }
 
-void c_rail::remove_train(c_train *p_train)
+void c_rail::remove_train(c_train *train)
 {
+	if (train == nullptr)
+		return ;
+
 	size_t index;
+	e_channel_state type;
+	c_journey *journey = train->journey();
+	size_t journey_index = train->index();
 
 	index = 0;
-	while (index < _train_list.size() && _train_list[index] != p_train)
+	while (index < _train_list.size() && _train_list[index] != train)
 		index++;
 
 	if (index != _train_list.size())
+	{
+
+		if (journey->path(journey_index) == _pos2)
+			type = e_channel_state::even;
+		else
+			type = e_channel_state::odd;
+
+		if (channel(type) != 0)
+			reset_channel(type, e_channel_state::empty);
+
 		_train_list.erase(_train_list.begin() + index);
+	}
+}
+
+e_channel_state c_rail::get_way(c_milestone *start)
+{
+	if (start == _pos1)
+		return (e_channel_state::even);
+	else if (start == _pos2)
+		return (e_channel_state::odd);
+	return (e_channel_state::error);
 }
 
 void c_rail::set_nb_channel(size_t index)
@@ -81,4 +110,11 @@ void c_rail::reset_channel(e_channel_state p_old, e_channel_state p_new)
 {
 	add_channel(p_old);
 	remove_channel(p_new);
+}
+
+bool c_rail::can_go(e_channel_state p_state)
+{
+	if (_channel[static_cast<int>(p_state)] != 0)
+		return (true);
+	return (false);
 }
