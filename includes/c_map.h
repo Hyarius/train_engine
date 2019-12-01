@@ -38,10 +38,11 @@ private:
 	c_frame *_rail_panel;
 	c_text_label *_rail_speed_label;
 	c_value_entry *_rail_speed_entry;
-	c_text_label *_rail_nb_channel_label;
-	c_value_entry *_rail_nb_channel_entry;
 	c_text_label *_rail_canton_label;
 	c_value_entry *_rail_canton_entry;
+	c_check_box *_rail_dual_ways_box;
+	c_check_box *_rail_even_overtake_box;
+	c_check_box *_rail_odd_overtake_box;
 
 	c_frame *_city_panel;
 	c_text_label *_city_name_label;

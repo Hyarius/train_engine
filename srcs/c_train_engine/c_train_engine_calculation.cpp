@@ -124,7 +124,6 @@ void c_train_engine::iterate()
 			{
 				c_rail *rail = train->actual_rail();
 				_plot->add_point(_time + (_time_delta - time_left), _distance[i], i);
-				nb++;
 				train->calc_distance_per_tic(time_left);
 				draw_train_state(i);
 

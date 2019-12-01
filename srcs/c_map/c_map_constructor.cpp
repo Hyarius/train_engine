@@ -34,15 +34,6 @@ void c_map::create_rail_panel()
 	_rail_speed_entry->entry().set_align(alignment::centred);
 	_rail_speed_entry->active();
 
-	_rail_nb_channel_label = new c_text_label("Nb channel :", _rail_panel);
-	_rail_nb_channel_label->label().set_style(text_style::underline);
-	_rail_nb_channel_label->active();
-
-	_rail_nb_channel_entry = new c_value_entry(1, _rail_panel);
-	_rail_nb_channel_entry->entry().set_precision(0);
-	_rail_nb_channel_entry->entry().set_align(alignment::centred);
-	_rail_nb_channel_entry->active();
-
 	_rail_canton_label = new c_text_label("Cantonal dist (km):", _rail_panel);
 	_rail_canton_label->label().set_style(text_style::underline);
 	_rail_canton_label->active();
@@ -51,6 +42,16 @@ void c_map::create_rail_panel()
 	_rail_canton_entry->entry().set_precision(3);
 	_rail_canton_entry->entry().set_align(alignment::centred);
 	_rail_canton_entry->active();
+
+	_rail_dual_ways_box = new c_check_box("Dual ways :", true, _rail_panel);
+	_rail_dual_ways_box->label().set_style(text_style::normal);
+	_rail_dual_ways_box->active();
+
+	_rail_even_overtake_box = new c_check_box("Even overtake way :", false, _rail_panel);
+	_rail_even_overtake_box->label().set_style(text_style::normal);
+
+	_rail_odd_overtake_box = new c_check_box("Odd overtake way :", false, _rail_panel);
+	_rail_odd_overtake_box->label().set_style(text_style::normal);
 }
 
 void c_map::create_calib_button()

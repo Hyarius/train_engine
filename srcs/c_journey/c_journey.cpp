@@ -193,15 +193,3 @@ void c_journey::close_output_file()
 {
 	_output_file.close();
 }
-
-e_channel_state c_journey::travel_direction(size_t index)
-{
-	pair_milestone key = pair_milestone(_path[index], _path[index + 1]);
-	c_rail *result = g_map->rails()[key];
-
-	if (result == nullptr)
-		return (e_channel_state::error);
-	if (result->pos1() == _path[index])
-		return (e_channel_state::even);
-	return (e_channel_state::odd);
-}

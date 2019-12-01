@@ -34,7 +34,6 @@ public:
 	c_frame *wait_panel(size_t index){if (index >=_path.size())return (nullptr);return (_wait_panel[index]);}
 	c_text_label *wait_label(size_t index){if (index >=_path.size())return (nullptr);return (_wait_label[index]);}
 	c_value_entry *wait_entry(size_t index){if (index >=_path.size())return (nullptr);return (_wait_entry[index]);}
-	e_channel_state travel_direction(size_t index);
 
 	size_t get_index(c_milestone *target);
 	c_rail *get_rail(size_t start_index);

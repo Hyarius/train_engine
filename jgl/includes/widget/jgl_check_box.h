@@ -9,7 +9,7 @@ class c_check_box : public c_widget
 private:
 	w_box_component _box;
 	w_check_component _check;
-	w_text_component _text;
+	w_text_component _label;
 
 public:
 	c_check_box(string p_text = "- Value -", bool p_state = false, c_widget *p_parent = nullptr);
@@ -17,7 +17,7 @@ public:
 
 	w_box_component &box(){return (_box);}
 	w_check_component &check(){return (_check);}
-	w_text_component &text(){return (_text);}
+	w_text_component &label(){return (_label);}
 	void move(Vector2 delta);
 
 	void set_geometry_imp(Vector2 p_anchor, Vector2 p_area);

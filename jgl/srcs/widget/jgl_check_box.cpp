@@ -1,10 +1,10 @@
 #include "jgl.h"
 
-c_check_box::c_check_box(string p_text, bool p_state, c_widget *p_parent) : c_widget(p_parent)
+c_check_box::c_check_box(string p_label, bool p_state, c_widget *p_parent) : c_widget(p_parent)
 {
 	_box = w_box_component(this);
-	_text = w_text_component(this, p_text);
-	_text.set_align(alignment::centred);
+	_label = w_text_component(this, p_label);
+	_label.set_align(alignment::centred);
 
 	_check = w_check_component(this, p_state);
 	_check.set_check(Color(70, 150, 255));
@@ -19,7 +19,7 @@ void c_check_box::move(Vector2 delta)
 {
 	_box.set_anchor(_box.anchor() + delta);
 	_check.set_anchor(_check.anchor() + delta);
-	_text.set_anchor(_text.anchor() + delta);
+	_label.set_anchor(_label.anchor() + delta);
 	_viewport->set_anchor(anchor() + delta);
 }
 
@@ -35,9 +35,9 @@ void c_check_box::set_geometry_imp(Vector2 p_anchor, Vector2 p_area)
 	text_area.x = p_area.x - check_area.x - _box.border() * 5;
 	text_area.y = p_area.y - _box.border() * 4;
 
-	_text.set_area(text_area);
-	_text.set_anchor(p_anchor + _box.border() * 3 + Vector2(check_area.x, 0.0f));
-	_text.calc_text_size(_text.area());
+	_label.set_area(text_area);
+	_label.set_anchor(p_anchor + _box.border() * 3 + Vector2(check_area.x, 0.0f));
+	_label.calc_text_size(_label.area());
 
 	_check.set_area(check_area);
 	_check.set_anchor(check_pos);
@@ -49,7 +49,7 @@ void c_check_box::render()
 	if (is_active() == false)
 		return ;
 	_box.render(_viewport);
-	_text.render(_viewport);
+	_label.render(_viewport);
 	_check.render(_viewport);
 }
 

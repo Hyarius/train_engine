@@ -31,7 +31,6 @@ public:
 	void draw_train_state(size_t i);
 	size_t draw_train_information(size_t i);
 	void draw_train_position(size_t i);
-	void draw_rail_occupation(size_t first_len, size_t i);
 
 	float calc_distance_left(size_t index);
 	float calc_next_speed(size_t index);

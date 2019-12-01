@@ -20,7 +20,7 @@ static void delete_journey(Data data)
 	{
 		if (win->travel_name[i]->check().state() == true)
 		{
-			string path = "ressources/data/path/" + win->travel_name[i]->text().text() + ".json";
+			string path = "ressources/data/path/" + win->travel_name[i]->label().text() + ".json";
 			remove(path.c_str());
 		}
 	}
@@ -37,7 +37,7 @@ static void load_journey(Data data)
 	{
 		if (win->travel_name[i]->check().state() == true)
 		{
-			map->open_journey("ressources/data/path/" + win->travel_name[i]->text().text() + ".json");
+			map->open_journey("ressources/data/path/" + win->travel_name[i]->label().text() + ".json");
 			map->set_state(e_map_state::travel_definition);
 			break;
 		}

@@ -7,7 +7,7 @@ static void calc_journeys(Data data)
 	for (size_t i = 0; i < win->travel_name.size(); i++)
 	{
 		if (win->travel_name[i]->check().state() == true)
-			win->engine->add_journey(new c_journey("ressources/data/path/" + win->travel_name[i]->text().text() + ".json"));
+			win->engine->add_journey(new c_journey("ressources/data/path/" + win->travel_name[i]->label().text() + ".json"));
 	}
 
 	win->map->calc_distance_ratio();

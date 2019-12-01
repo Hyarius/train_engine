@@ -96,3 +96,8 @@ void c_train::move_to_next_rail()
 	if (actual_rail() != nullptr)
 		actual_rail()->add_train(this);
 }
+
+e_way_type c_train::get_way_type()
+{
+	return (e_way_type::even);
+}

@@ -62,6 +62,8 @@ public:
 	void set_num(size_t p_num) { _num = p_num; }
 	void set_actual_channel(size_t p_actual_channel) { _actual_channel = p_actual_channel; }
 
+	e_way_type get_way_type();
+
 	size_t num() { return (_num); }
 	float waiting_time(){return (_waiting_time);}
 	float speed_lost(float time){return ((convert_m_per_s2_to_km_per_h2(_deceleration) * convert_minute_to_hour(time)));}

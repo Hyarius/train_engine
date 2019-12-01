@@ -30,16 +30,20 @@ void c_map::set_geometry_rail_panel()
 	_rail_speed_entry->set_geometry(entry_anchor, entry_size);
 
 	label_anchor.y += (5 + label_size.y);
-	_rail_nb_channel_label->set_geometry(label_anchor, label_size);
-
-	entry_anchor.y += (5 + label_size.y);
-	_rail_nb_channel_entry->set_geometry(entry_anchor, entry_size);
-
-	label_anchor.y += (5 + label_size.y);
 	_rail_canton_label->set_geometry(label_anchor, label_size);
 
 	entry_anchor.y += (5 + label_size.y);
 	_rail_canton_entry->set_geometry(entry_anchor, entry_size);
+
+	label_anchor.y += (5 + label_size.y);
+	Vector2 check_size = Vector2(panel_size.x - 20, label_size.y);//p_area.x / 4, p_area.y / 3);
+	_rail_dual_ways_box->set_geometry(label_anchor, check_size);
+
+	entry_anchor.y += (5 + label_size.y);
+	_rail_even_overtake_box->set_geometry(entry_anchor, check_size);
+
+	entry_anchor.y += (5 + label_size.y);
+	_rail_odd_overtake_box->set_geometry(entry_anchor, check_size);
 }
 
 void c_map::set_geometry_imp(Vector2 p_anchor, Vector2 p_area)
@@ -121,6 +125,17 @@ bool c_map::handle_mouse()
 	if (_state == e_map_state::travel_definition && control_travel_definition() == true)
 		return (true);
 
+	if (_rail_dual_ways_box->check().state() == true)
+	{
+		_rail_even_overtake_box->set_active(true);
+		_rail_odd_overtake_box->set_active(true);
+	}
+	else
+	{
+		_rail_even_overtake_box->set_active(false);
+		_rail_odd_overtake_box->set_active(false);
+	}
+
 	return (false);
 }
 
@@ -136,7 +151,7 @@ void c_map::update()
 		for (size_t i = 0; i < _rail_selected.size(); i++)
 		{
 			_rail_selected[i]->set_speed(_rail_speed_entry->entry().value());
-			_rail_selected[i]->set_nb_channel(_rail_nb_channel_entry->entry().value());
+			_rail_selected[i]->set_dual_ways(_rail_dual_ways_box->check().state());
 			_rail_selected[i]->set_cantonal_dist(_rail_canton_entry->entry().value());
 		}
 	}
