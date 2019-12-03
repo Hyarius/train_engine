@@ -9,9 +9,10 @@ enum class e_train_state
 	normal = 1,
 	speed_up = 2,
 	speed_down = 3,
-	stopping = 4,
-	braking = 5,
-	waiting = 6
+	slowing = 4,
+	stopping = 5,
+	braking = 6,
+	waiting = 7
 };
 
 class c_train

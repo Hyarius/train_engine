@@ -35,6 +35,8 @@ public:
 	float calc_distance_left(size_t index);
 	float calc_next_speed(size_t index);
 
+	bool should_slow(size_t index);
+
 	void move_train(size_t index, float distance);
 
 	float calc_waiting_time(size_t index, float time_left);

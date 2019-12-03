@@ -40,32 +40,30 @@ vector<c_train *> &c_rail::train_list(e_way_type p_type)
 	return (_ways[index].train_list());
 }
 
-void c_rail::add_train(c_train *train)
+static size_t get_way_id(c_way *ways, c_train *train)
 {
 	size_t index;
 
-	if (train == nullptr || train->journey() == nullptr)
-		return ;
-
-	if (_ways[0].type() == train->get_way_type())
+	if (ways[0].type() == train->get_way_type())
 		index = 0;
 	else
 		index = 1;
 
-	_ways[index].add_train(train);
+	return (index);
+}
+
+void c_rail::add_train(c_train *train)
+{
+	if (train == nullptr || train->journey() == nullptr)
+		return ;
+
+	_ways[get_way_id(_ways, train)].add_train(train);
 }
 
 void c_rail::remove_train(c_train *train)
 {
-	size_t index;
-
 	if (train == nullptr)
 		return ;
 
-	if (_ways[0].type() == train->get_way_type())
-		index = 0;
-	else
-		index = 1;
-
-	_ways[index].remove_train(train);
+	_ways[get_way_id(_ways, train)].remove_train(train);
 }

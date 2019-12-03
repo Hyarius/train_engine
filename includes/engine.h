@@ -12,6 +12,8 @@
 #include "c_train_engine.h"
 #include "c_main_window.h"
 
+#define MIN_SPEED 5.0f
+
 void saving_map();
 void saving_journey();
 

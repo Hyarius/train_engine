@@ -1,106 +1,25 @@
 #include "engine.h"
 
-int nb = 0;
-float max_dist = 0;
+float max_dist;
 
-#define MIN_SPEED 5.0f
-
-float c_train_engine::calc_decelerate_time(size_t index, float time_left, float target_speed)
+bool c_train_engine::should_slow(size_t index)
 {
-	float result;
-
-	c_train *train = _train_list[index];
-
-	if (train->speed() + train->speed_lost(time_left) < target_speed)
+	c_train* train = _train_list[index];
+	c_rail *rail = train->actual_rail();
+	e_way_type type = train->get_way_type();
+	if (rail->train_list(type).size() > 1)
 	{
-		float ratio = (target_speed - train->speed()) / train->speed_lost(time_left);
-		result = time_left * ratio;
+		vector<class c_train *> list = rail->train_list(type);
+		for (size_t i = 0; i < list.size(); i++)
+		{
+			if (train->distance() + train->distance_per_tic() < list[i]->distance())
+			{
+				if (list[i]->distance() - train->distance() + train->distance_per_tic() <= train->slow_down_dist())
+					return (true);
+			}
+		}
 	}
-	else if (train->distance() + train->distance_per_tic() > train->actual_rail()->distance())
-	{
-		float dist_to_run = train->actual_rail()->distance() - train->distance();
-		float ratio = dist_to_run / train->distance_per_tic();
-
-		result = time_left * ratio;
-	}
-	else
-		result = time_left;
-
-	if (result == 0)
-	{
-		if (target_speed == MIN_SPEED)
-			train->set_state(e_train_state::stopping);
-		else
-			train->set_state(e_train_state::normal);
-	}
-
-	return (result);
-}
-
-float c_train_engine::calc_accelerate_time(size_t index, float time_left, float target_speed)
-{
-	float result;
-
-	c_train *train = _train_list[index];
-
-	if (train->speed() + train->speed_gain(time_left) > target_speed)
-	{
-		float ratio = (target_speed - train->speed()) / train->speed_gain(time_left);
-		result = time_left * ratio;
-		if (result == 0)
-			train->set_state(e_train_state::normal);
-	}
-	else if (train->distance() + train->distance_per_tic() > train->actual_rail()->distance())
-	{
-		float dist_to_run = train->actual_rail()->distance() - train->distance();
-		float ratio = dist_to_run / train->distance_per_tic();
-
-		result = time_left * ratio;
-	}
-	else
-		result = time_left;
-
-	return (result);
-}
-
-float c_train_engine::calc_run_time(size_t index, float time_left)
-{
-	float result;
-
-	c_train *train = _train_list[index];
-	if (train->slow_down_dist() >= calc_distance_left(index) - train->distance_per_tic())
-	{
-		float dist_to_run = calc_distance_left(index) - train->slow_down_dist();
-		float ratio = dist_to_run / train->distance_per_tic();
-
-		train->set_state(e_train_state::speed_down);
-		result = time_left * ratio;
-	}
-	else if (train->distance() + train->distance_per_tic() > train->actual_rail()->distance())
-	{
-		float dist_to_run = train->actual_rail()->distance() - train->distance();
-		float ratio = dist_to_run / train->distance_per_tic();
-
-		result = time_left * ratio;
-	}
-	else
-		result = time_left;
-
-	return (result);
-}
-
-float c_train_engine::calc_waiting_time(size_t index, float time_left)
-{
-	float result;
-
-	c_train *train = _train_list[index];
-
-	if (time_left <= train->waiting_time())
-		result = time_left;
-	else
-		result = train->waiting_time();
-
-	return (result);
+	return (false);
 }
 
 void c_train_engine::iterate()
@@ -126,7 +45,8 @@ void c_train_engine::iterate()
 				_plot->add_point(_time + (_time_delta - time_left), _distance[i], i);
 				train->calc_distance_per_tic(time_left);
 				draw_train_state(i);
-
+				if (train->state() == e_train_state::slowing)
+					train->set_state(e_train_state::normal);
 				if (train->state() == e_train_state::waiting && train->waiting_time() <= 0.0f)
 					train->set_state(e_train_state::starting);
 				if (train->state() == e_train_state::starting && train->departure_time() <= _time)
@@ -135,6 +55,8 @@ void c_train_engine::iterate()
 					train->set_state(e_train_state::speed_up);
 				if (train->speed() > rail->speed())
 					train->set_state(e_train_state::speed_down);
+				if (should_slow(i) == true)
+					train->set_state(e_train_state::slowing);
 				if (calc_distance_left(i) <= 0.005f)
 					train->set_state(e_train_state::stopping);
 
@@ -146,6 +68,19 @@ void c_train_engine::iterate()
 					train->accelerate(delta);
 				}
 				else if (train->state() == e_train_state::speed_down)
+				{
+					if (train->slow_down_dist() >= calc_distance_left(i) - train->distance_per_tic())
+						delta = calc_decelerate_time(i, time_left, MIN_SPEED);
+					else
+						delta = calc_decelerate_time(i, time_left, rail->speed());
+					train->decelerate(delta);
+				}
+				else if (train->state() == e_train_state::slowing)
+				{
+					delta = time_left;
+					train->decelerate(delta);
+				}
+				else if (train->state() == e_train_state::slowing)
 				{
 					if (train->slow_down_dist() >= calc_distance_left(i) - train->distance_per_tic())
 						delta = calc_decelerate_time(i, time_left, MIN_SPEED);
