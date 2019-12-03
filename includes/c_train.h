@@ -64,6 +64,8 @@ public:
 	void set_actual_channel(size_t p_actual_channel) { _actual_channel = p_actual_channel; }
 
 	e_way_type get_way_type();
+	c_rail *get_rail(size_t index);
+	
 
 	size_t num() { return (_num); }
 	float waiting_time(){return (_waiting_time);}
@@ -97,6 +99,8 @@ public:
 				return (" Stopping ");
 			case e_train_state::waiting :
 				return ("  Waiting ");
+			case e_train_state::slowing :
+				return ("  Slowing ");
 			default :
 				return ("   Error  ");
 		}

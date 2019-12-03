@@ -115,6 +115,26 @@ float c_train_engine::calc_decelerate_time(size_t index, float time_left, float 
 	return (result);
 }
 
+float c_train_engine::calc_slowing_time(size_t index, float time_left, float target_speed)
+{
+	float result;
+
+	c_train *train = _train_list[index];
+
+	if (train->speed() + train->speed_lost(time_left) < target_speed)
+	{
+		float ratio = (target_speed - train->speed()) / train->speed_lost(time_left);
+		result = time_left * ratio;
+	}
+	else
+		result = time_left;
+
+	if (result == 0)
+		train->set_state(e_train_state::normal);
+
+	return (result);
+}
+
 float c_train_engine::calc_accelerate_time(size_t index, float time_left, float target_speed)
 {
 	float result;

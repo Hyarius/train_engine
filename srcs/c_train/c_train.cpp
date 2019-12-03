@@ -101,3 +101,11 @@ e_way_type c_train::get_way_type()
 {
 	return (e_way_type::even);
 }
+
+
+c_rail *c_train::get_rail(size_t index)
+{
+	if (_journey == nullptr)
+		return (nullptr);
+	return (_journey->get_rail(index));
+}

@@ -1,0 +1,14 @@
+{
+	"destination":[
+		{
+			"id":"177",
+			"departure time":"00h00",
+			"Waiting time":"0",
+		},
+		{
+			"id":"178",
+			"departure time":"00h00",
+			"Waiting time":"0",
+		}
+	],
+}

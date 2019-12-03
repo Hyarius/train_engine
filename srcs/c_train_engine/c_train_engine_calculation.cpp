@@ -5,20 +5,32 @@ float max_dist;
 bool c_train_engine::should_slow(size_t index)
 {
 	c_train* train = _train_list[index];
-	c_rail *rail = train->actual_rail();
 	e_way_type type = train->get_way_type();
-	if (rail->train_list(type).size() > 1)
+
+	vector<c_train *> train_list;
+
+	for (size_t index = train->index(); index < train->journey()->path().size() -1; index++)
 	{
-		vector<class c_train *> list = rail->train_list(type);
-		for (size_t i = 0; i < list.size(); i++)
+		c_rail *rail = train->get_rail(index);
+		if (rail->dual_ways() == false && rail->ways(0).type() != type)
+			break;
+
+		for (size_t i = 0; i < rail->train_list(type).size(); i++)
+			if (rail->train_list(type)[i] != train)
+				train_list.push_back(rail->train_list(type)[i]);
+	}
+
+	for (size_t i = 0; i < train_list.size(); i++)
+	{
+		float dist = _distance[train_list[i]->num()] - _distance[train->num()];
+		cout << "Distance [" << train->num() << "] vs [" << train_list[i]->num() << "] = " << ftoa(dist) << endl;
+		if (dist > 0 && dist <= train->actual_rail()->cantonal_dist())
 		{
-			if (train->distance() + train->distance_per_tic() < list[i]->distance())
-			{
-				if (list[i]->distance() - train->distance() + train->distance_per_tic() <= train->slow_down_dist())
-					return (true);
-			}
+			cout << "Need to slow down" << endl;
+			return (true);
 		}
 	}
+
 	return (false);
 }
 
@@ -77,16 +89,13 @@ void c_train_engine::iterate()
 				}
 				else if (train->state() == e_train_state::slowing)
 				{
-					delta = time_left;
-					train->decelerate(delta);
-				}
-				else if (train->state() == e_train_state::slowing)
-				{
-					if (train->slow_down_dist() >= calc_distance_left(i) - train->distance_per_tic())
-						delta = calc_decelerate_time(i, time_left, MIN_SPEED);
+					if (train->speed() <= MIN_SPEED)
+						delta = time_left;
 					else
-						delta = calc_decelerate_time(i, time_left, rail->speed());
-					train->decelerate(delta);
+					{
+						delta = calc_slowing_time(i, time_left, MIN_SPEED);
+						train->decelerate(delta);
+					}
 				}
 				else if (train->state() == e_train_state::waiting)
 				{
