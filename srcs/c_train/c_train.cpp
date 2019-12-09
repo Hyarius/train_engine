@@ -7,6 +7,7 @@ c_train::c_train(c_journey *journey)
 	_journey = journey;
 	_num = all_num;
 	all_num++;
+	_place = nullptr;
 	_speed = 0.0f;
 	_old_speed = 0.0f;
 	_acceleration = 0.0f;
@@ -108,4 +109,12 @@ c_rail *c_train::get_rail(size_t index)
 	if (_journey == nullptr)
 		return (nullptr);
 	return (_journey->get_rail(index));
+}
+
+void c_train::start()
+{
+	if (place() != nullptr)
+		place()->remove_train_waiting();
+	set_place(nullptr);
+	set_state(e_train_state::starting);
 }

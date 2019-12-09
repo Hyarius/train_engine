@@ -6,6 +6,7 @@ void save_city(Data data)
 	c_city *city = *(data.acces<c_city **>(1));
 
 	json_add_value(file, 3, "name", city->name());
+	json_add_value(file, 3, "nb channel", to_string(city->nb_channel()));
 	json_add_value(file, 3, "pos", city->pos().str());
 }
 
@@ -26,6 +27,8 @@ void save_rail(Data data)
 
 	json_add_value(file, 3, "speed", ftoa(rail->speed(), 0));
 	json_add_value(file, 3, "dual ways", (rail->dual_ways() == true ? "true" : "false"));
+	json_add_value(file, 3, "even overtake", (rail->way_overtake(e_way_type::even) == true ? "true" : "false"));
+	json_add_value(file, 3, "odd overtake", (rail->way_overtake(e_way_type::odd) == true ? "true" : "false"));
 	json_add_value(file, 3, "cantonal dist", ftoa(rail->cantonal_dist(), 3));
 
 	json_add_value(file, 3, "id_a", to_string(g_map->get_milestone_id(key->first)));
@@ -46,21 +49,5 @@ void c_map::quit()
 
 	json_add_map<pair_milestone, c_rail *>(file, 1, "rails", _rails, &save_rail, Data(2, &file, this));
 
-	// write_on_file(file, "\t\"rails\":[");
-	//
-	// auto final_iter = _rails.end();
-	// --final_iter;
-	//
-	// for (auto it = _rails.begin(); it != _rails.end(); it++)
-	// {
-	// 	write_on_file(file, "\t\t{");
-	// 	save_rail(file, it->first, it->second);
-	//
-	// 	if (it != final_iter)
-	// 		write_on_file(file, "\t\t},");
-	// 	else
-	// 		write_on_file(file, "\t\t}");
-	// }
-	// write_on_file(file, "\t]");
 	json_add_line(file, 0, "}");
 }

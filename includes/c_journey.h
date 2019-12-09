@@ -24,11 +24,13 @@ public:
 	void create_output_file();
 	void close_output_file();
 	fstream &output_file(){return (_output_file);}
+	
 	vector<c_milestone *> &path(){return (_path);}
 	vector<c_hour_entry *> &hour_panel(){return (_hour_panel);}
 	vector<c_frame *> &wait_panel(){return (_wait_panel);}
 	vector<c_text_label *> &wait_label(){return (_wait_label);}
 	vector<c_value_entry *> &wait_entry(){return (_wait_entry);}
+
 	c_milestone *path(size_t index){if (index >=_path.size())return (nullptr);return (_path[index]);}
 	c_hour_entry *hour_panel(size_t index){if (index >=_path.size())return (nullptr);return (_hour_panel[index]);}
 	c_frame *wait_panel(size_t index){if (index >=_path.size())return (nullptr);return (_wait_panel[index]);}

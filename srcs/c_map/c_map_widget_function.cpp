@@ -13,6 +13,11 @@ void c_map::set_geometry_city_panel()
 	Vector2 entry_anchor = Vector2(10 + label_size.x, 0.0f) + label_anchor;
 	Vector2 entry_size = Vector2(panel_size.x - label_size.x - 20, label_size.y);//p_area.x / 4, p_area.y / 3);
 	_city_name_entry->set_geometry(entry_anchor, entry_size);
+
+	label_anchor.y += (5 + label_size.y);
+	_city_nb_channel_label->set_geometry(label_anchor, label_size);
+	entry_anchor.y += (5 + label_size.y);
+	_city_nb_channel_entry->set_geometry(entry_anchor, entry_size);
 }
 
 void c_map::set_geometry_rail_panel()
@@ -39,11 +44,11 @@ void c_map::set_geometry_rail_panel()
 	Vector2 check_size = Vector2(panel_size.x - 20, label_size.y);//p_area.x / 4, p_area.y / 3);
 	_rail_dual_ways_box->set_geometry(label_anchor, check_size);
 
-	entry_anchor.y += (5 + label_size.y);
-	_rail_even_overtake_box->set_geometry(entry_anchor, check_size);
+	label_anchor.y += (5 + label_size.y);
+	_rail_even_overtake_box->set_geometry(label_anchor, check_size);
 
-	entry_anchor.y += (5 + label_size.y);
-	_rail_odd_overtake_box->set_geometry(entry_anchor, check_size);
+	label_anchor.y += (5 + label_size.y);
+	_rail_odd_overtake_box->set_geometry(label_anchor, check_size);
 }
 
 void c_map::set_geometry_imp(Vector2 p_anchor, Vector2 p_area)
@@ -100,6 +105,9 @@ bool c_map::handle_keyboard()
 
 bool c_map::handle_mouse()
 {
+	_rail_even_overtake_box->set_active(_rail_dual_ways_box->check().state());
+	_rail_odd_overtake_box->set_active(_rail_dual_ways_box->check().state());
+
 	if (is_pointed(g_mouse->pos) == false)
 		return (false);
 
@@ -125,17 +133,6 @@ bool c_map::handle_mouse()
 	if (_state == e_map_state::travel_definition && control_travel_definition() == true)
 		return (true);
 
-	if (_rail_dual_ways_box->check().state() == true)
-	{
-		_rail_even_overtake_box->set_active(true);
-		_rail_odd_overtake_box->set_active(true);
-	}
-	else
-	{
-		_rail_even_overtake_box->set_active(false);
-		_rail_odd_overtake_box->set_active(false);
-	}
-
 	return (false);
 }
 
@@ -145,15 +142,15 @@ void c_map::update()
 	if (_city_selected != nullptr)
 	{
 		_city_selected->set_name(_city_name_entry->entry().text());
+		_city_selected->set_nb_channel(static_cast<int>(_city_nb_channel_entry->entry().value()));
 	}
-	if (_rail_selected.size() != 0)
+	for (size_t i = 0; i < _rail_selected.size(); i++)
 	{
-		for (size_t i = 0; i < _rail_selected.size(); i++)
-		{
-			_rail_selected[i]->set_speed(_rail_speed_entry->entry().value());
-			_rail_selected[i]->set_dual_ways(_rail_dual_ways_box->check().state());
-			_rail_selected[i]->set_cantonal_dist(_rail_canton_entry->entry().value());
-		}
+		_rail_selected[i]->set_speed(_rail_speed_entry->entry().value());
+		_rail_selected[i]->set_dual_ways(_rail_dual_ways_box->check().state());
+		_rail_selected[i]->set_cantonal_dist(_rail_canton_entry->entry().value());
+		_rail_selected[i]->set_way_overtake(e_way_type::odd, _rail_odd_overtake_box->check().state());
+		_rail_selected[i]->set_way_overtake(e_way_type::even, _rail_even_overtake_box->check().state());
 	}
 	if (_state == e_map_state::travel_definition)
 	{

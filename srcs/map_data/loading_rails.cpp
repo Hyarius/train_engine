@@ -8,6 +8,8 @@ void c_map::load_rail(fstream &file)
 	float speed = 180.0f;
 	float cantonnal_dist = 2.0f;
 	bool dual_ways = true;
+	bool even_overtake = false;
+	bool odd_overtake = false;
 	int i;
 	string text = "";
 	vector<string> tab;
@@ -29,6 +31,10 @@ void c_map::load_rail(fstream &file)
 				speed = atof(tab[1].c_str());
 			else if (tab[0] == "dual ways")
 				dual_ways = (tab[1] == "true" ? true : false);
+			else if (tab[0] == "even overtake")
+				even_overtake = (tab[1] == "true" ? true : false);
+			else if (tab[0] == "odd overtake")
+				odd_overtake = (tab[1] == "true" ? true : false);
 			else if (tab[0] == "cantonal dist")
 				cantonnal_dist = atof(tab[1].c_str());
 			else if (tab[0] == "id_a")
@@ -53,6 +59,8 @@ void c_map::load_rail(fstream &file)
 	pair_milestone key = pair_milestone(first, second);
 	_rails[key]->set_speed(speed);
 	_rails[key]->set_dual_ways(dual_ways);
+	_rails[key]->set_way_overtake(e_way_type::even, even_overtake);
+	_rails[key]->set_way_overtake(e_way_type::odd, odd_overtake);
 	_rails[key]->set_cantonal_dist(cantonnal_dist);
 }
 

@@ -29,13 +29,15 @@ void c_map::load_city(fstream &file)
 			tab = strsplit(text, ":");
 
 			for (size_t i = 0; i < tab.size(); i++)
+			{
 				tab[i].erase(remove(tab[i].begin(), tab[i].end(), '\"'), tab[i].end());
+				tab[i].erase(remove(tab[i].begin(), tab[i].end(), ','), tab[i].end());
+			}
 
 			if (tab[0] == "name")
-			{
-				tab[1].erase(remove(tab[1].begin(), tab[1].end(), ','), tab[1].end());
 				city->set_name(tab[1]);
-			}
+			if (tab[0] == "nb channel")
+				city->set_nb_channel(atoi(tab[1].c_str()));
 			else if (tab[0] == "pos")
 			{
 				tab[1].erase(remove(tab[1].begin(), tab[1].end(), '('), tab[1].end());

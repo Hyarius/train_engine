@@ -6,6 +6,8 @@ c_city::c_city(Vector2 p_pos)
 {
 	_milestone = nullptr;
 	_pos = p_pos;
+	_nb_channel = 2;
+	_train_waiting = 0;
 	_name = "City";
 	_selected = 1;
 	Vector2 tmp = Vector2(350, 300);

@@ -5,135 +5,158 @@
 	"cities":[
 		{
 			"name":"Montpellier",
+			"nb channel":"12",
 			"pos":"(2418.120850 / 1936.166016)",
 		},
 		{
 			"name":"Nimes",
+			"nb channel":"2",
 			"pos":"(2506.067871 / 1877.135742)",
 		},
 		{
 			"name":"Avignon",
+			"nb channel":"2",
 			"pos":"(2589.112549 / 1850.689331)",
 		},
 		{
 			"name":"Marseille",
+			"nb channel":"2",
 			"pos":"(2690.937988 / 2006.539673)",
 		},
 		{
 			"name":"Aix-en-provence",
+			"nb channel":"2",
 			"pos":"(2700.896484 / 1953.510742)",
 		},
 		{
 			"name":"Miramas",
+			"nb channel":"2",
 			"pos":"(2624.465088 / 1944.050171)",
 		},
 		{
 			"name":"Toulon",
+			"nb channel":"2",
 			"pos":"(2793.260010 / 2048.404541)",
 		},
 		{
 			"name":"Hyeres",
+			"nb channel":"2",
 			"pos":"(2832.722656 / 2057.092285)",
 		},
 		{
 			"name":"Cannes",
+			"nb channel":"2",
 			"pos":"(2987.906982 / 1932.798950)",
 		},
 		{
 			"name":"Grasse",
+			"nb channel":"2",
 			"pos":"(2971.894531 / 1905.228760)",
 		},
 		{
 			"name":"Nice",
+			"nb channel":"2",
 			"pos":"(3028.840820 / 1893.068970)",
 		},
 		{
 			"name":"Beziers",
+			"nb channel":"2",
 			"pos":"(2299.842285 / 2006.676392)",
 		},
 		{
 			"name":"Narbonne",
+			"nb channel":"2",
 			"pos":"(2254.040283 / 2046.778076)",
 		},
 		{
 			"name":"Perpignan",
+			"nb channel":"2",
 			"pos":"(2237.906250 / 2165.979736)",
 		},
 		{
 			"name":"Cerbere",
+			"nb channel":"2",
 			"pos":"(2282.989990 / 2223.831543)",
 		},
 		{
 			"name":"Carcassonne",
+			"nb channel":"2",
 			"pos":"(2138.678711 / 2035.597534)",
 		},
 		{
 			"name":"Toulousse",
+			"nb channel":"2",
 			"pos":"(1973.986206 / 1939.679321)",
 		},
 		{
 			"name":"Sete",
+			"nb channel":"2",
 			"pos":"(2394.492188 / 1982.959839)",
 		},
 		{
 			"name":"Strasbourg",
+			"nb channel":"1",
 			"pos":"(3036.968994 / 677.039185)",
 		},
 		{
 			"name":"Colmar",
+			"nb channel":"1",
 			"pos":"(2984.772461 / 801.400696)",
 		},
 		{
 			"name":"Mulhouse",
+			"nb channel":"1",
 			"pos":"(2985.708740 / 885.496521)",
 		},
 		{
 			"name":"St louis",
+			"nb channel":"1",
 			"pos":"(3021.768311 / 919.278442)",
 		},
 		{
 			"name":"Staffelden",
+			"nb channel":"1",
 			"pos":"(2975.956055 / 866.129700)",
 		},
 		{
 			"name":"Raedersheim",
+			"nb channel":"1",
 			"pos":"(2975.283203 / 854.801880)",
 		},
 		{
 			"name":"Merxheim",
+			"nb channel":"1",
 			"pos":"(2977.750732 / 847.623901)",
 		},
 		{
 			"name":"Rouffach",
+			"nb channel":"1",
 			"pos":"(2980.512695 / 832.314270)",
 		},
 		{
 			"name":"Heerlisheim-pres-colmar",
+			"nb channel":"2",
 			"pos":"(2982.323730 / 817.618408)",
 		},
 		{
 			"name":"Salestat",
+			"nb channel":"1",
 			"pos":"(2999.674316 / 752.546875)",
 		},
 		{
 			"name":"Benfeld",
+			"nb channel":"1",
 			"pos":"(3020.961914 / 724.741272)",
 		},
 		{
 			"name":"Erstein",
+			"nb channel":"1",
 			"pos":"(3028.958984 / 709.790527)",
 		},
 		{
 			"name":"Bollwiller",
+			"nb channel":"2",
 			"pos":"(2975.168457 / 860.435120)",
-		},
-		{
-			"name":"City A",
-			"pos":"(2096.050049 / 1245.685181)",
-		},
-		{
-			"name":"City B",
-			"pos":"(2144.797119 / 1270.205200)",
 		}
 	],
 	"milestones":[
@@ -667,18 +690,14 @@
 		},
 		{
 			"pos":"(2975.168457 / 860.435120)",
-		},
-		{
-			"pos":"(2096.050049 / 1245.685181)",
-		},
-		{
-			"pos":"(2144.797119 / 1270.205200)",
 		}
 	],
 	"rails":[
 		{
 			"speed":"140",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"0",
 			"id_b":"45",
@@ -686,6 +705,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"0",
 			"id_b":"46",
@@ -693,6 +714,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"1",
 			"id_b":"50",
@@ -700,6 +723,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"1",
 			"id_b":"51",
@@ -707,6 +732,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"2",
 			"id_b":"56",
@@ -714,6 +741,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"2",
 			"id_b":"63",
@@ -721,6 +750,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"2",
 			"id_b":"64",
@@ -728,6 +759,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"3",
 			"id_b":"142",
@@ -735,6 +768,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"3",
 			"id_b":"143",
@@ -742,6 +777,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"4",
 			"id_b":"85",
@@ -749,6 +786,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"4",
 			"id_b":"89",
@@ -756,6 +795,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"5",
 			"id_b":"72",
@@ -763,6 +804,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"5",
 			"id_b":"75",
@@ -770,6 +813,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"5",
 			"id_b":"90",
@@ -777,6 +822,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"6",
 			"id_b":"108",
@@ -784,6 +831,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"6",
 			"id_b":"109",
@@ -791,6 +840,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"7",
 			"id_b":"121",
@@ -798,6 +849,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"8",
 			"id_b":"130",
@@ -805,6 +858,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"8",
 			"id_b":"132",
@@ -812,6 +867,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"9",
 			"id_b":"131",
@@ -819,6 +876,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"10",
 			"id_b":"135",
@@ -826,6 +885,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"10",
 			"id_b":"136",
@@ -833,6 +894,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"11",
 			"id_b":"38",
@@ -840,6 +903,8 @@
 		{
 			"speed":"1520",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"11",
 			"id_b":"39",
@@ -847,6 +912,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"12",
 			"id_b":"25",
@@ -854,6 +921,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"12",
 			"id_b":"26",
@@ -861,6 +930,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"12",
 			"id_b":"148",
@@ -868,6 +939,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"13",
 			"id_b":"32",
@@ -875,6 +948,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"13",
 			"id_b":"33",
@@ -882,6 +957,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"14",
 			"id_b":"36",
@@ -889,6 +966,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"15",
 			"id_b":"21",
@@ -896,6 +975,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"15",
 			"id_b":"22",
@@ -903,6 +984,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"16",
 			"id_b":"17",
@@ -910,6 +993,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"17",
 			"id_b":"16",
@@ -917,6 +1002,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"17",
 			"id_b":"18",
@@ -924,6 +1011,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"18",
 			"id_b":"17",
@@ -931,6 +1020,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"18",
 			"id_b":"19",
@@ -938,6 +1029,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"19",
 			"id_b":"18",
@@ -945,6 +1038,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"19",
 			"id_b":"20",
@@ -952,6 +1047,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"20",
 			"id_b":"19",
@@ -959,6 +1056,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"20",
 			"id_b":"21",
@@ -966,6 +1065,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"21",
 			"id_b":"15",
@@ -973,6 +1074,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"21",
 			"id_b":"20",
@@ -980,6 +1083,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"22",
 			"id_b":"15",
@@ -987,6 +1092,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"22",
 			"id_b":"23",
@@ -994,6 +1101,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"23",
 			"id_b":"22",
@@ -1001,6 +1110,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"23",
 			"id_b":"24",
@@ -1008,6 +1119,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"24",
 			"id_b":"23",
@@ -1015,6 +1128,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"24",
 			"id_b":"25",
@@ -1022,6 +1137,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"25",
 			"id_b":"12",
@@ -1029,6 +1146,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"25",
 			"id_b":"24",
@@ -1036,6 +1155,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"26",
 			"id_b":"12",
@@ -1043,6 +1164,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"26",
 			"id_b":"27",
@@ -1050,6 +1173,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"27",
 			"id_b":"26",
@@ -1057,6 +1182,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"27",
 			"id_b":"28",
@@ -1064,6 +1191,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"28",
 			"id_b":"27",
@@ -1071,6 +1200,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"28",
 			"id_b":"29",
@@ -1078,6 +1209,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"29",
 			"id_b":"28",
@@ -1085,6 +1218,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"29",
 			"id_b":"30",
@@ -1092,6 +1227,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"30",
 			"id_b":"29",
@@ -1099,6 +1236,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"30",
 			"id_b":"31",
@@ -1106,6 +1245,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"31",
 			"id_b":"30",
@@ -1113,6 +1254,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"31",
 			"id_b":"32",
@@ -1120,6 +1263,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"32",
 			"id_b":"13",
@@ -1127,6 +1272,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"32",
 			"id_b":"31",
@@ -1134,6 +1281,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"33",
 			"id_b":"13",
@@ -1141,6 +1290,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"33",
 			"id_b":"34",
@@ -1148,6 +1299,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"34",
 			"id_b":"33",
@@ -1155,6 +1308,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"34",
 			"id_b":"35",
@@ -1162,6 +1317,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"35",
 			"id_b":"34",
@@ -1169,6 +1326,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"35",
 			"id_b":"36",
@@ -1176,6 +1335,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"36",
 			"id_b":"14",
@@ -1183,6 +1344,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"36",
 			"id_b":"35",
@@ -1190,6 +1353,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"37",
 			"id_b":"38",
@@ -1197,6 +1362,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"37",
 			"id_b":"148",
@@ -1204,6 +1371,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"38",
 			"id_b":"11",
@@ -1211,6 +1380,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"38",
 			"id_b":"37",
@@ -1218,6 +1389,8 @@
 		{
 			"speed":"1520",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"39",
 			"id_b":"11",
@@ -1225,6 +1398,8 @@
 		{
 			"speed":"120",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"39",
 			"id_b":"141",
@@ -1232,6 +1407,8 @@
 		{
 			"speed":"3241",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"40",
 			"id_b":"41",
@@ -1239,6 +1416,8 @@
 		{
 			"speed":"120",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"40",
 			"id_b":"141",
@@ -1246,6 +1425,8 @@
 		{
 			"speed":"3241",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"41",
 			"id_b":"40",
@@ -1253,6 +1434,8 @@
 		{
 			"speed":"120",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"41",
 			"id_b":"42",
@@ -1260,6 +1443,8 @@
 		{
 			"speed":"120",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"42",
 			"id_b":"41",
@@ -1267,6 +1452,8 @@
 		{
 			"speed":"120",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"42",
 			"id_b":"43",
@@ -1274,6 +1461,8 @@
 		{
 			"speed":"120",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"43",
 			"id_b":"42",
@@ -1281,6 +1470,8 @@
 		{
 			"speed":"120",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"43",
 			"id_b":"149",
@@ -1288,6 +1479,8 @@
 		{
 			"speed":"1",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"44",
 			"id_b":"45",
@@ -1295,6 +1488,8 @@
 		{
 			"speed":"140",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"44",
 			"id_b":"149",
@@ -1302,6 +1497,8 @@
 		{
 			"speed":"140",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"45",
 			"id_b":"0",
@@ -1309,6 +1506,8 @@
 		{
 			"speed":"1",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"45",
 			"id_b":"44",
@@ -1316,6 +1515,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"46",
 			"id_b":"0",
@@ -1323,6 +1524,8 @@
 		{
 			"speed":"60",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"46",
 			"id_b":"47",
@@ -1330,6 +1533,8 @@
 		{
 			"speed":"60",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"47",
 			"id_b":"46",
@@ -1337,6 +1542,8 @@
 		{
 			"speed":"60",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"47",
 			"id_b":"48",
@@ -1344,6 +1551,8 @@
 		{
 			"speed":"60",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"48",
 			"id_b":"47",
@@ -1351,6 +1560,8 @@
 		{
 			"speed":"60",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"48",
 			"id_b":"49",
@@ -1358,6 +1569,8 @@
 		{
 			"speed":"60",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"49",
 			"id_b":"48",
@@ -1365,6 +1578,8 @@
 		{
 			"speed":"60",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"49",
 			"id_b":"50",
@@ -1372,6 +1587,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"50",
 			"id_b":"1",
@@ -1379,6 +1596,8 @@
 		{
 			"speed":"60",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"50",
 			"id_b":"49",
@@ -1386,6 +1605,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"51",
 			"id_b":"1",
@@ -1393,6 +1614,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"51",
 			"id_b":"52",
@@ -1400,6 +1623,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"51",
 			"id_b":"57",
@@ -1407,6 +1632,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"52",
 			"id_b":"51",
@@ -1414,6 +1641,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"52",
 			"id_b":"53",
@@ -1421,6 +1650,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"53",
 			"id_b":"52",
@@ -1428,6 +1659,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"53",
 			"id_b":"54",
@@ -1435,6 +1668,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"53",
 			"id_b":"74",
@@ -1442,6 +1677,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"54",
 			"id_b":"53",
@@ -1449,6 +1686,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"54",
 			"id_b":"55",
@@ -1456,6 +1695,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"55",
 			"id_b":"54",
@@ -1463,6 +1704,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"55",
 			"id_b":"56",
@@ -1470,6 +1713,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"56",
 			"id_b":"2",
@@ -1477,6 +1722,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"56",
 			"id_b":"55",
@@ -1484,6 +1731,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"57",
 			"id_b":"51",
@@ -1491,6 +1740,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"57",
 			"id_b":"58",
@@ -1498,6 +1749,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"58",
 			"id_b":"57",
@@ -1505,6 +1758,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"58",
 			"id_b":"59",
@@ -1512,6 +1767,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"59",
 			"id_b":"58",
@@ -1519,6 +1776,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"59",
 			"id_b":"60",
@@ -1526,6 +1785,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"60",
 			"id_b":"59",
@@ -1533,6 +1794,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"60",
 			"id_b":"61",
@@ -1540,6 +1803,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"61",
 			"id_b":"60",
@@ -1547,6 +1812,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"61",
 			"id_b":"62",
@@ -1554,6 +1821,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"62",
 			"id_b":"61",
@@ -1561,6 +1830,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"62",
 			"id_b":"63",
@@ -1568,6 +1839,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"63",
 			"id_b":"2",
@@ -1575,6 +1848,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"63",
 			"id_b":"62",
@@ -1582,6 +1857,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"64",
 			"id_b":"2",
@@ -1589,6 +1866,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"64",
 			"id_b":"65",
@@ -1596,6 +1875,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"65",
 			"id_b":"64",
@@ -1603,6 +1884,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"65",
 			"id_b":"66",
@@ -1610,6 +1893,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"66",
 			"id_b":"65",
@@ -1617,6 +1902,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"66",
 			"id_b":"67",
@@ -1624,6 +1911,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"67",
 			"id_b":"66",
@@ -1631,6 +1920,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"67",
 			"id_b":"68",
@@ -1638,6 +1929,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"68",
 			"id_b":"67",
@@ -1645,6 +1938,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"68",
 			"id_b":"69",
@@ -1652,6 +1947,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"69",
 			"id_b":"68",
@@ -1659,6 +1956,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"69",
 			"id_b":"70",
@@ -1666,6 +1965,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"70",
 			"id_b":"69",
@@ -1673,6 +1974,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"70",
 			"id_b":"71",
@@ -1680,6 +1983,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"71",
 			"id_b":"70",
@@ -1687,6 +1992,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"71",
 			"id_b":"72",
@@ -1694,6 +2001,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"72",
 			"id_b":"5",
@@ -1701,6 +2010,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"72",
 			"id_b":"71",
@@ -1708,6 +2019,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"72",
 			"id_b":"73",
@@ -1715,6 +2028,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"73",
 			"id_b":"72",
@@ -1722,6 +2037,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"73",
 			"id_b":"74",
@@ -1729,6 +2046,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"74",
 			"id_b":"53",
@@ -1736,6 +2055,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"74",
 			"id_b":"73",
@@ -1743,6 +2064,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"75",
 			"id_b":"5",
@@ -1750,6 +2073,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"75",
 			"id_b":"76",
@@ -1757,6 +2082,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"76",
 			"id_b":"75",
@@ -1764,6 +2091,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"76",
 			"id_b":"77",
@@ -1771,6 +2100,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"77",
 			"id_b":"76",
@@ -1778,6 +2109,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"77",
 			"id_b":"78",
@@ -1785,6 +2118,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"78",
 			"id_b":"77",
@@ -1792,6 +2127,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"78",
 			"id_b":"79",
@@ -1799,6 +2136,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"78",
 			"id_b":"86",
@@ -1806,6 +2145,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"79",
 			"id_b":"78",
@@ -1813,6 +2154,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"79",
 			"id_b":"80",
@@ -1820,6 +2163,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"80",
 			"id_b":"79",
@@ -1827,6 +2172,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"80",
 			"id_b":"101",
@@ -1834,6 +2181,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"81",
 			"id_b":"82",
@@ -1841,6 +2190,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"81",
 			"id_b":"101",
@@ -1848,6 +2199,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"81",
 			"id_b":"142",
@@ -1855,6 +2208,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"82",
 			"id_b":"81",
@@ -1862,6 +2217,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"82",
 			"id_b":"83",
@@ -1869,6 +2226,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"83",
 			"id_b":"82",
@@ -1876,6 +2235,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"83",
 			"id_b":"84",
@@ -1883,6 +2244,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"84",
 			"id_b":"83",
@@ -1890,6 +2253,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"84",
 			"id_b":"85",
@@ -1897,6 +2262,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"85",
 			"id_b":"4",
@@ -1904,6 +2271,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"85",
 			"id_b":"84",
@@ -1911,6 +2280,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"86",
 			"id_b":"78",
@@ -1918,6 +2289,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"86",
 			"id_b":"87",
@@ -1925,6 +2298,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"87",
 			"id_b":"86",
@@ -1932,6 +2307,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"87",
 			"id_b":"88",
@@ -1939,6 +2316,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"88",
 			"id_b":"87",
@@ -1946,6 +2325,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"88",
 			"id_b":"89",
@@ -1953,6 +2334,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"89",
 			"id_b":"4",
@@ -1960,6 +2343,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"89",
 			"id_b":"88",
@@ -1967,6 +2352,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"90",
 			"id_b":"5",
@@ -1974,6 +2361,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"90",
 			"id_b":"91",
@@ -1981,6 +2370,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"91",
 			"id_b":"90",
@@ -1988,6 +2379,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"91",
 			"id_b":"92",
@@ -1995,6 +2388,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"92",
 			"id_b":"91",
@@ -2002,6 +2397,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"92",
 			"id_b":"93",
@@ -2009,6 +2406,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"93",
 			"id_b":"92",
@@ -2016,6 +2415,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"93",
 			"id_b":"94",
@@ -2023,6 +2424,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"94",
 			"id_b":"93",
@@ -2030,6 +2433,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"94",
 			"id_b":"95",
@@ -2037,6 +2442,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"95",
 			"id_b":"94",
@@ -2044,6 +2451,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"95",
 			"id_b":"96",
@@ -2051,6 +2460,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"96",
 			"id_b":"95",
@@ -2058,6 +2469,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"96",
 			"id_b":"97",
@@ -2065,6 +2478,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"97",
 			"id_b":"96",
@@ -2072,6 +2487,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"97",
 			"id_b":"98",
@@ -2079,6 +2496,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"98",
 			"id_b":"97",
@@ -2086,6 +2505,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"98",
 			"id_b":"99",
@@ -2093,6 +2514,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"99",
 			"id_b":"98",
@@ -2100,6 +2523,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"99",
 			"id_b":"100",
@@ -2107,6 +2532,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"100",
 			"id_b":"99",
@@ -2114,6 +2541,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"100",
 			"id_b":"101",
@@ -2121,6 +2550,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"101",
 			"id_b":"80",
@@ -2128,6 +2559,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"101",
 			"id_b":"81",
@@ -2135,6 +2568,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"101",
 			"id_b":"100",
@@ -2142,6 +2577,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"103",
 			"id_b":"104",
@@ -2149,6 +2586,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"103",
 			"id_b":"143",
@@ -2156,6 +2595,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"104",
 			"id_b":"103",
@@ -2163,6 +2604,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"104",
 			"id_b":"105",
@@ -2170,6 +2613,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"105",
 			"id_b":"104",
@@ -2177,6 +2622,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"105",
 			"id_b":"144",
@@ -2184,6 +2631,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"106",
 			"id_b":"107",
@@ -2191,6 +2640,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"106",
 			"id_b":"144",
@@ -2198,6 +2649,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"107",
 			"id_b":"106",
@@ -2205,6 +2658,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"107",
 			"id_b":"145",
@@ -2212,6 +2667,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"108",
 			"id_b":"6",
@@ -2219,6 +2676,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"108",
 			"id_b":"145",
@@ -2226,6 +2685,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"109",
 			"id_b":"6",
@@ -2233,6 +2694,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"109",
 			"id_b":"110",
@@ -2240,6 +2703,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"110",
 			"id_b":"109",
@@ -2247,6 +2712,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"110",
 			"id_b":"111",
@@ -2254,6 +2721,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"111",
 			"id_b":"110",
@@ -2261,6 +2730,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"111",
 			"id_b":"120",
@@ -2268,6 +2739,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"111",
 			"id_b":"146",
@@ -2275,6 +2748,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"112",
 			"id_b":"113",
@@ -2282,6 +2757,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"112",
 			"id_b":"146",
@@ -2289,6 +2766,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"113",
 			"id_b":"112",
@@ -2296,6 +2775,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"113",
 			"id_b":"114",
@@ -2303,6 +2784,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"114",
 			"id_b":"113",
@@ -2310,6 +2793,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"114",
 			"id_b":"115",
@@ -2317,6 +2802,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"115",
 			"id_b":"114",
@@ -2324,6 +2811,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"115",
 			"id_b":"116",
@@ -2331,6 +2820,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"116",
 			"id_b":"115",
@@ -2338,6 +2829,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"116",
 			"id_b":"117",
@@ -2345,6 +2838,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"117",
 			"id_b":"116",
@@ -2352,6 +2847,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"117",
 			"id_b":"118",
@@ -2359,6 +2856,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"118",
 			"id_b":"117",
@@ -2366,6 +2865,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"118",
 			"id_b":"119",
@@ -2373,6 +2874,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"119",
 			"id_b":"118",
@@ -2380,6 +2883,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"119",
 			"id_b":"147",
@@ -2387,6 +2892,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"120",
 			"id_b":"111",
@@ -2394,6 +2901,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"120",
 			"id_b":"121",
@@ -2401,6 +2910,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"121",
 			"id_b":"7",
@@ -2408,6 +2919,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"121",
 			"id_b":"120",
@@ -2415,6 +2928,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"122",
 			"id_b":"123",
@@ -2422,6 +2937,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"122",
 			"id_b":"147",
@@ -2429,6 +2946,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"123",
 			"id_b":"122",
@@ -2436,6 +2955,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"123",
 			"id_b":"124",
@@ -2443,6 +2964,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"124",
 			"id_b":"123",
@@ -2450,6 +2973,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"124",
 			"id_b":"125",
@@ -2457,6 +2982,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"125",
 			"id_b":"124",
@@ -2464,6 +2991,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"125",
 			"id_b":"126",
@@ -2471,6 +3000,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"126",
 			"id_b":"125",
@@ -2478,6 +3009,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"126",
 			"id_b":"127",
@@ -2485,6 +3018,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"127",
 			"id_b":"126",
@@ -2492,6 +3027,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"127",
 			"id_b":"128",
@@ -2499,6 +3036,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"128",
 			"id_b":"127",
@@ -2506,6 +3045,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"128",
 			"id_b":"129",
@@ -2513,6 +3054,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"129",
 			"id_b":"128",
@@ -2520,6 +3063,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"129",
 			"id_b":"130",
@@ -2527,6 +3072,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"130",
 			"id_b":"8",
@@ -2534,6 +3081,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"130",
 			"id_b":"129",
@@ -2541,6 +3090,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"130",
 			"id_b":"131",
@@ -2548,6 +3099,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"131",
 			"id_b":"9",
@@ -2555,6 +3108,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"131",
 			"id_b":"130",
@@ -2562,6 +3117,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"132",
 			"id_b":"8",
@@ -2569,6 +3126,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"132",
 			"id_b":"133",
@@ -2576,6 +3135,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"133",
 			"id_b":"132",
@@ -2583,6 +3144,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"133",
 			"id_b":"134",
@@ -2590,6 +3153,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"134",
 			"id_b":"133",
@@ -2597,6 +3162,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"134",
 			"id_b":"135",
@@ -2604,6 +3171,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"135",
 			"id_b":"10",
@@ -2611,6 +3180,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"135",
 			"id_b":"134",
@@ -2618,6 +3189,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"136",
 			"id_b":"10",
@@ -2625,6 +3198,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"136",
 			"id_b":"137",
@@ -2632,6 +3207,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"136",
 			"id_b":"138",
@@ -2639,6 +3216,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"137",
 			"id_b":"136",
@@ -2646,6 +3225,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"138",
 			"id_b":"136",
@@ -2653,6 +3234,8 @@
 		{
 			"speed":"120",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"141",
 			"id_b":"39",
@@ -2660,6 +3243,8 @@
 		{
 			"speed":"120",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"141",
 			"id_b":"40",
@@ -2667,6 +3252,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"142",
 			"id_b":"3",
@@ -2674,6 +3261,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"142",
 			"id_b":"81",
@@ -2681,6 +3270,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"143",
 			"id_b":"3",
@@ -2688,6 +3279,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"143",
 			"id_b":"103",
@@ -2695,6 +3288,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"144",
 			"id_b":"105",
@@ -2702,6 +3297,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"144",
 			"id_b":"106",
@@ -2709,6 +3306,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"145",
 			"id_b":"107",
@@ -2716,6 +3315,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"145",
 			"id_b":"108",
@@ -2723,6 +3324,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"146",
 			"id_b":"111",
@@ -2730,6 +3333,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"146",
 			"id_b":"112",
@@ -2737,6 +3342,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"147",
 			"id_b":"119",
@@ -2744,6 +3351,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"147",
 			"id_b":"122",
@@ -2751,6 +3360,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"148",
 			"id_b":"12",
@@ -2758,6 +3369,8 @@
 		{
 			"speed":"160",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"148",
 			"id_b":"37",
@@ -2765,6 +3378,8 @@
 		{
 			"speed":"120",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"149",
 			"id_b":"43",
@@ -2772,6 +3387,8 @@
 		{
 			"speed":"140",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"149",
 			"id_b":"44",
@@ -2779,6 +3396,8 @@
 		{
 			"speed":"145",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"150",
 			"id_b":"162",
@@ -2786,6 +3405,8 @@
 		{
 			"speed":"145",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"151",
 			"id_b":"158",
@@ -2793,6 +3414,8 @@
 		{
 			"speed":"145",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"151",
 			"id_b":"159",
@@ -2800,6 +3423,8 @@
 		{
 			"speed":"145",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"152",
 			"id_b":"156",
@@ -2807,6 +3432,8 @@
 		{
 			"speed":"145",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"152",
 			"id_b":"157",
@@ -2814,6 +3441,8 @@
 		{
 			"speed":"145",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"153",
 			"id_b":"154",
@@ -2821,6 +3450,8 @@
 		{
 			"speed":"145",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"154",
 			"id_b":"153",
@@ -2828,6 +3459,8 @@
 		{
 			"speed":"145",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"154",
 			"id_b":"155",
@@ -2835,6 +3468,8 @@
 		{
 			"speed":"145",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"155",
 			"id_b":"154",
@@ -2842,6 +3477,8 @@
 		{
 			"speed":"145",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"155",
 			"id_b":"156",
@@ -2849,6 +3486,8 @@
 		{
 			"speed":"145",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"156",
 			"id_b":"152",
@@ -2856,6 +3495,8 @@
 		{
 			"speed":"145",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"156",
 			"id_b":"155",
@@ -2863,6 +3504,8 @@
 		{
 			"speed":"145",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"157",
 			"id_b":"152",
@@ -2870,6 +3513,8 @@
 		{
 			"speed":"145",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"157",
 			"id_b":"168",
@@ -2877,6 +3522,8 @@
 		{
 			"speed":"145",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"158",
 			"id_b":"151",
@@ -2884,6 +3531,8 @@
 		{
 			"speed":"145",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"158",
 			"id_b":"167",
@@ -2891,6 +3540,8 @@
 		{
 			"speed":"145",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"159",
 			"id_b":"151",
@@ -2898,6 +3549,8 @@
 		{
 			"speed":"145",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"159",
 			"id_b":"160",
@@ -2905,6 +3558,8 @@
 		{
 			"speed":"145",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"160",
 			"id_b":"159",
@@ -2912,6 +3567,8 @@
 		{
 			"speed":"145",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"160",
 			"id_b":"171",
@@ -2919,6 +3576,8 @@
 		{
 			"speed":"145",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"161",
 			"id_b":"172",
@@ -2926,6 +3585,8 @@
 		{
 			"speed":"145",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"161",
 			"id_b":"173",
@@ -2933,6 +3594,8 @@
 		{
 			"speed":"145",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"162",
 			"id_b":"150",
@@ -2940,6 +3603,8 @@
 		{
 			"speed":"145",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"162",
 			"id_b":"174",
@@ -2947,6 +3612,8 @@
 		{
 			"speed":"145",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"163",
 			"id_b":"168",
@@ -2954,6 +3621,8 @@
 		{
 			"speed":"145",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"163",
 			"id_b":"176",
@@ -2961,6 +3630,8 @@
 		{
 			"speed":"145",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"164",
 			"id_b":"165",
@@ -2968,6 +3639,8 @@
 		{
 			"speed":"145",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"164",
 			"id_b":"176",
@@ -2975,6 +3648,8 @@
 		{
 			"speed":"145",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"165",
 			"id_b":"164",
@@ -2982,6 +3657,8 @@
 		{
 			"speed":"145",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"165",
 			"id_b":"169",
@@ -2989,6 +3666,8 @@
 		{
 			"speed":"145",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"166",
 			"id_b":"169",
@@ -2996,6 +3675,8 @@
 		{
 			"speed":"145",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"166",
 			"id_b":"170",
@@ -3003,6 +3684,8 @@
 		{
 			"speed":"145",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"167",
 			"id_b":"158",
@@ -3010,6 +3693,8 @@
 		{
 			"speed":"145",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"167",
 			"id_b":"170",
@@ -3017,6 +3702,8 @@
 		{
 			"speed":"145",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"168",
 			"id_b":"157",
@@ -3024,6 +3711,8 @@
 		{
 			"speed":"145",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"168",
 			"id_b":"163",
@@ -3031,6 +3720,8 @@
 		{
 			"speed":"145",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"169",
 			"id_b":"165",
@@ -3038,6 +3729,8 @@
 		{
 			"speed":"145",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"169",
 			"id_b":"166",
@@ -3045,6 +3738,8 @@
 		{
 			"speed":"145",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"170",
 			"id_b":"166",
@@ -3052,6 +3747,8 @@
 		{
 			"speed":"145",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"170",
 			"id_b":"167",
@@ -3059,6 +3756,8 @@
 		{
 			"speed":"145",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"171",
 			"id_b":"160",
@@ -3066,6 +3765,8 @@
 		{
 			"speed":"145",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"171",
 			"id_b":"172",
@@ -3073,6 +3774,8 @@
 		{
 			"speed":"145",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"172",
 			"id_b":"161",
@@ -3080,6 +3783,8 @@
 		{
 			"speed":"145",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"172",
 			"id_b":"171",
@@ -3087,6 +3792,8 @@
 		{
 			"speed":"145",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"173",
 			"id_b":"161",
@@ -3094,6 +3801,8 @@
 		{
 			"speed":"145",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"173",
 			"id_b":"175",
@@ -3101,6 +3810,8 @@
 		{
 			"speed":"145",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"174",
 			"id_b":"162",
@@ -3108,6 +3819,8 @@
 		{
 			"speed":"145",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"174",
 			"id_b":"175",
@@ -3115,6 +3828,8 @@
 		{
 			"speed":"145",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"175",
 			"id_b":"173",
@@ -3122,6 +3837,8 @@
 		{
 			"speed":"145",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"175",
 			"id_b":"174",
@@ -3129,6 +3846,8 @@
 		{
 			"speed":"145",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"176",
 			"id_b":"163",
@@ -3136,23 +3855,11 @@
 		{
 			"speed":"145",
 			"dual ways":"true",
+			"even overtake":"false",
+			"odd overtake":"false",
 			"cantonal dist":"2.500",
 			"id_a":"176",
 			"id_b":"164",
-		},
-		{
-			"speed":"145",
-			"dual ways":"true",
-			"cantonal dist":"6",
-			"id_a":"177",
-			"id_b":"178",
-		},
-		{
-			"speed":"145",
-			"dual ways":"true",
-			"cantonal dist":"6",
-			"id_a":"178",
-			"id_b":"177",
 		}
 	],
 }

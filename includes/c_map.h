@@ -47,6 +47,8 @@ private:
 	c_frame *_city_panel;
 	c_text_label *_city_name_label;
 	c_text_entry *_city_name_entry;
+	c_text_label *_city_nb_channel_label;
+	c_value_entry *_city_nb_channel_entry;
 
 	float _rel_distance;
 	Vector2 _landmark1;

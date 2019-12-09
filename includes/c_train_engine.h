@@ -36,6 +36,7 @@ public:
 	float calc_next_speed(size_t index);
 
 	bool should_slow(size_t index);
+	bool can_overtake(size_t index);
 
 	void move_train(size_t index, float distance);
 

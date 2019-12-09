@@ -19,6 +19,14 @@ void c_map::create_city_panel()
 	_city_name_entry = new c_text_entry("", _city_panel);
 	_city_name_entry->entry().set_align(alignment::centred);
 	_city_name_entry->active();
+
+	_city_nb_channel_label = new c_text_label("Nb channel :", _city_panel);
+	_city_nb_channel_label->label().set_style(text_style::underline);
+	_city_nb_channel_label->active();
+
+	_city_nb_channel_entry = new c_value_entry(2.0f, _city_panel);
+	_city_nb_channel_entry->entry().set_align(alignment::centred);
+	_city_nb_channel_entry->active();
 }
 
 void c_map::create_rail_panel()

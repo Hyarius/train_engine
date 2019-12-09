@@ -8,6 +8,8 @@ class c_city
 private:
 	class c_milestone* _milestone;
 	string _name;
+	int _nb_channel;
+	int _train_waiting;
 	Vector2 _pos;
 	int _selected;
 
@@ -18,10 +20,17 @@ public:
 	class c_milestone* milestone() { return (_milestone); }
 	string &name(){return (_name);}
 	Vector2 pos(){return (_pos);}
+	int nb_channel(){return (_nb_channel);}
+	int train_waiting(){return (_train_waiting);}
 
 	void set_milestone(class c_milestone* p_milestone) { _milestone = p_milestone; }
 	void set_name(string new_name){_name = new_name;}
 	void set_pos(Vector2 new_pos){_pos = new_pos;}
+	void set_train_waiting(int new_train_waiting){_train_waiting = new_train_waiting;}
+	void add_train_waiting(){_train_waiting++;}
+	void remove_train_waiting(){_train_waiting--;}
+	void set_nb_channel(int new_nb_channel){_nb_channel = new_nb_channel;}
+
 	void draw();
 	void draw_name();
 	bool is_here(Vector2 p_pos);

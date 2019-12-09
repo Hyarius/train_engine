@@ -68,6 +68,7 @@ void c_map::select_city(c_city *city)
 	if (_city_selected != nullptr)
 	{
 		_city_name_entry->entry().set_text(_city_selected->name());
+		_city_nb_channel_entry->entry().set_value(static_cast<float>(_city_selected->nb_channel()));
 	}
 }
 
@@ -78,6 +79,9 @@ void c_map::select_rail(c_rail *rail)
 		for (size_t i = 0; i < _rail_selected.size(); i++)
 			_rail_selected[i]->set_state(false);
 		_rail_selected.clear();
+		_rail_dual_ways_box->check().set_state(false);
+		_rail_odd_overtake_box->check().set_state(false);
+		_rail_even_overtake_box->check().set_state(false);
 	}
 
 
@@ -87,6 +91,8 @@ void c_map::select_rail(c_rail *rail)
 		_rail_speed_entry->entry().set_value(rail->speed());
 		_rail_dual_ways_box->check().set_state(rail->dual_ways());
 		_rail_canton_entry->entry().set_value(rail->cantonal_dist());
+		_rail_odd_overtake_box->check().set_state(rail->way_overtake(e_way_type::odd));
+		_rail_even_overtake_box->check().set_state(rail->way_overtake(e_way_type::even));
 	}
 
 	if (rail != nullptr)

@@ -2,9 +2,25 @@
 
 float max_dist;
 
-bool c_train_engine::should_slow(size_t index)
+bool c_train_engine::can_overtake(size_t index)
 {
 	c_train* train = _train_list[index];
+	e_way_type type = train->get_way_type();
+
+	//cout << "Here" << endl;
+
+	if (train->actual_rail()->way_overtake(type) == true)
+	{
+		cout << "True" << endl;
+		return (true);
+	}
+	//cout << "False" << endl;
+	return (false);
+}
+
+bool c_train_engine::should_slow(size_t train_index)
+{
+	c_train* train = _train_list[train_index];
 	e_way_type type = train->get_way_type();
 
 	vector<c_train *> train_list;
@@ -16,19 +32,21 @@ bool c_train_engine::should_slow(size_t index)
 			break;
 
 		for (size_t i = 0; i < rail->train_list(type).size(); i++)
-			if (rail->train_list(type)[i] != train)
-				train_list.push_back(rail->train_list(type)[i]);
+		{
+			c_train *tmp = rail->train_list(type)[i];
+			if (tmp != train)
+			{
+				if (tmp->place() == nullptr || (tmp->place()->nb_channel() <= tmp->place()->train_waiting()))
+					train_list.push_back(tmp);
+			}
+		}
 	}
 
 	for (size_t i = 0; i < train_list.size(); i++)
 	{
 		float dist = _distance[train_list[i]->num()] - _distance[train->num()];
-		cout << "Distance [" << train->num() << "] vs [" << train_list[i]->num() << "] = " << ftoa(dist) << endl;
 		if (dist > 0 && dist <= train->actual_rail()->cantonal_dist())
-		{
-			cout << "Need to slow down" << endl;
-			return (true);
-		}
+			return (!(can_overtake(train_index)));
 	}
 
 	return (false);
@@ -60,7 +78,7 @@ void c_train_engine::iterate()
 				if (train->state() == e_train_state::slowing)
 					train->set_state(e_train_state::normal);
 				if (train->state() == e_train_state::waiting && train->waiting_time() <= 0.0f)
-					train->set_state(e_train_state::starting);
+					train->start();
 				if (train->state() == e_train_state::starting && train->departure_time() <= _time)
 					train->set_state(e_train_state::speed_up);
 				if (train->speed() < rail->speed() && train->state() == e_train_state::normal)
@@ -106,7 +124,7 @@ void c_train_engine::iterate()
 						{
 							if (train->index() != 0)
 								train->journey()->output_file() << "             -----    The train start again    -----" << endl;
-							train->set_state(e_train_state::starting);
+							train->start();
 						}
 				}
 				else if (train->state() == e_train_state::stopping)

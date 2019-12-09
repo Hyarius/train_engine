@@ -66,11 +66,15 @@ void c_train_engine::move_train(size_t index, float distance)
 	{
 		train->move_to_next_rail();
 		train->set_waiting_time(0);
-		if (train->journey()->path()[train->index()]->place() != nullptr)
+		if (train->journey()->path(train->index())->place() != nullptr)
 		{
 			train->set_waiting_time(train->journey()->wait_entry()[train->index()]->value());
 			if (train->waiting_time() != 0)
+			{
+				train->set_place(train->journey()->path(train->index())->place());
+				train->place()->add_train_waiting();
 				train->set_state(e_train_state::waiting);
+			}
 		}
 		if (train->actual_rail() == nullptr)
 		{

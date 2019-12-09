@@ -7,7 +7,8 @@
 enum class e_way_type
 {
 	even = 0,
-	odd = 1
+	odd = 1,
+	error = 2
 };
 
 class c_way
@@ -27,8 +28,8 @@ public:
 	}
 	~c_way(){}
 
-	void type(e_way_type p_type){_type = p_type;}
-	void overtake(bool p_overtake){_overtake = p_overtake;}
+	void set_type(e_way_type p_type){_type = p_type;}
+	void set_overtake(bool p_overtake){_overtake = p_overtake;}
 
 	void add_train(class c_train *p_train)
 	{
@@ -75,6 +76,7 @@ public:
 	void remove_train(class c_train *p_train);
 
 	void set_state(bool p_state){_state = p_state;}
+	void set_way_overtake(e_way_type type, bool state){_ways[static_cast<int>(type)].set_overtake(state);}
 	void set_dual_ways(bool p_dual_ways){_dual_ways = p_dual_ways;}
 	void set_cantonal_dist(float p_cantonal_dist){_cantonal_dist = p_cantonal_dist;}
 	void set_pos1(c_milestone *p_pos1){_pos1 = p_pos1;}
@@ -83,6 +85,7 @@ public:
 	void set_speed(float p_speed){_speed = p_speed;}
 
 	bool state(){return (_state);}
+	bool way_overtake(e_way_type type){return (_ways[static_cast<int>(type)].overtake());}
 	bool dual_ways(){return (_dual_ways);}
 	float cantonal_dist(){return (_cantonal_dist);}
 	c_milestone *pos1(){return (_pos1);}

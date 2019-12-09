@@ -19,6 +19,7 @@ class c_train
 {
 private:
 	c_journey *_journey;
+	c_city *_place;
 	int _num;
 
 	e_train_state _state;
@@ -46,6 +47,7 @@ public:
 	void calc_distance_per_tic(float time);
 	void move_to_next_rail();
 
+	void set_place(c_city *p_place){_place = p_place;}
 	void change_speed(float time, float target_speed);
 	void set_speed(float p_speed){_speed = p_speed;}
 	void set_old_speed(float p_old_speed){_old_speed = p_old_speed;}
@@ -65,8 +67,9 @@ public:
 
 	e_way_type get_way_type();
 	c_rail *get_rail(size_t index);
-	
 
+	void start();
+	c_city *place(){return (_place);}
 	size_t num() { return (_num); }
 	float waiting_time(){return (_waiting_time);}
 	float speed_lost(float time){return ((convert_m_per_s2_to_km_per_h2(_deceleration) * convert_minute_to_hour(time)));}
