@@ -65,19 +65,19 @@ vector<string>		list_files(string path, string extension)
 	if (dir == NULL)
 		error_exit(1, get_file_info(__FILE__, __LINE__) + " - Folder " + path + " didn't exist");
 
-	char			*context = NULL;
+//	char			*context = NULL;
 
 	while ((dirent_ptr = readdir(dir)) != NULL)
 	{
-		string tmp = dirent_ptr->d_name;
-		brut_files.push_back(tmp);
+		string tmp = string(dirent_ptr->d_name, strlen(dirent_ptr->d_name));
+		brut_files.push_back(string(tmp));
 	}
 	while (i < brut_files.size())
 	{
 		if (brut_files[i].find(extension.c_str(), 0, extension.size()) != string::npos)
 		{
 			test = strsplit(brut_files[i], extension)[0];
-			files.push_back(test);
+			files.push_back(string(test));
 		}
 		i++;
 	}

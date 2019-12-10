@@ -41,6 +41,7 @@ void c_viewport::use()
 
 	SDL_RenderGetViewport(_renderer, &_old_viewport);
 	SDL_RenderSetViewport(_renderer, &rect);
+	set_active(true);
 }
 
 void c_viewport::unuse()

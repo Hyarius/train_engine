@@ -1,6 +1,6 @@
 #include "engine.h"
 
-static void new_path(Data data)
+void new_path(Data data)
 {
 	c_main_window *win = data.acces<c_main_window *>(0);
 
@@ -8,14 +8,14 @@ static void new_path(Data data)
 	win->train_box_frame->activate();
 }
 
-static void save_journey(Data data)
+void save_journey(Data data)
 {
 	c_main_window *win = data.acces<c_main_window *>(0);
 	saving_journey();
 	win->load_travel_checkbox();
 }
 
-static void delete_journey(Data data)
+void delete_journey(Data data)
 {
 	c_main_window *win = data.acces<c_main_window *>(0);
 
@@ -31,7 +31,7 @@ static void delete_journey(Data data)
 	win->load_travel_checkbox();
 }
 
-static void load_journey(Data data)
+void load_journey(Data data)
 {
 	c_main_window *win = data.acces<c_main_window *>(0);
 	c_map *map = win->map;
@@ -44,10 +44,6 @@ static void load_journey(Data data)
 			string text = "ressources/data/path/" + win->travel_name[i]->label().text() + ".json";
 
 			tmp_paths.push_back(text);
-			//win->train_box_frame->activate();
-			//map->open_journey("ressources/data/path/" + win->travel_name[i]->label().text() + ".json");
-			//map->set_state(e_map_state::travel_definition);
-			//break;
 		}
 	}
 	if (tmp_paths.size() == 1)

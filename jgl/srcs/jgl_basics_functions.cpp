@@ -1,8 +1,9 @@
 #include "jgl.h"
+#include <typeinfo>
 
 using namespace std;
 
-vector<string>		strsplit(string input, string c)
+vector<string>		strsplit(string input, string delim)
 {
 	vector<string>	tab;
 	string			word;
@@ -11,20 +12,12 @@ vector<string>		strsplit(string input, string c)
 
 	while (end != -1)
 	{
-		end = input.find(c, start);
+		end = input.find(delim, start);
 		word = input.substr(start, end - start);
-		if (word.size() != 0)
-		{
-			cout << "Adding word [" << word << "]" << endl;
-			tab.push_back(word);
-			for (size_t i = 0; i < tab.size(); i++)
-				cout << "Tab[" << i << "] = [" << tab[i] << "]" << endl;
-		}
-		start = end + c.size();
+		if (word.size() > 0)
+			tab.push_back(string(word));
+		start = end + delim.size();
 	}
-	cout << "In strsplit -> size [" << tab.size() << "]" << endl;
-	for (size_t i = 0; i < tab.size(); i++)
-		cout << "Tab[" << i << "] = [" << tab[i] << "]" << endl;
 	return (tab);
 }
 
