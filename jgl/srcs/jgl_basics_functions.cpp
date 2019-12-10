@@ -5,18 +5,26 @@ using namespace std;
 vector<string>		strsplit(string input, string c)
 {
 	vector<string>	tab;
-	string			val;
+	string			word;
 	int 			start = 0;
 	int 			end = 0;
 
 	while (end != -1)
 	{
 		end = input.find(c, start);
-		val = input.substr(start, end - start);
-		if (val.size() != 0)
-			tab.push_back(val);
+		word = input.substr(start, end - start);
+		if (word.size() != 0)
+		{
+			cout << "Adding word [" << word << "]" << endl;
+			tab.push_back(word);
+			for (size_t i = 0; i < tab.size(); i++)
+				cout << "Tab[" << i << "] = [" << tab[i] << "]" << endl;
+		}
 		start = end + c.size();
 	}
+	cout << "In strsplit -> size [" << tab.size() << "]" << endl;
+	for (size_t i = 0; i < tab.size(); i++)
+		cout << "Tab[" << i << "] = [" << tab[i] << "]" << endl;
 	return (tab);
 }
 
@@ -250,7 +258,7 @@ string convert_time_to_string_round(float time)
 		time += 60 * 24;
 	if (time > 24 * 60)
 		time -= 24 * 60;
-		
+
 	int tmp = floor(time);
 	int nb_hour = (tmp / 60);
 	int nb_minute = tmp % 60;

@@ -28,7 +28,8 @@ public:
 
 	bool is_active(){return (_activated);}
 	bool is_pointed(Vector2 point);
-	void active(){_activated = !_activated;}
+	void activate(){_activated = true;}
+	void desactivate(){_activated = false;}
 	void set_active(bool new_state){_activated = new_state;}
 	void set_parent(c_widget *p_parent);
 	void add_children(c_widget *p_children){_childrens.push_back(p_children);}

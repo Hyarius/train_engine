@@ -42,7 +42,7 @@ c_application::c_application(string name, Vector2 p_size, Color p_color)
 	_central_widget = new c_window();
 	_central_widget->set_geometry(Vector2(0, 0), _win_size);
 	_central_widget->set_color(p_color);
-	_central_widget->active();
+	_central_widget->activate();
 
 
 	SDL_StartTextInput();

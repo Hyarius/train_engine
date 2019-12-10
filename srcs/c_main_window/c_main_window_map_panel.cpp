@@ -11,5 +11,5 @@ void c_main_window::create_map_panel()
 	g_map->load_map("ressources/data/save/map_data.json");
 
 	g_map->set_geometry(map_delta, map_size);
-	g_map->active();
+	g_map->activate();
 }

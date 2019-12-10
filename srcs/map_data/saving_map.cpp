@@ -41,7 +41,7 @@ void c_map::quit()
 
 	json_add_line(file, 0, "{");
 	json_add_value(file, 1, "map_image", _map_path);
-	json_add_value(file, 1, "landmarks", _landmark1.str() + "/" + _landmark2.str());
+	json_add_value(file, 1, "landmarks", _landmark1.str() + " / " + _landmark2.str());
 	json_add_value(file, 1, "landmark_scale", ftoa(_rel_distance, 3));
 
 	json_add_vector<c_city *>(file, 1, "cities", _cities, &save_city, &file);

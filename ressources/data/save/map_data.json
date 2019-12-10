@@ -1,6 +1,6 @@
 {
 	"map_image":"ressources/image/map_speed.png",
-	"landmarks":"(1287.671631 / 2233.021973)/(1178.520874 / 2233.291260)",
+	"landmarks":"(1287.671631 / 2233.021973) / (1178.520874 / 2233.291260)",
 	"landmark_scale":"50",
 	"cities":[
 		{
@@ -125,7 +125,7 @@
 		},
 		{
 			"name":"Merxheim",
-			"nb channel":"1",
+			"nb channel":"2",
 			"pos":"(2977.750732 / 847.623901)",
 		},
 		{
@@ -135,7 +135,7 @@
 		},
 		{
 			"name":"Heerlisheim-pres-colmar",
-			"nb channel":"2",
+			"nb channel":"1",
 			"pos":"(2982.323730 / 817.618408)",
 		},
 		{
@@ -155,7 +155,7 @@
 		},
 		{
 			"name":"Bollwiller",
-			"nb channel":"2",
+			"nb channel":"1",
 			"pos":"(2975.168457 / 860.435120)",
 		}
 	],

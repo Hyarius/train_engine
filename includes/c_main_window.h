@@ -16,6 +16,12 @@ public:
 	// - Map
 	c_map *map;
 
+	// - Train
+	c_frame *train_box_frame;
+	c_text_label *train_box_label;
+	c_text_label *train_value_label[3];
+	c_value_entry *train_value_entry[3];
+
 	// - Command
 	c_train_engine *engine;
 	c_button *start_button;

@@ -58,7 +58,7 @@ re-jgl:
 jgl:
 				make -C jgl
 
-$(NAME):		$(OBJ)
+$(NAME):		$(OBJ) jgl/libjgl.a
 				@echo "Compiling $(NAME) ...\c"
 				@$(CC) $(CFLAGS) $(IFLAGS) -o $(NAME) $(OBJ) $(LFLAGS)
 				@echo " DONE"

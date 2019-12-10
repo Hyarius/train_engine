@@ -32,7 +32,7 @@ void c_main_window::create_command_panel()
 	start_button = new c_button(&calc_journeys, this, command_box);
 	start_button->text().set_text("Start simulation");
 	start_button->set_geometry(button_pos, button_size);
-	start_button->active();
+	start_button->activate();
 
 	Vector2 hour_pos = button_pos + Vector2(0.0f, button_size.y + border);
 	Vector2 hour_size = button_size;
@@ -40,5 +40,5 @@ void c_main_window::create_command_panel()
 	hour_entry = new c_hour_entry(12.0f, 0.0f, command_box);
 
 	hour_entry->set_geometry(hour_pos, hour_size);
-	hour_entry->active();
+	hour_entry->activate();
 }

@@ -2,7 +2,10 @@
 
 static void new_path(Data data)
 {
+	c_main_window *win = data.acces<c_main_window *>(0);
+
 	g_map->create_new_path();
+	win->train_box_frame->activate();
 }
 
 static void save_journey(Data data)
@@ -32,15 +35,26 @@ static void load_journey(Data data)
 {
 	c_main_window *win = data.acces<c_main_window *>(0);
 	c_map *map = win->map;
+	vector<string> tmp_paths;
 
 	for (size_t i = 0; i < win->travel_name.size(); i++)
 	{
 		if (win->travel_name[i]->check().state() == true)
 		{
-			map->open_journey("ressources/data/path/" + win->travel_name[i]->label().text() + ".json");
-			map->set_state(e_map_state::travel_definition);
-			break;
+			string text = "ressources/data/path/" + win->travel_name[i]->label().text() + ".json";
+
+			tmp_paths.push_back(text);
+			//win->train_box_frame->activate();
+			//map->open_journey("ressources/data/path/" + win->travel_name[i]->label().text() + ".json");
+			//map->set_state(e_map_state::travel_definition);
+			//break;
 		}
+	}
+	if (tmp_paths.size() == 1)
+	{
+		win->train_box_frame->activate();
+		map->open_journey(tmp_paths[0]);
+		map->set_state(e_map_state::travel_definition);
 	}
 }
 
@@ -57,7 +71,7 @@ void c_main_window::load_travel_checkbox()
 	{
 		c_check_box *test = new c_check_box(files[i], false, travel_panel);
 		test->set_geometry(Vector2(10, 10 + 40 * i), Vector2(travel_panel->area().x - 20 - scroll_bar->area().x, 35.0f));
-		test->active();
+		test->activate();
 
 		travel_name.push_back(test);
 	}
@@ -69,30 +83,30 @@ void c_main_window::create_travel_panel()
 	Vector2 pos = border * 1;
 	Vector2 size = Vector2((travel_box->box().area().x / 2) - border * 2, 30.0f);
 
-	new_button = new c_button(&new_path, nullptr, travel_box);
+	new_button = new c_button(&new_path, this, travel_box);
 	new_button->box().set_border(2);
 	new_button->text().set_text("New");
 	new_button->set_geometry(pos, size);
-	new_button->active();
+	new_button->activate();
 
 	save_button = new c_button(&save_journey, this, travel_box);
 	save_button->box().set_border(2);
 	save_button->text().set_text("Save");
 	save_button->set_geometry(pos + Vector2(size.x + border, 0.0f), size);
-	save_button->active();
+	save_button->activate();
 
 	pos.y += size.y + border;
 	load_button = new c_button(&load_journey, this, travel_box);
 	load_button->box().set_border(2);
 	load_button->text().set_text("Load");
 	load_button->set_geometry(pos, size);
-	load_button->active();
+	load_button->activate();
 
 	erase_button = new c_button(&delete_journey, this, travel_box);
 	erase_button->box().set_border(2);
 	erase_button->text().set_text("Erase");
 	erase_button->set_geometry(pos + Vector2(size.x + border, 0.0f), size);
-	erase_button->active();
+	erase_button->activate();
 
 	pos = Vector2(0.0f, (border + size.y) * 2) + (border * 1);
 	size = travel_box->box().area() - border * 3 - pos;
@@ -100,14 +114,14 @@ void c_main_window::create_travel_panel()
 	travel_panel = new c_frame(travel_box);
 	travel_panel->viewport()->set_active(true);
 	travel_panel->set_geometry(pos, size);
-	travel_panel->active();
+	travel_panel->activate();
 
 	pos = Vector2(travel_panel->area().x - 20.0f, 0.0f);
 	size = Vector2(20.0f, size.y - travel_panel->box().border() * 2);
 
 	scroll_bar = new c_vscroll_bar(travel_panel);
 	scroll_bar->set_geometry(pos, size);
-	scroll_bar->active();
+	scroll_bar->activate();
 
 	load_travel_checkbox();
 }

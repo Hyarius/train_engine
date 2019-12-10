@@ -47,11 +47,11 @@ void c_journey::add_point(c_milestone *new_point, pair_int p_hour, int p_wait_ti
 	{
 		new_hour = new c_hour_entry(p_hour.first, p_hour.second, g_map);
 		new_hour->set_geometry(Vector2(g_map->convert_to_screen_coord(new_point->pos()) + delta), panel_size);
-		new_hour->active();
+		new_hour->activate();
 
 		new_wait_frame = new c_frame(g_map);
 		new_wait_frame->set_geometry(Vector2(g_map->convert_to_screen_coord(new_point->pos()) + delta2), panel_size);
-		new_wait_frame->active();
+		new_wait_frame->activate();
 
 		int border = new_wait_frame->box().border();
 
@@ -61,7 +61,7 @@ void c_journey::add_point(c_milestone *new_point, pair_int p_hour, int p_wait_ti
 		new_wait_label = new c_text_label("Time in station : ", new_wait_frame);
 		new_wait_label->box().set_border(0);
 		new_wait_label->set_geometry(label_pos, label_size);
-		new_wait_label->active();
+		new_wait_label->activate();
 
 		Vector2 entry_pos = label_pos + Vector2(label_size.x, 0.0f);
 		Vector2 entry_size = Vector2(panel_size.x - label_size.x, panel_size.y) - 2 * border;
@@ -72,7 +72,7 @@ void c_journey::add_point(c_milestone *new_point, pair_int p_hour, int p_wait_ti
 		new_wait_entry->box().set_front(Color(0, 0, 0, 0));
 		new_wait_entry->box().set_back(Color(0, 0, 0, 0));
 		new_wait_entry->set_geometry(entry_pos, entry_size);
-		new_wait_entry->active();
+		new_wait_entry->activate();
 	}
 
 	_hour_panel.push_back(new_hour);

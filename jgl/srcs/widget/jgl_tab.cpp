@@ -37,8 +37,8 @@ c_tab::c_tab(c_widget *p_parent)
 	button_area->box().set_front(Color(0, 255, 0, 0));
 	button_area->box().set_back(Color(0, 255, 0, 0));
 
-	tab_area->active();
-	button_area->active();
+	tab_area->activate();
+	button_area->activate();
 
 	add_tab("Tab 1");
 	add_tab("Tab 2");
@@ -49,7 +49,7 @@ void c_tab::add_tab(string p_name, int index)
 	c_frame *new_tab = new c_frame(tab_area);
 	c_button *new_tab_button = new c_button(&active_tab, nullptr, button_area);
 	new_tab_button->text().set_text(p_name);
-	new_tab_button->active();
+	new_tab_button->activate();
 
 	if (index == -1)
 		index = _tabs.size();
