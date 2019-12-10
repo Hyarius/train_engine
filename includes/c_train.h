@@ -24,6 +24,7 @@ private:
 
 	e_train_state _state;
 	float _speed;
+	float _max_speed;
 	float _old_speed;
 	float _acceleration;
 	float _deceleration;
@@ -50,6 +51,7 @@ public:
 	void set_place(c_city *p_place){_place = p_place;}
 	void change_speed(float time, float target_speed);
 	void set_speed(float p_speed){_speed = p_speed;}
+	void set_max_speed(float p_max_speed){_max_speed = p_max_speed;}
 	void set_old_speed(float p_old_speed){_old_speed = p_old_speed;}
 	void set_distance_per_tic(float p_distance_per_tic){_distance_per_tic = p_distance_per_tic;}
 	void set_state(e_train_state p_state){_state = p_state;}
@@ -78,6 +80,7 @@ public:
 	e_train_state state(){return (_state);}
 	size_t index(){return (_index);}
 	float speed(){return (_speed);}
+	float max_speed(){return (_max_speed);}
 	float old_speed(){return (_old_speed);}
 	float distance_per_tic(){return (_distance_per_tic);}
 	float distance(){return (_distance);}

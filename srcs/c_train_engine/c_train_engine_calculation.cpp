@@ -4,7 +4,7 @@ float max_dist;
 
 bool c_train_engine::can_overtake(size_t index)
 {
-	c_train* train = _train_list[index];
+	c_train* train = _journey_list[index]->train();
 	e_way_type type = train->get_way_type();
 
 	//cout << "Here" << endl;
@@ -20,7 +20,7 @@ bool c_train_engine::can_overtake(size_t index)
 
 bool c_train_engine::should_slow(size_t train_index)
 {
-	c_train* train = _train_list[train_index];
+	c_train* train = _journey_list[train_index]->train();
 	e_way_type type = train->get_way_type();
 
 	vector<c_train *> train_list;
@@ -61,9 +61,9 @@ void c_train_engine::iterate()
 	float delta;
 	float dist;
 
-	for (size_t i = 0; i < _train_list.size(); i++)
+	for (size_t i = 0; i < _journey_list.size(); i++)
 	{
-		c_train* train = _train_list[i];
+		c_train* train = _journey_list[i]->train();
 
 		if (_time_travel[i] < _time && train->actual_rail() != nullptr)
 		{
@@ -168,42 +168,25 @@ void c_train_engine::run()
 		_plot->add_line(Color(0, 0, 0));
 		_time_travel.push_back(_journey_list[i]->hour_panel()[0]->value());
 		_journey_list[i]->calc_distance();
-		_journey_list[i]->create_output_file();
-		_journey_list[i]->output_file() << "Calculation for the travel [" << _journey_list[i]->name() << "] with the train num [" << _train_list[i]->num() << "]" << endl;
 
-		_journey_list[i]->output_file() << convert_hour_to_string(_time) << " : ";
-		_journey_list[i]->output_file() << "[" << "   STATE  " << "]";
-		_journey_list[i]->output_file() << " - [" << "  SPEED " << "]";
-		_journey_list[i]->output_file() << " - [" << " dist tot " << "]";
-		_journey_list[i]->output_file() << " - [" << " dist left" << "]";
-		_journey_list[i]->output_file() << endl;
+		if (_journey_list[i]->train() == nullptr)
+			cout << "Bad" << endl;
+		create_journey_output_file(_journey_list[i], _time);
 
-		_train_list[i]->set_departure_time(_journey_list[i]->hour_panel()[0]->value());
-		_train_list[i]->set_actual_rail(_journey_list[i]->get_rail(_train_list[i]->index()));
-		_train_list[i]->actual_rail()->add_train(_train_list[i]);
+		_journey_list[i]->train()->set_departure_time(_journey_list[i]->hour_panel()[0]->value());
+		_journey_list[i]->train()->set_actual_rail(_journey_list[i]->get_rail(_journey_list[i]->train()->index()));
+		_journey_list[i]->train()->actual_rail()->add_train(_journey_list[i]->train());
 		_distance.push_back(0.0f);
 		_arrived_hour.push_back(0.0f);
 	}
-	_plot->set_ordinate_min(-10.0f);
-	_plot->set_absciss_min(_time - 15.0f);
-	_plot->set_point_size(0);
-	_plot->set_absciss_precision(3);
-	_plot->set_ordinate_precision(3);
+	float old_time = _time;
 
 	_arrived_train = 0;
 
 	while (_arrived_train < _journey_list.size())
 		iterate();
 
-	_plot->set_absciss_max(_time + 15.0f);
-	_plot->set_ordinate_max(max_dist + 10.0f);
-	_plot->set_absciss_gap(15.0f);
-	_plot->set_ordinate_gap(10.0f);
-	_plot->set_absciss_funct(&convert_time_to_string_round);
-	_plot->set_size(Vector2(_plot->absciss().range() * 10, 1200.0f));
-
-	_plot->initialize();
-	_plot->save("test.png");
+	create_journey_plot_output(_plot, old_time, _time, max_dist);
 
 	for (size_t i = 0; i < _journey_list.size(); i++)
 	{

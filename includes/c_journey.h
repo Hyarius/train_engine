@@ -8,6 +8,8 @@ class c_journey
 private:
 	fstream _output_file;
 
+	class c_train *_train;
+
 	vector<c_milestone *> _path;
 	vector<c_hour_entry *> _hour_panel;
 	vector<c_frame *> _wait_panel;
@@ -16,7 +18,6 @@ private:
 
 public:
 	c_journey();
-	c_journey(string path);
 
 	~c_journey();
 
@@ -24,7 +25,10 @@ public:
 	void create_output_file();
 	void close_output_file();
 	fstream &output_file(){return (_output_file);}
-	
+
+	void set_train(c_train *p_train){_train = p_train;}
+
+	c_train *train(){return (_train);}
 	vector<c_milestone *> &path(){return (_path);}
 	vector<c_hour_entry *> &hour_panel(){return (_hour_panel);}
 	vector<c_frame *> &wait_panel(){return (_wait_panel);}
@@ -47,5 +51,9 @@ public:
 	void actualize_panel();
 	void draw();
 };
+
+c_journey *load_journey(string path);
+void create_journey_output_file(c_journey *journey, float time);
+void create_journey_plot_output(c_plot *plot, float start_time, float end_time, float max_dist);
 
 #endif

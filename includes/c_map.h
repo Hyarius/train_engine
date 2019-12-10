@@ -68,6 +68,7 @@ public:
 	/*---------------------*/
 	//Setter
 	void set_state(e_map_state new_state){_state = new_state;}
+	void set_journey(c_journey *p_journey){_journey = p_journey;}
 
 	//Getter
 	c_journey *journey(){return (_journey);}

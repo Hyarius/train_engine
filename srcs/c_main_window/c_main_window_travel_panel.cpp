@@ -37,6 +37,8 @@ void load_journey(Data data)
 	c_map *map = win->map;
 	vector<string> tmp_paths;
 
+	win->train_box_frame->desactivate();
+	map->set_journey(nullptr);
 	for (size_t i = 0; i < win->travel_name.size(); i++)
 	{
 		if (win->travel_name[i]->check().state() == true)

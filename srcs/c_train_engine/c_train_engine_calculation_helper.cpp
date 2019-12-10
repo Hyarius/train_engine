@@ -4,7 +4,7 @@
 
 float c_train_engine::calc_distance_left(size_t index)
 {
-	size_t start_pos = _train_list[index]->index();
+	size_t start_pos = _journey_list[index]->train()->index();
 	float tmp;
 	float result;
 
@@ -25,13 +25,13 @@ float c_train_engine::calc_distance_left(size_t index)
 				break ;
 		}
 	}
-	result -= _train_list[index]->distance();
+	result -= _journey_list[index]->train()->distance();
 	return (result);
 }
 
 float c_train_engine::calc_next_speed(size_t index)
 {
-	c_train *train = _train_list[index];
+	c_train *train = _journey_list[index]->train();
 	c_journey *journey = _journey_list[index];
 	float to_calc = train->speed() * convert_minute_to_hour(_time_delta) + train->distance();
 	float actual_speed;
@@ -57,7 +57,7 @@ float c_train_engine::calc_next_speed(size_t index)
 
 void c_train_engine::move_train(size_t index, float distance)
 {
-	c_train *train = _train_list[index];
+	c_train *train = _journey_list[index]->train();
 
 	if (train->actual_rail() == nullptr)
 		return ;
@@ -91,7 +91,7 @@ float c_train_engine::calc_decelerate_time(size_t index, float time_left, float 
 {
 	float result;
 
-	c_train *train = _train_list[index];
+	c_train *train = _journey_list[index]->train();
 
 	if (train->speed() + train->speed_lost(time_left) < target_speed)
 	{
@@ -123,7 +123,7 @@ float c_train_engine::calc_slowing_time(size_t index, float time_left, float tar
 {
 	float result;
 
-	c_train *train = _train_list[index];
+	c_train *train = _journey_list[index]->train();
 
 	if (train->speed() + train->speed_lost(time_left) < target_speed)
 	{
@@ -143,7 +143,7 @@ float c_train_engine::calc_accelerate_time(size_t index, float time_left, float 
 {
 	float result;
 
-	c_train *train = _train_list[index];
+	c_train *train = _journey_list[index]->train();
 
 	if (train->speed() + train->speed_gain(time_left) > target_speed)
 	{
@@ -169,7 +169,7 @@ float c_train_engine::calc_run_time(size_t index, float time_left)
 {
 	float result;
 
-	c_train *train = _train_list[index];
+	c_train *train = _journey_list[index]->train();
 	if (train->slow_down_dist() >= calc_distance_left(index) - train->distance_per_tic())
 	{
 		float dist_to_run = calc_distance_left(index) - train->slow_down_dist();
@@ -195,7 +195,7 @@ float c_train_engine::calc_waiting_time(size_t index, float time_left)
 {
 	float result;
 
-	c_train *train = _train_list[index];
+	c_train *train = _journey_list[index]->train();
 
 	if (time_left <= train->waiting_time())
 		result = time_left;

@@ -1,5 +1,18 @@
 #include "engine.h"
 
+void save_train(Data data)
+{
+	c_journey *journey = (data.acces<c_journey *>(1));
+	fstream &file = *(data.acces<fstream *>(0));
+
+	if (journey->train() == nullptr)
+		return ;
+
+	json_add_value(file, 2, "train speed", ftoa(journey->train()->max_speed()));
+	json_add_value(file, 2, "train acceleration", ftoa(journey->train()->acceleration()));
+	json_add_value(file, 2, "train deceleration", ftoa(journey->train()->deceleration()));
+}
+
 void save_destination(Data data)
 {
 	fstream &file = *(data.acces<fstream *>(0));
@@ -44,6 +57,8 @@ void saving_journey()
 	fstream file = open_file("ressources/data/path/" + name + ".json", ios_base::out);
 
 	json_add_line(file, 0, "{");
+
+	save_train(Data (2, &file, journey));
 
 	json_add_vector<c_milestone *>(file, 1, "destination", journey->path(), &save_destination, Data (2, &file, journey));
 

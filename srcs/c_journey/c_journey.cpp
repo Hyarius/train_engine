@@ -3,6 +3,9 @@
 c_journey::c_journey()
 {
 	_path.clear();
+	_train = new c_train(this);
+	_train->set_acceleration(0.75f);
+	_train->set_deceleration(-0.75f);
 }
 
 c_journey::~c_journey()

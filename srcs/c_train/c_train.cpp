@@ -9,6 +9,7 @@ c_train::c_train(c_journey *journey)
 	all_num++;
 	_place = nullptr;
 	_speed = 0.0f;
+	_max_speed = 160.0f;
 	_old_speed = 0.0f;
 	_acceleration = 0.0f;
 	_deceleration = 0.0f;

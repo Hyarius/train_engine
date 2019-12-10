@@ -15,7 +15,6 @@ private:
 
 	vector<c_journey *> _journey_list;
 	c_image * _graphic_output;
-	vector<c_train *>_train_list;
 	vector<float> _distance;
 	vector<float> _arrived_hour;
 
@@ -46,7 +45,7 @@ public:
 	float calc_decelerate_time(size_t index, float time_left, float target_speed);
 	float calc_slowing_time(size_t index, float time_left, float target_speed);
 
-	void add_journey(c_journey *new_journey, c_train *new_train = nullptr);
+	void add_journey(c_journey *new_journey);
 
 	void set_time(int p_hour, int p_minute){_time = convert_int_to_hour(p_hour, p_minute);}
 	void set_time(float p_time){_time = p_time;}

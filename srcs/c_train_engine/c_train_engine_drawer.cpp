@@ -2,7 +2,7 @@
 
 size_t c_train_engine::draw_train_information(size_t i)
 {
-	c_train* train = _train_list[i];
+	c_train* train = _journey_list[i]->train();
 	string text;
 
 	text.append(convert_hour_to_string(_time_travel[i]) + " : ");
@@ -18,7 +18,7 @@ size_t c_train_engine::draw_train_information(size_t i)
 
 void c_train_engine::draw_train_position(size_t i)
 {
-	c_train* train = _train_list[i];
+	c_train* train = _journey_list[i]->train();
 	string text;
 
 	for (size_t j = 0; j < train->journey()->path().size() - 1; j++)
@@ -42,7 +42,7 @@ void c_train_engine::draw_train_position(size_t i)
 
 void c_train_engine::draw_train_state(size_t i)
 {
-	c_train* train = _train_list[i];
+	c_train* train = _journey_list[i]->train();
 	size_t len = draw_train_information(i);
 	draw_train_position(i);
 }

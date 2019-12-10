@@ -44,12 +44,14 @@ static void load_point(fstream &file, c_journey *journey)
 	journey->add_point(g_map->get_milestone(index), hour, waiting);
 }
 
-c_journey::c_journey(string path)
+c_journey *load_journey(string path)
 {
+	c_journey *result = new c_journey();
+
 	fstream file = open_file(path, ios_base::in);
 
 	if (file.good() == false)
-		return ;
+		return (result);
 
 	string text = "";
 
@@ -59,6 +61,8 @@ c_journey::c_journey(string path)
 		text.erase(remove(text.begin(), text.end(), '\t'), text.end());
 
 		if (text == "{")
-			load_point(file, this);
+			load_point(file, result);
 	}
+
+	return (result);
 }
