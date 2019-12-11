@@ -24,9 +24,9 @@ c_train::c_train(c_journey *journey)
 
 void c_train::calc_deceleration_dist(float target_speed)
 {
-	float deceleration_convert = convert_m_per_s2_to_km_per_h2(-_deceleration);
+	float deceleration_convert = convert_m_per_s2_to_km_per_h2(_deceleration);
 
-	_slow_down_dist = (pow(target_speed, 2.0f) - pow(_speed, 2.0f)) / (2.0f * deceleration_convert);
+	_slow_down_dist = (pow(target_speed, 2.0f) - pow(_speed, 2.0f)) / (-2.0f * deceleration_convert);
 }
 
 void c_train::calc_distance_per_tic(float time)
@@ -61,7 +61,7 @@ float c_train::decelerate(float time)
 	float old;
 
 	old = _speed;
-	_speed = _speed + (convert_m_per_s2_to_km_per_h2(-_deceleration) * convert_time);
+	_speed = _speed - (convert_m_per_s2_to_km_per_h2(_deceleration) * convert_time);
 
 	calc_distance_per_tic(time);
 	calc_deceleration_dist(0);

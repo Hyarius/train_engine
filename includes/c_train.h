@@ -74,7 +74,7 @@ public:
 	c_city *place(){return (_place);}
 	size_t num() { return (_num); }
 	float waiting_time(){return (_waiting_time);}
-	float speed_lost(float time){return ((convert_m_per_s2_to_km_per_h2(_deceleration) * convert_minute_to_hour(time)));}
+	float speed_lost(float time){return ((convert_m_per_s2_to_km_per_h2(-_deceleration) * convert_minute_to_hour(time)));}
 	float speed_gain(float time){return ((convert_m_per_s2_to_km_per_h2(_acceleration) * convert_minute_to_hour(time)));}
 	c_journey *journey(){return (_journey);}
 	e_train_state state(){return (_state);}

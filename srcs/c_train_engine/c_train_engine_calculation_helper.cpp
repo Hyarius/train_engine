@@ -11,7 +11,6 @@ float c_train_engine::calc_distance_left(size_t index)
 	result = 0;
 	for (size_t i = start_pos; i < _journey_list[index]->path().size() - 1; i++)
 	{
-
 		c_rail *rail = _journey_list[index]->get_rail(i);
 		tmp = 0;
 		if (rail != nullptr)
