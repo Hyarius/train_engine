@@ -65,11 +65,9 @@ vector<string>		list_files(string path, string extension)
 	if (dir == NULL)
 		error_exit(1, get_file_info(__FILE__, __LINE__) + " - Folder " + path + " didn't exist");
 
-//	char			*context = NULL;
-
 	while ((dirent_ptr = readdir(dir)) != NULL)
 	{
-		string tmp = string(dirent_ptr->d_name, strlen(dirent_ptr->d_name));
+		string tmp = dirent_ptr->d_name;
 		brut_files.push_back(string(tmp));
 	}
 	while (i < brut_files.size())

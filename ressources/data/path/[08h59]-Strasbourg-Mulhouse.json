@@ -1,4 +1,7 @@
 {
+	"train speed":"160",
+	"train acceleration":"0.750",
+	"train deceleration":"0.750",
 	"destination":[
 		{
 			"id":"150",

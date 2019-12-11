@@ -8,9 +8,9 @@ void save_train(Data data)
 	if (journey->train() == nullptr)
 		return ;
 
-	json_add_value(file, 2, "train speed", ftoa(journey->train()->max_speed()));
-	json_add_value(file, 2, "train acceleration", ftoa(journey->train()->acceleration()));
-	json_add_value(file, 2, "train deceleration", ftoa(journey->train()->deceleration()));
+	json_add_value(file, 1, "train speed", ftoa(journey->train()->max_speed()));
+	json_add_value(file, 1, "train acceleration", ftoa(journey->train()->acceleration()));
+	json_add_value(file, 1, "train deceleration", ftoa(journey->train()->deceleration()));
 }
 
 void save_destination(Data data)
