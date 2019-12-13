@@ -19,7 +19,7 @@ static void load_point(fstream &file, c_journey *journey)
 
 		if (tab[0] == "id")
 			index = atoi(tab[1].c_str());
-		else if (tab[0] == "},")
+		else if (tab[0] == "}," || tab[0] == "}")
 			journey->add_point(g_map->get_milestone(index), hour, waiting);
 		else if (tab[0] == "Waiting time")
 			waiting = atoi(tab[1].c_str());
@@ -63,10 +63,7 @@ c_journey *load_journey(string path)
 		if (tab[0] == "destination")
 			load_point(file, result);
 		else if (tab[0] == "train speed")
-		{
-			cout << "New speed : " << ftoa(atof(tab[1].c_str())) << endl;
-			result->train()->set_speed(atof(tab[1].c_str()));
-		}
+			result->train()->set_max_speed(atof(tab[1].c_str()));
 		else if (tab[0] == "train acceleration")
 			result->train()->set_acceleration(atof(tab[1].c_str()));
 		else if (tab[0] == "train deceleration")

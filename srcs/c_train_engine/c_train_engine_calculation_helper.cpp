@@ -92,6 +92,9 @@ float c_train_engine::calc_decelerate_time(size_t index, float time_left, float 
 
 	c_train *train = _journey_list[index]->train();
 
+	if (target_speed > train->max_speed())
+		target_speed = train->max_speed();
+
 	if (train->speed() + train->speed_lost(time_left) < target_speed)
 	{
 		float ratio = (target_speed - train->speed()) / train->speed_lost(time_left);
@@ -124,6 +127,10 @@ float c_train_engine::calc_slowing_time(size_t index, float time_left, float tar
 
 	c_train *train = _journey_list[index]->train();
 
+
+	if (target_speed > train->max_speed())
+		target_speed = train->max_speed();
+
 	if (train->speed() + train->speed_lost(time_left) < target_speed)
 	{
 		float ratio = (target_speed - train->speed()) / train->speed_lost(time_left);
@@ -143,6 +150,10 @@ float c_train_engine::calc_accelerate_time(size_t index, float time_left, float 
 	float result;
 
 	c_train *train = _journey_list[index]->train();
+
+
+	if (target_speed > train->max_speed())
+		target_speed = train->max_speed();
 
 	if (train->speed() + train->speed_gain(time_left) > target_speed)
 	{

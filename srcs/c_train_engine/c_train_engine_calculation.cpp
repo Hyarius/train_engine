@@ -81,7 +81,7 @@ void c_train_engine::iterate()
 					train->start();
 				if (train->state() == e_train_state::starting && train->departure_time() <= _time)
 					train->set_state(e_train_state::speed_up);
-				if (train->speed() < rail->speed() && train->state() == e_train_state::normal)
+				if (train->speed() < rail->speed() && train->speed() < train->max_speed() && train->state() == e_train_state::normal)
 					train->set_state(e_train_state::speed_up);
 				if (train->speed() > rail->speed())
 					train->set_state(e_train_state::speed_down);
