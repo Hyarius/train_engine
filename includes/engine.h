@@ -3,6 +3,8 @@
 
 #include "jgl.h"
 
+#include "event_type.h"
+
 #include "c_city.h"
 #include "c_milestone.h"
 #include "c_rail.h"

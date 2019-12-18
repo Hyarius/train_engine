@@ -13,6 +13,8 @@ private:
 	Vector2 _pos;
 	int _selected;
 
+	int _event_percent[NB_CITY_EVENT][2];
+
 public:
 	c_city(Vector2 p_pos = Vector2());
 	~c_city();

@@ -31,6 +31,12 @@ c_rail::c_rail(c_milestone *pos1, c_milestone *pos2)
 	_poly->add_side(2, 0);
 	_poly->add_side(1, 3);
 	_poly->add_side(3, 2);
+
+	for (size_t i = 0; i < NB_CITY_EVENT; i++)
+	{
+		_event_percent[i][0] = 0;
+		_event_percent[i][1] = 0;
+	}
 }
 
 vector<c_train *> &c_rail::train_list(e_way_type p_type)

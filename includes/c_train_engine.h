@@ -23,7 +23,7 @@ public:
 
 	void clean();
 	void run();
-	void iterate();
+	void iterate(bool perturbation);
 
 	void create_graphic_output();
 

@@ -69,6 +69,8 @@ private:
 
 	bool _state;
 
+	int _event_percent[NB_RAIL_EVENT][2];
+
 public:
 	c_rail(c_milestone *pos1, c_milestone *pos2);
 

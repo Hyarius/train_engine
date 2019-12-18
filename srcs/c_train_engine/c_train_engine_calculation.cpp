@@ -52,7 +52,7 @@ bool c_train_engine::should_slow(size_t train_index)
 	return (false);
 }
 
-void c_train_engine::iterate()
+void c_train_engine::iterate(bool perturbation)
 {
 	while (_time > 24 * 60)
 		_time -= 24 * 60;
@@ -184,7 +184,7 @@ void c_train_engine::run()
 	_arrived_train = 0;
 
 	while (_arrived_train < _journey_list.size())
-		iterate();
+		iterate(true);
 
 	create_journey_plot_output(_plot, old_time, _time, max_dist);
 

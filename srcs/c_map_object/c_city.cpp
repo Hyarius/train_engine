@@ -11,6 +11,12 @@ c_city::c_city(Vector2 p_pos)
 	_name = "City";
 	_selected = 1;
 	Vector2 tmp = Vector2(350, 300);
+
+	for (size_t i = 0; i < NB_CITY_EVENT; i++)
+	{
+		_event_percent[i][0] = 0;
+		_event_percent[i][1] = 0;
+	}
 }
 
 c_city::~c_city()
