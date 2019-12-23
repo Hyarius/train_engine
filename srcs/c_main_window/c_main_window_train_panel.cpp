@@ -7,6 +7,7 @@ void c_main_window::create_train_panel()
 	Vector2 size = Vector2(train_box->box().area().x - border * 2, 30.0f);
 
 	train_box_frame = new c_frame(train_box);
+	train_box_frame->set_tileset(tileset);
 	train_box_frame->set_geometry(0, train_box->area());
 	train_box_frame->box().set_border(0);
 	//train_box_frame->activate();

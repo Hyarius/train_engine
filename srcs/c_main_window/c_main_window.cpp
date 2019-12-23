@@ -8,7 +8,7 @@ c_main_window::c_main_window()
 	engine = nullptr;
 
 	create_box();
-
+	tileset = new c_tileset("ressources/image/frame_border.png", Vector2(3, 3));
 	create_map_panel();
 	create_command_panel();
 	create_config_panel();

@@ -13,7 +13,7 @@ void c_map::create_city_panel()
 	_city_panel = new c_frame(this);
 
 	_city_name_label = new c_text_label("City name :", _city_panel);
-	_city_name_label->label().set_style(text_style::underline);
+	_city_name_label->set_style(text_style::underline);
 	_city_name_label->activate();
 
 	_city_name_entry = new c_text_entry("", _city_panel);
@@ -21,7 +21,7 @@ void c_map::create_city_panel()
 	_city_name_entry->activate();
 
 	_city_nb_channel_label = new c_text_label("Nb channel :", _city_panel);
-	_city_nb_channel_label->label().set_style(text_style::underline);
+	_city_nb_channel_label->set_style(text_style::underline);
 	_city_nb_channel_label->activate();
 
 	_city_nb_channel_entry = new c_value_entry(2.0f, _city_panel);
@@ -34,7 +34,7 @@ void c_map::create_rail_panel()
 	_rail_panel = new c_frame(this);
 
 	_rail_speed_label = new c_text_label("Rail max speed (km/h):", _rail_panel);
-	_rail_speed_label->label().set_style(text_style::underline);
+	_rail_speed_label->set_style(text_style::underline);
 	_rail_speed_label->activate();
 
 	_rail_speed_entry = new c_value_entry(180.0f, _rail_panel);
@@ -43,7 +43,7 @@ void c_map::create_rail_panel()
 	_rail_speed_entry->activate();
 
 	_rail_canton_label = new c_text_label("Cantonal dist (km):", _rail_panel);
-	_rail_canton_label->label().set_style(text_style::underline);
+	_rail_canton_label->set_style(text_style::underline);
 	_rail_canton_label->activate();
 
 	_rail_canton_entry = new c_value_entry(2.0f, _rail_panel);
@@ -52,20 +52,20 @@ void c_map::create_rail_panel()
 	_rail_canton_entry->activate();
 
 	_rail_dual_ways_box = new c_check_box("Dual ways :", true, _rail_panel);
-	_rail_dual_ways_box->label().set_style(text_style::normal);
+	_rail_dual_ways_box->set_style(text_style::normal);
 	_rail_dual_ways_box->activate();
 
 	_rail_even_overtake_box = new c_check_box("Even overtake way :", false, _rail_panel);
-	_rail_even_overtake_box->label().set_style(text_style::normal);
+	_rail_even_overtake_box->set_style(text_style::normal);
 
 	_rail_odd_overtake_box = new c_check_box("Odd overtake way :", false, _rail_panel);
-	_rail_odd_overtake_box->label().set_style(text_style::normal);
+	_rail_odd_overtake_box->set_style(text_style::normal);
 }
 
 void c_map::create_calib_button()
 {
 	_calib_button = new c_button(nullptr, nullptr, this);
-	_calib_button->text().set_text("Calibration");
+	_calib_button->set_text("Calibration");
 	_calib_button->set_action(&activate_calibatration, Data(this));
 	_calib_button->activate();
 

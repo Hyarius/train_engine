@@ -6,6 +6,8 @@
 class c_main_window
 {
 public:
+	c_tileset *tileset;
+
 	// - Boxes
 	c_frame *map_box;
 	c_frame *train_box;

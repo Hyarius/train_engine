@@ -30,7 +30,7 @@ void c_main_window::create_command_panel()
 		(command_box->box().area().y - border * 3) / 2 - border);
 
 	start_button = new c_button(&calc_journeys, this, command_box);
-	start_button->text().set_text("Start simulation");
+	start_button->set_text("Start simulation");
 	start_button->set_geometry(button_pos, button_size);
 	start_button->activate();
 

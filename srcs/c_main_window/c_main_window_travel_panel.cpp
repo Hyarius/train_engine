@@ -82,27 +82,31 @@ void c_main_window::create_travel_panel()
 	Vector2 size = Vector2((travel_box->box().area().x / 2) - border * 2, 30.0f);
 
 	new_button = new c_button(&new_path, this, travel_box);
+	new_button->set_tileset(tileset);
 	new_button->box().set_border(2);
-	new_button->text().set_text("New");
+	new_button->set_text("New");
 	new_button->set_geometry(pos, size);
 	new_button->activate();
 
 	save_button = new c_button(&save_journey, this, travel_box);
+	save_button->set_tileset(tileset);
 	save_button->box().set_border(2);
-	save_button->text().set_text("Save");
+	save_button->set_text("Save");
 	save_button->set_geometry(pos + Vector2(size.x + border, 0.0f), size);
 	save_button->activate();
 
 	pos.y += size.y + border;
 	load_button = new c_button(&load_journey, this, travel_box);
+	load_button->set_tileset(tileset);
 	load_button->box().set_border(2);
-	load_button->text().set_text("Load");
+	load_button->set_text("Load");
 	load_button->set_geometry(pos, size);
 	load_button->activate();
 
 	erase_button = new c_button(&delete_journey, this, travel_box);
+	erase_button->set_tileset(tileset);
 	erase_button->box().set_border(2);
-	erase_button->text().set_text("Erase");
+	erase_button->set_text("Erase");
 	erase_button->set_geometry(pos + Vector2(size.x + border, 0.0f), size);
 	erase_button->activate();
 
