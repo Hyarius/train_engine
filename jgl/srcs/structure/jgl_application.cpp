@@ -49,6 +49,15 @@ c_application::c_application(string name, Vector2 p_size, Color p_color)
 
 }
 
+void c_application::resize(Vector2 p_size)
+{
+	_win_size = p_size;
+
+	SDL_SetWindowSize(_window, static_cast<int>(_win_size.x), static_cast<int>(_win_size.y));
+	_central_widget->set_geometry(Vector2(0, 0), _win_size);
+	SDL_SetWindowPosition(_window, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
+}
+
 SDL_Window *c_application::window()
 {
 	return (_window);

@@ -9,7 +9,9 @@ s_keyboard::s_keyboard()
 
 int s_keyboard::get_key(int scan_code)
 {
-	return ((state[scan_code] != 0 ? 1 : 0));
+	int result = (state[scan_code] != 0 ? 1 : 0);
+	reset_key(scan_code);
+	return (result);
 }
 
 void s_keyboard::reset_key(int scan_code)

@@ -30,6 +30,7 @@ public:
 class w_graphical_component
 {
 protected:
+	c_tileset *_tileset;
 	Color _back;
 	Color _front;
 	int _border;
@@ -37,11 +38,13 @@ protected:
 public:
 	w_graphical_component();
 
+	void set_tileset(c_tileset *p_tileset){_tileset = p_tileset;}
 	void set_back(Color p_back){_back = p_back;}
 	void set_front(Color p_front){_front = p_front;}
 	void set_border(int p_border){_border = p_border;}
 
 		//Getter
+	c_tileset *tileset(){return (_tileset);}
 	int border(){return (_border);}
 	Color back(){return (_back);}
 	Color front(){return (_front);}
@@ -150,17 +153,18 @@ public:
 	w_text_entry_component(class c_widget *p_owner = nullptr, string p_text = "");
 
 		//Setter
-	void set_selected(bool p_selected){_selected = p_selected;}
-	void 		resize(Vector2 p_anchor, Vector2 p_area)
-		{set_anchor(p_anchor);set_area(p_area);calc_text_size_height(_area);}
+	void		set_text(string new_text){ _text = new_text; _cursor = new_text.size(); calc_text_to_draw(); }
+	void 		set_selected(bool p_selected){_selected = p_selected;}
 
 		//Getter
 	bool		selected(){return (_selected);}
 	int 		cursor(){return (_cursor);}
-	void		set_text(string new_text);
+
 	string 		text_to_draw(){return (_text_to_draw);}
 	int 		cursor_to_draw(){return (_cursor_to_draw);}
 
+	void 		resize(Vector2 p_anchor, Vector2 p_area)
+		{set_anchor(p_anchor);set_area(p_area);calc_text_size_height(_area);}
 	void 		calc_text_to_draw();
 	void 		move_cursor(int delta);
 	void 		add_text(string new_text);
@@ -227,6 +231,7 @@ public:
 	bool		selected(){return (_selected);}
 	int			precision(){return (_precision);}
 	float 		value(){return (_value);}
+	string 		text(){return (_text);}
 	int 		cursor(){return (_cursor);}
 	string 		text_to_draw(){return (_text_to_draw);}
 	int 		cursor_to_draw(){return (_cursor_to_draw);}

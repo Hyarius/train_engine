@@ -34,6 +34,8 @@ public:
 
 	void set_background(Color p_color = Color(50, 50, 50));
 
+	void resize(Vector2 p_size);
+
 	Vector2 &size();
 
 	void select();

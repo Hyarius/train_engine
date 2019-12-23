@@ -35,6 +35,7 @@ struct Vector3
 	Vector3 cross(Vector3 &other);
 	float dot(Vector3 &other);
 	string str();
+	Vector3 floor();
 };
 
 struct Vector2
@@ -68,6 +69,7 @@ struct Vector2
 	Vector2 normalize();
 	float dot(Vector2 &other);
 	string str();
+	Vector2 floor();
 };
 
 ostream& operator<<(ostream& os, const Vector2& value);

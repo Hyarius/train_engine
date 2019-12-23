@@ -139,6 +139,17 @@ string Vector3::str()
 	return (result);
 }
 
+Vector3 Vector3::floor()
+{
+	Vector3 result;
+
+	result.x = static_cast<int>(this->x);
+	result.y = static_cast<int>(this->y);
+	result.z = static_cast<int>(this->z);
+
+	return (result);
+}
+
 Vector2::Vector2(int p_value) :
 	x(static_cast<float>(p_value)), y(static_cast<float>(p_value)){}
 
@@ -264,6 +275,16 @@ float Vector2::dot(Vector2 &other)
 string Vector2::str()
 {
 	string result = "(" + to_string(x) + " / " + to_string(y) + ")";
+
+	return (result);
+}
+
+Vector2 Vector2::floor()
+{
+	Vector2 result;
+
+	result.x = static_cast<int>(this->x);
+	result.y = static_cast<int>(this->y);
 
 	return (result);
 }
