@@ -12,11 +12,8 @@ c_city::c_city(Vector2 p_pos)
 	_selected = 1;
 	Vector2 tmp = Vector2(350, 300);
 
-	for (size_t i = 0; i < NB_CITY_EVENT; i++)
-	{
-		_event_percent[i][0] = 0;
-		_event_percent[i][1] = 0;
-	}
+	for (int i = 0; i < 5; i++)
+		_event_list.push_back(Event());
 }
 
 c_city::~c_city()
@@ -65,10 +62,7 @@ void c_city::draw()
 	pos1 = g_map->convert_to_screen_coord(_pos);
 
 	if (_pos != Vector2())
-	{
 		g_map->point_image()->draw((_selected == 1 ? 1 : 2), pos1 - size1/2, size1, g_map->viewport());
-		//fill_centred_rectangle(g_map->viewport(), (_selected == 1 ? unselect_color : select_color), pos1, size1);
-	}
 }
 
 void c_city::draw_name()
@@ -82,4 +76,20 @@ void c_city::draw_name()
 		int text_size = 8 * g_map->zoom();
 		draw_centred_text(_name, pos1 + Vector2(0.0f, -size1.y * 1.5f), text_size * 2, text_color::grey, text_style::bold, g_map->viewport());
 	}
+}
+
+ostream& operator<<(ostream& os, c_city *city)
+{
+	os << *city;
+	return os;
+}
+
+ostream& operator<<(ostream& os, c_city &city)
+{
+	os << "=======" << endl;
+	os << "City name : " << city.name() << endl;
+	for (size_t i = 0; i < city.event_list().size(); i++)
+		os << city.event_list(i) << endl;
+	os << "=======" << endl;
+	return os;
 }

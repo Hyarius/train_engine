@@ -18,6 +18,21 @@ void c_map::set_geometry_city_panel()
 	_city_nb_channel_label->set_geometry(label_anchor, label_size);
 	entry_anchor.y += (5 + label_size.y);
 	_city_nb_channel_entry->set_geometry(entry_anchor, entry_size);
+
+	label_anchor.y += (5 + label_size.y);
+	entry_anchor.y += (5 + label_size.y);
+	entry_size.x /= 2;
+	Vector2 entry_anchor2 = entry_anchor + Vector2(entry_size.x, 0.0f);
+	for (int i = 0; i < _city_event_text_label.size(); i++)
+	{
+		_city_event_text_label[i]->set_geometry(label_anchor, label_size);
+		_city_nb_event_entry[i]->set_geometry(entry_anchor, entry_size);
+		_city_event_duration_entry[i]->set_geometry(entry_anchor2, entry_size);
+
+		label_anchor.y += (5 + label_size.y);
+		entry_anchor.y += (5 + label_size.y);
+		entry_anchor2.y += (5 + label_size.y);
+	}
 }
 
 void c_map::set_geometry_rail_panel()

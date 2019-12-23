@@ -173,6 +173,7 @@ void c_train_engine::run()
 			cout << "Bad" << endl;
 		create_journey_output_file(_journey_list[i], _time);
 
+		_journey_list[i]->train()->set_num(i);
 		_journey_list[i]->train()->set_departure_time(_journey_list[i]->hour_panel()[0]->value());
 		_journey_list[i]->train()->set_actual_rail(_journey_list[i]->get_rail(_journey_list[i]->train()->index()));
 		_journey_list[i]->train()->actual_rail()->add_train(_journey_list[i]->train());

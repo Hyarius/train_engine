@@ -17,7 +17,7 @@ void c_map::create_city_panel()
 	_city_name_label->activate();
 
 	_city_name_entry = new c_text_entry("", _city_panel);
-	_city_name_entry->entry().set_align(alignment::centred);
+	_city_name_entry->set_align(alignment::centred);
 	_city_name_entry->activate();
 
 	_city_nb_channel_label = new c_text_label("Nb channel :", _city_panel);
@@ -25,8 +25,29 @@ void c_map::create_city_panel()
 	_city_nb_channel_label->activate();
 
 	_city_nb_channel_entry = new c_value_entry(2.0f, _city_panel);
-	_city_nb_channel_entry->entry().set_align(alignment::centred);
+	_city_nb_channel_entry->set_align(alignment::centred);
 	_city_nb_channel_entry->activate();
+
+	/*
+	vector<c_text_label *>_city_event_text_label;
+	vector<c_value_entry *>_city_nb_event_entry;
+	vector<c_value_entry *>_city_event_duration_entry;
+	*/
+	for (int i = 0; i < 5; i++)
+	{
+		_city_event_text_label.push_back(new c_text_label("Event type" + to_string(i), _city_panel));
+		_city_event_text_label[i]->activate();
+
+		_city_nb_event_entry.push_back(new c_value_entry(0.0f, _city_panel));
+		_city_nb_event_entry[i]->activate();
+		_city_nb_event_entry[i]->set_precision(0);
+		_city_nb_event_entry[i]->set_align(alignment::centred);
+
+		_city_event_duration_entry.push_back(new c_value_entry(0.0f, _city_panel));
+		_city_event_duration_entry[i]->activate();
+		_city_event_duration_entry[i]->set_precision(1);
+		_city_event_duration_entry[i]->set_align(alignment::centred);
+	}
 }
 
 void c_map::create_rail_panel()
@@ -38,8 +59,8 @@ void c_map::create_rail_panel()
 	_rail_speed_label->activate();
 
 	_rail_speed_entry = new c_value_entry(180.0f, _rail_panel);
-	_rail_speed_entry->entry().set_precision(0);
-	_rail_speed_entry->entry().set_align(alignment::centred);
+	_rail_speed_entry->set_precision(0);
+	_rail_speed_entry->set_align(alignment::centred);
 	_rail_speed_entry->activate();
 
 	_rail_canton_label = new c_text_label("Cantonal dist (km):", _rail_panel);
@@ -47,8 +68,8 @@ void c_map::create_rail_panel()
 	_rail_canton_label->activate();
 
 	_rail_canton_entry = new c_value_entry(2.0f, _rail_panel);
-	_rail_canton_entry->entry().set_precision(3);
-	_rail_canton_entry->entry().set_align(alignment::centred);
+	_rail_canton_entry->set_precision(3);
+	_rail_canton_entry->set_align(alignment::centred);
 	_rail_canton_entry->activate();
 
 	_rail_dual_ways_box = new c_check_box("Dual ways :", true, _rail_panel);
@@ -75,7 +96,7 @@ void c_map::create_calib_button()
 	_unit_label->activate();
 
 	_landmark_scale = new c_value_entry(_rel_distance, this);
-	_landmark_scale->entry().set_precision(0);
+	_landmark_scale->set_precision(0);
 	_landmark_scale->activate();
 }
 

@@ -212,5 +212,8 @@ float c_train_engine::calc_waiting_time(size_t index, float time_left)
 	else
 		result = train->waiting_time();
 
+	if (train->place() != nullptr)
+		cout << train->place() << endl;
+
 	return (result);
 }

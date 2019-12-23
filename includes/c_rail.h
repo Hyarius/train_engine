@@ -69,7 +69,7 @@ private:
 
 	bool _state;
 
-	int _event_percent[NB_RAIL_EVENT][2];
+	vector<Event> _event_list;
 
 public:
 	c_rail(c_milestone *pos1, c_milestone *pos2);
