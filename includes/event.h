@@ -3,11 +3,11 @@
 
 struct Event
 {
-	string event_name;
-	int nb_event;
+	string name;
+	int nbr;
 	float time;
 
-	Event(string p_name = "Default", int p_nb_event = 0, float p_time = 0.0f);
+	Event(string p_name = "Default", int p_nbr = 0, float p_time = 0.0f);
 };
 
 ostream& operator<<(ostream& os, Event &event);

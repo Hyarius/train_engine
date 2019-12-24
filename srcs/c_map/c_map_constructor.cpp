@@ -28,11 +28,6 @@ void c_map::create_city_panel()
 	_city_nb_channel_entry->set_align(alignment::centred);
 	_city_nb_channel_entry->activate();
 
-	/*
-	vector<c_text_label *>_city_event_text_label;
-	vector<c_value_entry *>_city_nb_event_entry;
-	vector<c_value_entry *>_city_event_duration_entry;
-	*/
 	for (int i = 0; i < 5; i++)
 	{
 		_city_event_text_label.push_back(new c_text_label("Event type" + to_string(i), _city_panel));
