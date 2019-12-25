@@ -56,4 +56,13 @@ K find_key(map<K, V> &src_map, V &value)
 	return (it->first);
 }
 
+template<typename K, typename V>
+bool map_contain(map<K, V> &src_map, K &value)
+{
+	for (auto it = src_map.begin(); it != src_map.end(); it++)
+		if (it->first == value)
+			return (true);
+	return (false);
+}
+
 #endif

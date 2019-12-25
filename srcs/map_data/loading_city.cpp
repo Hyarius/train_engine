@@ -41,10 +41,7 @@ void c_city::load_event(fstream &file)
 			else if (tab[0] == "time")
 				event->time = atoi(tab[1].c_str());
 			else if (tab[0] == "}" || tab[0] == "},")
-			{
-				_event_list[event->name] = event;
-				cout << "Add event : " << event->name << endl;
-			}
+				add_event(event);
 		}
 
 		text = get_str(file);

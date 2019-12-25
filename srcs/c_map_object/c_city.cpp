@@ -80,12 +80,25 @@ ostream& operator<<(ostream& os, c_city *city)
 	return os;
 }
 
+void c_city::add_event(Event *event)
+{
+	string tmp = event->name;
+	int num = 1;
+	while (map_contain<string, Event *>(_event_list, event->name) == true)
+	{
+		event->name = tmp + "(" + to_string(num) + ")";
+		num++;
+	}
+
+	_event_list[event->name] = event;
+}
+
 ostream& operator<<(ostream& os, c_city &city)
 {
 	os << "=======" << endl;
 	os << "City name : " << city.name() << endl;
-	for (size_t i = 0; i < city.event_list().size(); i++)
-		os << city.event_list(i) << endl;
+	for (auto i = city.event_list().begin(); i != city.event_list().end(); i++)
+		os << i->second->name << endl;
 	os << "=======" << endl;
 	return os;
 }

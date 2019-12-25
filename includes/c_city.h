@@ -13,7 +13,7 @@ private:
 	Vector2 _pos;
 	int _selected;
 
-	vector<Event *> _event_list;
+	map<string, Event *> _event_list;
 
 public:
 	c_city(Vector2 p_pos = Vector2());
@@ -21,8 +21,9 @@ public:
 
 	class c_milestone* milestone() { return (_milestone); }
 	string &name(){return (_name);}
-	vector<Event *> &event_list(){return (_event_list);}
-	Event *event_list(size_t i){if (i >= _event_list.size())return (_event_list[0]);return (_event_list[i]);}
+	map<string, Event *> &event_list(){return (_event_list);}
+	void add_event(Event *event);
+	Event *event_list(string key){return (_event_list[key]);}
 	Vector2 pos(){return (_pos);}
 	int nb_channel(){return (_nb_channel);}
 	int train_waiting(){return (_train_waiting);}
