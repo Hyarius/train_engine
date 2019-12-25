@@ -49,7 +49,7 @@ private:
 	c_text_entry *_city_name_entry;
 	c_text_label *_city_nb_channel_label;
 	c_value_entry *_city_nb_channel_entry;
-
+	c_frame *_city_event_panel;
 	vector<c_text_label *>_city_event_text_label;
 	vector<c_value_entry *>_city_nb_event_entry;
 	vector<c_value_entry *>_city_event_duration_entry;

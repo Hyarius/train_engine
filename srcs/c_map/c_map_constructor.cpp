@@ -28,17 +28,19 @@ void c_map::create_city_panel()
 	_city_nb_channel_entry->set_align(alignment::centred);
 	_city_nb_channel_entry->activate();
 
+	_city_event_panel = new c_frame(_city_panel);
+	_city_event_panel->activate();
 	for (int i = 0; i < 5; i++)
 	{
-		_city_event_text_label.push_back(new c_text_label("Event type" + to_string(i), _city_panel));
+		_city_event_text_label.push_back(new c_text_label("Event type" + to_string(i), _city_event_panel));
 		_city_event_text_label[i]->activate();
 
-		_city_nb_event_entry.push_back(new c_value_entry(0.0f, _city_panel));
+		_city_nb_event_entry.push_back(new c_value_entry(0.0f, _city_event_panel));
 		_city_nb_event_entry[i]->activate();
 		_city_nb_event_entry[i]->set_precision(0);
 		_city_nb_event_entry[i]->set_align(alignment::centred);
 
-		_city_event_duration_entry.push_back(new c_value_entry(0.0f, _city_panel));
+		_city_event_duration_entry.push_back(new c_value_entry(0.0f, _city_event_panel));
 		_city_event_duration_entry[i]->activate();
 		_city_event_duration_entry[i]->set_precision(1);
 		_city_event_duration_entry[i]->set_align(alignment::centred);
