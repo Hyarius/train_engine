@@ -20,7 +20,6 @@ void c_city::load_event(fstream &file)
 	string text = "";
 	vector<string> tab;
 
-
 	while (file.eof() == false && text != "]" && text != "],")
 	{
 		if (text != "")
@@ -42,7 +41,10 @@ void c_city::load_event(fstream &file)
 			else if (tab[0] == "time")
 				event->time = atoi(tab[1].c_str());
 			else if (tab[0] == "}" || tab[0] == "},")
-				_event_list.push_back(event);
+			{
+				_event_list[event->name] = event;
+				cout << "Add event : " << event->name << endl;
+			}
 		}
 
 		text = get_str(file);

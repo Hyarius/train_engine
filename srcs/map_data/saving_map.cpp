@@ -4,7 +4,7 @@ static void save_event(Data data)
 {
 	fstream &file = *(data.acces<fstream *>(0));
 	c_city *city = *(data.acces<c_city **>(1));
-	Event *event = *(data.acces<Event **>(2));
+	Event *event = *(data.acces<Event **>(3));
 	json_add_value(file, 5, "name", event->name);
 	json_add_value(file, 5, "nbr", to_string(event->nbr));
 	json_add_value(file, 5, "time", ftoa(event->time, 0));
@@ -19,7 +19,7 @@ void save_city(Data data)
 	json_add_value(file, 3, "nb channel", to_string(city->nb_channel()));
 	json_add_value(file, 3, "pos", city->pos().str());
 
-	json_add_vector<Event *>(file, 3, "event", city->event_list(), &save_event, data);
+	json_add_map(file, 3, "event", city->event_list(), save_event, data);
 }
 
 void save_milestone(Data data)
