@@ -4,8 +4,6 @@
 
 void c_map::render()
 {
-	_viewport->use();
-
 	_map->draw(_map_anchor + area() / 2.0f, _map->size() * _zoom, _viewport);
 
 	if (_landmark1 != Vector2())

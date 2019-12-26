@@ -22,7 +22,7 @@ void c_map::set_geometry_city_panel()
 
 	panel_size = panel_size - label_anchor - 10;//p_area.x / 4, p_area.y / 3);
 	_city_event_panel->set_geometry(label_anchor, panel_size);
-	_event_scroll_bar->set_geometry(Vector2(panel_size.x - 15, 5.0f), Vector2(20.0f, panel_size.y));
+	_event_scroll_bar->set_geometry(Vector2(panel_size.x - 20, 0.0f) - _city_event_panel->border(), Vector2(20.0f, panel_size.y));
 	label_anchor.y += (5 + label_size.y);
 	entry_anchor.y += (5 + label_size.y);
 	label_size = Vector2((panel_size.x - 40) / 3, label_size.y);
