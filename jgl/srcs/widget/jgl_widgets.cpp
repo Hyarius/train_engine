@@ -91,18 +91,16 @@ void c_widget::render_children()
 	if (is_active() == false)
 		return ;
 
-	render();
+	_viewport->use();
 
-	if (_viewport->active() == true)
-		_viewport->use();
+	render();
 
 	for (size_t i = 0; i < _childrens.size(); i++)
 	{
 		_childrens[i]->render_children();
 	}
 
-	if (_viewport->active() == true)
-		_viewport->unuse();
+	_viewport->unuse();
 }
 
 void c_widget::update_children()

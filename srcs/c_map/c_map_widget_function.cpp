@@ -20,14 +20,15 @@ void c_map::set_geometry_city_panel()
 	_city_nb_channel_entry->set_geometry(entry_anchor, entry_size);
 	label_anchor.y += (5 + label_size.y);
 
-	panel_size = Vector2(300, 500);//p_area.x / 4, p_area.y / 3);
-	_city_panel->set_geometry(label_anchor, panel_size - label_anchor - 10);
-
+	panel_size = panel_size - label_anchor - 10;//p_area.x / 4, p_area.y / 3);
+	_city_event_panel->set_geometry(label_anchor, panel_size);
+	_event_scroll_bar->set_geometry(Vector2(panel_size.x - 15, 5.0f), Vector2(20.0f, panel_size.y));
 	label_anchor.y += (5 + label_size.y);
 	entry_anchor.y += (5 + label_size.y);
-	entry_size.x /= 2;
+	label_size = Vector2((panel_size.x - 40) / 3, label_size.y);
+	entry_size = Vector2((panel_size.x - label_size.x - 40) / 2 - 10, label_size.y);
 	label_anchor = 5;
-	entry_anchor = label_anchor + Vector2(entry_size.x, 0.0f);
+	entry_anchor = label_anchor + Vector2(label_size.x + 10, 0.0f);
 	Vector2 entry_anchor2 = entry_anchor + Vector2(entry_size.x, 0.0f);
 	for (int i = 0; i < _city_event_text_label.size(); i++)
 	{

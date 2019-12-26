@@ -35,6 +35,7 @@ public:
 
 	void use();
 	void unuse();
+	void reset();
 
 	void set_Color(Color Color);
 

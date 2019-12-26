@@ -1,5 +1,6 @@
 #include "engine.h"
 
+map <string, bool> event_bool_map;
 float max_dist;
 
 bool c_train_engine::can_overtake(size_t index)

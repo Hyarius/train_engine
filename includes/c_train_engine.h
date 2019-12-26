@@ -3,6 +3,8 @@
 
 #include "jgl.h"
 
+extern map <string, bool> event_bool_map;
+
 class c_train_engine
 {
 private:

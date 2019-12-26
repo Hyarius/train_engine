@@ -89,6 +89,8 @@ void c_city::add_event(Event *event)
 		event->name = tmp + "(" + to_string(num) + ")";
 		num++;
 	}
+	if (map_contain<string, bool>(event_bool_map, event->name) == false)
+		event_bool_map[event->name] = true;
 
 	_event_list[event->name] = event;
 }

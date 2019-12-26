@@ -30,10 +30,15 @@ void c_map::create_city_panel()
 
 	_city_event_panel = new c_frame(_city_panel);
 	_city_event_panel->activate();
+
+	_event_scroll_bar = new c_vscroll_bar(_city_event_panel);
+	_event_scroll_bar->activate();
+
 	for (int i = 0; i < 5; i++)
 	{
-		_city_event_text_label.push_back(new c_text_label("Event type" + to_string(i), _city_event_panel));
+		_city_event_text_label.push_back(new c_text_label("Event type :" + to_string(i), _city_event_panel));
 		_city_event_text_label[i]->activate();
+		_city_event_text_label[i]->set_style(text_style::underline);
 
 		_city_nb_event_entry.push_back(new c_value_entry(0.0f, _city_event_panel));
 		_city_nb_event_entry[i]->activate();

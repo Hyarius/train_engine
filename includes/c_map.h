@@ -53,6 +53,7 @@ private:
 	vector<c_text_label *>_city_event_text_label;
 	vector<c_value_entry *>_city_nb_event_entry;
 	vector<c_value_entry *>_city_event_duration_entry;
+	c_vscroll_bar *_event_scroll_bar;
 
 	float _rel_distance;
 	Vector2 _landmark1;
