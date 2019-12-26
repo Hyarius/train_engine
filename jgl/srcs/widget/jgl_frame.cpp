@@ -27,6 +27,7 @@ void c_frame::render()
 {
 	if (is_active() == false)
 		return ;
+
 	_box.render(_viewport);
 }
 

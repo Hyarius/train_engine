@@ -4,7 +4,7 @@
 
 void c_map::render()
 {
-	//_viewport->use();
+	_viewport->use();
 
 	_map->draw(_map_anchor + area() / 2.0f, _map->size() * _zoom, _viewport);
 
@@ -28,6 +28,4 @@ void c_map::render()
 
 	for (size_t i = 0; i < _cities.size(); i++)
 		_cities[i]->draw();
-
-	//_viewport->unuse();
 }

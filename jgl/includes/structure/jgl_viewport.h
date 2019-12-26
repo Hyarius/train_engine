@@ -34,7 +34,6 @@ public:
 	void set_background(Color p_color = Color(50, 50, 50)){_background = p_color;}
 
 	void use();
-	void unuse();
 	void reset();
 
 	void set_Color(Color Color);

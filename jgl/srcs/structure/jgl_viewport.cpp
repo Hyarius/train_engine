@@ -34,7 +34,6 @@ void c_viewport::use()
 	if (_area.x <= 0 || _area.y <= 0)
 		return ;
 
-	SDL_RenderGetViewport(_renderer, &_old_viewport);
 	reset();
 	SDL_Rect rect = {
 			static_cast<int>(_anchor.x), static_cast<int>(_anchor.y),
@@ -43,11 +42,6 @@ void c_viewport::use()
 
 	SDL_RenderSetViewport(_renderer, &rect);
 	set_active(true);
-}
-
-void c_viewport::unuse()
-{
-	SDL_RenderSetViewport(_renderer, &_old_viewport);
 }
 
 void c_viewport::reset()

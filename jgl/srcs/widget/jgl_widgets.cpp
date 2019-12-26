@@ -91,7 +91,10 @@ void c_widget::render_children()
 	if (is_active() == false)
 		return ;
 
-	_viewport->use();
+	if (parent() != nullptr)
+		parent()->viewport()->use();
+	else
+		SDL_RenderSetViewport(g_application->renderer(), nullptr);
 
 	render();
 
@@ -99,8 +102,6 @@ void c_widget::render_children()
 	{
 		_childrens[i]->render_children();
 	}
-
-	_viewport->unuse();
 }
 
 void c_widget::update_children()

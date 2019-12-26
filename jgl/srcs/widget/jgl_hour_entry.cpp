@@ -60,6 +60,7 @@ void c_hour_entry::render()
 {
 	if (is_active() == false)
 		return ;
+		
 	_box.render(_viewport);
 	_label.render(_viewport);
 
