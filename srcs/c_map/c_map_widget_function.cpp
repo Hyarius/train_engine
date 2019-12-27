@@ -90,6 +90,16 @@ void c_map::set_geometry_city_panel()
 	button_size = Vector2(message_size.x / 5, 30.0f);
 	button_pos = message_size - Vector2(message_size.x / 10 + button_size.x, 60.0f);
 	_delete_cancel_button->set_geometry(button_pos, button_size);
+
+	label_anchor = Vector2((message_size.x / 3) / 2, 5.0f);
+	label_size = Vector2((message_size.x / 3) * 2 - 5, 60.0f);
+	_delete_event_label->set_geometry(label_anchor, label_size);
+
+	Vector2 area_anchor = Vector2(0.0f, label_anchor.y + label_size.y) + 5;
+	Vector2 area_area = _delete_event_frame->area() - area_anchor - Vector2(5.0f, 5 + (message_size.y - button_pos.y));
+	_delete_event_scroll_area->set_geometry(area_anchor, area_area);
+
+	_delete_scroll_bar->set_geometry(Vector2(area_area.x - 20, 0.0f) - _delete_event_scroll_area->border(), Vector2(20.0f, area_area.y));
 }
 
 void c_map::set_geometry_rail_panel()
@@ -183,6 +193,11 @@ bool c_map::handle_mouse()
 {
 	_rail_even_overtake_box->set_active(_rail_dual_ways_box->check().state());
 	_rail_odd_overtake_box->set_active(_rail_dual_ways_box->check().state());
+
+	if (create_event_frame()->is_active() == true)
+		return (false);
+	else if (delete_event_frame()->is_active() == true)
+		return (false);
 
 	if (is_pointed(g_mouse->pos) == false)
 		return (false);

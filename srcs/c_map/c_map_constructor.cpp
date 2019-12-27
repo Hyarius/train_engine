@@ -12,6 +12,11 @@ void start_event_creation(Data p_data)
 {
 	c_map *map = (c_map *)(p_data.content[0]);
 
+	if (map->create_event_frame()->is_active() == true)
+		return ;
+	else if (map->delete_event_frame()->is_active() == true)
+		return ;
+
 	map->create_event_frame()->activate();
 }
 
@@ -35,6 +40,11 @@ void start_event_removal(Data p_data)
 {
 	c_map *map = (c_map *)(p_data.content[0]);
 
+	if (map->create_event_frame()->is_active() == true)
+		return ;
+	else if (map->delete_event_frame()->is_active() == true)
+		return ;
+
 	map->delete_event_frame()->activate();
 }
 
@@ -42,7 +52,6 @@ void cancel_removal(Data p_data)
 {
 	c_map *map = (c_map *)(p_data.content[0]);
 
-	cout << "here" << endl;
 	map->delete_event_frame()->desactivate();
 }
 
@@ -50,7 +59,6 @@ void valide_removal(Data p_data)
 {
 	c_map *map = (c_map *)(p_data.content[0]);
 
-	cout << "here" << endl;
 	map->delete_event_frame()->desactivate();
 }
 
@@ -86,6 +94,17 @@ void c_map::add_event_to_list(Event *event)
 	_city_nb_event_entry.push_back(tmp_nbr_entry);
 	_city_event_duration_entry.push_back(tmp_time_entry);
 	_city_event_name_entry.push_back(tmp_text_label);
+}
+
+void c_map::add_event_to_list_delete(Event *event)
+{
+	c_check_box *tmp_text_label;
+	tmp_text_label = new c_check_box(event->name, _delete_event_scroll_area);
+	tmp_text_label->activate();
+	tmp_text_label->set_style(text_style::underline);
+
+	Vector2 area = Vector2((_delete_event_scroll_area.x - 20) / 3, 30);
+	Vector2 pos = Vector2() + 5;
 }
 
 void c_map::add_event_to_cities(Event *event)
@@ -191,11 +210,17 @@ void c_map::create_city_panel()
 	_delete_cancel_button->set_text("this button cancel");
 	_delete_cancel_button->activate();
 
-	// _delete_event_scroll_area = new c_frame(_delete_event_frame);
-	// _delete_event_scroll_area->activate();
-	//
-	// _delete_scroll_bar = new c_vscroll_bar(_delete_event_scroll_area);
-	// _delete_scroll_bar->activate();
+	_delete_event_label = new c_text_label("Select event to delete", _delete_event_frame);
+	_delete_event_label->set_align(alignment::centred);
+	_delete_event_label->set_back(Color(120, 120, 120));
+	_delete_event_label->set_front(Color(160, 160, 160));
+	_delete_event_label->activate();
+
+	_delete_event_scroll_area = new c_frame(_delete_event_frame);
+	_delete_event_scroll_area->activate();
+
+	_delete_scroll_bar = new c_vscroll_bar(_delete_event_scroll_area);
+	_delete_scroll_bar->activate();
 }
 
 void c_map::create_rail_panel()

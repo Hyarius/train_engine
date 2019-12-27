@@ -8,6 +8,8 @@ c_check_box::c_check_box(string p_label, bool p_state, c_widget *p_parent) : c_w
 
 	_check = w_check_component(this, p_state);
 	_check.set_check(Color(70, 150, 255));
+
+	set_geometry(-1, -1);
 }
 
 c_check_box::~c_check_box()

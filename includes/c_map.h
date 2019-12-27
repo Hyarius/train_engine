@@ -72,6 +72,7 @@ private:
 	c_button *_delete_cancel_button;
 	c_frame *_delete_event_scroll_area;
 	c_vscroll_bar *_delete_scroll_bar;
+	c_text_label *_delete_event_label;
 	vector<c_check_box *>_delete_event_selector;
 
 	float _rel_distance;
@@ -193,6 +194,7 @@ public:
 	c_frame *create_event_frame(){return (_create_event_frame);}
 	c_frame *delete_event_frame(){return (_delete_event_frame);}
 	void add_event_to_list(Event *event);
+	void add_event_to_list_delete(Event *event);
 	void add_event_to_cities(Event *event);
 	Event *get_event();
 	void reset_event_list();
