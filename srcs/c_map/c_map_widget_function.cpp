@@ -78,6 +78,18 @@ void c_map::set_geometry_city_panel()
 	_create_event_time_entry->set_geometry(entry_anchor, label_size);
 	label_anchor.y += (5 + label_size.y);
 	entry_anchor.y += (5 + label_size.y);
+
+	message_size = area() / 2;
+	message_pos = anchor() + (area() / 2) / 2;
+	_delete_event_frame->set_geometry(message_pos, message_size);
+
+	button_size = Vector2(message_size.x / 5, 30.0f);
+	button_pos = Vector2(message_size.x / 10, message_size.y - 60);
+	_delete_valid_button->set_geometry(button_pos, button_size);
+
+	button_size = Vector2(message_size.x / 5, 30.0f);
+	button_pos = message_size - Vector2(message_size.x / 10 + button_size.x, 60.0f);
+	_delete_cancel_button->set_geometry(button_pos, button_size);
 }
 
 void c_map::set_geometry_rail_panel()
@@ -141,6 +153,8 @@ bool c_map::handle_keyboard()
 	{
 		if (create_event_frame()->is_active() == true)
 			create_event_frame()->desactivate();
+		else if (delete_event_frame()->is_active() == true)
+			delete_event_frame()->desactivate();
 		else if (_state != e_map_state::normal)
 		{
 			_state = e_map_state::normal;

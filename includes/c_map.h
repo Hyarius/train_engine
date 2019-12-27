@@ -67,6 +67,13 @@ private:
 	c_value_entry *_create_event_nbr_entry;
 	c_value_entry *_create_event_time_entry;
 
+	c_frame *_delete_event_frame;
+	c_button *_delete_valid_button;
+	c_button *_delete_cancel_button;
+	c_frame *_delete_event_scroll_area;
+	c_vscroll_bar *_delete_scroll_bar;
+	vector<c_check_box *>_delete_event_selector;
+
 	float _rel_distance;
 	Vector2 _landmark1;
 	Vector2 _landmark2;
@@ -184,6 +191,7 @@ public:
 	void quit();
 
 	c_frame *create_event_frame(){return (_create_event_frame);}
+	c_frame *delete_event_frame(){return (_delete_event_frame);}
 	void add_event_to_list(Event *event);
 	void add_event_to_cities(Event *event);
 	Event *get_event();

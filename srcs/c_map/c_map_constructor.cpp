@@ -1,6 +1,6 @@
 #include "engine.h"
 
-static void activate_calibatration(Data p_data)
+void activate_calibatration(Data p_data)
 {
 	c_map *map = (c_map *)(p_data.content[0]);
 
@@ -8,27 +8,50 @@ static void activate_calibatration(Data p_data)
 	map->reset_landmark();
 }
 
-static void start_event_creation(Data p_data)
+void start_event_creation(Data p_data)
 {
 	c_map *map = (c_map *)(p_data.content[0]);
 
 	map->create_event_frame()->activate();
 }
 
-static void cancel_creation(Data p_data)
+void cancel_creation(Data p_data)
 {
 	c_map *map = (c_map *)(p_data.content[0]);
 
 	map->create_event_frame()->desactivate();
 }
 
-static void valide_creation(Data p_data)
+void valide_creation(Data p_data)
 {
 	c_map *map = (c_map *)(p_data.content[0]);
 
 	map->add_event_to_cities(map->get_event());
 
 	map->create_event_frame()->desactivate();
+}
+
+void start_event_removal(Data p_data)
+{
+	c_map *map = (c_map *)(p_data.content[0]);
+
+	map->delete_event_frame()->activate();
+}
+
+void cancel_removal(Data p_data)
+{
+	c_map *map = (c_map *)(p_data.content[0]);
+
+	cout << "here" << endl;
+	map->delete_event_frame()->desactivate();
+}
+
+void valide_removal(Data p_data)
+{
+	c_map *map = (c_map *)(p_data.content[0]);
+
+	cout << "here" << endl;
+	map->delete_event_frame()->desactivate();
 }
 
 void c_map::add_event_to_list(Event *event)
@@ -110,17 +133,13 @@ void c_map::create_city_panel()
 	_city_add_event_button = new c_button(start_event_creation, this, _city_panel);
 	_city_add_event_button->set_text("Add event");
 	_city_add_event_button->activate();
-	_city_remove_event_button = new c_button(nullptr, nullptr, _city_panel);
-	_city_remove_event_button->set_text("Remove event");
-	_city_remove_event_button->activate();
-
-	for (int i = 0; i < 0; i++)
-		add_event_to_list(new Event("Default" + to_string(i), 0.0f, 0.0f));
 
 	_create_event_frame = new c_frame(this);
+
 	_create_valid_button = new c_button(valide_creation, this, _create_event_frame);
 	_create_valid_button->set_text("Create");
 	_create_valid_button->activate();
+
 	_create_cancel_button = new c_button(cancel_creation, this, _create_event_frame);
 	_create_cancel_button->set_text("Cancel");
 	_create_cancel_button->activate();
@@ -157,6 +176,26 @@ void c_map::create_city_panel()
 	_create_event_time_entry->set_back(Color(120, 120, 120));
 	_create_event_time_entry->set_front(Color(160, 160, 160));
 	_create_event_time_entry->activate();
+
+	_city_remove_event_button = new c_button(start_event_removal, this, _city_panel);
+	_city_remove_event_button->set_text("Remove event");
+	_city_remove_event_button->activate();
+
+	_delete_event_frame = new c_frame(this);
+
+	_delete_valid_button = new c_button(valide_removal, this, _delete_event_frame);
+	_delete_valid_button->set_text("this button confirm");
+	_delete_valid_button->activate();
+
+	_delete_cancel_button = new c_button(cancel_removal, this, _delete_event_frame);
+	_delete_cancel_button->set_text("this button cancel");
+	_delete_cancel_button->activate();
+
+	// _delete_event_scroll_area = new c_frame(_delete_event_frame);
+	// _delete_event_scroll_area->activate();
+	//
+	// _delete_scroll_bar = new c_vscroll_bar(_delete_event_scroll_area);
+	// _delete_scroll_bar->activate();
 }
 
 void c_map::create_rail_panel()
