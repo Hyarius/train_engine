@@ -50,10 +50,22 @@ private:
 	c_text_label *_city_nb_channel_label;
 	c_value_entry *_city_nb_channel_entry;
 	c_frame *_city_event_panel;
-	vector<c_text_label *>_city_event_text_label;
+	c_button *_city_add_event_button;
+	c_button *_city_remove_event_button;
+	vector<c_text_label *>_city_event_name_entry;
 	vector<c_value_entry *>_city_nb_event_entry;
 	vector<c_value_entry *>_city_event_duration_entry;
 	c_vscroll_bar *_event_scroll_bar;
+
+	c_frame *_create_event_frame;
+	c_button *_create_valid_button;
+	c_button *_create_cancel_button;
+	c_text_label *_create_event_name_label;
+	c_text_label *_create_event_nbr_label;
+	c_text_label *_create_event_time_label;
+	c_text_entry *_create_event_name_entry;
+	c_value_entry *_create_event_nbr_entry;
+	c_value_entry *_create_event_time_entry;
 
 	float _rel_distance;
 	Vector2 _landmark1;
@@ -66,6 +78,7 @@ public:
 
 	void reload_map(string path);
 	void create_city_panel();
+	void create_message_box();
 	void create_rail_panel();
 	void create_calib_button();
 	void create_landmark();
@@ -169,6 +182,13 @@ public:
 	bool handle_keyboard();
 	bool handle_mouse();
 	void quit();
+
+	c_frame *create_event_frame(){return (_create_event_frame);}
+	void add_event_to_list(Event *event);
+	void add_event_to_cities(Event *event);
+	Event *get_event();
+	void reset_event_list();
+	void parse_event_list();
 };
 
 //Saving functions

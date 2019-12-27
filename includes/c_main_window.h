@@ -52,4 +52,6 @@ public:
 	void load_travel_checkbox();
 };
 
+extern c_main_window main_window;
+
 #endif

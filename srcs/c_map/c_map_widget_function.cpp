@@ -3,7 +3,7 @@
 void c_map::set_geometry_city_panel()
 {
 	Vector2 panel_anchor = Vector2(10, 10);
-	Vector2 panel_size = Vector2(300, 500);//p_area.x / 4, p_area.y / 3);
+	Vector2 panel_size = Vector2(area().x / 4, area().y / 2);
 	_city_panel->set_geometry(panel_anchor, panel_size);
 
 	Vector2 label_anchor = Vector2(5, 5);
@@ -11,13 +11,18 @@ void c_map::set_geometry_city_panel()
 	_city_name_label->set_geometry(label_anchor, label_size);
 
 	Vector2 entry_anchor = Vector2(10 + label_size.x, 0.0f) + label_anchor;
-	Vector2 entry_size = Vector2(panel_size.x - label_size.x - 20, label_size.y);//p_area.x / 4, p_area.y / 3);
+	Vector2 entry_size = Vector2(panel_size.x - label_size.x - 25, label_size.y);//p_area.x / 4, p_area.y / 3);
 	_city_name_entry->set_geometry(entry_anchor, entry_size);
 
 	label_anchor.y += (5 + label_size.y);
 	_city_nb_channel_label->set_geometry(label_anchor, label_size);
 	entry_anchor.y += (5 + label_size.y);
 	_city_nb_channel_entry->set_geometry(entry_anchor, entry_size);
+	label_anchor.y += (5 + label_size.y);
+
+	Vector2 button_size = Vector2((panel_size.x - 25) / 2, label_size.y);
+	_city_add_event_button->set_geometry(label_anchor, button_size);
+	_city_remove_event_button->set_geometry(label_anchor + Vector2(button_size.x + 10, 0.0f), button_size);
 	label_anchor.y += (5 + label_size.y);
 
 	panel_size = panel_size - label_anchor - 10;//p_area.x / 4, p_area.y / 3);
@@ -30,9 +35,9 @@ void c_map::set_geometry_city_panel()
 	label_anchor = 5;
 	entry_anchor = label_anchor + Vector2(label_size.x + 10, 0.0f);
 	Vector2 entry_anchor2 = entry_anchor + Vector2(entry_size.x, 0.0f);
-	for (int i = 0; i < _city_event_text_label.size(); i++)
+	for (int i = 0; i < _city_event_name_entry.size(); i++)
 	{
-		_city_event_text_label[i]->set_geometry(label_anchor, label_size);
+		_city_event_name_entry[i]->set_geometry(label_anchor, label_size);
 		_city_nb_event_entry[i]->set_geometry(entry_anchor, entry_size);
 		_city_event_duration_entry[i]->set_geometry(entry_anchor2, entry_size);
 
@@ -40,6 +45,39 @@ void c_map::set_geometry_city_panel()
 		entry_anchor.y += (5 + label_size.y);
 		entry_anchor2.y += (5 + label_size.y);
 	}
+
+	Vector2 button_pos;
+	Vector2 message_size;
+	Vector2 message_pos;
+
+	message_size = area() / 2;
+	message_pos = anchor() + (area() / 2) / 2;
+	_create_event_frame->set_geometry(message_pos, message_size);
+
+	button_size = Vector2(message_size.x / 5, 30.0f);
+	button_pos = Vector2(message_size.x / 10, message_size.y - 60);
+	_create_valid_button->set_geometry(button_pos, button_size);
+
+	button_size = Vector2(message_size.x / 5, 30.0f);
+	button_pos = message_size - Vector2(message_size.x / 10 + button_size.x, 60.0f);
+	_create_cancel_button->set_geometry(button_pos, button_size);
+
+	label_anchor = Vector2((message_size.x / 3) / 2, 50.0f);
+	label_size = Vector2(message_size.x / 3 - 5, 30.0f);
+	entry_anchor = label_anchor + Vector2(label_size.x + 10.0f, 0.0f);
+
+	_create_event_name_label->set_geometry(label_anchor, label_size);
+	_create_event_name_entry->set_geometry(entry_anchor, label_size);
+	label_anchor.y += (5 + label_size.y);
+	entry_anchor.y += (5 + label_size.y);
+	_create_event_nbr_label->set_geometry(label_anchor, label_size);
+	_create_event_nbr_entry->set_geometry(entry_anchor, label_size);
+	label_anchor.y += (5 + label_size.y);
+	entry_anchor.y += (5 + label_size.y);
+	_create_event_time_label->set_geometry(label_anchor, label_size);
+	_create_event_time_entry->set_geometry(entry_anchor, label_size);
+	label_anchor.y += (5 + label_size.y);
+	entry_anchor.y += (5 + label_size.y);
 }
 
 void c_map::set_geometry_rail_panel()
@@ -101,7 +139,9 @@ bool c_map::handle_keyboard()
 {
 	if (g_keyboard->get_key(SDL_SCANCODE_ESCAPE) == 1)
 	{
-		if (_state != e_map_state::normal)
+		if (create_event_frame()->is_active() == true)
+			create_event_frame()->desactivate();
+		else if (_state != e_map_state::normal)
 		{
 			_state = e_map_state::normal;
 			if (_journey != nullptr)

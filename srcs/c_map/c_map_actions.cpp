@@ -1,5 +1,28 @@
 #include "engine.h"
 
+void c_map::reset_event_list()
+{
+	for (size_t i = 0; i < _city_event_name_entry.size(); i++)
+	{
+		delete _city_event_name_entry[i];
+		delete _city_nb_event_entry[i];
+		delete _city_event_duration_entry[i];
+	}
+	_city_nb_event_entry.clear();
+	_city_event_duration_entry.clear();
+	_city_event_name_entry.clear();
+}
+
+void c_map::parse_event_list()
+{
+	for (auto it = _city_selected->event_list().begin();
+		it != _city_selected->event_list().end();
+		it++)
+	{
+		add_event_to_list(it->second);
+	}
+}
+
 void c_map::open_journey(string path)
 {
 	if (_journey != nullptr)
@@ -67,6 +90,8 @@ void c_map::select_city(c_city *city)
 	_city_panel->set_active(!(city == nullptr));
 	if (_city_selected != nullptr)
 	{
+		reset_event_list();
+		parse_event_list();
 		_city_name_entry->entry().set_text(_city_selected->name());
 		_city_nb_channel_entry->entry().set_value(static_cast<float>(_city_selected->nb_channel()));
 	}

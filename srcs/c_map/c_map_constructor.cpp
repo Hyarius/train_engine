@@ -8,6 +8,79 @@ static void activate_calibatration(Data p_data)
 	map->reset_landmark();
 }
 
+static void start_event_creation(Data p_data)
+{
+	c_map *map = (c_map *)(p_data.content[0]);
+
+	map->create_event_frame()->activate();
+}
+
+static void cancel_creation(Data p_data)
+{
+	c_map *map = (c_map *)(p_data.content[0]);
+
+	map->create_event_frame()->desactivate();
+}
+
+static void valide_creation(Data p_data)
+{
+	c_map *map = (c_map *)(p_data.content[0]);
+
+	map->add_event_to_cities(map->get_event());
+
+	map->create_event_frame()->desactivate();
+}
+
+void c_map::add_event_to_list(Event *event)
+{
+	c_text_label *tmp_text_label;
+	tmp_text_label = new c_text_label(event->name, _city_event_panel);
+	tmp_text_label->activate();
+	tmp_text_label->set_style(text_style::underline);
+
+	c_value_entry *tmp_nbr_entry;
+	tmp_nbr_entry = new c_value_entry(event->nbr, _city_event_panel);
+	tmp_nbr_entry->activate();
+	tmp_nbr_entry->set_precision(0);
+	tmp_nbr_entry->set_align(alignment::centred);
+
+	c_value_entry *tmp_time_entry;
+	tmp_time_entry = new c_value_entry(event->time, _city_event_panel);
+	tmp_time_entry->activate();
+	tmp_time_entry->set_precision(0);
+	tmp_time_entry->set_align(alignment::centred);
+
+	Vector2 label_size = Vector2((_city_event_panel->area().x - 40) / 3, 30.0f);
+	Vector2 entry_size = label_size;
+	Vector2 label_anchor = Vector2(0.0f, _city_nb_event_entry.size() * (label_size.y + 5)) + 5;
+	Vector2 entry_anchor = label_anchor + Vector2(label_size.x + 5, 0.0f);
+	Vector2 entry2_anchor = entry_anchor + Vector2(entry_size.x + 5, 0.0f);
+
+	tmp_text_label->set_geometry(label_anchor, label_size);
+	tmp_nbr_entry->set_geometry(entry_anchor, entry_size);
+	tmp_time_entry->set_geometry(entry2_anchor, entry_size);
+
+	_city_nb_event_entry.push_back(tmp_nbr_entry);
+	_city_event_duration_entry.push_back(tmp_time_entry);
+	_city_event_name_entry.push_back(tmp_text_label);
+}
+
+void c_map::add_event_to_cities(Event *event)
+{
+	_city_selected->add_event(event);
+
+	add_event_to_list(event);
+}
+
+Event *c_map::get_event()
+{
+	Event *tmp;
+
+	tmp = new Event(_create_event_name_entry->text(), _create_event_nbr_entry->value(), _create_event_time_entry->value());
+
+	return (tmp);
+}
+
 void c_map::create_city_panel()
 {
 	_city_panel = new c_frame(this);
@@ -34,22 +107,56 @@ void c_map::create_city_panel()
 	_event_scroll_bar = new c_vscroll_bar(_city_event_panel);
 	_event_scroll_bar->activate();
 
-	for (int i = 0; i < 5; i++)
-	{
-		_city_event_text_label.push_back(new c_text_label("Event type :" + to_string(i), _city_event_panel));
-		_city_event_text_label[i]->activate();
-		_city_event_text_label[i]->set_style(text_style::underline);
+	_city_add_event_button = new c_button(start_event_creation, this, _city_panel);
+	_city_add_event_button->set_text("Add event");
+	_city_add_event_button->activate();
+	_city_remove_event_button = new c_button(nullptr, nullptr, _city_panel);
+	_city_remove_event_button->set_text("Remove event");
+	_city_remove_event_button->activate();
 
-		_city_nb_event_entry.push_back(new c_value_entry(0.0f, _city_event_panel));
-		_city_nb_event_entry[i]->activate();
-		_city_nb_event_entry[i]->set_precision(0);
-		_city_nb_event_entry[i]->set_align(alignment::centred);
+	for (int i = 0; i < 0; i++)
+		add_event_to_list(new Event("Default" + to_string(i), 0.0f, 0.0f));
 
-		_city_event_duration_entry.push_back(new c_value_entry(0.0f, _city_event_panel));
-		_city_event_duration_entry[i]->activate();
-		_city_event_duration_entry[i]->set_precision(1);
-		_city_event_duration_entry[i]->set_align(alignment::centred);
-	}
+	_create_event_frame = new c_frame(this);
+	_create_valid_button = new c_button(valide_creation, this, _create_event_frame);
+	_create_valid_button->set_text("Create");
+	_create_valid_button->activate();
+	_create_cancel_button = new c_button(cancel_creation, this, _create_event_frame);
+	_create_cancel_button->set_text("Cancel");
+	_create_cancel_button->activate();
+
+	_create_event_name_label = new c_text_label("New event name :", _create_event_frame);
+	_create_event_name_label->set_align(alignment::right);
+	_create_event_name_label->set_back(Color(120, 120, 120));
+	_create_event_name_label->set_front(Color(160, 160, 160));
+	_create_event_name_label->activate();
+
+	_create_event_nbr_label = new c_text_label("New event number per year :", _create_event_frame);
+	_create_event_nbr_label->set_align(alignment::right);
+	_create_event_nbr_label->set_back(Color(120, 120, 120));
+	_create_event_nbr_label->set_front(Color(160, 160, 160));
+	_create_event_nbr_label->activate();
+
+	_create_event_time_label = new c_text_label("New event average time duration :", _create_event_frame);
+	_create_event_time_label->set_align(alignment::right);
+	_create_event_time_label->set_back(Color(120, 120, 120));
+	_create_event_time_label->set_front(Color(160, 160, 160));
+	_create_event_time_label->activate();
+
+	_create_event_name_entry = new c_text_entry("Default", _create_event_frame);
+	_create_event_name_entry->set_back(Color(120, 120, 120));
+	_create_event_name_entry->set_front(Color(160, 160, 160));
+	_create_event_name_entry->activate();
+
+	_create_event_nbr_entry = new c_value_entry(0.0f, _create_event_frame);
+	_create_event_nbr_entry->set_back(Color(120, 120, 120));
+	_create_event_nbr_entry->set_front(Color(160, 160, 160));
+	_create_event_nbr_entry->activate();
+
+	_create_event_time_entry = new c_value_entry(0.0f, _create_event_frame);
+	_create_event_time_entry->set_back(Color(120, 120, 120));
+	_create_event_time_entry->set_front(Color(160, 160, 160));
+	_create_event_time_entry->activate();
 }
 
 void c_map::create_rail_panel()
