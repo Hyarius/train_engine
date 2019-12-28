@@ -20,6 +20,7 @@ void c_map::parse_event_list()
 		it++)
 	{
 		add_event_to_list(it->second);
+		add_event_to_list_delete(it->second);
 	}
 }
 

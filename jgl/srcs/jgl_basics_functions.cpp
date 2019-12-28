@@ -15,7 +15,11 @@ vector<string>		strsplit(string input, string delim)
 		end = input.find(delim, start);
 		word = input.substr(start, end - start);
 		if (word.size() > 0)
-			tab.push_back(string(word));
+		{
+			cout << "Adding word : " << word << endl;
+			tab.push_back(word);
+			cout << "Word in vector : " << tab.back() << endl;
+		}
 		start = end + delim.size();
 	}
 	return (tab);

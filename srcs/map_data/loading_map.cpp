@@ -24,7 +24,7 @@ void c_map::load_map(string path)
 
 	while (file.eof() == false)
 	{
-		text = get_str(file);
+		text = string(get_str(file));
 
 	//	if (text == "")
 		if (text.size() == 0)
@@ -32,7 +32,12 @@ void c_map::load_map(string path)
 
 		remove_char(text, "\t,\"");
 
+		cout << "Text : " << text << endl;
 		tab = strsplit(text, ":");
+		cout << "Tab : " << endl;
+		for (size_t i = 0; i < tab.size(); i++)
+			cout << (i != 0 ? " - " : "") << tab[i];
+		cout << endl;
 
 		if (tab[0] == "map_image")
 		{

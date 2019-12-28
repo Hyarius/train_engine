@@ -59,6 +59,16 @@ void valide_removal(Data p_data)
 {
 	c_map *map = (c_map *)(p_data.content[0]);
 
+	vector<string> to_delete;
+	for (size_t i = 0; i < map->delete_event_selector().size(); i++)
+		if (map->delete_event_selector(i)->state() == true)
+			to_delete.push_back(string(map->delete_event_selector(i)->text()));
+
+	// cout << "To delete : ";
+	// for (size_t i = 0; i < to_delete.size(); i++)
+	// 	cout << (i != 0 ? " / " : "") << to_delete[i];
+	// cout << endl;
+
 	map->delete_event_frame()->desactivate();
 }
 
@@ -98,13 +108,17 @@ void c_map::add_event_to_list(Event *event)
 
 void c_map::add_event_to_list_delete(Event *event)
 {
-	c_check_box *tmp_text_label;
-	tmp_text_label = new c_check_box(event->name, _delete_event_scroll_area);
-	tmp_text_label->activate();
-	tmp_text_label->set_style(text_style::underline);
+	c_check_box *tmp_check_box;
+	tmp_check_box = new c_check_box(event->name, false, _delete_event_scroll_area);
+	tmp_check_box->activate();
+	tmp_check_box->set_style(text_style::underline);
 
-	Vector2 area = Vector2((_delete_event_scroll_area.x - 20) / 3, 30);
-	Vector2 pos = Vector2() + 5;
+	Vector2 area = Vector2((_delete_event_scroll_area->area().x - 40) / 3, 30.0f);
+	int pos_y = _delete_event_selector.size() / 3;
+	int pos_x = (_delete_event_selector.size() - (pos_y * 3)) % 3;
+	Vector2 pos = Vector2(pos_x * (area.x + 5), pos_y * (area.y + 5)) + 5;
+	tmp_check_box->set_geometry(pos, area);
+	_delete_event_selector.push_back(tmp_check_box);
 }
 
 void c_map::add_event_to_cities(Event *event)
@@ -112,6 +126,7 @@ void c_map::add_event_to_cities(Event *event)
 	_city_selected->add_event(event);
 
 	add_event_to_list(event);
+	add_event_to_list_delete(event);
 }
 
 Event *c_map::get_event()
@@ -203,14 +218,14 @@ void c_map::create_city_panel()
 	_delete_event_frame = new c_frame(this);
 
 	_delete_valid_button = new c_button(valide_removal, this, _delete_event_frame);
-	_delete_valid_button->set_text("this button confirm");
+	_delete_valid_button->set_text("Confirm");
 	_delete_valid_button->activate();
 
 	_delete_cancel_button = new c_button(cancel_removal, this, _delete_event_frame);
-	_delete_cancel_button->set_text("this button cancel");
+	_delete_cancel_button->set_text("Cancel");
 	_delete_cancel_button->activate();
 
-	_delete_event_label = new c_text_label("Select event to delete", _delete_event_frame);
+	_delete_event_label = new c_text_label("Select event(s) to delete", _delete_event_frame);
 	_delete_event_label->set_align(alignment::centred);
 	_delete_event_label->set_back(Color(120, 120, 120));
 	_delete_event_label->set_front(Color(160, 160, 160));

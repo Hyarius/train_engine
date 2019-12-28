@@ -92,7 +92,7 @@ void c_map::set_geometry_city_panel()
 	_delete_cancel_button->set_geometry(button_pos, button_size);
 
 	label_anchor = Vector2((message_size.x / 3) / 2, 5.0f);
-	label_size = Vector2((message_size.x / 3) * 2 - 5, 60.0f);
+	label_size = Vector2((message_size.x / 3) * 2 - 5, 30.0f);
 	_delete_event_label->set_geometry(label_anchor, label_size);
 
 	Vector2 area_anchor = Vector2(0.0f, label_anchor.y + label_size.y) + 5;

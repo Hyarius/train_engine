@@ -7,33 +7,6 @@
 			"name":"Montpellier",
 			"nb channel":"12",
 			"pos":"(2418.120850 / 1936.166016)",
-			"event":[
-				{
-					"name":"Default",
-					"nbr":"0",
-					"time":"0",
-				},
-				{
-					"name":"Default(1)",
-					"nbr":"0",
-					"time":"0",
-				},
-				{
-					"name":"Default(2)",
-					"nbr":"0",
-					"time":"0",
-				},
-				{
-					"name":"Default(3)",
-					"nbr":"0",
-					"time":"0",
-				},
-				{
-					"name":"Malaise voyageur",
-					"nbr":"3500",
-					"time":"30",
-				}
-			],
 		},
 		{
 			"name":"Nimes",
@@ -44,13 +17,6 @@
 			"name":"Avignon",
 			"nb channel":"2",
 			"pos":"(2589.112549 / 1850.689331)",
-			"event":[
-				{
-					"name":"Default",
-					"nbr":"0",
-					"time":"0",
-				}
-			],
 		},
 		{
 			"name":"Marseille",
@@ -96,23 +62,6 @@
 			"name":"Beziers",
 			"nb channel":"2",
 			"pos":"(2299.842285 / 2006.676392)",
-			"event":[
-				{
-					"name":"Default",
-					"nbr":"0",
-					"time":"0",
-				},
-				{
-					"name":"Default(1)",
-					"nbr":"0",
-					"time":"0",
-				},
-				{
-					"name":"Default(2)",
-					"nbr":"0",
-					"time":"0",
-				}
-			],
 		},
 		{
 			"name":"Narbonne",
@@ -143,23 +92,6 @@
 			"name":"Sete",
 			"nb channel":"2",
 			"pos":"(2394.492188 / 1982.959839)",
-			"event":[
-				{
-					"name":"Default",
-					"nbr":"0",
-					"time":"0",
-				},
-				{
-					"name":"Default(1)",
-					"nbr":"0",
-					"time":"0",
-				},
-				{
-					"name":"Default(2)",
-					"nbr":"0",
-					"time":"0",
-				}
-			],
 		},
 		{
 			"name":"Strasbourg",
@@ -230,13 +162,6 @@
 			"name":"City",
 			"nb channel":"2",
 			"pos":"(1863.599976 / 1160.099976)",
-			"event":[
-				{
-					"name":"Default",
-					"nbr":"0",
-					"time":"0",
-				}
-			],
 		}
 	],
 	"milestones":[
