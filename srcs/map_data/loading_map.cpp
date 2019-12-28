@@ -26,23 +26,15 @@ void c_map::load_map(string path)
 	{
 		text = string(get_str(file));
 
-	//	if (text == "")
 		if (text.size() == 0)
 			break;
 
 		remove_char(text, "\t,\"");
 
-		cout << "Text : " << text << endl;
 		tab = strsplit(text, ":");
-		cout << "Tab : " << endl;
-		for (size_t i = 0; i < tab.size(); i++)
-			cout << (i != 0 ? " - " : "") << tab[i];
-		cout << endl;
 
 		if (tab[0] == "map_image")
-		{
 			reload_map(tab[1]);
-		}
 		else if (tab[0] == "landmarks")
 		{
 			tab[1].erase(remove(tab[1].begin(), tab[1].end(), '('), tab[1].end());

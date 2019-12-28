@@ -62,12 +62,10 @@ void valide_removal(Data p_data)
 	vector<string> to_delete;
 	for (size_t i = 0; i < map->delete_event_selector().size(); i++)
 		if (map->delete_event_selector(i)->state() == true)
-			to_delete.push_back(string(map->delete_event_selector(i)->text()));
+			to_delete.insert(to_delete.end(), string(map->delete_event_selector(i)->text()));
 
-	// cout << "To delete : ";
-	// for (size_t i = 0; i < to_delete.size(); i++)
-	// 	cout << (i != 0 ? " / " : "") << to_delete[i];
-	// cout << endl;
+	for (size_t i = 0; i < to_delete.size(); i++)
+		cout << (i != 0 ? " / " : "") << to_delete[i];
 
 	map->delete_event_frame()->desactivate();
 }

@@ -1,5 +1,4 @@
 #include "jgl.h"
-#include <typeinfo>
 
 using namespace std;
 
@@ -10,16 +9,13 @@ vector<string>		strsplit(string input, string delim)
 	int 			start = 0;
 	int 			end = 0;
 
+	tab = vector<string>();
 	while (end != -1)
 	{
 		end = input.find(delim, start);
 		word = input.substr(start, end - start);
 		if (word.size() > 0)
-		{
-			cout << "Adding word : " << word << endl;
-			tab.push_back(word);
-			cout << "Word in vector : " << tab.back() << endl;
-		}
+			tab.insert(tab.end(), word);
 		start = end + delim.size();
 	}
 	return (tab);
