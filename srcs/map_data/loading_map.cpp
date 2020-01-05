@@ -63,7 +63,4 @@ void c_map::load_map(string path)
 		else if (tab[0] == "rails")
 			load_rails(file);
 	}
-
-	for (auto it = event_bool_map.begin(); it != event_bool_map.end(); it++)
-		cout << "Event " << it->first << " : " << (it->second == true ? "true" : "false") << endl;
 }

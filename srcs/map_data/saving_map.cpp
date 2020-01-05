@@ -13,8 +13,7 @@ static void save_city_event(Data data)
 static void save_rail_event(Data data)
 {
 	fstream &file = *(data.acces<fstream *>(0));
-	c_rail *rail = *(data.acces<c_rail **>(1));
-	Event *event = *(data.acces<Event **>(3));
+	Event *event = *(data.acces<Event **>(2));
 
 	json_add_value(file, 5, "name", event->name);
 	json_add_value(file, 5, "nbr", to_string(event->nbr));
@@ -57,9 +56,7 @@ void save_rail(Data data)
 	json_add_value(file, 3, "id_a", to_string(g_map->get_milestone_id(key->first)));
 	json_add_value(file, 3, "id_b", to_string(g_map->get_milestone_id(key->second)));
 
-
-
-	json_add_map(file, 3, "event", rail->event_list(), save_rail_event, data);
+	json_add_map(file, 3, "event", rail->event_list(), save_rail_event, &file);
 }
 
 static void remove_duplicate_rail(map<pair_milestone, c_rail *> &rails)
@@ -86,23 +83,12 @@ void c_map::quit()
 	json_add_value(file, 1, "landmarks", _landmark1.str() + " / " + _landmark2.str());
 	json_add_value(file, 1, "landmark_scale", ftoa(_rel_distance, 3));
 
-	json_add_vector<c_city *>(file, 1, "cities", _cities, &save_city, &file);
-	json_add_vector<c_milestone *>(file, 1, "milestones", _milestones, &save_milestone, &file);
+	json_add_vector(file, 1, "cities", _cities, &save_city, &file);
+	json_add_vector(file, 1, "milestones", _milestones, &save_milestone, &file);
 
 	remove_duplicate_rail(_rails);
 
-	// for (auto it = _rails.begin(); it != _rails.end(); it++)
-	// {
-	// 	for (auto it2 = it->second->event_list().begin(); it2 != it->second->event_list().end(); it2++)
-	// 	{
-	// 		cout << "=================" << endl;
-	// 		cout << "Event name: " << it->second->event_list(it2->first)->name << endl;
-	// 		cout << "Event prob: " << it->second->event_list(it2->first)->nbr << endl;
-	// 		cout << "Event time: " << it->second->event_list(it2->first)->time << endl;
-	// 	}
-	// }
-
-	json_add_map<pair_milestone, c_rail *>(file, 1, "rails", _rails, &save_rail, Data(2, &file, this));
+	json_add_map(file, 1, "rails", _rails, &save_rail, Data(2, &file, this));
 
 	json_add_line(file, 0, "}");
 }

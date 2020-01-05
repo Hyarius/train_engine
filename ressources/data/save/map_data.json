@@ -162,6 +162,28 @@
 			"name":"City",
 			"nb channel":"2",
 			"pos":"(1863.599976 / 1160.099976)",
+			"event":[
+				{
+					"name":"Default",
+					"nbr":"0",
+					"time":"0",
+				},
+				{
+					"name":"Default(1)",
+					"nbr":"0",
+					"time":"0",
+				},
+				{
+					"name":"Default(2)",
+					"nbr":"0",
+					"time":"0",
+				},
+				{
+					"name":"ewqeqweDefault",
+					"nbr":"0",
+					"time":"0",
+				}
+			],
 		}
 	],
 	"milestones":[
@@ -2298,14 +2320,24 @@
 			"id_b":"178",
 			"event":[
 				{
-					"name":"",
+					"name":"Default",
 					"nbr":"0",
-					"time":"-0",
+					"time":"0",
 				},
 				{
-					"name":"",
+					"name":"Default(1)",
 					"nbr":"0",
-					"time":"-0",
+					"time":"0",
+				},
+				{
+					"name":"Default(2)",
+					"nbr":"0",
+					"time":"0",
+				},
+				{
+					"name":"Default(3)",
+					"nbr":"0",
+					"time":"0",
 				}
 			],
 		}

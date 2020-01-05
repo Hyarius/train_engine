@@ -14,6 +14,10 @@ void c_map::reset_event_list()
 		delete _rail_nb_event_entry[i];
 		delete _rail_event_duration_entry[i];
 	}
+	for (size_t i = 0; i < _delete_event_selector.size(); i++)
+	{
+		delete _delete_event_selector[i];
+	}
 	_city_nb_event_entry.clear();
 	_city_event_duration_entry.clear();
 	_city_event_name_entry.clear();
