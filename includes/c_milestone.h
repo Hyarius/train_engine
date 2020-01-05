@@ -4,6 +4,7 @@
 class c_milestone
 {
 private:
+	int _nb;
 	Vector2 _pos;
 	class c_city* _place;
 
@@ -36,9 +37,11 @@ public:
 	vector<class c_milestone*> &links() { return (_links); }
 	class c_milestone*links(size_t index) { return (_links[index]); }
 
+	int nb(){return (_nb);}
 	void draw();
 	void draw_link();
 
+	bool operator == (c_milestone& delta){if (_nb == delta.nb())return (true);return(false);}
 };
 
 namespace std
@@ -47,7 +50,7 @@ namespace std
     {
        const bool operator() (c_milestone& lhs, c_milestone& rhs) const
        {
-           return (lhs.pos() < rhs.pos());
+           return (lhs.nb() < rhs.nb());
        }
     };
 }

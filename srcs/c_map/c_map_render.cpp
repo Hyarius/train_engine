@@ -12,7 +12,6 @@ void c_map::render()
 	if (_landmark2 != Vector2())
 		fill_centred_rectangle(Color(0, 255, 0), convert_to_screen_coord(_landmark2), LANDMARK_SIZE * _zoom, _viewport);
 
-
 	for (size_t i = 0; i < _milestones.size(); i++)
 		_milestones[i]->draw();
 

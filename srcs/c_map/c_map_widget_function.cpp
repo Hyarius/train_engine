@@ -109,14 +109,12 @@ void c_map::set_geometry_city_panel()
 		entry_anchor.y += (5 + label_size.y);
 		entry_anchor2.y += (5 + label_size.y);
 	}
-
-
 }
 
 void c_map::set_geometry_rail_panel()
 {
 	Vector2 panel_anchor = Vector2(10, 10);
-	Vector2 panel_size = Vector2(area().x / 4, area().y / 2);
+	Vector2 panel_size = Vector2(area().x / 4, area().y / 1.5f);
 	_rail_panel->set_geometry(panel_anchor, panel_size);
 
 	Vector2 label_anchor = Vector2(5, 5);
@@ -142,6 +140,33 @@ void c_map::set_geometry_rail_panel()
 
 	label_anchor.y += (5 + label_size.y);
 	_rail_odd_overtake_box->set_geometry(label_anchor, check_size);
+	label_anchor.y += (5 + label_size.y);
+
+	Vector2 button_size = Vector2((panel_size.x - 25) / 2, label_size.y);
+	_rail_add_event_button->set_geometry(label_anchor, button_size);
+	_rail_remove_event_button->set_geometry(label_anchor + Vector2(button_size.x + 10, 0.0f), button_size);
+	label_anchor.y += (5 + label_size.y);
+
+	panel_size = panel_size - label_anchor - 10;//p_area.x / 4, p_area.y / 3);
+	_rail_event_panel->set_geometry(label_anchor, panel_size);
+	_rail_event_scroll_bar->set_geometry(Vector2(panel_size.x - 20, 0.0f) - _rail_event_panel->border(), Vector2(20.0f, panel_size.y));
+	label_anchor.y += (5 + label_size.y);
+	entry_anchor.y += (5 + label_size.y);
+	label_size = Vector2((panel_size.x - 40) / 3, label_size.y);
+	entry_size = Vector2((panel_size.x - label_size.x - 40) / 2 - 10, label_size.y);
+	label_anchor = 5;
+	entry_anchor = label_anchor + Vector2(label_size.x + 10, 0.0f);
+	Vector2 entry_anchor2 = entry_anchor + Vector2(entry_size.x, 0.0f);
+	for (int i = 0; i < _rail_event_name_entry.size(); i++)
+	{
+		_rail_event_name_entry[i]->set_geometry(label_anchor, label_size);
+		_rail_nb_event_entry[i]->set_geometry(entry_anchor, entry_size);
+		_rail_event_duration_entry[i]->set_geometry(entry_anchor2, entry_size);
+
+		label_anchor.y += (5 + label_size.y);
+		entry_anchor.y += (5 + label_size.y);
+		entry_anchor2.y += (5 + label_size.y);
+	}
 }
 
 void c_map::set_geometry_imp(Vector2 p_anchor, Vector2 p_area)
@@ -259,10 +284,11 @@ void c_map::update()
 		_rail_selected[i]->set_cantonal_dist(_rail_canton_entry->entry().value());
 		_rail_selected[i]->set_way_overtake(e_way_type::odd, _rail_odd_overtake_box->check().state());
 		_rail_selected[i]->set_way_overtake(e_way_type::even, _rail_even_overtake_box->check().state());
-		for (size_t i = 0; i < _city_event_name_entry.size(); i++)
+		for (size_t j = 0; j < _rail_event_name_entry.size(); j++)
 		{
-			_rail_selected[i]->event_list(_city_event_name_entry[i]->text())->nbr = _city_nb_event_entry[i]->value();
-			_rail_selected[i]->event_list(_city_event_name_entry[i]->text())->time = _city_event_duration_entry[i]->value();
+			_rail_selected[i]->event_list(_rail_event_name_entry[j]->text())->name = _rail_event_name_entry[j]->text();
+			_rail_selected[i]->event_list(_rail_event_name_entry[j]->text())->nbr = _rail_nb_event_entry[j]->value();
+			_rail_selected[i]->event_list(_rail_event_name_entry[j]->text())->time = _rail_event_duration_entry[j]->value();
 		}
 	}
 	if (_state == e_map_state::travel_definition)

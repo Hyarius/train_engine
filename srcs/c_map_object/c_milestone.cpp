@@ -2,8 +2,12 @@
 
 #define MILE_SIZE 1.5f
 
+int nb_index = 0;
+
 c_milestone::c_milestone(Vector2 p_pos, c_city* p_place)
 {
+	_nb = nb_index;
+	nb_index++;
 	_pos = p_pos;
 	_place = p_place;
 	_distance = FLT_MAX;
@@ -33,21 +37,23 @@ void c_milestone::add_link(c_milestone* to_add)
 	if (to_add == this)
 		return ;
 
-	if (g_map->rails().find(pair_milestone(this, to_add)) != g_map->rails().end() ||
-		g_map->rails().find(pair_milestone(to_add, this)) != g_map->rails().end())
-		return ;
+	// pair_milestone key = pair_milestone(this, to_add);
+	// pair_milestone inv_key = pair_milestone(to_add, this);
+	//
+	// if (map_contain<pair_milestone, c_rail *>(g_map->rails(), key) == true || map_contain<pair_milestone, c_rail *>(g_map->rails(), inv_key) == true)
+	// 	return ;
 
 	vector<c_milestone*>::iterator it;
 
 	it = find(_links.begin(), _links.end(), to_add);
 	if (it == _links.end())
 	{
-		_links.push_back(to_add);
-		to_add->links().push_back(this);
+	 	_links.push_back(to_add);
+	 	to_add->links().push_back(this);
 		auto it2 = g_map->rails().find(pair_milestone(this, to_add));
 		if (it2 == g_map->rails().end())
 		{
-			c_rail *rail = new c_rail(this, to_add);
+	 		c_rail *rail = new c_rail(this, to_add);
 			g_map->rails()[pair_milestone(this, to_add)] = rail;
 			g_map->rails()[pair_milestone(to_add, this)] = rail;
 		}

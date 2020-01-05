@@ -34,7 +34,7 @@ void c_map::control_milestone_creation()
 
 bool c_map::control_normal()
 {
-	if (g_mouse->get_button(mouse_button::left) == mouse_state::down)
+	if (g_mouse->get_button(mouse_button::left) == mouse_state::down && _mile_selected == nullptr)
 	{
 		c_milestone* tmp = check_milestone();
 

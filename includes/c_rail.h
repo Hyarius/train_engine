@@ -72,6 +72,7 @@ private:
 	map<string, Event *> _event_list;
 
 public:
+	c_rail();
 	c_rail(c_milestone *pos1, c_milestone *pos2);
 
 	void add_train(class c_train *p_train);
@@ -81,6 +82,7 @@ public:
 	void add_event(Event *event);
 	Event *event_list(string key){return (_event_list[key]);}
 
+	void set_milestones(c_milestone *pos1, c_milestone *pos2);
 	void set_state(bool p_state){_state = p_state;}
 	void set_way_overtake(e_way_type type, bool state){_ways[static_cast<int>(type)].set_overtake(state);}
 	void set_dual_ways(bool p_dual_ways){_dual_ways = p_dual_ways;}
@@ -105,6 +107,8 @@ public:
 
 	void set_poly(Polygon2D *p_poly){_poly = p_poly;}
 	Polygon2D *poly(){return (_poly);}
+
+	void load_event(fstream &file);
 };
 
 ostream& operator<<(ostream& os, c_rail *rail);

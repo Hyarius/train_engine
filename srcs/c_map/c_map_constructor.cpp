@@ -31,7 +31,10 @@ void valide_creation(Data p_data)
 {
 	c_map *map = (c_map *)(p_data.content[0]);
 
-	map->add_event_to_cities(map->get_event());
+	if (map->rail_selected().size() == 0)
+		map->add_event_to_cities(map->get_event());
+	else
+		map->add_event_to_rail(map->get_event());
 
 	map->create_event_frame()->desactivate();
 }
@@ -66,17 +69,26 @@ void valide_removal(Data p_data)
 
 	for (size_t i = 0; i < to_delete.size(); i++)
 	{
-		map->city_selected()->event_list().erase(to_delete[i]);
+		if (map->rail_selected().size() == 0)
+			map->city_selected()->event_list().erase(to_delete[i]);
+		else
+		{
+			for (size_t j = 0; j < map->rail_selected().size(); j++)
+				map->rail_selected(j)->event_list().erase(to_delete[i]);
+		}
 	}
 
 	map->reset_event_list();
-	map->parse_event_list(map->city_selected()->event_list());
+	if (map->city_selected() == nullptr)
+		map->parse_rail_event_list();
+	else
+		map->parse_city_event_list();
 
 
 	map->delete_event_frame()->desactivate();
 }
 
-void c_map::add_event_to_list(Event *event)
+void c_map::add_city_event_to_list(Event *event)
 {
 	c_text_label *tmp_text_label;
 	tmp_text_label = new c_text_label(event->name, _city_event_panel);
@@ -110,6 +122,40 @@ void c_map::add_event_to_list(Event *event)
 	_city_event_name_entry.push_back(tmp_text_label);
 }
 
+void c_map::add_rail_event_to_list(Event *event)
+{
+	c_text_label *tmp_text_label;
+	tmp_text_label = new c_text_label(event->name, _rail_event_panel);
+	tmp_text_label->activate();
+	tmp_text_label->set_style(text_style::underline);
+
+	c_value_entry *tmp_nbr_entry;
+	tmp_nbr_entry = new c_value_entry(event->nbr, _rail_event_panel);
+	tmp_nbr_entry->activate();
+	tmp_nbr_entry->set_precision(0);
+	tmp_nbr_entry->set_align(alignment::centred);
+
+	c_value_entry *tmp_time_entry;
+	tmp_time_entry = new c_value_entry(event->time, _rail_event_panel);
+	tmp_time_entry->activate();
+	tmp_time_entry->set_precision(0);
+	tmp_time_entry->set_align(alignment::centred);
+
+	Vector2 label_size = Vector2((_rail_event_panel->area().x - 40) / 3, 30.0f);
+	Vector2 entry_size = label_size;
+	Vector2 label_anchor = Vector2(0.0f, _rail_nb_event_entry.size() * (label_size.y + 5)) + 5;
+	Vector2 entry_anchor = label_anchor + Vector2(label_size.x + 5, 0.0f);
+	Vector2 entry2_anchor = entry_anchor + Vector2(entry_size.x + 5, 0.0f);
+
+	tmp_text_label->set_geometry(label_anchor, label_size);
+	tmp_nbr_entry->set_geometry(entry_anchor, entry_size);
+	tmp_time_entry->set_geometry(entry2_anchor, entry_size);
+
+	_rail_nb_event_entry.push_back(tmp_nbr_entry);
+	_rail_event_duration_entry.push_back(tmp_time_entry);
+	_rail_event_name_entry.push_back(tmp_text_label);
+}
+
 void c_map::add_event_to_list_delete(Event *event)
 {
 	c_check_box *tmp_check_box;
@@ -129,7 +175,22 @@ void c_map::add_event_to_cities(Event *event)
 {
 	_city_selected->add_event(event);
 
-	add_event_to_list(event);
+	if (_city_selected == nullptr)
+		add_rail_event_to_list(event);
+	else
+		add_city_event_to_list(event);
+	add_event_to_list_delete(event);
+}
+
+void c_map::add_event_to_rail(Event *event)
+{
+	for (size_t i = 0; i < rail_selected().size(); i++)
+		rail_selected(i)->add_event(event);
+
+		if (_city_selected == nullptr)
+			add_rail_event_to_list(event);
+		else
+			add_city_event_to_list(event);
 	add_event_to_list_delete(event);
 }
 

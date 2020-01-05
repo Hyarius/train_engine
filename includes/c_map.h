@@ -111,6 +111,8 @@ public:
 	c_journey *journey(){return (_journey);}
 	c_tileset *point_image(){return (_point_image);}
 	vector<c_city *> &cities(){return (_cities);}
+	vector<c_rail *> &rail_selected(){return (_rail_selected);}
+	c_rail *rail_selected(size_t i){if (i >= _rail_selected.size())return (nullptr);return (_rail_selected[i]);}
 	c_city *cities(size_t index){return (_cities[index]);}
 	vector<c_milestone *> &milestones(){return (_milestones);}
 	c_milestone *milestones(size_t index){return (_milestones[index]);}
@@ -207,13 +209,19 @@ public:
 	vector<c_check_box *> &delete_event_selector(){return (_delete_event_selector);}
 	c_check_box *delete_event_selector(size_t i){if (i < 0 || i >= _delete_event_selector.size()) return (nullptr);return (_delete_event_selector[i]);}
 
-	void add_event_to_list(Event *event);
+	void add_city_event_to_list(Event *event);
+	void add_rail_event_to_list(Event *event);
 	void add_event_to_list_delete(Event *event);
 	void add_event_to_cities(Event *event);
+	void add_event_to_rail(Event *event);
 	Event *get_event();
 	c_city *city_selected(){return (_city_selected);}
 	void reset_event_list();
 	void parse_event_list(map<string, Event *> &list);
+	void parse_city_event_list();
+	void parse_rail_event_list();
+
+	vector<c_value_entry *> &rail_nb_event_entry(){return (_rail_nb_event_entry);}
 };
 
 //Saving functions

@@ -8,18 +8,35 @@ void c_map::reset_event_list()
 		delete _city_nb_event_entry[i];
 		delete _city_event_duration_entry[i];
 	}
+	for (size_t i = 0; i < _rail_event_name_entry.size(); i++)
+	{
+		delete _rail_event_name_entry[i];
+		delete _rail_nb_event_entry[i];
+		delete _rail_event_duration_entry[i];
+	}
 	_city_nb_event_entry.clear();
 	_city_event_duration_entry.clear();
 	_city_event_name_entry.clear();
+	_rail_nb_event_entry.clear();
+	_rail_event_duration_entry.clear();
+	_rail_event_name_entry.clear();
+	_delete_event_selector.clear();
 }
 
-void c_map::parse_event_list(map<string, Event *> &list)
+void c_map::parse_rail_event_list()
 {
-	for (auto it = list.begin();
-		it != list.end();
-		it++)
+	for (auto it = rail_selected(0)->event_list().begin(); it != rail_selected(0)->event_list().end(); it++)
 	{
-		add_event_to_list(it->second);
+		add_rail_event_to_list(it->second);
+		add_event_to_list_delete(it->second);
+	}
+}
+
+void c_map::parse_city_event_list()
+{
+	for (auto it = city_selected()->event_list().begin(); it != city_selected()->event_list().end(); it++)
+	{
+		add_city_event_to_list(it->second);
 		add_event_to_list_delete(it->second);
 	}
 }
@@ -92,7 +109,7 @@ void c_map::select_city(c_city *city)
 	if (_city_selected != nullptr)
 	{
 		reset_event_list();
-		parse_event_list(city_selected()->event_list());
+		parse_city_event_list();
 		_city_name_entry->entry().set_text(_city_selected->name());
 		_city_nb_channel_entry->entry().set_value(static_cast<float>(_city_selected->nb_channel()));
 	}
@@ -106,27 +123,31 @@ void c_map::select_rail(c_rail *rail)
 		for (size_t i = 0; i < _rail_selected.size(); i++)
 			_rail_selected[i]->set_state(false);
 		_rail_selected.clear();
+		reset_event_list();
 		_rail_dual_ways_box->check().set_state(false);
 		_rail_odd_overtake_box->check().set_state(false);
 		_rail_even_overtake_box->check().set_state(false);
 	}
 
 	_rail_panel->set_active(!(rail == nullptr));
-	if (_rail_selected.size() == 0 && rail != nullptr)
-	{
-		reset_event_list();
-		parse_event_list(rail->event_list());
-		_rail_speed_entry->entry().set_value(rail->speed());
-		_rail_dual_ways_box->check().set_state(rail->dual_ways());
-		_rail_canton_entry->entry().set_value(rail->cantonal_dist());
-		_rail_odd_overtake_box->check().set_state(rail->way_overtake(e_way_type::odd));
-		_rail_even_overtake_box->check().set_state(rail->way_overtake(e_way_type::even));
-	}
+
+	bool tmp = _rail_selected.size() == 0;
 
 	if (rail != nullptr)
 	{
 		_rail_selected.push_back(rail);
 		rail->set_state(true);
+	}
+
+	if (tmp == true && rail != nullptr)
+	{
+		reset_event_list();
+		parse_rail_event_list();
+		_rail_speed_entry->entry().set_value(rail->speed());
+		_rail_dual_ways_box->check().set_state(rail->dual_ways());
+		_rail_canton_entry->entry().set_value(rail->cantonal_dist());
+		_rail_odd_overtake_box->check().set_state(rail->way_overtake(e_way_type::odd));
+		_rail_even_overtake_box->check().set_state(rail->way_overtake(e_way_type::even));
 	}
 
 }
