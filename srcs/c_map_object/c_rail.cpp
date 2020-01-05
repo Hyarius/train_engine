@@ -31,9 +31,6 @@ c_rail::c_rail(c_milestone *pos1, c_milestone *pos2)
 	_poly->add_side(2, 0);
 	_poly->add_side(1, 3);
 	_poly->add_side(3, 2);
-
-	for (int i = 0; i < 5; i++)
-		_event_list.push_back(Event());
 }
 
 vector<c_train *> &c_rail::train_list(e_way_type p_type)
@@ -69,4 +66,35 @@ void c_rail::remove_train(c_train *train)
 		return ;
 
 	_ways[get_way_id(_ways, train)].remove_train(train);
+}
+
+ostream& operator<<(ostream& os, c_rail *rail)
+{
+	os << *rail;
+	return os;
+}
+
+void c_rail::add_event(Event *event)
+{
+	string tmp = event->name;
+	int num = 1;
+	while (map_contain<string, Event *>(_event_list, event->name) == true)
+	{
+		event->name = tmp + "(" + to_string(num) + ")";
+		num++;
+	}
+	if (map_contain<string, bool>(event_bool_map, event->name) == false)
+		event_bool_map[event->name] = true;
+
+	_event_list[event->name] = event;
+}
+
+ostream& operator<<(ostream& os, c_rail &rail)
+{
+	os << "=======" << endl;
+	os << "Rail event " << endl;
+	for (auto i = rail.event_list().begin(); i != rail.event_list().end(); i++)
+		os << i->second->name << endl;
+	os << "=======" << endl;
+	return os;
 }

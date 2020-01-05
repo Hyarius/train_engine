@@ -44,18 +44,27 @@ private:
 	c_check_box *_rail_even_overtake_box;
 	c_check_box *_rail_odd_overtake_box;
 
+	c_frame *_rail_event_panel;
+	c_button *_rail_add_event_button;
+	c_button *_rail_remove_event_button;
+	vector<c_text_label *>_rail_event_name_entry;
+	vector<c_value_entry *>_rail_nb_event_entry;
+	vector<c_value_entry *>_rail_event_duration_entry;
+	c_vscroll_bar *_rail_event_scroll_bar;
+
 	c_frame *_city_panel;
 	c_text_label *_city_name_label;
 	c_text_entry *_city_name_entry;
 	c_text_label *_city_nb_channel_label;
 	c_value_entry *_city_nb_channel_entry;
+
 	c_frame *_city_event_panel;
 	c_button *_city_add_event_button;
 	c_button *_city_remove_event_button;
 	vector<c_text_label *>_city_event_name_entry;
 	vector<c_value_entry *>_city_nb_event_entry;
 	vector<c_value_entry *>_city_event_duration_entry;
-	c_vscroll_bar *_event_scroll_bar;
+	c_vscroll_bar *_city_event_scroll_bar;
 
 	c_frame *_create_event_frame;
 	c_button *_create_valid_button;
@@ -86,6 +95,8 @@ public:
 
 	void reload_map(string path);
 	void create_city_panel();
+	void create_event_menu_panel();
+	void set_geometry_event_menu();
 	void create_message_box();
 	void create_rail_panel();
 	void create_calib_button();
@@ -202,7 +213,7 @@ public:
 	Event *get_event();
 	c_city *city_selected(){return (_city_selected);}
 	void reset_event_list();
-	void parse_event_list();
+	void parse_event_list(map<string, Event *> &list);
 };
 
 //Saving functions

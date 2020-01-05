@@ -69,13 +69,17 @@ private:
 
 	bool _state;
 
-	vector<Event> _event_list;
+	map<string, Event *> _event_list;
 
 public:
 	c_rail(c_milestone *pos1, c_milestone *pos2);
 
 	void add_train(class c_train *p_train);
 	void remove_train(class c_train *p_train);
+
+	map<string, Event *> &event_list(){return (_event_list);}
+	void add_event(Event *event);
+	Event *event_list(string key){return (_event_list[key]);}
 
 	void set_state(bool p_state){_state = p_state;}
 	void set_way_overtake(e_way_type type, bool state){_ways[static_cast<int>(type)].set_overtake(state);}
@@ -102,5 +106,8 @@ public:
 	void set_poly(Polygon2D *p_poly){_poly = p_poly;}
 	Polygon2D *poly(){return (_poly);}
 };
+
+ostream& operator<<(ostream& os, c_rail *rail);
+ostream& operator<<(ostream& os, c_rail &rail);
 
 #endif

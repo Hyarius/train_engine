@@ -13,10 +13,10 @@ void c_map::reset_event_list()
 	_city_event_name_entry.clear();
 }
 
-void c_map::parse_event_list()
+void c_map::parse_event_list(map<string, Event *> &list)
 {
-	for (auto it = _city_selected->event_list().begin();
-		it != _city_selected->event_list().end();
+	for (auto it = list.begin();
+		it != list.end();
 		it++)
 	{
 		add_event_to_list(it->second);
@@ -92,7 +92,7 @@ void c_map::select_city(c_city *city)
 	if (_city_selected != nullptr)
 	{
 		reset_event_list();
-		parse_event_list();
+		parse_event_list(city_selected()->event_list());
 		_city_name_entry->entry().set_text(_city_selected->name());
 		_city_nb_channel_entry->entry().set_value(static_cast<float>(_city_selected->nb_channel()));
 	}
@@ -100,6 +100,7 @@ void c_map::select_city(c_city *city)
 
 void c_map::select_rail(c_rail *rail)
 {
+
 	if (_rail_selected.size() != 0 && g_keyboard->get_key(SDL_SCANCODE_LCTRL) == 0)
 	{
 		for (size_t i = 0; i < _rail_selected.size(); i++)
@@ -110,10 +111,11 @@ void c_map::select_rail(c_rail *rail)
 		_rail_even_overtake_box->check().set_state(false);
 	}
 
-
 	_rail_panel->set_active(!(rail == nullptr));
 	if (_rail_selected.size() == 0 && rail != nullptr)
 	{
+		reset_event_list();
+		parse_event_list(rail->event_list());
 		_rail_speed_entry->entry().set_value(rail->speed());
 		_rail_dual_ways_box->check().set_state(rail->dual_ways());
 		_rail_canton_entry->entry().set_value(rail->cantonal_dist());

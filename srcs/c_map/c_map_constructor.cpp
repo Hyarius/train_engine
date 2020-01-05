@@ -70,7 +70,7 @@ void valide_removal(Data p_data)
 	}
 
 	map->reset_event_list();
-	map->parse_event_list();
+	map->parse_event_list(map->city_selected()->event_list());
 
 
 	map->delete_event_frame()->desactivate();
@@ -142,36 +142,8 @@ Event *c_map::get_event()
 	return (tmp);
 }
 
-void c_map::create_city_panel()
+void c_map::create_event_menu_panel()
 {
-	_city_panel = new c_frame(this);
-
-	_city_name_label = new c_text_label("City name :", _city_panel);
-	_city_name_label->set_style(text_style::underline);
-	_city_name_label->activate();
-
-	_city_name_entry = new c_text_entry("", _city_panel);
-	_city_name_entry->set_align(alignment::centred);
-	_city_name_entry->activate();
-
-	_city_nb_channel_label = new c_text_label("Nb channel :", _city_panel);
-	_city_nb_channel_label->set_style(text_style::underline);
-	_city_nb_channel_label->activate();
-
-	_city_nb_channel_entry = new c_value_entry(2.0f, _city_panel);
-	_city_nb_channel_entry->set_align(alignment::centred);
-	_city_nb_channel_entry->activate();
-
-	_city_event_panel = new c_frame(_city_panel);
-	_city_event_panel->activate();
-
-	_event_scroll_bar = new c_vscroll_bar(_city_event_panel);
-	_event_scroll_bar->activate();
-
-	_city_add_event_button = new c_button(start_event_creation, this, _city_panel);
-	_city_add_event_button->set_text("Add event");
-	_city_add_event_button->activate();
-
 	_create_event_frame = new c_frame(this);
 
 	_create_valid_button = new c_button(valide_creation, this, _create_event_frame);
@@ -215,10 +187,6 @@ void c_map::create_city_panel()
 	_create_event_time_entry->set_front(Color(160, 160, 160));
 	_create_event_time_entry->activate();
 
-	_city_remove_event_button = new c_button(start_event_removal, this, _city_panel);
-	_city_remove_event_button->set_text("Remove event");
-	_city_remove_event_button->activate();
-
 	_delete_event_frame = new c_frame(this);
 
 	_delete_valid_button = new c_button(valide_removal, this, _delete_event_frame);
@@ -240,6 +208,43 @@ void c_map::create_city_panel()
 
 	_delete_scroll_bar = new c_vscroll_bar(_delete_event_scroll_area);
 	_delete_scroll_bar->activate();
+}
+
+void c_map::create_city_panel()
+{
+	_city_panel = new c_frame(this);
+
+	_city_name_label = new c_text_label("City name :", _city_panel);
+	_city_name_label->set_style(text_style::underline);
+	_city_name_label->activate();
+
+	_city_name_entry = new c_text_entry("", _city_panel);
+	_city_name_entry->set_align(alignment::centred);
+	_city_name_entry->activate();
+
+	_city_nb_channel_label = new c_text_label("Nb channel :", _city_panel);
+	_city_nb_channel_label->set_style(text_style::underline);
+	_city_nb_channel_label->activate();
+
+	_city_nb_channel_entry = new c_value_entry(2.0f, _city_panel);
+	_city_nb_channel_entry->set_align(alignment::centred);
+	_city_nb_channel_entry->activate();
+
+	_city_event_panel = new c_frame(_city_panel);
+	_city_event_panel->activate();
+
+	_city_event_scroll_bar = new c_vscroll_bar(_city_event_panel);
+	_city_event_scroll_bar->activate();
+
+	_city_add_event_button = new c_button(start_event_creation, this, _city_panel);
+	_city_add_event_button->set_text("Add event");
+	_city_add_event_button->activate();
+
+	_city_remove_event_button = new c_button(start_event_removal, this, _city_panel);
+	_city_remove_event_button->set_text("Remove event");
+	_city_remove_event_button->activate();
+
+
 }
 
 void c_map::create_rail_panel()
@@ -273,6 +278,20 @@ void c_map::create_rail_panel()
 
 	_rail_odd_overtake_box = new c_check_box("Odd overtake way :", false, _rail_panel);
 	_rail_odd_overtake_box->set_style(text_style::normal);
+
+	_rail_event_panel = new c_frame(_rail_panel);
+	_rail_event_panel->activate();
+
+	_rail_event_scroll_bar = new c_vscroll_bar(_rail_event_panel);
+	_rail_event_scroll_bar->activate();
+
+	_rail_add_event_button = new c_button(start_event_creation, this, _rail_panel);
+	_rail_add_event_button->set_text("Add event");
+	_rail_add_event_button->activate();
+
+	_rail_remove_event_button = new c_button(start_event_removal, this, _rail_panel);
+	_rail_remove_event_button->set_text("Remove event");
+	_rail_remove_event_button->activate();
 }
 
 void c_map::create_calib_button()
@@ -313,6 +332,8 @@ c_map::c_map(string path, c_widget *parent) : c_widget(parent)
 
 	create_city_panel();
 	create_rail_panel();
+
+	create_event_menu_panel();
 
 	create_landmark();
 	create_calib_button();
