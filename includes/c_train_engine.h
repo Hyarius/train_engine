@@ -3,7 +3,8 @@
 
 #include "jgl.h"
 
-extern map <string, bool> event_bool_map;
+extern map <string, bool> event_city_bool_map;
+extern map <string, bool> event_rail_bool_map;
 
 class c_train_engine
 {
@@ -41,7 +42,10 @@ public:
 
 	void move_train(size_t index, float distance);
 
+	void calc_event(size_t index, float time);
+
 	float calc_waiting_time(size_t index, float time_left);
+	float calc_event_time(size_t index, float time_left);
 	float calc_run_time(size_t index, float time_left);
 	float calc_accelerate_time(size_t index, float time_left, float target_speed);
 	float calc_decelerate_time(size_t index, float time_left, float target_speed);

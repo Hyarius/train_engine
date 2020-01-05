@@ -12,7 +12,8 @@ enum class e_train_state
 	slowing = 4,
 	stopping = 5,
 	braking = 6,
-	waiting = 7
+	waiting = 7,
+	event = 8
 };
 
 class c_train
@@ -35,6 +36,7 @@ private:
 	float _distance;
 	int _departure_time;
 	float _waiting_time;
+	float _event_waiting_time;
 	c_rail *_actual_rail;
 	size_t _actual_channel;
 
@@ -63,7 +65,9 @@ public:
 	void set_actual_rail(c_rail *p_actual_rail){_actual_rail = p_actual_rail;}
 	void set_index(size_t p_index){_index = p_index;}
 	void set_waiting_time(float p_waiting_time){_waiting_time = p_waiting_time;}
+	void set_event_waiting_time(float p_event_waiting_time){_event_waiting_time = p_event_waiting_time;}
 	void change_waiting_time(float delta){_waiting_time += delta;}
+	void change_event_waiting_time(float delta){_event_waiting_time += delta;_waiting_time += delta;}
 	void set_num(size_t p_num) { _num = p_num; }
 	void set_actual_channel(size_t p_actual_channel) { _actual_channel = p_actual_channel; }
 
@@ -74,6 +78,7 @@ public:
 	c_city *place(){return (_place);}
 	size_t num() { return (_num); }
 	float waiting_time(){return (_waiting_time);}
+	float event_waiting_time(){return (_event_waiting_time);}
 	float speed_lost(float time){return ((convert_m_per_s2_to_km_per_h2(-_deceleration) * convert_minute_to_hour(time)));}
 	float speed_gain(float time){return ((convert_m_per_s2_to_km_per_h2(_acceleration) * convert_minute_to_hour(time)));}
 	c_journey *journey(){return (_journey);}
@@ -107,6 +112,10 @@ public:
 				return ("  Waiting ");
 			case e_train_state::slowing :
 				return ("  Slowing ");
+			case e_train_state::braking :
+				return ("  Braking ");
+			case e_train_state::event :
+				return ("   Event  ");
 			default :
 				return ("   Error  ");
 		}

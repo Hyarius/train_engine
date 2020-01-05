@@ -102,11 +102,25 @@
 			"name":"Colmar",
 			"nb channel":"1",
 			"pos":"(2984.772461 / 801.400696)",
+			"event":[
+				{
+					"name":"Base test",
+					"nbr":"60000",
+					"time":"1",
+				}
+			],
 		},
 		{
 			"name":"Mulhouse",
 			"nb channel":"1",
 			"pos":"(2985.708740 / 885.496521)",
+			"event":[
+				{
+					"name":"Event sur",
+					"nbr":"31536000",
+					"time":"0",
+				}
+			],
 		},
 		{
 			"name":"St louis",
@@ -117,46 +131,109 @@
 			"name":"Staffelden",
 			"nb channel":"1",
 			"pos":"(2975.956055 / 866.129700)",
+			"event":[
+				{
+					"name":"Base test",
+					"nbr":"60000",
+					"time":"1",
+				}
+			],
 		},
 		{
 			"name":"Raedersheim",
 			"nb channel":"1",
 			"pos":"(2975.283203 / 854.801880)",
+			"event":[
+				{
+					"name":"Base test",
+					"nbr":"60000",
+					"time":"1",
+				}
+			],
 		},
 		{
 			"name":"Merxheim",
 			"nb channel":"2",
 			"pos":"(2977.750732 / 847.623901)",
+			"event":[
+				{
+					"name":"Base test",
+					"nbr":"60000",
+					"time":"1",
+				}
+			],
 		},
 		{
 			"name":"Rouffach",
 			"nb channel":"1",
 			"pos":"(2980.512695 / 832.314270)",
+			"event":[
+				{
+					"name":"Base test",
+					"nbr":"60000",
+					"time":"1",
+				}
+			],
 		},
 		{
 			"name":"Heerlisheim-pres-colmar",
 			"nb channel":"1",
 			"pos":"(2982.323730 / 817.618408)",
+			"event":[
+				{
+					"name":"Base test",
+					"nbr":"60000",
+					"time":"1",
+				}
+			],
 		},
 		{
 			"name":"Salestat",
 			"nb channel":"1",
 			"pos":"(2999.674316 / 752.546875)",
+			"event":[
+				{
+					"name":"Base test",
+					"nbr":"60000",
+					"time":"1",
+				}
+			],
 		},
 		{
 			"name":"Benfeld",
 			"nb channel":"1",
 			"pos":"(3020.961914 / 724.741272)",
+			"event":[
+				{
+					"name":"Base test",
+					"nbr":"60000",
+					"time":"1",
+				}
+			],
 		},
 		{
 			"name":"Erstein",
 			"nb channel":"1",
 			"pos":"(3028.958984 / 709.790527)",
+			"event":[
+				{
+					"name":"Base test",
+					"nbr":"60000",
+					"time":"1",
+				}
+			],
 		},
 		{
 			"name":"Bollwiller",
 			"nb channel":"1",
 			"pos":"(2975.168457 / 860.435120)",
+			"event":[
+				{
+					"name":"Base test",
+					"nbr":"60000",
+					"time":"1",
+				}
+			],
 		},
 		{
 			"name":"City",

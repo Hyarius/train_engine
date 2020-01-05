@@ -1,0 +1,122 @@
+{
+	"train speed":"160",
+	"train acceleration":"0.750",
+	"train deceleration":"0.750",
+	"destination":[
+		{
+			"id":"152",
+			"departure time":"00h00",
+			"Waiting time":"0",
+		},
+		{
+			"id":"157",
+			"departure time":"",
+			"Waiting time":"",
+		},
+		{
+			"id":"168",
+			"departure time":"",
+			"Waiting time":"",
+		},
+		{
+			"id":"163",
+			"departure time":"00h00",
+			"Waiting time":"10",
+		},
+		{
+			"id":"176",
+			"departure time":"00h00",
+			"Waiting time":"10",
+		},
+		{
+			"id":"164",
+			"departure time":"00h00",
+			"Waiting time":"10",
+		},
+		{
+			"id":"165",
+			"departure time":"00h00",
+			"Waiting time":"10",
+		},
+		{
+			"id":"169",
+			"departure time":"",
+			"Waiting time":"",
+		},
+		{
+			"id":"166",
+			"departure time":"00h00",
+			"Waiting time":"10",
+		},
+		{
+			"id":"170",
+			"departure time":"",
+			"Waiting time":"",
+		},
+		{
+			"id":"167",
+			"departure time":"00h00",
+			"Waiting time":"10",
+		},
+		{
+			"id":"158",
+			"departure time":"",
+			"Waiting time":"",
+		},
+		{
+			"id":"151",
+			"departure time":"00h00",
+			"Waiting time":"10",
+		},
+		{
+			"id":"159",
+			"departure time":"",
+			"Waiting time":"",
+		},
+		{
+			"id":"160",
+			"departure time":"",
+			"Waiting time":"",
+		},
+		{
+			"id":"171",
+			"departure time":"00h00",
+			"Waiting time":"10",
+		},
+		{
+			"id":"172",
+			"departure time":"",
+			"Waiting time":"",
+		},
+		{
+			"id":"161",
+			"departure time":"",
+			"Waiting time":"",
+		},
+		{
+			"id":"173",
+			"departure time":"00h00",
+			"Waiting time":"10",
+		},
+		{
+			"id":"175",
+			"departure time":"",
+			"Waiting time":"",
+		},
+		{
+			"id":"174",
+			"departure time":"00h00",
+			"Waiting time":"10",
+		},
+		{
+			"id":"162",
+			"departure time":"",
+			"Waiting time":"",
+		},
+		{
+			"id":"150",
+			"departure time":"00h00",
+			"Waiting time":"0",
+		}
+	],
+}

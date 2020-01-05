@@ -1,6 +1,7 @@
 #include "engine.h"
 
-map <string, bool> event_bool_map;
+map <string, bool> event_city_bool_map;
+map <string, bool> event_rail_bool_map;
 float max_dist;
 
 bool c_train_engine::can_overtake(size_t index)
@@ -73,7 +74,7 @@ void c_train_engine::iterate(bool perturbation)
 			while (time_left > 0.0001f && train->actual_rail() != nullptr)
 			{
 				c_rail *rail = train->actual_rail();
-				_plot->add_point(_time + (_time_delta - time_left), _distance[i], i);
+				//_plot->add_point(_time + (_time_delta - time_left), _distance[i], i);
 				train->calc_distance_per_tic(time_left);
 				draw_train_state(i);
 				if (train->state() == e_train_state::slowing)
@@ -123,10 +124,18 @@ void c_train_engine::iterate(bool perturbation)
 					if (train->departure_time() <= _time)
 						if (train->waiting_time() <= 0.0f)
 						{
-							if (train->index() != 0)
-								train->journey()->output_file() << "             -----    The train start again    -----" << endl;
+							// if (train->index() != 0)
+							// 	train->journey()->output_file() << "             -----    The train start again    -----" << endl;
 							train->start();
 						}
+				}
+				else if (train->state() == e_train_state::event)
+				{
+					delta = calc_event_time(i, time_left);
+					train->change_event_waiting_time(-delta);
+					if (train->event_waiting_time() <= 0.0f)
+						train->set_state(e_train_state::waiting);
+					train->decelerate(delta);
 				}
 				else if (train->state() == e_train_state::stopping)
 				{
@@ -138,7 +147,7 @@ void c_train_engine::iterate(bool perturbation)
 					delta = calc_run_time(i, time_left);
 					train->run(delta);
 				}
-
+				calc_event(i, delta);
 				move_train(i, ((old_speed + train->speed()) / 2.0f) * convert_minute_to_hour(delta));
 
 				time_left -= delta;
@@ -188,7 +197,7 @@ void c_train_engine::run()
 	while (_arrived_train < _journey_list.size())
 		iterate(true);
 
-	create_journey_plot_output(_plot, old_time, _time, max_dist);
+	//create_journey_plot_output(_plot, old_time, _time, max_dist);
 
 	for (size_t i = 0; i < _journey_list.size(); i++)
 	{

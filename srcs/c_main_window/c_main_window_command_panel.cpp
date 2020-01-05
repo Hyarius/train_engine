@@ -4,17 +4,20 @@ static void calc_journeys(Data data)
 {
 	c_main_window *win = data.acces<c_main_window *>(0);
 
-	for (size_t i = 0; i < win->travel_name.size(); i++)
+	for (int i = 0; i < 100; i++)
 	{
-		if (win->travel_name[i]->check().state() == true)
-			win->engine->add_journey(load_journey("ressources/data/path/" + win->travel_name[i]->label().text() + ".json"));
+		for (size_t i = 0; i < win->travel_name.size(); i++)
+		{
+			if (win->travel_name[i]->check().state() == true)
+				win->engine->add_journey(load_journey("ressources/data/path/" + win->travel_name[i]->label().text() + ".json"));
+		}
+
+		win->map->calc_distance_ratio();
+
+		win->engine->run();
+		cout << "DONE CALCULATION !" << endl;
+		win->engine->clean();
 	}
-
-	win->map->calc_distance_ratio();
-
-	win->engine->run();
-
-	win->engine->clean();
 }
 
 void c_main_window::create_command_panel()
@@ -22,7 +25,7 @@ void c_main_window::create_command_panel()
 	engine = new c_train_engine();
 
 	engine->set_time(0, 0);
-	engine->set_time_delta(10);
+	engine->set_time_delta(60);
 
 	int border = command_box->box().border();
 	Vector2 button_pos = border * 1;

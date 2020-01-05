@@ -11,7 +11,7 @@ void c_train_engine::add_journey(c_journey *new_journey)
 {
 	if (new_journey == nullptr)
 		return ;
-		
+
 	_journey_list.push_back(new_journey);
 }
 

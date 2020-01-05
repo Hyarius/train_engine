@@ -1,6 +1,8 @@
 #ifndef EVENT_H
 #define EVENT_H
 
+#define SEC_PER_YEAR 31536000
+
 struct Event
 {
 	string name;
