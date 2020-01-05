@@ -164,16 +164,6 @@
 			"pos":"(1863.599976 / 1160.099976)",
 			"event":[
 				{
-					"name":"Default",
-					"nbr":"0",
-					"time":"0",
-				},
-				{
-					"name":"Default(1)",
-					"nbr":"0",
-					"time":"0",
-				},
-				{
 					"name":"Default(2)",
 					"nbr":"0",
 					"time":"0",

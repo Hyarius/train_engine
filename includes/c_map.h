@@ -200,6 +200,7 @@ public:
 	void add_event_to_list_delete(Event *event);
 	void add_event_to_cities(Event *event);
 	Event *get_event();
+	c_city *city_selected(){return (_city_selected);}
 	void reset_event_list();
 	void parse_event_list();
 };

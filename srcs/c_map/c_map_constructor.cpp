@@ -65,7 +65,13 @@ void valide_removal(Data p_data)
 			to_delete.insert(to_delete.end(), string(map->delete_event_selector(i)->text()));
 
 	for (size_t i = 0; i < to_delete.size(); i++)
-		cout << (i != 0 ? " / " : "") << to_delete[i];
+	{
+		map->city_selected()->event_list().erase(to_delete[i]);
+	}
+
+	map->reset_event_list();
+	map->parse_event_list();
+
 
 	map->delete_event_frame()->desactivate();
 }
