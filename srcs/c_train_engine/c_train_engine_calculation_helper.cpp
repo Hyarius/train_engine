@@ -210,9 +210,6 @@ float c_train_engine::calc_waiting_time(size_t index, float time_left)
 	else
 		result = train->waiting_time();
 
-	// if (train->place() != nullptr)
-	// 	cout << train->place() << endl;
-
 	return (result);
 }
 
@@ -223,9 +220,13 @@ float c_train_engine::calc_event_time(size_t index, float time_left)
 	c_train *train = _journey_list[index]->train();
 
 	if (time_left <= train->event_waiting_time())
+	{
 		result = time_left;
+	}
 	else
+	{
 		result = train->event_waiting_time();
+	}
 
 	if (train->speed() > 0)
 	{
@@ -237,6 +238,7 @@ float c_train_engine::calc_event_time(size_t index, float time_left)
 		else
 			result = time_left;
 	}
+
 
 	return (result);
 }

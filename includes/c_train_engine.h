@@ -9,11 +9,16 @@ extern map <string, bool> event_rail_bool_map;
 class c_train_engine
 {
 private:
+	int _simulation_index;
+	bool _plot_bool;
+	bool _text_bool;
+
 	c_plot *_plot;
 	size_t _arrived_train;
 
 	float _time;
 	vector<float> _time_travel;
+	vector<float> _base_time_travel;
 	float _time_delta;
 
 	vector<c_journey *> _journey_list;
@@ -25,14 +30,14 @@ public:
 	c_train_engine();
 
 	void clean();
-	void run();
+	void run(string result_path, int simulation_index, bool plot_bool, bool text_bool);
 	void iterate(bool perturbation);
 
 	void create_graphic_output();
 
 	void draw_train_state(size_t i);
-	size_t draw_train_information(size_t i);
-	void draw_train_position(size_t i);
+	string draw_train_information(size_t i);
+	string draw_train_position(size_t i);
 
 	float calc_distance_left(size_t index);
 	float calc_next_speed(size_t index);
@@ -61,6 +66,8 @@ public:
 	float time_delta(){return (_time_delta);}
 	vector<float> &distance(){return (_distance);}
 	vector<float> &arrived_hour(){return (_arrived_hour);}
+	vector<float> &time_travel(){return (_time_travel);}
+	vector<float> &base_time_travel(){return (_base_time_travel);}
 };
 
 #endif

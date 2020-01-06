@@ -27,7 +27,10 @@ public:
 	// - Command
 	c_train_engine *engine;
 	c_button *start_button;
-	c_hour_entry *hour_entry;
+	c_text_label *nb_value_label;
+	c_value_entry *nb_value_entry;
+	c_check_box *graph_result_check;
+	c_check_box *text_result_check;
 
 	// - Config
 

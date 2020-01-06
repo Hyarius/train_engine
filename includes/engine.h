@@ -3,6 +3,12 @@
 
 #include "jgl.h"
 
+#include <iostream>
+#include <fstream>
+#include <sys/stat.h>
+#include <stdlib.h>
+#include <stdio.h>
+
 #include "event.h"
 #include "c_city.h"
 #include "c_milestone.h"

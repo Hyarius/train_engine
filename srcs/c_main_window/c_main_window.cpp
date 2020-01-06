@@ -28,7 +28,7 @@ void c_main_window::create_box()
 	pos[1] = pos[0] + Vector2(0.0f, size[0].y + 5);
 	size[1] = Vector2(size[0].x, g_application->size().y - 5 - pos[1].y);
 	pos[2] = pos[0] + Vector2(size[0].x + 5, 0.0f);
-	size[2] = Vector2(g_application->size().x - 5 - pos[2].x, 0.1f * g_application->size().y);
+	size[2] = Vector2(g_application->size().x - 5 - pos[2].x, 0.2f * g_application->size().y);
 	pos[3] = pos[2] + Vector2(0.0f, size[2].y + 5);
 	size[3] = Vector2(size[2].x, 0.2f * g_application->size().y);
 	pos[4] = pos[3] + Vector2(0.0f, size[3].y + 5);

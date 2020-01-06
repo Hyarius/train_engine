@@ -6,6 +6,8 @@ typedef pair<int, int> pair_int;
 class c_journey
 {
 private:
+	bool _exist;
+	string _output_text;
 	fstream _output_file;
 
 	class c_train *_train;
@@ -21,14 +23,17 @@ public:
 
 	~c_journey();
 
+	string &output_text(){return (_output_text);}
 	string name();
-	void create_output_file();
-	void close_output_file();
+	void create_output_file(string result_path, int simulation_index);
+	void print_output_file();
 	fstream &output_file(){return (_output_file);}
 
 	void set_train(c_train *p_train){_train = p_train;}
 
 	c_train *train(){return (_train);}
+	void set_exist(bool p_exist){_exist = p_exist;}
+	bool exist(){return (_exist);}
 	vector<c_milestone *> &path(){return (_path);}
 	vector<c_hour_entry *> &hour_panel(){return (_hour_panel);}
 	vector<c_frame *> &wait_panel(){return (_wait_panel);}
@@ -53,7 +58,7 @@ public:
 };
 
 c_journey *load_journey(string path);
-void create_journey_output_file(c_journey *journey, float time);
-void create_journey_plot_output(c_plot *plot, float start_time, float end_time, float max_dist);
+void create_journey_output_file(string result_path, int simulation_index, c_journey *journey, float time);
+void create_journey_plot_output(string result_path, int simulation_index, c_plot *plot, float start_time, float end_time, float max_dist);
 
 #endif

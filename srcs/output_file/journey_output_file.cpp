@@ -1,12 +1,12 @@
 #include "engine.h"
 
-void create_journey_output_file(c_journey *journey, float time)
+void create_journey_output_file(string result_path, int simulation_index, c_journey *journey, float time)
 {
 	string name = journey->name();
 	string num = ftoa(journey->train()->num(), 0);
 	ostream &file = journey->output_file();
 
-	journey->create_output_file();
+	journey->create_output_file(result_path, simulation_index);
 
 	file << "Calculation for the travel [" << name << "] with the train num [" << num << "]" << endl;
 	file << convert_hour_to_string(time) << " : ";
@@ -17,7 +17,7 @@ void create_journey_output_file(c_journey *journey, float time)
 	file << endl;
 }
 
-void create_journey_plot_output(c_plot *plot, float start_time, float end_time, float max_dist)
+void create_journey_plot_output(string result_path, int simulation_index, c_plot *plot, float start_time, float end_time, float max_dist)
 {
 	plot->set_ordinate_min(-10.0f);
 	plot->set_absciss_min(start_time - 15.0f);
@@ -33,5 +33,5 @@ void create_journey_plot_output(c_plot *plot, float start_time, float end_time, 
 	plot->set_size(Vector2(plot->absciss().range() * 10, 1200.0f));
 
 	plot->initialize();
-	plot->save("output.png");
+	plot->save(result_path + "/output (" + to_string(simulation_index) + ").png");
 }

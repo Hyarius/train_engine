@@ -187,12 +187,13 @@ void c_journey::calc_distance()
 	}
 }
 
-void c_journey::create_output_file()
+void c_journey::create_output_file(string result_path, int simulation_index)
 {
-	_output_file.open("ressources/result/" + name(), ios_base::out);
+	_output_file.open(result_path + "/" + name() + "(" + to_string(simulation_index) + ")", ios_base::out);
 }
 
-void c_journey::close_output_file()
+void c_journey::print_output_file()
 {
+	_output_file << _output_text;
 	_output_file.close();
 }

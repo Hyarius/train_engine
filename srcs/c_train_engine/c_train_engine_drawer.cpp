@@ -1,6 +1,6 @@
 #include "engine.h"
 
-size_t c_train_engine::draw_train_information(size_t i)
+string c_train_engine::draw_train_information(size_t i)
 {
 	c_train* train = _journey_list[i]->train();
 	string text;
@@ -11,15 +11,15 @@ size_t c_train_engine::draw_train_information(size_t i)
 	text.append(" - [" + normalize_float(_distance[i], 1, '0', 7) + " km]");
 	text.append(" - [" + normalize_float(calc_distance_left(i), 3, '0', 7) + " km]");
 	text.append(" --> ");
-	train->journey()->output_file() << text;
 
-	return (text.size());
+	return (text);
 }
 
-void c_train_engine::draw_train_position(size_t i)
+string c_train_engine::draw_train_position(size_t i)
 {
 	c_train* train = _journey_list[i]->train();
 	string text;
+	string tmp_text;
 
 	for (size_t j = 0; j < train->journey()->path().size() - 1; j++)
 	{
@@ -28,21 +28,28 @@ void c_train_engine::draw_train_position(size_t i)
 
 		if (t == 1)
 			if (rail->train_list(e_way_type::even).size() != 0)
-				text = normalize_string(to_string(rail->train_list(e_way_type::even)[0]->num()), '0', 2);
+				tmp_text = normalize_string(to_string(rail->train_list(e_way_type::even)[0]->num()), '0', 2);
 			else
-				text = normalize_string(to_string(rail->train_list(e_way_type::odd)[0]->num()), '0', 2);
+				tmp_text = normalize_string(to_string(rail->train_list(e_way_type::odd)[0]->num()), '0', 2);
 		else
-			text = (t == 0 ? "  " : "MM");
+			tmp_text = (t == 0 ? "  " : "MM");
 
-		train->journey()->output_file() << (j != 0 ? "-" : "") <<  "[" << text << "]";
+		text += (j != 0 ? "-" : "");
+		text += "[";
+		text += tmp_text;
+		text += "]";
 	}
 
-	train->journey()->output_file() << endl;
+	return (text);
 }
 
 void c_train_engine::draw_train_state(size_t i)
 {
 	c_train* train = _journey_list[i]->train();
-	size_t len = draw_train_information(i);
-	draw_train_position(i);
+	string text = draw_train_information(i);
+	_journey_list[i]->output_text() += text;
+	//train->journey()->output_file() << text;
+	text = draw_train_position(i);
+	_journey_list[i]->output_text() += text;
+	_journey_list[i]->output_text() += "\n";
 }

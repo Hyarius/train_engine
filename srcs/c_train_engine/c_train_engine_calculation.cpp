@@ -74,13 +74,20 @@ void c_train_engine::iterate(bool perturbation)
 			while (time_left > 0.0001f && train->actual_rail() != nullptr)
 			{
 				c_rail *rail = train->actual_rail();
-				//_plot->add_point(_time + (_time_delta - time_left), _distance[i], i);
+				if (_plot_bool == true)
+					_plot->add_point(_time + (_time_delta - time_left), _distance[i], i);
 				train->calc_distance_per_tic(time_left);
-				draw_train_state(i);
+				if (_text_bool == true)
+					draw_train_state(i);
 				if (train->state() == e_train_state::slowing)
 					train->set_state(e_train_state::normal);
-				if (train->state() == e_train_state::waiting && train->waiting_time() <= 0.0f)
+				if (train->state() == e_train_state::waiting && train->departure_time() <= _time && train->waiting_time() <= 0.0f)
+				{
+					if (train->index() != 0)
+						if (_text_bool == true)
+							train->journey()->output_text() += "             -----    The train start again    -----\n";
 					train->start();
+				}
 				if (train->state() == e_train_state::starting && train->departure_time() <= _time)
 					train->set_state(e_train_state::speed_up);
 				if (train->speed() < rail->speed() && train->speed() < train->max_speed() && train->state() == e_train_state::normal)
@@ -121,21 +128,20 @@ void c_train_engine::iterate(bool perturbation)
 				{
 					delta = calc_waiting_time(i, time_left);
 					train->change_waiting_time(-delta);
-					if (train->departure_time() <= _time)
-						if (train->waiting_time() <= 0.0f)
-						{
-							// if (train->index() != 0)
-							// 	train->journey()->output_file() << "             -----    The train start again    -----" << endl;
-							train->start();
-						}
 				}
 				else if (train->state() == e_train_state::event)
 				{
 					delta = calc_event_time(i, time_left);
-					train->change_event_waiting_time(-delta);
+
 					if (train->event_waiting_time() <= 0.0f)
+					{
 						train->set_state(e_train_state::waiting);
+					}
+					train->change_event_waiting_time(-delta);
+					train->change_waiting_time(-delta);
 					train->decelerate(delta);
+					if (train->speed() < 0)
+						train->set_speed(0);
 				}
 				else if (train->state() == e_train_state::stopping)
 				{
@@ -147,7 +153,8 @@ void c_train_engine::iterate(bool perturbation)
 					delta = calc_run_time(i, time_left);
 					train->run(delta);
 				}
-				calc_event(i, delta);
+				if (_base_time_travel[i] != -1.0f)
+					calc_event(i, delta);
 				move_train(i, ((old_speed + train->speed()) / 2.0f) * convert_minute_to_hour(delta));
 
 				time_left -= delta;
@@ -160,28 +167,37 @@ void c_train_engine::iterate(bool perturbation)
 	_time += _time_delta;
 }
 
-void c_train_engine::run()
+void c_train_engine::run(string result_path, int p_simulation_index, bool p_plot_bool, bool p_text_bool)
 {
 	if (_time == -1.0f || _time_delta == -1.0f)
 		error_exit(1, "Bad engine configuration : Time [" + ftoa(_time, 2) + "] / Delta [" + ftoa(_time_delta, 2) + "]");
 	if (_journey_list.size() == 0)
 		return ;
 
+	_simulation_index = p_simulation_index + 1;
+	_plot_bool = p_plot_bool;
+	_text_bool = p_text_bool;
 	_time = 24 * 60;
 	_time_travel.clear();
-	_plot = new c_plot(Vector2(1280, 1080), Plot_data("Time"), Plot_data("Distance"));
+
+	if (_plot_bool == true)
+		_plot = new c_plot(Vector2(1280, 1080), Plot_data("Time"), Plot_data("Distance"));
 
 	for (size_t i = 0; i < _journey_list.size(); i++)
 	{
+		if (_base_time_travel.size() <= i)
+			_base_time_travel.push_back(-1.0f);
 		if (_time > _journey_list[i]->hour_panel()[0]->value())
 			_time = _journey_list[i]->hour_panel()[0]->value();
-		_plot->add_line(Color(0, 0, 0));
+		if (_plot_bool == true)
+			_plot->add_line(Color(0, 0, 0));
 		_time_travel.push_back(_journey_list[i]->hour_panel()[0]->value());
 		_journey_list[i]->calc_distance();
+		_journey_list[i]->set_exist(_text_bool);
 
 		if (_journey_list[i]->train() == nullptr)
 			cout << "Bad" << endl;
-		create_journey_output_file(_journey_list[i], _time);
+		//if (_text_bool == true)
 
 		_journey_list[i]->train()->set_num(i);
 		_journey_list[i]->train()->set_departure_time(_journey_list[i]->hour_panel()[0]->value());
@@ -197,14 +213,29 @@ void c_train_engine::run()
 	while (_arrived_train < _journey_list.size())
 		iterate(true);
 
-	//create_journey_plot_output(_plot, old_time, _time, max_dist);
+	bool print_plot = false;
 
 	for (size_t i = 0; i < _journey_list.size(); i++)
 	{
-		string text = "Total distance for train [" + _journey_list[i]->name() + "] = " + ftoa(_distance[i], 3) + " and arrived at : [" + convert_hour_to_string(_arrived_hour[i]) + "] with " + convert_hour_to_string(_arrived_hour[i] - _journey_list[i]->hour_panel()[0]->value()) + " total travel time";
-		_journey_list[i]->output_file() << text << endl;
-		_journey_list[i]->close_output_file();
+		cout << "Base time : " << _base_time_travel[i] << endl;
+		string text = "Total distance for train [" + _journey_list[i]->name() + "] = " + ftoa(_distance[i], 3) + " and arrived at : [" + convert_hour_to_string(_arrived_hour[i]) + "] with " + convert_hour_to_string(_arrived_hour[i] - _journey_list[i]->hour_panel()[0]->value()) + " total travel time\n";
+		_journey_list[i]->output_text() += text;
+		if (_arrived_hour[i] != _base_time_travel[i])
+			print_plot = true;
+		cout << "Comparing " << _arrived_hour[i] << " vs " << _base_time_travel[i] << endl;
+		if (_text_bool == true && _arrived_hour[i] != _base_time_travel[i])
+		{
+			cout << "It's different" << endl;
+			create_journey_output_file(result_path, _simulation_index, _journey_list[i], _time);
+			_journey_list[i]->print_output_file();
+		}
+		if (_base_time_travel[i] == -1.0f)
+			_base_time_travel[i] = _arrived_hour[i];
 	}
 
-	delete _plot;
+	if (_plot_bool == true && print_plot == true)
+	{
+		create_journey_plot_output(result_path, _simulation_index, _plot, old_time, _time, max_dist);
+		delete _plot;
+	}
 }

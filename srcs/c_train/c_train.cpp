@@ -88,9 +88,11 @@ void c_train::move_to_next_rail()
 		set_waiting_time(_journey->wait_entry()[index()]->value());
 		if (waiting_time() != 0 || index() == _journey->path().size() - 1)
 		{
-			_journey->output_file() << "             -----    Arrived at " << _journey->path()[index()]->place()->name() << "    -----" << endl;
+			if (_journey->exist() == true)
+				_journey->output_text() += string("             -----    Arrived at ") + _journey->path()[index()]->place()->name() + string("    -----\n");
 			if (waiting_time() != 0)
-				_journey->output_file() << "             Need to wait until " << convert_hour_to_string(_journey->hour_panel()[index()]->value()) << " or " << ftoa(waiting_time(), 0) << "min" << endl;
+				if (_journey->exist() == true)
+					_journey->output_text() += string("             Need to wait until ") + convert_hour_to_string(_journey->hour_panel()[index()]->value()) + string(" or ") + ftoa(waiting_time(), 0) + string("min\n");
 			set_speed(0);
 			set_state(e_train_state::waiting);
 		}
