@@ -217,16 +217,13 @@ void c_train_engine::run(string result_path, int p_simulation_index, bool p_plot
 
 	for (size_t i = 0; i < _journey_list.size(); i++)
 	{
-		cout << "Base time : " << _base_time_travel[i] << endl;
 		string text = "Total distance for train [" + _journey_list[i]->name() + "] = " + ftoa(_distance[i], 3) + " and arrived at : [" + convert_hour_to_string(_arrived_hour[i]) + "] with " + convert_hour_to_string(_arrived_hour[i] - _journey_list[i]->hour_panel()[0]->value()) + " total travel time\n";
 		_journey_list[i]->output_text() += text;
 		if (_arrived_hour[i] != _base_time_travel[i])
 			print_plot = true;
-		cout << "Comparing " << _arrived_hour[i] << " vs " << _base_time_travel[i] << endl;
 		if (_text_bool == true && _arrived_hour[i] != _base_time_travel[i])
 		{
-			cout << "It's different" << endl;
-			create_journey_output_file(result_path, _simulation_index, _journey_list[i], _time);
+			create_journey_output_file(result_path + "/text result", _simulation_index, _journey_list[i], _time);
 			_journey_list[i]->print_output_file();
 		}
 		if (_base_time_travel[i] == -1.0f)
@@ -235,7 +232,7 @@ void c_train_engine::run(string result_path, int p_simulation_index, bool p_plot
 
 	if (_plot_bool == true && print_plot == true)
 	{
-		create_journey_plot_output(result_path, _simulation_index, _plot, old_time, _time, max_dist);
+		create_journey_plot_output(result_path + "/plot result", _simulation_index, _plot, old_time, _time, max_dist);
 		delete _plot;
 	}
 }

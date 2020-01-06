@@ -11,8 +11,11 @@ static string create_output_folder(string folder_path)
 	oss << std::put_time(&tm, "-%d-%m-%Y %Hh%M-%Ss");
 	string str = oss.str();
 	string path = folder_path + "/simulation" + str;
-	cout << path << endl;
 	mkdir(path.c_str(), 0775);
+	string text_path = path + "/text result";
+	string plot_path = path + "/plot result";
+	mkdir(text_path.c_str(), 0775);
+	mkdir(plot_path.c_str(), 0775);
 
 	return (path);
 }
@@ -21,6 +24,10 @@ static void calc_journeys(Data data)
 {
 	c_main_window *win = data.acces<c_main_window *>(0);
 
+	if (win->interval_value_entry->value() <= 0)
+		return ;
+
+	win->engine->set_time_delta(win->interval_value_entry->value());
 	string result_path = create_output_folder("ressources/result");
 
 	for (int i = 0; i < win->nb_value_entry->value(); i++)
@@ -46,7 +53,6 @@ void c_main_window::create_command_panel()
 	engine = new c_train_engine();
 
 	engine->set_time(0, 0);
-	engine->set_time_delta(10);
 
 	int border = command_box->box().border();
 	Vector2 button_pos = border * 1;
@@ -60,6 +66,17 @@ void c_main_window::create_command_panel()
 
 	Vector2 pos = button_pos + Vector2(0.0f, button_size.y + border);
 	Vector2 size = Vector2((button_size.x - border * 2) / 2, button_size.y / 1.5f);
+	interval_value_label = new c_text_label("second per interval :", command_box);
+	interval_value_label->set_geometry(pos, size);
+	interval_value_label->activate();
+
+	interval_value_entry = new c_value_entry(10.0f, command_box);
+	interval_value_entry->set_precision(0);
+	interval_value_entry->set_geometry(pos + Vector2(size.x + border * 2, 0.0f), size);
+	interval_value_entry->activate();
+
+	pos.y += size.y + border;
+
 	nb_value_label = new c_text_label("Nb simulation try :", command_box);
 	nb_value_label->set_geometry(pos, size);
 	nb_value_label->activate();
