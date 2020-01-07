@@ -34,6 +34,7 @@ void c_map::parse_rail_event_list()
 		add_rail_event_to_list(it->second);
 		add_event_to_list_delete(it->second);
 	}
+	main_window_ptr->actualize_rail_event_tab();
 }
 
 void c_map::parse_city_event_list()
@@ -43,6 +44,7 @@ void c_map::parse_city_event_list()
 		add_city_event_to_list(it->second);
 		add_event_to_list_delete(it->second);
 	}
+	main_window_ptr->actualize_city_event_tab();
 }
 
 void c_map::open_journey(string path)
@@ -97,7 +99,6 @@ void c_map::place_landmark(Vector2 new_pos, int index)
 		else
 			_landmark2 = new_pos;
 	}
-
 }
 
 void c_map::select_city(c_city *city)

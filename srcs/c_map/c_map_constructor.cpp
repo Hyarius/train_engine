@@ -84,7 +84,6 @@ void valide_removal(Data p_data)
 	else
 		map->parse_city_event_list();
 
-
 	map->delete_event_frame()->desactivate();
 }
 
@@ -180,6 +179,7 @@ void c_map::add_event_to_cities(Event *event)
 	else
 		add_city_event_to_list(event);
 	add_event_to_list_delete(event);
+	main_window_ptr->actualize_city_event_tab();
 }
 
 void c_map::add_event_to_rail(Event *event)
@@ -192,6 +192,7 @@ void c_map::add_event_to_rail(Event *event)
 		else
 			add_city_event_to_list(event);
 	add_event_to_list_delete(event);
+	main_window_ptr->actualize_rail_event_tab();
 }
 
 Event *c_map::get_event()

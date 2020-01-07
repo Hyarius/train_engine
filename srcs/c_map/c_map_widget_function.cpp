@@ -295,4 +295,12 @@ void c_map::update()
 	{
 
 	}
+	for (auto it = event_city_bool_map.begin(); it != event_city_bool_map.end(); it++)
+	{
+		it->second = main_window_ptr->city_event_checkers[it->first]->state();
+	}
+	for (auto it = event_rail_bool_map.begin(); it != event_rail_bool_map.end(); it++)
+	{
+		it->second = main_window_ptr->rail_event_checkers[it->first]->state();
+	}
 }
