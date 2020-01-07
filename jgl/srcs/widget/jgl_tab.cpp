@@ -40,15 +40,14 @@ c_tab::c_tab(c_widget *p_parent) : c_widget(p_parent)
 	tab_area->activate();
 	button_area->activate();
 
-	add_tab("Tab 1");
-	add_tab("Tab 2");
-
 	set_geometry(-1, -1);
 }
 
-void c_tab::add_tab(string p_name, int index)
+c_frame *c_tab::add_tab(string p_name, int index)
 {
+	bool tmp = (_tabs.size() == 0 ? true : false);
 	c_frame *new_tab = new c_frame(tab_area);
+	new_tab->set_border(0);
 	c_button *new_tab_button = new c_button(&active_tab, nullptr, button_area);
 	new_tab_button->label().set_text(p_name);
 	new_tab_button->activate();
@@ -59,20 +58,45 @@ void c_tab::add_tab(string p_name, int index)
 	_tabs.insert(_tabs.begin() + index, new_tab);
 	_buttons.insert(_buttons.begin() + index, new_tab_button);
 
+	reset_size();
+
+	if (tmp == true)
+		active_tab(Data(3, &_buttons, &_tabs, 0));
+
+	return (new_tab);
+}
+
+void c_tab::reset_size()
+{
+	reset_tab();
 	reset_button();
+}
+
+void c_tab::reset_tab()
+{
+	Vector2 tab_pos = Vector2(0.0f, button_area->area().y + tab_area->border() * 2);
+	Vector2 tab_size = Vector2(area().x - tab_area->border(), area().y - tab_area->border() - tab_pos.y);
+
+	tab_area->set_geometry(tab_pos, tab_size);
+	for (size_t i = 0; i < _tabs.size(); i++)
+		_tabs[i]->set_geometry(0, tab_size - (_tabs[i]->border() * 2));
 }
 
 void c_tab::reset_button()
 {
 	Vector2 size;
 	Vector2 pos = 0;
+	size.y = 30.0f;
 
-	float tmp = (button_area->area().x - (button_area->border() * _buttons.size() - 2)) / _buttons.size();
-	size.x = (tmp <= 150.0f ? tmp : 150.0f);
-	size.y = 50.0f;
+	Vector2 button_pos = tab_area->border();
+	Vector2 button_size = Vector2(area().x - tab_area->border() * 2, 40.0f);
+
+	button_area->set_geometry(button_pos, button_size);
 
 	for (size_t i = 0; i < _buttons.size(); i++)
 	{
+		float tmp = calc_text_len(_buttons[i]->text(), 20);
+		size.x = tmp;
 		_buttons[i]->set_geometry(pos, size);
 		pos.x += size.x + button_area->border();
 		_buttons[i]->set_data(Data(3, &_buttons, &_tabs, i));
@@ -86,19 +110,7 @@ void c_tab::move(Vector2 delta)
 
 void c_tab::set_geometry_imp(Vector2 p_anchor, Vector2 p_area)
 {
-	Vector2 button_pos = tab_area->border();
-	Vector2 button_size = Vector2(p_area.x - tab_area->border() * 2, 50.0f);
-
-	Vector2 tab_pos = button_pos + Vector2(0, 50 + tab_area->border());
-	Vector2 tab_size = Vector2(p_area.x - tab_area->border() * 2, p_area.y - tab_area->border() - tab_pos.y);
-
-	button_area->set_geometry(button_pos, button_size);
-
-	tab_area->set_geometry(tab_pos, tab_size);
-	for (size_t i = 0; i < _tabs.size(); i++)
-		_tabs[i]->set_geometry(tab_pos + _tabs[i]->border(), tab_size - (_tabs[i]->border() * 2));
-
-	reset_button();
+	reset_size();
 }
 
 void c_tab::render()

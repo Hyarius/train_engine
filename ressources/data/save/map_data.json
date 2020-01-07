@@ -234,33 +234,6 @@
 					"time":"1",
 				}
 			],
-		},
-		{
-			"name":"City",
-			"nb channel":"2",
-			"pos":"(1863.599976 / 1160.099976)",
-			"event":[
-				{
-					"name":"Default",
-					"nbr":"0",
-					"time":"0",
-				},
-				{
-					"name":"Default(1)",
-					"nbr":"0",
-					"time":"0",
-				},
-				{
-					"name":"Default(2)",
-					"nbr":"0",
-					"time":"0",
-				},
-				{
-					"name":"ewqeqweDefault",
-					"nbr":"0",
-					"time":"0",
-				}
-			],
 		}
 	],
 	"milestones":[
@@ -794,12 +767,6 @@
 		},
 		{
 			"pos":"(2975.168457 / 860.435120)",
-		},
-		{
-			"pos":"(1863.599976 / 1160.099976)",
-		},
-		{
-			"pos":"(1899.780151 / 1156.259521)",
 		}
 	],
 	"rails":[
@@ -2407,37 +2374,6 @@
 			"cantonal dist":"2.500",
 			"id_a":"174",
 			"id_b":"175",
-		},
-		{
-			"speed":"145",
-			"dual ways":"true",
-			"even overtake":"false",
-			"odd overtake":"false",
-			"cantonal dist":"2",
-			"id_a":"177",
-			"id_b":"178",
-			"event":[
-				{
-					"name":"Default",
-					"nbr":"0",
-					"time":"0",
-				},
-				{
-					"name":"Default(1)",
-					"nbr":"0",
-					"time":"0",
-				},
-				{
-					"name":"Default(2)",
-					"nbr":"0",
-					"time":"0",
-				},
-				{
-					"name":"Default(3)",
-					"nbr":"0",
-					"time":"0",
-				}
-			],
 		}
 	],
 }

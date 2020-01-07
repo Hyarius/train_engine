@@ -1,7 +1,5 @@
 #include "engine.h"
 
-map <string, bool> event_city_bool_map;
-map <string, bool> event_rail_bool_map;
 float max_dist;
 
 bool c_train_engine::can_overtake(size_t index)
@@ -223,7 +221,7 @@ void c_train_engine::run(string result_path, int p_simulation_index, bool p_plot
 			print_plot = true;
 		if (_text_bool == true && _arrived_hour[i] != _base_time_travel[i])
 		{
-			create_journey_output_file(result_path + "/text result", _simulation_index, _journey_list[i], _time);
+			create_journey_output_file(result_path + "/text result", _simulation_index, _journey_list[i], old_time);
 			_journey_list[i]->print_output_file();
 		}
 		if (_base_time_travel[i] == -1.0f)

@@ -35,6 +35,13 @@ public:
 	c_check_box *text_result_check;
 
 	// - Config
+	c_tab *config_tab;
+	c_frame *city_event_tab;
+	vector<c_check_box *> city_event_checkers;
+	c_vscroll_bar *city_event_tab_scroll_bar;
+	c_frame *rail_event_tab;
+	vector<c_check_box *> rail_event_checkers;
+	c_vscroll_bar *rail_event_tab_scroll_bar;
 
 	// - Travel
 	c_button *new_button;
@@ -53,6 +60,8 @@ public:
 	void create_config_panel();
 	void create_travel_panel();
 	void create_train_panel();
+	void create_city_event_tab();
+	void create_rail_event_tab();
 
 	void load_travel_checkbox();
 };
