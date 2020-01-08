@@ -22,6 +22,7 @@ static string create_output_folder(string folder_path)
 
 static void calc_journeys(Data data)
 {
+	fstream result_file;
 	int nb_late = 0;
 	c_main_window *win = data.acces<c_main_window *>(0);
 
@@ -30,7 +31,7 @@ static void calc_journeys(Data data)
 
 	win->engine->set_time_delta(win->interval_value_entry->value());
 	string result_path = create_output_folder("ressources/result");
-
+	result_file = open_file(result_path + "/simulation_info.txt", ios_base::out);
 	for (int i = 0; i < win->nb_value_entry->value(); i++)
 	{
 		for (size_t i = 0; i < win->travel_name.size(); i++)
@@ -46,10 +47,11 @@ static void calc_journeys(Data data)
 			nb_late++;
 		win->engine->clean();
 	}
-	cout << "On " << ftoa(win->nb_value_entry->value(), 0) << " trains simulated\n" << "Only " << nb_late << " where actualy late" << endl;
-	cout << "Reason :" << endl;
+	result_file << "On " << ftoa(win->nb_value_entry->value(), 0) << " trains simulated\n" << "Only " << nb_late << " where actualy late" << endl;
+	result_file << "Reason :" << endl;
 	for (auto it = event_active_map.begin(); it != event_active_map.end(); it++)
-		cout << it->first << " - " << it->second << " time(s)" << endl;
+		result_file << it->first << " - " << it->second << " time(s)" << endl;
+	result_file.close();
 	for (size_t i = 0; i < win->engine->base_time_travel().size(); i++)
 		win->engine->base_time_travel()[i] = -1.0f;
 }

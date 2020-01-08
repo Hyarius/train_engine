@@ -193,10 +193,6 @@ void c_train_engine::run(string result_path, int p_simulation_index, bool p_plot
 		_journey_list[i]->calc_distance();
 		_journey_list[i]->set_exist(_text_bool);
 
-		if (_journey_list[i]->train() == nullptr)
-			cout << "Bad" << endl;
-		//if (_text_bool == true)
-
 		_journey_list[i]->train()->set_num(i);
 		_journey_list[i]->train()->set_departure_time(_journey_list[i]->hour_panel()[0]->value());
 		_journey_list[i]->train()->set_actual_rail(_journey_list[i]->get_rail(_journey_list[i]->train()->index()));
