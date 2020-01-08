@@ -234,3 +234,13 @@ void c_train_engine::run(string result_path, int p_simulation_index, bool p_plot
 		delete _plot;
 	}
 }
+
+bool c_train_engine::is_late()
+{
+	for (size_t i = 0; i < _journey_list.size(); i++)
+	{
+		if (_arrived_hour[i] != _base_time_travel[i])
+			return (true);
+	}
+	return (false);
+}

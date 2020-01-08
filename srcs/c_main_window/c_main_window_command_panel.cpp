@@ -22,6 +22,7 @@ static string create_output_folder(string folder_path)
 
 static void calc_journeys(Data data)
 {
+	int nb_late = 0;
 	c_main_window *win = data.acces<c_main_window *>(0);
 
 	if (win->interval_value_entry->value() <= 0)
@@ -41,9 +42,14 @@ static void calc_journeys(Data data)
 		win->map->calc_distance_ratio();
 
 		win->engine->run(result_path, i, win->graph_result_check->state(), win->text_result_check->state());
-
+		if (win->engine->is_late() == true)
+			nb_late++;
 		win->engine->clean();
 	}
+	cout << "On " << ftoa(win->nb_value_entry->value(), 0) << " trains simulated\n" << "Only " << nb_late << " where actualy late" << endl;
+	cout << "Reason :" << endl;
+	for (auto it = event_active_map.begin(); it != event_active_map.end(); it++)
+		cout << it->first << " - " << it->second << " time(s)" << endl;
 	for (size_t i = 0; i < win->engine->base_time_travel().size(); i++)
 		win->engine->base_time_travel()[i] = -1.0f;
 }

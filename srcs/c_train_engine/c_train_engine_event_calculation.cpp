@@ -1,5 +1,7 @@
 #include "engine.h"
 
+map <string, int> event_active_map;
+
 void c_train_engine::calc_event(size_t index, float time)
 {
 	c_train* train = _journey_list[index]->train();
@@ -17,8 +19,8 @@ void c_train_engine::calc_event(size_t index, float time)
 
 				if (tmp_value < it->second->nbr)
 				{
-					cout << "Event in city, in simulation " << _simulation_index << " at time " << convert_hour_to_string(_time) << endl;
 					train->set_state(e_train_state::event);
+					event_active_map[it->second->name]++;
 					train->change_event_waiting_time(it->second->time);
 				}
 			}
@@ -34,8 +36,8 @@ void c_train_engine::calc_event(size_t index, float time)
 
 				if (tmp_value < it->second->nbr)
 				{
-					cout << "Event on rail in simulation " << _simulation_index << " at time " << convert_hour_to_string(_time) << endl;
 					train->set_state(e_train_state::event);
+					event_active_map[it->second->name]++;
 					train->change_event_waiting_time(it->second->time);
 				}
 			}
