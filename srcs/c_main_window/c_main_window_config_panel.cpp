@@ -79,7 +79,7 @@ void c_main_window::create_base_city_event_panel()
 		base_city_event_nbr[it->first]->activate();
 
 		base_city_event_time[it->first] = new c_value_entry(it->second->time, frame);
-		base_city_event_time[it->first]->set_precision(0);
+		base_city_event_time[it->first]->set_precision(2);
 		base_city_event_time[it->first]->set_border(2);
 		base_city_event_time[it->first]->set_geometry(Vector2(label_size.x + 13 + nbr_size.x, 1.0f), time_size);
 		base_city_event_time[it->first]->activate();
@@ -120,7 +120,7 @@ void c_main_window::create_base_rail_event_panel()
 		base_rail_event_nbr[it->first]->activate();
 
 		base_rail_event_time[it->first] = new c_value_entry(it->second->time, frame);
-		base_rail_event_time[it->first]->set_precision(0);
+		base_rail_event_time[it->first]->set_precision(2);
 		base_rail_event_time[it->first]->set_border(2);
 		base_rail_event_time[it->first]->set_geometry(Vector2(label_size.x + 13 + nbr_size.x, 1.0f), time_size);
 		base_rail_event_time[it->first]->activate();

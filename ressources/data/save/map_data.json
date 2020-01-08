@@ -6,7 +6,7 @@
 		{
 					"name":"Door blocked",
 					"nbr":"2000",
-					"time":"0",
+					"time":"0.50",
 		},
 		{
 					"name":"Signal trouble in station",

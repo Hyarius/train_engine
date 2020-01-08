@@ -7,7 +7,7 @@ static void save_map_event(Data data)
 
 	json_add_value(file, 5, "name", event->name);
 	json_add_value(file, 5, "nbr", to_string(event->nbr));
-	json_add_value(file, 5, "time", ftoa(event->time, 0));
+	json_add_value(file, 5, "time", ftoa(event->time, 2));
 }
 
 void save_city(Data data)

@@ -295,12 +295,23 @@ void c_map::update()
 	{
 
 	}
+
 	for (auto it = event_city_bool_map.begin(); it != event_city_bool_map.end(); it++)
-	{
 		it->second = g_main_window->city_event_checkers[it->first]->state();
-	}
+
 	for (auto it = event_rail_bool_map.begin(); it != event_rail_bool_map.end(); it++)
-	{
 		it->second = g_main_window->rail_event_checkers[it->first]->state();
-	}
+
+	for (auto it = g_main_window->base_city_event_nbr.begin(); it != g_main_window->base_city_event_nbr.end(); it++)
+		_new_city_event[it->first]->nbr = it->second->value();
+
+	for (auto it = g_main_window->base_city_event_time.begin(); it != g_main_window->base_city_event_time.end(); it++)
+		_new_city_event[it->first]->time = it->second->value();
+
+	for (auto it = g_main_window->base_rail_event_nbr.begin(); it != g_main_window->base_rail_event_nbr.end(); it++)
+		_new_rail_event[it->first]->nbr = it->second->value();
+
+	for (auto it = g_main_window->base_rail_event_time.begin(); it != g_main_window->base_rail_event_time.end(); it++)
+		_new_rail_event[it->first]->time = it->second->value();
+
 }

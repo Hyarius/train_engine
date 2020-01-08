@@ -36,7 +36,7 @@ void c_map::load_event(fstream &file, int state)
 			else if (tab[0] == "nbr")
 				event->nbr = atoi(tab[1].c_str());
 			else if (tab[0] == "time")
-				event->time = atoi(tab[1].c_str());
+				event->time = atof(tab[1].c_str());
 			else if (tab[0] == "}" || tab[0] == "},")
 			{
 				if (state == 0)
