@@ -1,0 +1,88 @@
+{
+	"map_image":"ressources/image/france_map.png",
+	"landmarks":"(-1.000000 / -1.000000) / (-1.000000 / -1.000000)",
+	"landmark_scale":"-1",
+	"city_event":[
+		{
+					"name":"Door blocked",
+					"nbr":"2000",
+					"time":"0",
+		},
+		{
+					"name":"Signal trouble in station",
+					"nbr":"2000",
+					"time":"5",
+		},
+		{
+					"name":"Signal trouble out station",
+					"nbr":"500",
+					"time":"15",
+		},
+		{
+					"name":"Under station incident",
+					"nbr":"330",
+					"time":"240",
+		}
+	],
+	"rail_event":[
+		{
+					"name":"Animal accident",
+					"nbr":"600",
+					"time":"15",
+		},
+		{
+					"name":"Catenary incident",
+					"nbr":"330",
+					"time":"375",
+		},
+		{
+					"name":"Fire",
+					"nbr":"1000",
+					"time":"60",
+		},
+		{
+					"name":"Intrusion on way",
+					"nbr":"1000",
+					"time":"60",
+		},
+		{
+					"name":"Main way incident",
+					"nbr":"1000",
+					"time":"150",
+		},
+		{
+					"name":"Material re-use",
+					"nbr":"1000",
+					"time":"30",
+		},
+		{
+					"name":"People accident",
+					"nbr":"300",
+					"time":"150",
+		},
+		{
+					"name":"Position system incident",
+					"nbr":"875",
+					"time":"45",
+		},
+		{
+					"name":"Selecter incident",
+					"nbr":"2120",
+					"time":"55",
+		},
+		{
+					"name":"Signal incident",
+					"nbr":"1220",
+					"time":"75",
+		},
+		{
+					"name":"Traction incident",
+					"nbr":"2000",
+					"time":"15",
+		}
+	],
+	"cities":[
+	],
+	"milestones":[
+	],
+}

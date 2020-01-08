@@ -45,11 +45,17 @@ public:
 	c_vscroll_bar *rail_event_tab_scroll_bar;
 
 	c_frame *base_city_event_tab;
-	std::map <string, c_check_box *> base_city_event_checkers;
+	std::map <string, c_frame *> base_city_event_frame;
+	std::map <string, c_text_label *> base_city_event_label;
+	std::map <string, c_value_entry *> base_city_event_nbr;
+	std::map <string, c_value_entry *> base_city_event_time;
 	c_vscroll_bar *base_city_event_tab_scroll_bar;
 
 	c_frame *base_rail_event_tab;
-	std::map <string, c_check_box *> base_rail_event_checkers;
+	std::map <string, c_frame *> base_rail_event_frame;
+	std::map <string, c_text_label *> base_rail_event_label;
+	std::map <string, c_value_entry *> base_rail_event_nbr;
+	std::map <string, c_value_entry *> base_rail_event_time;
 	c_vscroll_bar *base_rail_event_tab_scroll_bar;
 
 	// - Travel
@@ -71,6 +77,8 @@ public:
 	void create_train_panel();
 	void actualize_city_event_tab();
 	void actualize_rail_event_tab();
+	void create_base_city_event_panel();
+	void create_base_rail_event_panel();
 
 	void load_travel_checkbox();
 };

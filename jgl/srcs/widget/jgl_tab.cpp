@@ -8,24 +8,30 @@ static void active_tab(Data p_data)
 
 	for (size_t i = 0; i < buttons.size(); i++)
 	{
-		if (i == index)
+		if (buttons[i] != nullptr)
 		{
-			buttons[i]->set_front(Color(150, 150, 150));
-			buttons[i]->set_back(Color(120, 120, 120));
-		}
-		else
-		{
-			buttons[i]->set_back(Color(150, 150, 150));
-			buttons[i]->set_front(Color(195, 195, 195));
+			if (i == index)
+			{
+				buttons[i]->set_front(Color(150, 150, 150));
+				buttons[i]->set_back(Color(120, 120, 120));
+			}
+			else
+			{
+				buttons[i]->set_back(Color(150, 150, 150));
+				buttons[i]->set_front(Color(195, 195, 195));
+			}
 		}
 	}
 
 	for (size_t i = 0; i < tabs.size(); i++)
 	{
-		if (i == index)
-			tabs[i]->set_active(true);
-		else
-			tabs[i]->set_active(false);
+		if (tabs[i] != nullptr)
+		{
+			if (i == index)
+				tabs[i]->set_active(true);
+			else
+				tabs[i]->set_active(false);
+		}
 	}
 }
 
@@ -55,13 +61,19 @@ c_frame *c_tab::add_tab(string p_name, int index)
 	if (index == -1)
 		index = _tabs.size();
 
-	_tabs.insert(_tabs.begin() + index, new_tab);
-	_buttons.insert(_buttons.begin() + index, new_tab_button);
+	for (size_t i = _tabs.size(); i <= index + 1; i++)
+	{
+		_tabs.push_back(nullptr);
+		_buttons.push_back(nullptr);
+	}
+
+	_tabs[index] = new_tab;
+	_buttons[index] = new_tab_button;
 
 	reset_size();
 
 	if (tmp == true)
-		active_tab(Data(3, &_buttons, &_tabs, 0));
+		active_tab(Data(3, &_buttons, &_tabs, index));
 
 	return (new_tab);
 }
@@ -79,7 +91,8 @@ void c_tab::reset_tab()
 
 	tab_area->set_geometry(tab_pos, tab_size);
 	for (size_t i = 0; i < _tabs.size(); i++)
-		_tabs[i]->set_geometry(0, tab_size - (_tabs[i]->border() * 2));
+		if (_tabs[i] != nullptr)
+			_tabs[i]->set_geometry(0, tab_size - (_tabs[i]->border() * 2));
 }
 
 void c_tab::reset_button()
@@ -95,11 +108,14 @@ void c_tab::reset_button()
 
 	for (size_t i = 0; i < _buttons.size(); i++)
 	{
-		float tmp = calc_text_len(_buttons[i]->text(), 20);
-		size.x = tmp;
-		_buttons[i]->set_geometry(pos, size);
-		pos.x += size.x + button_area->border();
-		_buttons[i]->set_data(Data(3, &_buttons, &_tabs, i));
+		if (_buttons[i] != nullptr)
+		{
+			float tmp = calc_text_len(_buttons[i]->text(), 20);
+			size.x = tmp;
+			_buttons[i]->set_geometry(pos, size);
+			pos.x += size.x + button_area->border();
+			_buttons[i]->set_data(Data(3, &_buttons, &_tabs, i));
+		}
 	}
 }
 
