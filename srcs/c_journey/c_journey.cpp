@@ -102,9 +102,9 @@ void c_journey::remove_point()
 
 void c_journey::actualize_panel(float zoom)
 {
-	Vector2 panel_size = Vector2(45, 9) * (zoom);
-	Vector2 delta = Vector2(-panel_size.x / 2, panel_size.y + 0.5f * zoom);
-	Vector2 delta2 = Vector2(-panel_size.x / 2, panel_size.y + 0.5f * zoom + delta.y);
+	Vector2 panel_size = Vector2(20, 4) * (zoom);
+	Vector2 delta = Vector2(-panel_size.x / 2, panel_size.y + 0.1f * zoom);
+	Vector2 delta2 = Vector2(-panel_size.x / 2, panel_size.y + 0.1f * zoom + delta.y);
 
 	for (size_t i = 0; i < _hour_panel.size(); i++)
 	{
