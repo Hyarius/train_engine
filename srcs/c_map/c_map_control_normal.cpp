@@ -29,6 +29,8 @@ void c_map::control_milestone_creation()
 	_mile_selected->add_link(milestone);
 
 	_mile_selected = nullptr;
+
+	g_main_window->actualize_rail_event_tab();
 }
 
 

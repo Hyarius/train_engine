@@ -14,6 +14,9 @@ c_main_window::c_main_window()
 	create_config_panel();
 	create_travel_panel();
 	create_train_panel();
+
+	actualize_city_event_tab();
+	actualize_rail_event_tab();
 }
 
 void c_main_window::create_box()

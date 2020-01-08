@@ -54,6 +54,10 @@ void c_milestone::add_link(c_milestone* to_add)
 		if (it2 == g_map->rails().end())
 		{
 	 		c_rail *rail = new c_rail(this, to_add);
+
+			for (auto it = g_map->new_rail_event().begin(); it != g_map->new_rail_event().end(); it++)
+				rail->add_event(new Event(it->second));
+
 			g_map->rails()[pair_milestone(this, to_add)] = rail;
 			g_map->rails()[pair_milestone(to_add, this)] = rail;
 		}

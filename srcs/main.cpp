@@ -2,7 +2,7 @@
 
 using namespace std;
 
-c_main_window *main_window_ptr;
+c_main_window *g_main_window;
 
 int main(int argc, char**argv)
 {
@@ -10,7 +10,7 @@ int main(int argc, char**argv)
 
 	c_main_window main_window;
 
-	main_window_ptr = &main_window;
+	g_main_window = &main_window;
 
 	return (win.run());
 }

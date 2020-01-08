@@ -18,9 +18,6 @@ void c_map::render()
 	for (size_t i = 0; i < _milestones.size(); i++)
 		_milestones[i]->draw_link();
 
-	for (size_t i = 0; i < _cities.size(); i++)
-		_cities[i]->draw_name();
-
 	if (_journey != nullptr)
 		_journey->draw();
 

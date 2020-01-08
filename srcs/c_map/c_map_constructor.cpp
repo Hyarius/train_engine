@@ -179,7 +179,7 @@ void c_map::add_event_to_cities(Event *event)
 	else
 		add_city_event_to_list(event);
 	add_event_to_list_delete(event);
-	main_window_ptr->actualize_city_event_tab();
+	g_main_window->actualize_city_event_tab();
 }
 
 void c_map::add_event_to_rail(Event *event)
@@ -192,7 +192,7 @@ void c_map::add_event_to_rail(Event *event)
 		else
 			add_city_event_to_list(event);
 	add_event_to_list_delete(event);
-	main_window_ptr->actualize_rail_event_tab();
+	g_main_window->actualize_rail_event_tab();
 }
 
 Event *c_map::get_event()
@@ -399,6 +399,25 @@ c_map::c_map(string path, c_widget *parent) : c_widget(parent)
 
 	create_landmark();
 	create_calib_button();
+
+	_new_city_event["Signal trouble in station"] = new Event("Signal trouble in station", 2000, 5);
+	_new_city_event["Door blocked"] = new Event("Door blocked", 2000, 0.5f);
+	_new_city_event["Signal trouble out station"] = new Event("Signal trouble out station", 500, 15);
+	_new_city_event["Under station incident"] = new Event("Under station incident", 330, 240);
+
+	_new_rail_event["Main way incident"] = new Event("Main way incident", 1000, 150);
+	_new_rail_event["Signal incident"] = new Event("Signal incident", 1220, 75);
+	_new_rail_event["Position system incident"] = new Event("Position system incident", 875, 45);
+	_new_rail_event["Catenary incident"] = new Event("Catenary incident", 330, 375);
+	_new_rail_event["Traction incident"] = new Event("Traction incident", 2000, 15);
+	_new_rail_event["Selecter incident"] = new Event("Selecter incident", 2120, 55);
+
+	_new_rail_event["People accident"] = new Event("People accident", 300, 150);
+	_new_rail_event["Animal accident"] = new Event("Animal accident", 600, 15);
+	_new_rail_event["Intrusion on way"] = new Event("Intrusion on way", 1000, 60);
+	_new_rail_event["Fire"] = new Event("Fire", 1000, 60);
+
+	_new_rail_event["Material re-use"] = new Event("Material re-use", 1000, 30);
 
 	reload_map(path);
 }

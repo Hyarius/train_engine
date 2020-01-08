@@ -11,6 +11,46 @@ void c_map::reload_map(string path)
 	_zoom = 1.0f;
 }
 
+void c_map::load_event(fstream &file, int state)
+{
+	Event *event;
+	string text = "";
+	vector<string> tab;
+
+	while (file.eof() == false && text != "]" && text != "],")
+	{
+		if (text != "")
+		{
+			tab = strsplit(text, ":");
+
+			for (size_t i = 0; i < tab.size(); i++)
+			{
+				tab[i].erase(remove(tab[i].begin(), tab[i].end(), '\"'), tab[i].end());
+				tab[i].erase(remove(tab[i].begin(), tab[i].end(), ','), tab[i].end());
+			}
+
+			if (tab[0] == "{")
+				event = new Event();
+			else if (tab[0] == "name")
+				event->name = tab[1];
+			else if (tab[0] == "nbr")
+				event->nbr = atoi(tab[1].c_str());
+			else if (tab[0] == "time")
+				event->time = atoi(tab[1].c_str());
+			else if (tab[0] == "}" || tab[0] == "},")
+			{
+				if (state == 0)
+					_new_city_event[event->name] = event;
+				else if (state == 1)
+					_new_rail_event[event->name] = event;
+			}
+		}
+
+		text = get_str(file);
+		text.erase(remove(text.begin(), text.end(), '\t'), text.end());
+	}
+}
+
 void c_map::load_map(string path)
 {
 	fstream file = open_file(path, ios_base::in);
@@ -58,6 +98,10 @@ void c_map::load_map(string path)
 		}
 		else if (tab[0] == "cities")
 			load_cities(file);
+		else if (tab[0] == "city_event")
+			load_event(file, 0);
+		else if (tab[0] == "rail_event")
+			load_event(file, 1);
 		else if (tab[0] == "milestones")
 			load_milestones(file);
 		else if (tab[0] == "rails")

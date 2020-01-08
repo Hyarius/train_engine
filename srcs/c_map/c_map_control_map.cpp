@@ -10,7 +10,7 @@ bool c_map::control_mouvement()
 		{
 			_map_anchor = _map_anchor + g_mouse->rel_pos;
 			if (_journey != nullptr)
-				_journey->actualize_panel();
+				_journey->actualize_panel(_zoom);
 			return (true);
 		}
 	}
@@ -27,16 +27,16 @@ bool c_map::control_zoom()
 		ratio_x = (_map->size().x * _zoom) / _map_anchor.x;
 		ratio_y = (_map->size().y * _zoom) / _map_anchor.y;
 
-		if (g_mouse->wheel > 0 && _zoom * 1.2 <= 20.0f)
+		if (g_mouse->wheel > 0 && _zoom * 1.2 <= 10.0f)
 			_zoom *= 1.2f;
-		else if (g_mouse->wheel < 0 && _zoom * 0.8f >= 0.5f)
+		else if (g_mouse->wheel < 0 && _zoom * 0.8f >= 0.2f)
 			_zoom *= 0.8f;
 
 		_map_anchor.x = (_map->size().x * _zoom) / ratio_x;
 		_map_anchor.y = (_map->size().y * _zoom) / ratio_y;
 
 		if (_journey != nullptr)
-			_journey->actualize_panel();
+			_journey->actualize_panel(_zoom);
 
 		return (true);
 	}

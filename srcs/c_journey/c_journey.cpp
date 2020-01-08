@@ -100,11 +100,11 @@ void c_journey::remove_point()
 	_hour_panel.pop_back();
 }
 
-void c_journey::actualize_panel()
+void c_journey::actualize_panel(float zoom)
 {
-	static Vector2 panel_size = Vector2(150, 30);
-	static Vector2 delta = Vector2(-panel_size.x / 2, 20.0f);
-	static Vector2 delta2 = Vector2(-panel_size.x / 2, 55.0f);
+	Vector2 panel_size = Vector2(45, 9) * (zoom);
+	Vector2 delta = Vector2(-panel_size.x / 2, panel_size.y + 0.5f * zoom);
+	Vector2 delta2 = Vector2(-panel_size.x / 2, panel_size.y + 0.5f * zoom + delta.y);
 
 	for (size_t i = 0; i < _hour_panel.size(); i++)
 	{
@@ -115,10 +115,10 @@ void c_journey::actualize_panel()
 			int border = _wait_panel[i]->box().border();
 
 			Vector2 label_pos = 0;
-			Vector2 label_size = panel_size - Vector2(panel_size.y, 0.0f) - 2 * border;
+			Vector2 label_size = (panel_size - Vector2(panel_size.y, 0.0f) - 2 * border);
 
 			Vector2 entry_pos = label_pos + Vector2(label_size.x, 0.0f);
-			Vector2 entry_size = Vector2(panel_size.x - label_size.x, panel_size.y) - 2 * border;
+			Vector2 entry_size = (Vector2(panel_size.x - label_size.x, panel_size.y) - 2 * border);
 
 			_wait_panel[i]->set_geometry(Vector2(g_map->convert_to_screen_coord(_path[i]->pos()) + delta2), panel_size);
 			_wait_label[i]->set_geometry(label_pos, label_size);

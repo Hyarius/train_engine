@@ -39,9 +39,18 @@ public:
 	c_frame *city_event_tab;
 	std::map <string, c_check_box *> city_event_checkers;
 	c_vscroll_bar *city_event_tab_scroll_bar;
+
 	c_frame *rail_event_tab;
 	std::map <string, c_check_box *> rail_event_checkers;
 	c_vscroll_bar *rail_event_tab_scroll_bar;
+
+	c_frame *base_city_event_tab;
+	std::map <string, c_check_box *> base_city_event_checkers;
+	c_vscroll_bar *base_city_event_tab_scroll_bar;
+
+	c_frame *base_rail_event_tab;
+	std::map <string, c_check_box *> base_rail_event_checkers;
+	c_vscroll_bar *base_rail_event_tab_scroll_bar;
 
 	// - Travel
 	c_button *new_button;
@@ -66,6 +75,6 @@ public:
 	void load_travel_checkbox();
 };
 
-extern c_main_window *main_window_ptr;
+extern c_main_window *g_main_window;
 
 #endif

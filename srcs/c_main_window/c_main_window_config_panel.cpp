@@ -53,17 +53,29 @@ void c_main_window::create_config_panel()
 	config_tab->set_geometry(config_box->border(), config_box->area() - config_box->border() * 2);
 	config_tab->activate();
 
+		// City event part
 	city_event_tab = config_tab->add_tab("Infrastructure event");
-
 	city_event_tab_scroll_bar = new c_vscroll_bar(city_event_tab);
 	city_event_tab_scroll_bar->set_geometry(Vector2(city_event_tab->area().x - 20 - config_tab->border(), 0.0f), Vector2(20.0f, city_event_tab->area().y - config_tab->border() * 2));
 	city_event_tab_scroll_bar->activate();
 
+		// Rail event part
 	rail_event_tab = config_tab->add_tab("Train event");
-
 	rail_event_tab_scroll_bar = new c_vscroll_bar(rail_event_tab);
 	rail_event_tab_scroll_bar->set_geometry(Vector2(rail_event_tab->area().x - 20 - config_tab->border(), 0.0f), Vector2(20.0f, rail_event_tab->area().y - config_tab->border() * 2));
 	rail_event_tab_scroll_bar->activate();
+
+		// Base city event part
+	base_city_event_tab = config_tab->add_tab("Base city's events");
+	base_city_event_tab_scroll_bar = new c_vscroll_bar(base_city_event_tab);
+	base_city_event_tab_scroll_bar->set_geometry(Vector2(base_city_event_tab->area().x - 20 - config_tab->border(), 0.0f), Vector2(20.0f, base_city_event_tab->area().y - config_tab->border() * 2));
+	base_city_event_tab_scroll_bar->activate();
+
+		// Base rail event part
+	base_rail_event_tab = config_tab->add_tab("Base rail's events");
+	base_rail_event_tab_scroll_bar = new c_vscroll_bar(base_rail_event_tab);
+	base_rail_event_tab_scroll_bar->set_geometry(Vector2(base_rail_event_tab->area().x - 20 - config_tab->border(), 0.0f), Vector2(20.0f, base_rail_event_tab->area().y - config_tab->border() * 2));
+	base_rail_event_tab_scroll_bar->activate();
 
 	actualize_city_event_tab();
 	actualize_rail_event_tab();

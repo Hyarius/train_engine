@@ -196,6 +196,9 @@ float c_train_engine::calc_run_time(size_t index, float time_left)
 	else
 		result = time_left;
 
+	if (result < 0)
+		result *= -1;
+
 	return (result);
 }
 

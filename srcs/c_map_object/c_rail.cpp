@@ -115,16 +115,10 @@ ostream& operator<<(ostream& os, c_rail *rail)
 
 void c_rail::add_event(Event *event)
 {
-	string tmp = event->name;
-	int num = 1;
-	while (map_contain<string, Event *>(_event_list, event->name) == true)
-	{
-		event->name = tmp + "(" + to_string(num) + ")";
-		num++;
-	}
-	if (map_contain<string, bool>(event_rail_bool_map, event->name) == false)
-		event_rail_bool_map[event->name] = true;
+	if (map_contain(event_list(), event->name) == true)
+		return ;
 
+	event_rail_bool_map[event->name] = true;
 	_event_list[event->name] = event;
 }
 

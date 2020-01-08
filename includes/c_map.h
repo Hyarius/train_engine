@@ -30,6 +30,9 @@ private:
 	map<pair_milestone, c_rail *> _rails;
 	//map<c_milestone *, map<c_milestone *, c_rail *> > _rails;
 
+	map <string, Event *> _new_city_event;
+	map <string, Event *> _new_rail_event;
+
 	c_text_label *_unit_label;
 	c_value_entry *_landmark_scale;
 	c_button *_calib_button;
@@ -222,6 +225,10 @@ public:
 	void parse_rail_event_list();
 
 	vector<c_value_entry *> &rail_nb_event_entry(){return (_rail_nb_event_entry);}
+	void load_event(fstream &file, int state);
+
+	map <string, Event *> &new_city_event(){return (_new_city_event);}
+	map <string, Event *> &new_rail_event(){return (_new_rail_event);}
 };
 
 //Saving functions

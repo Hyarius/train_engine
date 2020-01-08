@@ -34,7 +34,7 @@ void c_map::parse_rail_event_list()
 		add_rail_event_to_list(it->second);
 		add_event_to_list_delete(it->second);
 	}
-	main_window_ptr->actualize_rail_event_tab();
+	g_main_window->actualize_rail_event_tab();
 }
 
 void c_map::parse_city_event_list()
@@ -44,7 +44,7 @@ void c_map::parse_city_event_list()
 		add_city_event_to_list(it->second);
 		add_event_to_list_delete(it->second);
 	}
-	main_window_ptr->actualize_city_event_tab();
+	g_main_window->actualize_city_event_tab();
 }
 
 void c_map::open_journey(string path)
@@ -175,6 +175,12 @@ c_city *c_map::add_city()
 	Vector2 pos = convert_to_map_coord(g_mouse->pos);
 
 	c_city *new_city = new c_city(pos);
+
+	for (auto it = _new_city_event.begin(); it != _new_city_event.end(); it++)
+		new_city->add_event(new Event(it->second));
+
+	g_main_window->actualize_city_event_tab();
+
 	_cities.push_back(new_city);
 
 	add_milestone(new_city);

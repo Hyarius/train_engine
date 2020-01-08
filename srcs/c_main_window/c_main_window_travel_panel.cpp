@@ -54,6 +54,7 @@ void load_journey(Data data)
 		map->open_journey(tmp_paths[0]);
 		map->set_state(e_map_state::travel_definition);
 	}
+	map->journey()->actualize_panel(map->zoom());
 }
 
 void c_main_window::load_travel_checkbox()

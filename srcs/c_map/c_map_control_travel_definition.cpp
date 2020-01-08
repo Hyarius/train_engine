@@ -60,7 +60,7 @@ bool c_map::control_travel_definition()
 				}
 
 			}
-			_journey->actualize_panel();
+			_journey->actualize_panel(_zoom);
 		}
 	}
 

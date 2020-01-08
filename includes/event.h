@@ -10,6 +10,7 @@ struct Event
 	float time;
 
 	Event(string p_name = "Default", int p_nbr = 0, float p_time = 0.0f);
+	Event(Event *copy){name = copy->name;nbr = copy->nbr;time = copy->time;}
 };
 
 ostream& operator<<(ostream& os, Event &event);
