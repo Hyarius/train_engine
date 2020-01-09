@@ -5,6 +5,7 @@
 
 extern map <string, bool> event_city_bool_map;
 extern map <string, bool> event_rail_bool_map;
+extern map <string, int> event_active_map;
 
 class c_train_engine
 {
@@ -32,6 +33,7 @@ public:
 	void clean();
 	void run(string result_path, int simulation_index, bool plot_bool, bool text_bool);
 	void iterate(bool perturbation);
+	bool is_late();
 
 	void create_graphic_output();
 

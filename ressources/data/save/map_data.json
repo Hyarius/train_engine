@@ -257,8 +257,74 @@
 			"even overtake":"true",
 			"odd overtake":"false",
 			"cantonal dist":"2",
-			"id_a":"18",
-			"id_b":"17",
+			"id_a":"17",
+			"id_b":"18",
+			"event":[
+				{
+					"name":"Animal accident",
+					"nbr":"600",
+					"time":"15",
+				},
+				{
+					"name":"Catenary incident",
+					"nbr":"330",
+					"time":"375",
+				},
+				{
+					"name":"Fire",
+					"nbr":"1000",
+					"time":"60",
+				},
+				{
+					"name":"Intrusion on way",
+					"nbr":"1000",
+					"time":"60",
+				},
+				{
+					"name":"Main way incident",
+					"nbr":"1000",
+					"time":"150",
+				},
+				{
+					"name":"Material re-use",
+					"nbr":"1000",
+					"time":"30",
+				},
+				{
+					"name":"People accident",
+					"nbr":"300",
+					"time":"150",
+				},
+				{
+					"name":"Position system incident",
+					"nbr":"875",
+					"time":"45",
+				},
+				{
+					"name":"Selecter incident",
+					"nbr":"2120",
+					"time":"55",
+				},
+				{
+					"name":"Signal incident",
+					"nbr":"1220",
+					"time":"75",
+				},
+				{
+					"name":"Traction incident",
+					"nbr":"2000",
+					"time":"15",
+				}
+			],
+		},
+		{
+			"speed":"120",
+			"dual ways":"true",
+			"even overtake":"true",
+			"odd overtake":"false",
+			"cantonal dist":"2",
+			"id_a":"17",
+			"id_b":"16",
 			"event":[
 				{
 					"name":"Animal accident",
@@ -390,72 +456,6 @@
 			"odd overtake":"false",
 			"cantonal dist":"2",
 			"id_a":"16",
-			"id_b":"17",
-			"event":[
-				{
-					"name":"Animal accident",
-					"nbr":"600",
-					"time":"15",
-				},
-				{
-					"name":"Catenary incident",
-					"nbr":"330",
-					"time":"375",
-				},
-				{
-					"name":"Fire",
-					"nbr":"1000",
-					"time":"60",
-				},
-				{
-					"name":"Intrusion on way",
-					"nbr":"1000",
-					"time":"60",
-				},
-				{
-					"name":"Main way incident",
-					"nbr":"1000",
-					"time":"150",
-				},
-				{
-					"name":"Material re-use",
-					"nbr":"1000",
-					"time":"30",
-				},
-				{
-					"name":"People accident",
-					"nbr":"300",
-					"time":"150",
-				},
-				{
-					"name":"Position system incident",
-					"nbr":"875",
-					"time":"45",
-				},
-				{
-					"name":"Selecter incident",
-					"nbr":"2120",
-					"time":"55",
-				},
-				{
-					"name":"Signal incident",
-					"nbr":"1220",
-					"time":"75",
-				},
-				{
-					"name":"Traction incident",
-					"nbr":"2000",
-					"time":"15",
-				}
-			],
-		},
-		{
-			"speed":"120",
-			"dual ways":"true",
-			"even overtake":"true",
-			"odd overtake":"false",
-			"cantonal dist":"2",
-			"id_a":"16",
 			"id_b":"15",
 			"event":[
 				{
@@ -521,8 +521,8 @@
 			"even overtake":"true",
 			"odd overtake":"false",
 			"cantonal dist":"2",
-			"id_a":"14",
-			"id_b":"15",
+			"id_a":"15",
+			"id_b":"14",
 			"event":[
 				{
 					"name":"Animal accident",
@@ -653,8 +653,74 @@
 			"even overtake":"true",
 			"odd overtake":"false",
 			"cantonal dist":"2",
-			"id_a":"13",
-			"id_b":"12",
+			"id_a":"12",
+			"id_b":"13",
+			"event":[
+				{
+					"name":"Animal accident",
+					"nbr":"600",
+					"time":"15",
+				},
+				{
+					"name":"Catenary incident",
+					"nbr":"330",
+					"time":"375",
+				},
+				{
+					"name":"Fire",
+					"nbr":"1000",
+					"time":"60",
+				},
+				{
+					"name":"Intrusion on way",
+					"nbr":"1000",
+					"time":"60",
+				},
+				{
+					"name":"Main way incident",
+					"nbr":"1000",
+					"time":"150",
+				},
+				{
+					"name":"Material re-use",
+					"nbr":"1000",
+					"time":"30",
+				},
+				{
+					"name":"People accident",
+					"nbr":"300",
+					"time":"150",
+				},
+				{
+					"name":"Position system incident",
+					"nbr":"875",
+					"time":"45",
+				},
+				{
+					"name":"Selecter incident",
+					"nbr":"2120",
+					"time":"55",
+				},
+				{
+					"name":"Signal incident",
+					"nbr":"1220",
+					"time":"75",
+				},
+				{
+					"name":"Traction incident",
+					"nbr":"2000",
+					"time":"15",
+				}
+			],
+		},
+		{
+			"speed":"120",
+			"dual ways":"true",
+			"even overtake":"true",
+			"odd overtake":"false",
+			"cantonal dist":"2",
+			"id_a":"12",
+			"id_b":"2",
 			"event":[
 				{
 					"name":"Animal accident",
@@ -846,13 +912,13 @@
 			],
 		},
 		{
-			"speed":"120",
-			"dual ways":"true",
-			"even overtake":"true",
+			"speed":"90",
+			"dual ways":"false",
+			"even overtake":"false",
 			"odd overtake":"false",
-			"cantonal dist":"2",
-			"id_a":"12",
-			"id_b":"2",
+			"cantonal dist":"1",
+			"id_a":"10",
+			"id_b":"9",
 			"event":[
 				{
 					"name":"Animal accident",
@@ -917,8 +983,8 @@
 			"even overtake":"false",
 			"odd overtake":"false",
 			"cantonal dist":"1",
-			"id_a":"10",
-			"id_b":"9",
+			"id_a":"9",
+			"id_b":"3",
 			"event":[
 				{
 					"name":"Animal accident",
@@ -1115,72 +1181,6 @@
 			"even overtake":"false",
 			"odd overtake":"false",
 			"cantonal dist":"1",
-			"id_a":"9",
-			"id_b":"3",
-			"event":[
-				{
-					"name":"Animal accident",
-					"nbr":"600",
-					"time":"15",
-				},
-				{
-					"name":"Catenary incident",
-					"nbr":"330",
-					"time":"375",
-				},
-				{
-					"name":"Fire",
-					"nbr":"1000",
-					"time":"60",
-				},
-				{
-					"name":"Intrusion on way",
-					"nbr":"1000",
-					"time":"60",
-				},
-				{
-					"name":"Main way incident",
-					"nbr":"1000",
-					"time":"150",
-				},
-				{
-					"name":"Material re-use",
-					"nbr":"1000",
-					"time":"30",
-				},
-				{
-					"name":"People accident",
-					"nbr":"300",
-					"time":"150",
-				},
-				{
-					"name":"Position system incident",
-					"nbr":"875",
-					"time":"45",
-				},
-				{
-					"name":"Selecter incident",
-					"nbr":"2120",
-					"time":"55",
-				},
-				{
-					"name":"Signal incident",
-					"nbr":"1220",
-					"time":"75",
-				},
-				{
-					"name":"Traction incident",
-					"nbr":"2000",
-					"time":"15",
-				}
-			],
-		},
-		{
-			"speed":"90",
-			"dual ways":"false",
-			"even overtake":"false",
-			"odd overtake":"false",
-			"cantonal dist":"1",
 			"id_a":"7",
 			"id_b":"6",
 			"event":[
@@ -1247,8 +1247,8 @@
 			"even overtake":"false",
 			"odd overtake":"false",
 			"cantonal dist":"1",
-			"id_a":"5",
-			"id_b":"6",
+			"id_a":"6",
+			"id_b":"5",
 			"event":[
 				{
 					"name":"Animal accident",
