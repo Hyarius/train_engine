@@ -1,2 +1,4 @@
 *.o
+*.a
+train_engine
 *.swp
