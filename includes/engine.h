@@ -8,6 +8,8 @@
 #include <sys/stat.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <cmath>
+#include <random>
 
 #include "event.h"
 #include "c_city.h"

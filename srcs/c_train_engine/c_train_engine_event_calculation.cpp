@@ -1,6 +1,7 @@
 #include "engine.h"
 
 map <string, int> event_active_map;
+std::default_random_engine generator;
 
 void c_train_engine::calc_event(size_t index, float time)
 {
@@ -19,9 +20,10 @@ void c_train_engine::calc_event(size_t index, float time)
 
 				if (tmp_value < it->second->nbr)
 				{
+					std::normal_distribution<double> distribution(it->second->time,it->second->time / 10.0f);
 					train->set_state(e_train_state::event);
 					event_active_map[it->second->name]++;
-					train->change_event_waiting_time(it->second->time);
+					train->change_event_waiting_time(distribution(generator));
 				}
 			}
 		}
@@ -36,9 +38,10 @@ void c_train_engine::calc_event(size_t index, float time)
 
 				if (tmp_value < it->second->nbr)
 				{
+					std::normal_distribution<double> distribution(it->second->time,it->second->time / 10.0f);
 					train->set_state(e_train_state::event);
 					event_active_map[it->second->name]++;
-					train->change_event_waiting_time(it->second->time);
+					train->change_event_waiting_time(distribution(generator));
 				}
 			}
 		}
