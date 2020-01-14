@@ -6,7 +6,7 @@
 		{
 					"name":"Door blocked",
 					"nbr":"2000",
-					"time":"0.50",
+					"time":"0.50000",
 		},
 		{
 					"name":"Signal trouble in station",
@@ -90,7 +90,7 @@
 				{
 					"name":"Door blocked",
 					"nbr":"2000",
-					"time":"0.5",
+					"time":"0",
 				},
 				{
 					"name":"Signal trouble in station",
@@ -117,7 +117,7 @@
 				{
 					"name":"Door blocked",
 					"nbr":"2000",
-					"time":"0.5",
+					"time":"0",
 				},
 				{
 					"name":"Signal trouble in station",
@@ -144,7 +144,7 @@
 				{
 					"name":"Door blocked",
 					"nbr":"2000",
-					"time":"0.5",
+					"time":"0",
 				},
 				{
 					"name":"Signal trouble in station",
@@ -171,7 +171,7 @@
 				{
 					"name":"Door blocked",
 					"nbr":"2000",
-					"time":"0.5",
+					"time":"0",
 				},
 				{
 					"name":"Signal trouble in station",
@@ -257,74 +257,8 @@
 			"even overtake":"false",
 			"odd overtake":"false",
 			"cantonal dist":"1",
-			"id_a":"3",
-			"id_b":"9",
-			"event":[
-				{
-					"name":"Animal accident",
-					"nbr":"600",
-					"time":"15",
-				},
-				{
-					"name":"Catenary incident",
-					"nbr":"330",
-					"time":"375",
-				},
-				{
-					"name":"Fire",
-					"nbr":"1000",
-					"time":"60",
-				},
-				{
-					"name":"Intrusion on way",
-					"nbr":"1000",
-					"time":"60",
-				},
-				{
-					"name":"Main way incident",
-					"nbr":"1000",
-					"time":"150",
-				},
-				{
-					"name":"Material re-use",
-					"nbr":"1000",
-					"time":"30",
-				},
-				{
-					"name":"People accident",
-					"nbr":"300",
-					"time":"150",
-				},
-				{
-					"name":"Position system incident",
-					"nbr":"875",
-					"time":"45",
-				},
-				{
-					"name":"Selecter incident",
-					"nbr":"2120",
-					"time":"55",
-				},
-				{
-					"name":"Signal incident",
-					"nbr":"1220",
-					"time":"75",
-				},
-				{
-					"name":"Traction incident",
-					"nbr":"2000",
-					"time":"15",
-				}
-			],
-		},
-		{
-			"speed":"90",
-			"dual ways":"false",
-			"even overtake":"false",
-			"odd overtake":"false",
-			"cantonal dist":"1",
-			"id_a":"3",
-			"id_b":"8",
+			"id_a":"9",
+			"id_b":"3",
 			"event":[
 				{
 					"name":"Animal accident",
@@ -655,6 +589,72 @@
 			"cantonal dist":"2",
 			"id_a":"2",
 			"id_b":"12",
+			"event":[
+				{
+					"name":"Animal accident",
+					"nbr":"600",
+					"time":"15",
+				},
+				{
+					"name":"Catenary incident",
+					"nbr":"330",
+					"time":"375",
+				},
+				{
+					"name":"Fire",
+					"nbr":"1000",
+					"time":"60",
+				},
+				{
+					"name":"Intrusion on way",
+					"nbr":"1000",
+					"time":"60",
+				},
+				{
+					"name":"Main way incident",
+					"nbr":"1000",
+					"time":"150",
+				},
+				{
+					"name":"Material re-use",
+					"nbr":"1000",
+					"time":"30",
+				},
+				{
+					"name":"People accident",
+					"nbr":"300",
+					"time":"150",
+				},
+				{
+					"name":"Position system incident",
+					"nbr":"875",
+					"time":"45",
+				},
+				{
+					"name":"Selecter incident",
+					"nbr":"2120",
+					"time":"55",
+				},
+				{
+					"name":"Signal incident",
+					"nbr":"1220",
+					"time":"75",
+				},
+				{
+					"name":"Traction incident",
+					"nbr":"2000",
+					"time":"15",
+				}
+			],
+		},
+		{
+			"speed":"90",
+			"dual ways":"false",
+			"even overtake":"false",
+			"odd overtake":"false",
+			"cantonal dist":"1",
+			"id_a":"3",
+			"id_b":"8",
 			"event":[
 				{
 					"name":"Animal accident",
