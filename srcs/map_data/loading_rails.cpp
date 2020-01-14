@@ -91,10 +91,7 @@ void c_map::load_rail(fstream &file)
 					pair_milestone inv_key = pair_milestone(second, first);
 
 					if (map_contain<pair_milestone, c_rail *>(_rails, key) == true || map_contain<pair_milestone, c_rail *>(_rails, inv_key) == true)
-					{
-						cout << "bad rail : " << index_0 << " / " << index_1 << endl;
 						rail = nullptr;
-					}
 					else
 					{
 						first->add_link(second);

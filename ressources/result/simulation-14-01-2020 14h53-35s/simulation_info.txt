@@ -1,0 +1,22 @@
+On 100 trains simulated
+0 were late by 00h01 - 00s or more
+0 train had an event and 0 were late cause the train ahead of it was stopped
+
+0 were late by 00h02 - 00s or more
+0 train had an event and 0 were late cause the train ahead of it was stopped
+
+0 were late by 00h05 - 00s or more
+0 train had an event and 0 were late cause the train ahead of it was stopped
+
+0 were late by 00h05 - 59s or more
+0 train had an event and 0 were late cause the train ahead of it was stopped
+
+0 were late by 00h15 - 59s or more
+0 train had an event and 0 were late cause the train ahead of it was stopped
+
+0 were late by 00h30 - 59s or more
+0 train had an event and 0 were late cause the train ahead of it was stopped
+
+0 were late by 01h00 - 59s or more
+0 train had an event and 0 were late cause the train ahead of it was stopped
+

@@ -39,6 +39,7 @@ private:
 	float _event_waiting_time;
 	c_rail *_actual_rail;
 	size_t _actual_channel;
+	bool _has_event;
 
 public:
 	c_train(c_journey *journey);
@@ -51,6 +52,7 @@ public:
 	void move_to_next_rail();
 
 	void set_place(c_city *p_place){_place = p_place;}
+	void set_has_event(bool p_has_event){_has_event = p_has_event;}
 	void change_speed(float time, float target_speed);
 	void set_speed(float p_speed){_speed = p_speed;}
 	void set_max_speed(float p_max_speed){_max_speed = p_max_speed;}
@@ -70,6 +72,8 @@ public:
 	void change_event_waiting_time(float delta){_event_waiting_time += delta;_waiting_time += delta;}
 	void set_num(size_t p_num) { _num = p_num; }
 	void set_actual_channel(size_t p_actual_channel) { _actual_channel = p_actual_channel; }
+
+	bool has_event(){return (_has_event);}
 
 	e_way_type get_way_type();
 	c_rail *get_rail(size_t index);

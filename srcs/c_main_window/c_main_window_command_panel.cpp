@@ -23,7 +23,10 @@ static string create_output_folder(string folder_path)
 static void calc_journeys(Data data)
 {
 	fstream result_file;
-	int nb_late = 0;
+	int total_train = 0;
+	float target_time[7] = {1.0f, 2.0f, 5.0f, 5.99f, 15.99f, 30.99f, 60.99f};
+	int nb_late[7] = {0, 0, 0, 0, 0, 0, 0};
+	int nb_event[7] = {0, 0, 0, 0, 0, 0, 0};
 	c_main_window *win = data.acces<c_main_window *>(0);
 
 	if (win->interval_value_entry->value() <= 0)
@@ -43,17 +46,51 @@ static void calc_journeys(Data data)
 		win->map->calc_distance_ratio();
 
 		win->engine->run(result_path, i, win->graph_result_check->state(), win->text_result_check->state());
+
+		total_train += win->engine->journey_list().size();
 		if (win->engine->is_late() == true)
-			nb_late++;
+		{
+			for (size_t i = 0; i < win->engine->journey_list().size(); i++)
+			{
+				for (size_t j = 0; j < 7; j++)
+				{
+					if (win->engine->is_late(i, target_time[j]) == true)
+					{
+						nb_late[j]++;
+						if (win->engine->train(i)->has_event() == true)
+							nb_event[j]++;
+					}
+				}
+			}
+		}
 		win->engine->clean();
 	}
-	result_file << "On " << ftoa(win->nb_value_entry->value(), 0) << " trains simulated\n" << "Only " << nb_late << " where actualy late" << endl;
-	result_file << "Reason :" << endl;
+	result_file << "On " << ftoa(win->nb_value_entry->value(), 0) << " trains simulated" << endl;
+	for (size_t j = 0; j < 7; j++)
+	{
+		result_file << nb_late[j] << " were late by " << convert_hour_to_string(target_time[j]) << " or more" << endl;
+		result_file << nb_event[j] << " train had an event and " << (nb_late[j] - nb_event[j]) << " were late cause the train ahead of it was stopped" << endl << endl;
+	}
+
 	for (auto it = event_active_map.begin(); it != event_active_map.end(); it++)
-		result_file << it->first << " - " << it->second << " time(s)" << endl;
+	{
+		if (it == event_active_map.begin())
+			result_file << "Reason :" << endl;
+		result_file << it->first << " - " << it->second << " time(s) causing ";
+		for (size_t j = 0; j < event_active_map_time[it->first].size(); j++)
+		{
+			if (j != 0)
+				result_file << " - ";
+			result_file << "(" << convert_hour_to_string(event_active_map_time[it->first][j]) << ")";
+		}
+		result_file << " of event" << endl;
+	}
 	result_file.close();
 	for (size_t i = 0; i < win->engine->base_time_travel().size(); i++)
+	{
+		win->engine->arrived_hour()[i] = 0.0f;
 		win->engine->base_time_travel()[i] = -1.0f;
+	}
 }
 
 void c_main_window::create_command_panel()

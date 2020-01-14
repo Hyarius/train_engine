@@ -6,6 +6,7 @@
 extern map <string, bool> event_city_bool_map;
 extern map <string, bool> event_rail_bool_map;
 extern map <string, int> event_active_map;
+extern map <string, vector<float>> event_active_map_time;
 
 class c_train_engine
 {
@@ -33,7 +34,8 @@ public:
 	void clean();
 	void run(string result_path, int simulation_index, bool plot_bool, bool text_bool);
 	void iterate(bool perturbation);
-	bool is_late();
+	bool is_late(float time = 0.0f);
+	bool is_late(size_t i, float time = 0.0f);
 
 	void create_graphic_output();
 
@@ -66,6 +68,8 @@ public:
 
 	float time(){return (_time);}
 	float time_delta(){return (_time_delta);}
+	c_train *train(size_t i){if (i >= _journey_list.size())return(nullptr);return (_journey_list[i]->train());}
+	vector<c_journey *> &journey_list(){return (_journey_list);}
 	vector<float> &distance(){return (_distance);}
 	vector<float> &arrived_hour(){return (_arrived_hour);}
 	vector<float> &time_travel(){return (_time_travel);}
