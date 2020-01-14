@@ -6,75 +6,10 @@
 		{
 			"id":"0",
 			"departure time":"00h00",
-			"Waiting time":"2",
+			"Waiting time":"0",
 		},
 		{
-			"id":"4",
-			"departure time":"",
-			"Waiting time":"",
-		},
-		{
-			"id":"5",
-			"departure time":"",
-			"Waiting time":"",
-		},
-		{
-			"id":"6",
-			"departure time":"",
-			"Waiting time":"",
-		},
-		{
-			"id":"7",
-			"departure time":"",
-			"Waiting time":"",
-		},
-		{
-			"id":"8",
-			"departure time":"",
-			"Waiting time":"",
-		},
-		{
-			"id":"3",
-			"departure time":"00h00",
-			"Waiting time":"2",
-		},
-		{
-			"id":"9",
-			"departure time":"",
-			"Waiting time":"",
-		},
-		{
-			"id":"10",
-			"departure time":"",
-			"Waiting time":"",
-		},
-		{
-			"id":"11",
-			"departure time":"",
-			"Waiting time":"",
-		},
-		{
-			"id":"2",
-			"departure time":"00h00",
-			"Waiting time":"2",
-		},
-		{
-			"id":"12",
-			"departure time":"",
-			"Waiting time":"",
-		},
-		{
-			"id":"13",
-			"departure time":"",
-			"Waiting time":"",
-		},
-		{
-			"id":"14",
-			"departure time":"",
-			"Waiting time":"",
-		},
-		{
-			"id":"15",
+			"id":"17",
 			"departure time":"",
 			"Waiting time":"",
 		},
@@ -84,17 +19,77 @@
 			"Waiting time":"",
 		},
 		{
-			"id":"17",
+			"id":"15",
 			"departure time":"",
 			"Waiting time":"",
 		},
 		{
-			"id":"18",
+			"id":"14",
+			"departure time":"",
+			"Waiting time":"",
+		},
+		{
+			"id":"13",
 			"departure time":"",
 			"Waiting time":"",
 		},
 		{
 			"id":"1",
+			"departure time":"00h00",
+			"Waiting time":"2",
+		},
+		{
+			"id":"12",
+			"departure time":"",
+			"Waiting time":"",
+		},
+		{
+			"id":"11",
+			"departure time":"",
+			"Waiting time":"",
+		},
+		{
+			"id":"10",
+			"departure time":"",
+			"Waiting time":"",
+		},
+		{
+			"id":"2",
+			"departure time":"00h00",
+			"Waiting time":"2",
+		},
+		{
+			"id":"9",
+			"departure time":"",
+			"Waiting time":"",
+		},
+		{
+			"id":"3",
+			"departure time":"00h00",
+			"Waiting time":"2",
+		},
+		{
+			"id":"8",
+			"departure time":"",
+			"Waiting time":"",
+		},
+		{
+			"id":"7",
+			"departure time":"",
+			"Waiting time":"",
+		},
+		{
+			"id":"4",
+			"departure time":"00h00",
+			"Waiting time":"2",
+		},
+		{
+			"id":"6",
+			"departure time":"",
+			"Waiting time":"",
+		},
+		{
+			"id":"5",
 			"departure time":"00h00",
 			"Waiting time":"2",
 		}
