@@ -7,14 +7,11 @@ bool c_train_engine::can_overtake(size_t index)
 	c_train* train = _journey_list[index]->train();
 	e_way_type type = train->get_way_type();
 
-	//cout << "Here" << endl;
 
 	if (train->actual_rail()->way_overtake(type) == true)
 	{
-		cout << "True" << endl;
 		return (true);
 	}
-	//cout << "False" << endl;
 	return (false);
 }
 
@@ -54,8 +51,8 @@ bool c_train_engine::should_slow(size_t train_index)
 
 void c_train_engine::iterate(bool perturbation)
 {
-	while (_time > 24 * 60)
-		_time -= 24 * 60;
+	// while (_time > 24 * 60)
+	// 	_time -= 24 * 60;
 
 	float time_left = 0;
 	float delta;
@@ -65,7 +62,14 @@ void c_train_engine::iterate(bool perturbation)
 	{
 		c_train* train = _journey_list[i]->train();
 
-		if (_time_travel[i] < _time && train->actual_rail() != nullptr)
+		if (train->actual_rail() == nullptr)
+		{
+			train->set_speed(0.0f);
+			_arrived_train++;
+			_arrived_hour[i] = _time_travel[i];
+			time_left = _time_delta;
+		}
+		else
 		{
 			time_left = _time_delta;
 
@@ -79,6 +83,13 @@ void c_train_engine::iterate(bool perturbation)
 					draw_train_state(i);
 				if (train->state() == e_train_state::slowing)
 					train->set_state(e_train_state::normal);
+
+				// train->journey()->output_text() += "			";
+				// //train->journey()->output_text() += ftoa(train->departure_time()) + " vs " + ftoa(_time) + " --- ";
+				// train->journey()->output_text() += ftoa(train->waiting_time()) + " vs " + ftoa(0.0f) + " --- ";
+				// //train->journey()->output_text() += ftoa(train->event_waiting_time()) + " vs " + ftoa(0.0f);
+				// train->journey()->output_text() += "\n";
+
 				if (train->state() == e_train_state::waiting && train->departure_time() <= _time && train->waiting_time() <= 0.0f)
 				{
 					if (train->index() != 0)
@@ -130,11 +141,9 @@ void c_train_engine::iterate(bool perturbation)
 				else if (train->state() == e_train_state::event)
 				{
 					delta = calc_event_time(i, time_left);
-
 					if (train->event_waiting_time() <= 0.0f)
-					{
 						train->set_state(e_train_state::waiting);
-					}
+
 					train->change_event_waiting_time(-delta);
 					train->change_waiting_time(-delta);
 					train->decelerate(delta);
@@ -175,21 +184,25 @@ void c_train_engine::run(string result_path, int p_simulation_index, bool p_plot
 	_simulation_index = p_simulation_index + 1;
 	_plot_bool = p_plot_bool;
 	_text_bool = p_text_bool;
-	_time = 24 * 60;
 	_time_travel.clear();
+	_distance.clear();
+	_arrived_hour.clear();
 
 	if (_plot_bool == true)
 		_plot = new c_plot(Vector2(1280, 1080), Plot_data("Time"), Plot_data("Distance"));
 
+	if (_base_time_travel.size() != _journey_list.size())
+	{
+		_base_time_travel.resize(_journey_list.size());
+		for (size_t i = 0; i < _base_time_travel.size(); i++)
+			_base_time_travel[i] = -1.0f;
+	}
+
 	for (size_t i = 0; i < _journey_list.size(); i++)
 	{
-		if (_base_time_travel.size() <= i)
-			_base_time_travel.push_back(-1.0f);
-		if (_time > _journey_list[i]->hour_panel()[0]->value())
-			_time = _journey_list[i]->hour_panel()[0]->value();
+		_time = _journey_list[i]->hour_panel()[0]->value();
 		if (_plot_bool == true)
 			_plot->add_line(Color(0, 0, 0));
-		_time_travel.push_back(_journey_list[i]->hour_panel()[0]->value());
 		_journey_list[i]->calc_distance();
 		_journey_list[i]->set_exist(_text_bool);
 
@@ -197,10 +210,9 @@ void c_train_engine::run(string result_path, int p_simulation_index, bool p_plot
 		_journey_list[i]->train()->set_departure_time(_journey_list[i]->hour_panel()[0]->value());
 		_journey_list[i]->train()->set_actual_rail(_journey_list[i]->get_rail(_journey_list[i]->train()->index()));
 		_journey_list[i]->train()->actual_rail()->add_train(_journey_list[i]->train());
-		if (_distance.size() <= i)
-			_distance.push_back(0.0f);
-		if (_arrived_hour.size() <= i)
-			_arrived_hour.push_back(0.0f);
+		_distance.push_back(0.0f);
+		_time_travel.push_back(0);
+		_arrived_hour.push_back(0.0f);
 	}
 	float old_time = _time;
 
@@ -231,22 +243,6 @@ void c_train_engine::run(string result_path, int p_simulation_index, bool p_plot
 		create_journey_plot_output(result_path + "/plot result", _simulation_index, _plot, old_time, _time, max_dist);
 		delete _plot;
 	}
-
-	for (size_t i = 0; i < _base_time_travel.size(); i++)
-	{
-		if (i != 0)
-			cout << " - ";
-		cout << "[" << i << "]" << ftoa(_base_time_travel[i], 4);
-	}
-	cout << endl;
-
-	for (size_t i = 0; i < _arrived_hour.size(); i++)
-	{
-		if (i != 0)
-			cout << " - ";
-		cout << "[" << i << "]" << ftoa(_arrived_hour[i], 4);
-	}
-	cout << endl;
 }
 
 bool c_train_engine::is_late(float time)
@@ -261,8 +257,9 @@ bool c_train_engine::is_late(float time)
 
 bool c_train_engine::is_late(size_t i, float time)
 {
-	//cout << "Arrived : " << _arrived_hour[i] << " vs " << _base_time_travel[i] << " + " << time << endl;
-	if (_arrived_hour[i] > _base_time_travel[i] + time)
+	if (time == 0.0f && _arrived_hour[i] > _base_time_travel[i] + time)
+		return (true);
+	else if (time != 0.0f && _arrived_hour[i] >= _base_time_travel[i] + time)
 		return (true);
 	return (false);
 }

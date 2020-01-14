@@ -210,7 +210,7 @@ public:
 	c_frame *create_event_frame(){return (_create_event_frame);}
 	c_frame *delete_event_frame(){return (_delete_event_frame);}
 	vector<c_check_box *> &delete_event_selector(){return (_delete_event_selector);}
-	c_check_box *delete_event_selector(size_t i){if (i < 0 || i >= _delete_event_selector.size()) return (nullptr);return (_delete_event_selector[i]);}
+	c_check_box *delete_event_selector(size_t i){if (i >= _delete_event_selector.size()) return (nullptr);return (_delete_event_selector[i]);}
 
 	void add_city_event_to_list(Event *event);
 	void add_rail_event_to_list(Event *event);

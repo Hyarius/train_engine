@@ -7,21 +7,13 @@ c_main_window::c_main_window()
 	map = nullptr;
 	engine = nullptr;
 
-cout << "Here 0" << endl;
 	create_box();
-	cout << "Here 1" << endl;
 	tileset = new c_tileset("ressources/image/frame_border.png", Vector2(3, 3));
-	cout << "Here 2" << endl;
 	create_map_panel();
-	cout << "Here 3" << endl;
 	create_command_panel();
-	cout << "Here 4" << endl;
 	create_config_panel();
-	cout << "Here 5" << endl;
 	create_travel_panel();
-	cout << "Here 6" << endl;
 	create_train_panel();
-	cout << "Here 7" << endl;
 }
 
 void c_main_window::create_box()

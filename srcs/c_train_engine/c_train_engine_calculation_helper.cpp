@@ -231,7 +231,7 @@ float c_train_engine::calc_event_time(size_t index, float time_left)
 		result = train->event_waiting_time();
 	}
 
-	if (train->speed() > 0)
+	if (train->speed() > 0.01f)
 	{
 		if (train->speed() + train->speed_lost(result) < 0)
 		{
@@ -241,7 +241,6 @@ float c_train_engine::calc_event_time(size_t index, float time_left)
 		else
 			result = time_left;
 	}
-
 
 	return (result);
 }

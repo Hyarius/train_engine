@@ -20,6 +20,9 @@ c_train::c_train(c_journey *journey)
 	_distance = 0.0f;
 	_departure_time = 0.0f;
 	_actual_rail = nullptr;
+	_waiting_time = 0;
+	_event_waiting_time = 0;
+
 }
 
 void c_train::calc_deceleration_dist(float target_speed)
