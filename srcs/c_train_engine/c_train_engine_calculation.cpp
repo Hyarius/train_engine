@@ -42,7 +42,7 @@ bool c_train_engine::should_slow(size_t train_index)
 	for (size_t i = 0; i < train_list.size(); i++)
 	{
 		float dist = _distance[train_list[i]->num()] - _distance[train->num()];
-		if (dist > 0 && dist <= train->actual_rail()->cantonal_dist())
+		if (dist > 0.01f && dist <= train->actual_rail()->cantonal_dist())
 			return (!(can_overtake(train_index)));
 	}
 
@@ -62,107 +62,34 @@ void c_train_engine::iterate(bool perturbation)
 	{
 		c_train* train = _journey_list[i]->train();
 
-		if (train->actual_rail() == nullptr)
-		{
-			train->set_speed(0.0f);
-			_arrived_train++;
-			_arrived_hour[i] = _time_travel[i];
-			time_left = _time_delta;
-		}
-		else
+		if (train->actual_rail() != nullptr)
 		{
 			time_left = _time_delta;
 
 			while (time_left > 0.0001f && train->actual_rail() != nullptr)
 			{
-				c_rail *rail = train->actual_rail();
-				if (_plot_bool == true)
-					_plot->add_point(_time + (_time_delta - time_left), _distance[i], i);
 				train->calc_distance_per_tic(time_left);
-				if (_text_bool == true)
+
+				intelligence(i);
+
+				if (_plot_bool == true && train->state() != e_train_state::starting)
+					_plot->add_point(_time + (_time_delta - time_left), _distance[i], i);
+
+				if (_text_bool == true && train->state() != e_train_state::starting)
 					draw_train_state(i);
-				if (train->state() == e_train_state::slowing)
-					train->set_state(e_train_state::normal);
-
-				// train->journey()->output_text() += "			";
-				// //train->journey()->output_text() += ftoa(train->departure_time()) + " vs " + ftoa(_time) + " --- ";
-				// train->journey()->output_text() += ftoa(train->waiting_time()) + " vs " + ftoa(0.0f) + " --- ";
-				// //train->journey()->output_text() += ftoa(train->event_waiting_time()) + " vs " + ftoa(0.0f);
-				// train->journey()->output_text() += "\n";
-
-				if (train->state() == e_train_state::waiting && train->departure_time() <= _time && train->waiting_time() <= 0.0f)
-				{
-					if (train->index() != 0)
-						if (_text_bool == true)
-							train->journey()->output_text() += "             -----    The train start again    -----\n";
-					train->start();
-				}
-				if (train->state() == e_train_state::starting && train->departure_time() <= _time)
-					train->set_state(e_train_state::speed_up);
-				if (train->speed() < rail->speed() && train->speed() < train->max_speed() && train->state() == e_train_state::normal)
-					train->set_state(e_train_state::speed_up);
-				if (train->speed() > rail->speed())
-					train->set_state(e_train_state::speed_down);
-				if (should_slow(i) == true)
-					train->set_state(e_train_state::slowing);
-				if (calc_distance_left(i) <= 0.005f)
-					train->set_state(e_train_state::stopping);
 
 				float old_speed = train->speed();
 
-				if (train->state() == e_train_state::speed_up)
+				if (train->state() != e_train_state::starting)
 				{
-					delta = calc_accelerate_time(i, time_left, rail->speed());
-					train->accelerate(delta);
-				}
-				else if (train->state() == e_train_state::speed_down)
-				{
-					if (train->slow_down_dist() >= calc_distance_left(i) - train->distance_per_tic())
-						delta = calc_decelerate_time(i, time_left, MIN_SPEED);
-					else
-						delta = calc_decelerate_time(i, time_left, rail->speed());
-					train->decelerate(delta);
-				}
-				else if (train->state() == e_train_state::slowing)
-				{
-					if (train->speed() <= MIN_SPEED)
-						delta = time_left;
-					else
-					{
-						delta = calc_slowing_time(i, time_left, MIN_SPEED);
-						train->decelerate(delta);
-					}
-				}
-				else if (train->state() == e_train_state::waiting)
-				{
-					delta = calc_waiting_time(i, time_left);
-					train->change_waiting_time(-delta);
-				}
-				else if (train->state() == e_train_state::event)
-				{
-					delta = calc_event_time(i, time_left);
-					if (train->event_waiting_time() <= 0.0f)
-						train->set_state(e_train_state::waiting);
-
-					train->change_event_waiting_time(-delta);
-					train->change_waiting_time(-delta);
-					train->decelerate(delta);
-					if (train->speed() < 0)
-						train->set_speed(0);
-				}
-				else if (train->state() == e_train_state::stopping)
-				{
-					delta = 0;
-					move_train(i, calc_distance_left(i));
+					delta = execution(i, time_left);
+					move_train(i, ((old_speed + train->speed()) / 2.0f) * convert_minute_to_hour(delta));
 				}
 				else
 				{
-					delta = calc_run_time(i, time_left);
-					train->run(delta);
+					float time_to_wait = train->departure_time() - _time;
+					delta = (time_left < time_to_wait ? time_left : time_to_wait);
 				}
-				if (_base_time_travel[i] != -1.0f)
-					calc_event(i, delta);
-				move_train(i, ((old_speed + train->speed()) / 2.0f) * convert_minute_to_hour(delta));
 
 				time_left -= delta;
 				_time_travel[i] += delta;
@@ -181,6 +108,7 @@ void c_train_engine::run(string result_path, int p_simulation_index, bool p_plot
 	if (_journey_list.size() == 0)
 		return ;
 
+	_time = 60 * 24;
 	_simulation_index = p_simulation_index + 1;
 	_plot_bool = p_plot_bool;
 	_text_bool = p_text_bool;
@@ -200,7 +128,6 @@ void c_train_engine::run(string result_path, int p_simulation_index, bool p_plot
 
 	for (size_t i = 0; i < _journey_list.size(); i++)
 	{
-		_time = _journey_list[i]->hour_panel()[0]->value();
 		if (_plot_bool == true)
 			_plot->add_line(Color(0, 0, 0));
 		_journey_list[i]->calc_distance();
@@ -208,12 +135,18 @@ void c_train_engine::run(string result_path, int p_simulation_index, bool p_plot
 
 		_journey_list[i]->train()->set_num(i);
 		_journey_list[i]->train()->set_departure_time(_journey_list[i]->hour_panel()[0]->value());
+		_journey_list[i]->train()->set_state(e_train_state::starting);
+
+		cout << "Set departure to " << _journey_list[i]->train()->departure_time() << endl;
+			if (_time > _journey_list[i]->train()->departure_time())
+				_time = _journey_list[i]->train()->departure_time();
 		_journey_list[i]->train()->set_actual_rail(_journey_list[i]->get_rail(_journey_list[i]->train()->index()));
 		_journey_list[i]->train()->actual_rail()->add_train(_journey_list[i]->train());
 		_distance.push_back(0.0f);
 		_time_travel.push_back(0);
 		_arrived_hour.push_back(0.0f);
 	}
+	cout << "Here time = " << _time << endl;
 	float old_time = _time;
 
 	_arrived_train = 0;

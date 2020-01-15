@@ -108,37 +108,22 @@ float c_train_engine::calc_decelerate_time(size_t index, float time_left, float 
 	else
 		result = time_left;
 
-	if (result == 0)
-	{
-		if (target_speed == MIN_SPEED)
-			train->set_state(e_train_state::stopping);
-		else
-			train->set_state(e_train_state::normal);
-	}
-
 	return (result);
 }
 
-float c_train_engine::calc_slowing_time(size_t index, float time_left, float target_speed)
+float c_train_engine::calc_stoping_time(size_t index, float time_left)
 {
 	float result;
 
 	c_train *train = _journey_list[index]->train();
 
-
-	if (target_speed > train->max_speed())
-		target_speed = train->max_speed();
-
-	if (train->speed() + train->speed_lost(time_left) < target_speed)
+	if (train->speed() + train->speed_lost(time_left) < 0.0f)
 	{
-		float ratio = (target_speed - train->speed()) / train->speed_lost(time_left);
+		float ratio = (0.0f - train->speed()) / train->speed_lost(time_left);
 		result = time_left * ratio;
 	}
 	else
 		result = time_left;
-
-	if (result == 0)
-		train->set_state(e_train_state::normal);
 
 	return (result);
 }
@@ -149,7 +134,6 @@ float c_train_engine::calc_accelerate_time(size_t index, float time_left, float 
 
 	c_train *train = _journey_list[index]->train();
 
-
 	if (target_speed > train->max_speed())
 		target_speed = train->max_speed();
 
@@ -157,8 +141,6 @@ float c_train_engine::calc_accelerate_time(size_t index, float time_left, float 
 	{
 		float ratio = (target_speed - train->speed()) / train->speed_gain(time_left);
 		result = time_left * ratio;
-		if (result == 0)
-			train->set_state(e_train_state::normal);
 	}
 	else if (train->distance() + train->distance_per_tic() > train->actual_rail()->distance())
 	{
@@ -178,12 +160,12 @@ float c_train_engine::calc_run_time(size_t index, float time_left)
 	float result;
 
 	c_train *train = _journey_list[index]->train();
+
 	if (train->slow_down_dist() >= calc_distance_left(index) - train->distance_per_tic())
 	{
 		float dist_to_run = calc_distance_left(index) - train->slow_down_dist();
 		float ratio = dist_to_run / train->distance_per_tic();
 
-		train->set_state(e_train_state::speed_down);
 		result = time_left * ratio;
 	}
 	else if (train->distance() + train->distance_per_tic() > train->actual_rail()->distance())
@@ -195,9 +177,6 @@ float c_train_engine::calc_run_time(size_t index, float time_left)
 	}
 	else
 		result = time_left;
-
-	if (result < 0)
-		result *= -1;
 
 	return (result);
 }

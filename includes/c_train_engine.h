@@ -37,6 +37,9 @@ public:
 	bool is_late(float time = 0.0f);
 	bool is_late(size_t i, float time = 0.0f);
 
+	void intelligence(size_t index);
+	float execution(size_t index, float time_left);
+
 	void create_graphic_output();
 
 	void draw_train_state(size_t i);
@@ -58,7 +61,7 @@ public:
 	float calc_run_time(size_t index, float time_left);
 	float calc_accelerate_time(size_t index, float time_left, float target_speed);
 	float calc_decelerate_time(size_t index, float time_left, float target_speed);
-	float calc_slowing_time(size_t index, float time_left, float target_speed);
+	float calc_stoping_time(size_t index, float time_left);
 
 	void add_journey(c_journey *new_journey);
 

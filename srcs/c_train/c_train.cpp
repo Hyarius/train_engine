@@ -122,5 +122,5 @@ void c_train::start()
 	if (place() != nullptr)
 		place()->remove_train_waiting();
 	set_place(nullptr);
-	set_state(e_train_state::starting);
+	set_state(e_train_state::normal);
 }

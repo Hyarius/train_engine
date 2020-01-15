@@ -126,7 +126,7 @@ void c_main_window::create_command_panel()
 	nb_value_label->set_geometry(pos, size);
 	nb_value_label->activate();
 
-	nb_value_entry = new c_value_entry(100.0f, command_box);
+	nb_value_entry = new c_value_entry(1.0f, command_box);
 	nb_value_entry->set_geometry(pos + Vector2(size.x + border * 2, 0.0f), size);
 	nb_value_entry->activate();
 

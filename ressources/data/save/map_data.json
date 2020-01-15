@@ -84,7 +84,7 @@
 	"cities":[
 		{
 			"name":"Cerbere",
-			"nb channel":"2",
+			"nb channel":"1",
 			"pos":"(6475.900879 / 7675.242188)",
 			"event":[
 				{
@@ -111,7 +111,7 @@
 		},
 		{
 			"name":"Banyuls",
-			"nb channel":"2",
+			"nb channel":"1",
 			"pos":"(6449.759766 / 7639.557617)",
 			"event":[
 				{
@@ -138,7 +138,7 @@
 		},
 		{
 			"name":"Port vendres",
-			"nb channel":"2",
+			"nb channel":"1",
 			"pos":"(6435.236816 / 7611.756836)",
 			"event":[
 				{
@@ -165,7 +165,7 @@
 		},
 		{
 			"name":"Collioure",
-			"nb channel":"2",
+			"nb channel":"1",
 			"pos":"(6419.054688 / 7600.968750)",
 			"event":[
 				{
@@ -192,7 +192,7 @@
 		},
 		{
 			"name":"Argeles",
-			"nb channel":"2",
+			"nb channel":"1",
 			"pos":"(6382.955078 / 7586.653320)",
 			"event":[
 				{
@@ -219,7 +219,7 @@
 		},
 		{
 			"name":"Elne",
-			"nb channel":"2",
+			"nb channel":"1",
 			"pos":"(6345.403320 / 7538.935547)",
 			"event":[
 				{

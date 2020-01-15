@@ -13,7 +13,10 @@ enum class e_train_state
 	stopping = 5,
 	braking = 6,
 	waiting = 7,
-	event = 8
+	event = 8,
+	stopped = 9,
+	entering = 10,
+	start_slowing = 11
 };
 
 class c_train
@@ -106,6 +109,10 @@ public:
 				return (" Starting ");
 			case e_train_state::normal :
 				return ("  Normal  ");
+			case e_train_state::stopped :
+				return ("  Stopped ");
+			case e_train_state::entering :
+				return (" Entering ");
 			case e_train_state::speed_up :
 				return (" Speed_up ");
 			case e_train_state::speed_down :
@@ -120,6 +127,8 @@ public:
 				return ("  Braking ");
 			case e_train_state::event :
 				return ("   Event  ");
+			case e_train_state::start_slowing :
+				return ("  Slowing ");
 			default :
 				return ("   Error  ");
 		}
