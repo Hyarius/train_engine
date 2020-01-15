@@ -19,7 +19,7 @@ void create_journey_output_file(string result_path, int simulation_index, c_jour
 
 void create_journey_plot_output(string result_path, int simulation_index, c_plot *plot, float start_time, float end_time, float max_dist)
 {
-	plot->set_ordinate_min(-10.0f);
+	plot->set_ordinate_min(0.0f);
 	plot->set_absciss_min(start_time - 15.0f);
 	plot->set_point_size(0);
 	plot->set_absciss_precision(3);
