@@ -97,7 +97,8 @@ void c_train::move_to_next_rail()
 				if (_journey->exist() == true)
 					_journey->output_text() += string("             Need to wait until ") + convert_hour_to_string(_journey->hour_panel()[index()]->value()) + string(" or ") + ftoa(waiting_time(), 0) + string("min\n");
 			set_speed(0);
-			set_state(e_train_state::waiting);
+			if (state() != e_train_state::event)
+				set_state(e_train_state::waiting);
 		}
 	}
 	if (actual_rail() != nullptr)

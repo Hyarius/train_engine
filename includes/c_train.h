@@ -109,24 +109,24 @@ public:
 				return (" Starting ");
 			case e_train_state::normal :
 				return ("  Normal  ");
-			case e_train_state::stopped :
-				return ("  Stopped ");
-			case e_train_state::entering :
-				return (" Entering ");
 			case e_train_state::speed_up :
 				return (" Speed_up ");
 			case e_train_state::speed_down :
 				return ("Speed_down");
-			case e_train_state::stopping :
-				return (" Stopping ");
-			case e_train_state::waiting :
-				return ("  Waiting ");
 			case e_train_state::slowing :
 				return ("  Slowing ");
+			case e_train_state::stopping :
+				return (" Stopping ");
 			case e_train_state::braking :
 				return ("  Braking ");
+			case e_train_state::waiting :
+				return ("  Waiting ");
 			case e_train_state::event :
 				return ("   Event  ");
+			case e_train_state::stopped :
+				return ("  Stopped ");
+			case e_train_state::entering :
+				return (" Entering ");
 			case e_train_state::start_slowing :
 				return ("  Slowing ");
 			default :

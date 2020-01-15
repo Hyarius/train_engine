@@ -72,6 +72,8 @@ void c_train_engine::iterate(bool perturbation)
 
 				intelligence(i);
 
+				cout << convert_hour_to_string(_time) << " - [" << train->state_str() << "] - [" << _time << "]" << endl;
+
 				if (_plot_bool == true && train->state() != e_train_state::starting)
 					_plot->add_point(_time + (_time_delta - time_left), _distance[i], i);
 
@@ -83,6 +85,8 @@ void c_train_engine::iterate(bool perturbation)
 				if (train->state() != e_train_state::starting)
 				{
 					delta = execution(i, time_left);
+					if (_base_time_travel[i] != -1.0f)
+						calc_event(i, delta);
 					move_train(i, ((old_speed + train->speed()) / 2.0f) * convert_minute_to_hour(delta));
 				}
 				else

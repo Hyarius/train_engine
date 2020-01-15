@@ -2,6 +2,7 @@
 
 static void handle_speed_up(size_t index, float &delta, float time_left, c_rail *rail, c_train *train, c_train_engine *engine)
 {
+	cout << "Here 1" << endl;
 	delta = engine->calc_accelerate_time(index, time_left, rail->speed());
 	train->accelerate(delta);
 	if (delta <= 0.001f) // On a fini d'accelerer
@@ -10,6 +11,7 @@ static void handle_speed_up(size_t index, float &delta, float time_left, c_rail 
 
 static void handle_braking(size_t index, float &delta, float time_left, c_rail *rail, c_train *train, c_train_engine *engine)
 {
+	cout << "Here 2" << endl;
 	delta = engine->calc_stoping_time(index, time_left);
 	train->decelerate(delta);
 	if (train->speed() <= 0.03f)
@@ -18,6 +20,7 @@ static void handle_braking(size_t index, float &delta, float time_left, c_rail *
 
 static void handle_slowing(size_t index, float &delta, float time_left, c_rail *rail, c_train *train, c_train_engine *engine)
 {
+	cout << "Here 3" << endl;
 	delta = engine->calc_decelerate_time(index, time_left, MIN_SPEED);
 	train->decelerate(delta);
 	if (delta <= 0.001f)
@@ -26,34 +29,40 @@ static void handle_slowing(size_t index, float &delta, float time_left, c_rail *
 
 static void handle_stopping(size_t index, float &delta, float time_left, c_rail *rail, c_train *train, c_train_engine *engine)
 {
+	cout << "Here 4" << endl;
 	delta = time_left;
 	engine->move_train(index, engine->calc_distance_left(index));
 }
 
 static void handle_stopped(size_t index, float &delta, float time_left, c_rail *rail, c_train *train, c_train_engine *engine)
 {
+	cout << "Here 5" << endl;
 	delta = time_left;
 }
 
 static void handle_entering(size_t index, float &delta, float time_left, c_rail *rail, c_train *train, c_train_engine *engine)
 {
+	cout << "Here 6" << endl;
 	delta = engine->calc_distance_left(index) / train->speed();
 }
 
 static void handle_normal(size_t index, float &delta, float time_left, c_rail *rail, c_train *train, c_train_engine *engine)
 {
+	cout << "Here 7" << endl;
 	delta = engine->calc_run_time(index, time_left);
 	train->run(delta);
 }
 
 static void handle_waiting(size_t index, float &delta, float time_left, c_rail *rail, c_train *train, c_train_engine *engine)
 {
+	cout << "Here 8" << endl;
 	delta = engine->calc_waiting_time(index, time_left);
 	train->change_waiting_time(-delta);
 }
 
 static void handle_start_slowing(size_t index, float &delta, float time_left, c_rail *rail, c_train *train, c_train_engine *engine)
 {
+	cout << "Here 9" << endl;
 	delta = engine->calc_run_time(index, time_left);
 	train->run(delta);
 	train->set_state(e_train_state::slowing);
@@ -61,7 +70,18 @@ static void handle_start_slowing(size_t index, float &delta, float time_left, c_
 
 static void handle_event(size_t index, float &delta, float time_left, c_rail *rail, c_train *train, c_train_engine *engine)
 {
-
+	cout << "Here 10" << endl;
+	if (train->speed() > 0.0f)
+	{
+		delta = engine->calc_stoping_time(index, time_left);
+		train->decelerate(delta);
+	}
+	else
+	{
+		delta = engine->calc_event_time(index, time_left);
+	}
+	train->change_event_waiting_time(-delta);
+	train->change_waiting_time(-delta);
 }
 
 typedef void (*handler_funct)(size_t, float &, float, c_rail *, c_train *, c_train_engine *);

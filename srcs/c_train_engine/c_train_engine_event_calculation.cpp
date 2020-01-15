@@ -7,13 +7,13 @@ std::default_random_engine generator;
 static void add_event_to_train(c_journey *journey, c_train *train, Event *event)
 {
 	journey->output_text() += "			--- A NEW EVENT ---\n";
-	journey->output_text() += "			" + event->name + " - (" + convert_time_to_string(event->time) + ") of event\n";
 	//std::normal_distribution<double> distribution(event->time,event->time / 10.0f);
 	train->set_state(e_train_state::event);
 	event_active_map[event->name]++;
 	event_active_map_time[event->name].push_back(event->time);
 
 	train->set_event_waiting_time(event->time);
+	journey->output_text() += "			" + event->name + " - (" + convert_time_to_string(train->event_waiting_time()) + ") of event\n";
 	//train->change_event_waiting_time(distribution(generator));
 	train->set_has_event(true);
 }
@@ -41,7 +41,7 @@ void c_train_engine::calc_event(size_t index, float time)
 			}
 		}
 	}
-	else if (train->actual_rail() != nullptr)
+	else if (train->actual_rail() != nullptr && train->state() != e_train_state::stopped)
 	{
 		for (auto it = train->actual_rail()->event_list().begin(); it != train->actual_rail()->event_list().end(); it++)
 		{

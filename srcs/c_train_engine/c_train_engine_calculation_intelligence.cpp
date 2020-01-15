@@ -13,10 +13,11 @@ void c_train_engine::intelligence(size_t index)
 				train->speed() < train->max_speed() && train->speed() < rail->speed())
 			train->set_state(e_train_state::speed_up); // on accelere
 
-		if (should_slow(index) == true && train->state() != e_train_state::stopped)
+		if (should_slow(index) == true && train->state() != e_train_state::stopped && train->state() != e_train_state::slowing)
 			train->set_state(e_train_state::braking); // on va s'arreter completement
 
 		if (train->state() != e_train_state::stopped &&
+			train->state() != e_train_state::event &&
 			train->state() != e_train_state::entering &&
 			train->state() != e_train_state::slowing &&
 			train->speed() >= MIN_SPEED && train->slow_down_dist() >= calc_distance_left(index) - train->distance_per_tic())
@@ -28,6 +29,14 @@ void c_train_engine::intelligence(size_t index)
 		if (train->state() == e_train_state::stopped && should_slow(index) == false)
 			train->set_state(e_train_state::normal); // L'heure du depart est arrive
 
+
+		if (train->state() == e_train_state::event && train->event_waiting_time() <= 0.0f)
+		{
+			if (train->index() != 0)
+				if (_text_bool == true)
+					train->journey()->output_text() += "             -----    Event ended    -----\n";
+			train->set_state(e_train_state::waiting);
+		}
 		if (train->state() == e_train_state::waiting && train->departure_time() <= _time && train->waiting_time() <= 0.0f)
 		{
 			if (train->index() != 0)
