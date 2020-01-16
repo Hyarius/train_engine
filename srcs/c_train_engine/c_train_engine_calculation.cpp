@@ -134,6 +134,8 @@ void c_train_engine::run(string result_path, int p_simulation_index, bool p_plot
 	{
 		if (_plot_bool == true)
 			_plot->add_line(Color(0, 0, 0));
+		if (_time > _journey_list[i]->hour_panel()[0]->value())
+			_time = _journey_list[i]->hour_panel()[0]->value();
 		_journey_list[i]->calc_distance();
 		_journey_list[i]->set_exist(_text_bool);
 
@@ -162,11 +164,11 @@ void c_train_engine::run(string result_path, int p_simulation_index, bool p_plot
 
 	for (size_t i = 0; i < _journey_list.size(); i++)
 	{
-		string text = "Total distance for train [" + _journey_list[i]->name() + "] = " + ftoa(_distance[i], 3) + " and arrived at : [" + convert_hour_to_string(_arrived_hour[i]) + "] with " + convert_hour_to_string(_arrived_hour[i] - _journey_list[i]->hour_panel()[0]->value()) + " total travel time\n";
+		string text = "Total distance for train [" + _journey_list[i]->name() + "] = " + ftoa(_distance[i], 3) + " and arrived at : [" + convert_hour_to_string(_arrived_hour[i] + _journey_list[i]->hour_panel()[0]->value()) + "] with " + convert_hour_to_string(_arrived_hour[i]) + " total travel time\n";
 		_journey_list[i]->output_text() += text;
-		if (_arrived_hour[i] != _base_time_travel[i])
+		if (_arrived_hour[i] != _base_time_travel[i] || p_simulation_index == 0)
 			print_plot = true;
-		if (_text_bool == true && _arrived_hour[i] != _base_time_travel[i])
+		if (_text_bool == true && (_arrived_hour[i] != _base_time_travel[i] || p_simulation_index == 0))
 		{
 			create_journey_output_file(result_path + "/text result", _simulation_index, _journey_list[i], old_time);
 			_journey_list[i]->print_output_file();
@@ -194,9 +196,9 @@ bool c_train_engine::is_late(float time)
 
 bool c_train_engine::is_late(size_t i, float time)
 {
-	if (time == 0.0f && _arrived_hour[i] > _base_time_travel[i] + time)
+	if (time == 0.0f && _arrived_hour[i] > _journey_list[i]->hour_panel().back()->value() + time)
 		return (true);
-	else if (time != 0.0f && _arrived_hour[i] >= _base_time_travel[i] + time)
+	else if (time != 0.0f && _arrived_hour[i] >= _journey_list[i]->hour_panel().back()->value() + time)
 		return (true);
 	return (false);
 }
