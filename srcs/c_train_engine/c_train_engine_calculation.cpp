@@ -143,16 +143,12 @@ void c_train_engine::run(string result_path, int p_simulation_index, bool p_plot
 		_journey_list[i]->train()->set_departure_time(_journey_list[i]->hour_panel()[0]->value());
 		_journey_list[i]->train()->set_state(e_train_state::starting);
 
-		cout << "Set departure to " << _journey_list[i]->train()->departure_time() << endl;
-			if (_time > _journey_list[i]->train()->departure_time())
-				_time = _journey_list[i]->train()->departure_time();
 		_journey_list[i]->train()->set_actual_rail(_journey_list[i]->get_rail(_journey_list[i]->train()->index()));
 		_journey_list[i]->train()->actual_rail()->add_train(_journey_list[i]->train());
 		_distance.push_back(0.0f);
 		_time_travel.push_back(0);
 		_arrived_hour.push_back(0.0f);
 	}
-	cout << "Here time = " << _time << endl;
 	float old_time = _time;
 
 	_arrived_train = 0;
@@ -164,11 +160,11 @@ void c_train_engine::run(string result_path, int p_simulation_index, bool p_plot
 
 	for (size_t i = 0; i < _journey_list.size(); i++)
 	{
-		string text = "Total distance for train [" + _journey_list[i]->name() + "] = " + ftoa(_distance[i], 3) + " and arrived at : [" + convert_hour_to_string(_arrived_hour[i] + _journey_list[i]->hour_panel()[0]->value()) + "] with " + convert_hour_to_string(_arrived_hour[i]) + " total travel time\n";
+		string text = "Total distance for train [" + _journey_list[i]->name() + "] = " + ftoa(_distance[i], 3) + " and arrived at : [" + convert_hour_to_string(_arrived_hour[i]) + "] with " + convert_hour_to_string(_time_travel[i]) + " total travel time\n";
 		_journey_list[i]->output_text() += text;
-		if (_arrived_hour[i] != _base_time_travel[i] || p_simulation_index == 0)
+		if (_arrived_hour[i] != _base_time_travel[i])
 			print_plot = true;
-		if (_text_bool == true && (_arrived_hour[i] != _base_time_travel[i] || p_simulation_index == 0))
+		if (_text_bool == true && _arrived_hour[i] != _base_time_travel[i])
 		{
 			create_journey_output_file(result_path + "/text result", _simulation_index, _journey_list[i], old_time);
 			_journey_list[i]->print_output_file();
@@ -196,9 +192,9 @@ bool c_train_engine::is_late(float time)
 
 bool c_train_engine::is_late(size_t i, float time)
 {
-	if (time == 0.0f && _arrived_hour[i] > _journey_list[i]->hour_panel().back()->value() + time)
+	if (time == 0.0f && _arrived_hour[i] > _base_time_travel[i] + time)
 		return (true);
-	else if (time != 0.0f && _arrived_hour[i] >= _journey_list[i]->hour_panel().back()->value() + time)
+	else if (time != 0.0f && _arrived_hour[i] >= _base_time_travel[i] + time)
 		return (true);
 	return (false);
 }

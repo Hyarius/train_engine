@@ -77,7 +77,7 @@ void c_train_engine::move_train(size_t index, float distance)
 		{
 			train->change_speed(_time_delta, 0.0f);
 			_arrived_train++;
-			_arrived_hour[index] = _time_travel[index];
+			_arrived_hour[index] = _time;
 			break ;
 		}
 	}

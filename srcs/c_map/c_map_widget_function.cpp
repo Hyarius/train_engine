@@ -219,8 +219,6 @@ bool c_map::handle_keyboard()
 				_rail_selected[i]->set_state(false);
 			_rail_selected.clear();
 		}
-		else
-			g_application->quit();
 		g_keyboard->reset_key(SDL_SCANCODE_ESCAPE);
 	}
 	return (false);

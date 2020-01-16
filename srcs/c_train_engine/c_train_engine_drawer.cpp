@@ -5,7 +5,7 @@ string c_train_engine::draw_train_information(size_t i)
 	c_train* train = _journey_list[i]->train();
 	string text;
 
-	text.append(convert_hour_to_string(_time_travel[i]) + " : ");
+	text.append(convert_hour_to_string(_time) + " : ");
 	text.append("[" + train->state_str() + "]");
 	text.append(" - [" + normalize_float(train->speed(), 0, '0', 3) + " km/h" + "]");
 	text.append(" - [" + normalize_float(_distance[i], 1, '0', 7) + " km]");

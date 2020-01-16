@@ -65,7 +65,7 @@ static void calc_journeys(Data data)
 		}
 		win->engine->clean();
 	}
-	result_file << "On " << ftoa(win->nb_value_entry->value(), 0) << " trains simulated" << endl;
+	result_file << "On " << ftoa(total_train, 0) << " trains simulated" << endl;
 	for (size_t j = 0; j < 7; j++)
 	{
 		result_file << nb_late[j] << " were late by " << convert_hour_to_string(target_time[j]) << " or more" << endl;
