@@ -229,6 +229,8 @@ public:
 
 	map <string, Event *> &new_city_event(){return (_new_city_event);}
 	map <string, Event *> &new_rail_event(){return (_new_rail_event);}
+
+	void reset_city_waiting_train(){for (size_t i = 0; i < _cities.size(); i++)_cities[i]->set_train_waiting(0);}
 };
 
 //Saving functions

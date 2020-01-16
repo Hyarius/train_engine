@@ -44,7 +44,7 @@ static void calc_journeys(Data data)
 		}
 
 		win->map->calc_distance_ratio();
-
+		win->map->reset_city_waiting_train();
 		win->engine->run(result_path, i, win->graph_result_check->state(), win->text_result_check->state());
 
 		total_train += win->engine->journey_list().size();
